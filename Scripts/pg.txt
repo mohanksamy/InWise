@@ -1,0 +1,59 @@
+STORES - Contains store information
+
+GST_RATE - Contains GST rates with reference to STORE_ID (1...1 mapping) [Should have a category_type]
+  References: STORE_ID,
+
+ITEM_CATEGORY - Contains item and it's categories
+  References: STORE_ID, GST_RATE_ID
+
+ITEMS - Contains item information & will have reference to STORE_ID (STORE to ITEM 1...* || ITEM to STORE 1...1 relationship)
+  References: STORE_ID, ITEM_CATEGORY_ID
+
+BUYER - Contains buyer information (In realtime, buyers are regular customers, so better to store them and refer from Invoice tables)
+
+INVOICE - Contains invoice details with references to STORE_ID, ITEM_ID, GST_ID & BUYER_ID
+
+******************************************************************************************************************************
+
+CREATE TABLE STORES (
+  ID            UUID,
+  NAME          TEXT,
+  ADDRESS       TEXT,
+  UIN           TEXT,
+  PHONE         SMALLINT,
+  CGST          FLOAT,
+  SGST          FLOAT,
+  CREATED_ON    TIMESTAMP,
+  MODIFIED_ON   TIMESTAMP,
+  PRIMARY KEY   (ID) );
+
+CREATE TABLE ITEMS (
+  ID            UUID,
+  NAME          TEXT,
+  PART_NO       BIGINT,
+  PRICE         FLOAT,
+  HSN/SAC       TEXT,
+  CREATED_ON    TIMESTAMP,
+  MODIFIED_ON   TIMESTAMP,
+  STORE_NAME    TEXT REFERENCES STORES(NAME)
+  PRIMARY KEY   (ID, NAME, STORE_NAME, PRICE) );
+
+CREATE TABLE INVOICE (
+  ID                        UUID,
+  ITEM_NAME                 TEXT  REFERENCES ITEMS(NAME),
+  ITEM_PRICE                FLOAT REFERENCES ITEMS(PRICE),
+  ITEM_QUANTITY             SMALLINT,
+  STORE_NAME                TEXT  REFERENCES STORES(NAME),
+  BUYER_NAME                TEXT,
+  DESPATCHED_THROUGH        TEXT,
+  DESPATCHED_DOCUMENT_NO    TEXT,
+  DESTINATION               TEXT,
+  MODE_OR_TERMS_OF_PAYMENT  TEXT,
+  SUPPLIER REFERENCE        TEXT,
+  CREATED_ON                TIMESTAMP,
+  MODIFIED_ON               TIMESTAMP,
+  PRIMARY KEY (ID, ITEM_NAME, ITEM_PRICE, STORE_NAME, BUYER_NAME) );
+
+
+INSERT INTO STORES(ID, ADDRESS, CGST, CREATED_ON, MODIFIED_ON, NAME, PHONE, SGST, UIN)
+VALUES(UUID(),'BALEPET, BANGALORE', 2.5, TOTIMESTAMP(NOW()), TOTIMESTAMP(NOW()), 'VELSTORES', 9448, 2.5, 'TN34376936');
