@@ -14,6 +14,6 @@ public class HealthResource {
 	 */
 	@GET
 	public String health() {
-        return "InWise Services: Up and Running!"; 
+        return "InWise REST Services: Up and Running!"; 
 	}
 }
