@@ -45,19 +45,19 @@
 		</dependency> 
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency> 
 		
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>	 
 		 				
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging -->
+		https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging
 		<dependency> 
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -69,33 +69,33 @@
 			</exclusions>
 		</dependency> 
         
-        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j -->
+        https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j</artifactId>
 		</dependency> 
 	     
-	    <!-- https://mvnrepository.com/artifact/com.fasterxml/jackson-xml-databind -->
+	    https://mvnrepository.com/artifact/com.fasterxml/jackson-xml-databind
 	    <dependency>  
 		    <groupId>com.fasterxml</groupId>
 		    <artifactId>jackson-xml-databind</artifactId>
 		    <version>${jackson.xml.databind.version}</version>
 		</dependency>  
 		
-		<!-- https://mvnrepository.com/artifact/com.google.gcm/gcm-server -->
+		https://mvnrepository.com/artifact/com.google.gcm/gcm-server
 		<dependency>
             <groupId>com.ganyo</groupId>
             <artifactId>gcm-server</artifactId>
             <version>${gcm.server.version}</version>
         </dependency> 
                         
-        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+        https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>  
         </dependency> 
 		  
-		<!-- https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured -->
+		https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured
 		<dependency>
 		   <groupId>com.jayway.restassured</groupId>
 		   <artifactId>rest-assured</artifactId>  
@@ -103,7 +103,7 @@
 		   <scope>test</scope>
 		</dependency> 
 		
-		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all -->
+		https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all
 		<dependency>
 		   <groupId>org.hamcrest</groupId>
 		   <artifactId>hamcrest-all</artifactId>  
@@ -111,19 +111,19 @@
 		   <scope>test</scope>  
 		</dependency>
 		  
-		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all --> 
+		https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all 
 		<dependency>
 		    <groupId>org.codehaus.groovy</groupId> 
 		    <artifactId>groovy-all</artifactId>
 		    <version>${groovy.all.version}</version>   
 		</dependency>        
 		
-		<!-- https://mvnrepository.com/artifact/com.github.fge/json-patch -->
+		https://mvnrepository.com/artifact/com.github.fge/json-patch
 	    <dependency>
 	       <groupId>com.github.fge</groupId>
 	       <artifactId>json-patch</artifactId> 
 	       <version>${json.patch.version}</version> 
-	    </dependency> 
+	    </dependency>  -->
 		 
 	</dependencies>      
 	
