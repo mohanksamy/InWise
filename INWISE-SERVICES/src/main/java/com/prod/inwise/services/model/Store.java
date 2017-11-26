@@ -13,6 +13,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+/**
+ * Entity STORE
+ * 
+ * @author mohan.kandasamy
+ *
+ */
 @Entity
 @Table(name = "STORES")
 @XmlRootElement

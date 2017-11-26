@@ -12,6 +12,12 @@ import org.springframework.stereotype.Component;
 import com.prod.inwise.services.dao.StoreDAO;
 import com.prod.inwise.services.model.Store;
 
+/**
+ * REST Resource exposes operation on Store resource
+ * 
+ * @author mohan.kandasamy
+ *
+ */
 @Component
 @Path("/store")
 @Produces( {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML} )
@@ -21,7 +27,10 @@ public class StoreResource {
 	private StoreDAO storeDAO;
     
 	/**
-	 * Use : This method is used to check server health
+	 * Service operation to find resource by name.
+	 * 
+	 * @param name
+	 * @return
 	 */
 	@GET
 	@Path("/{name}")

@@ -6,25 +6,31 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
+/**
+ * Base model for all Entities
+ * 
+ * @author mohan.kandasamy
+ *
+ */
 @MappedSuperclass
 public abstract class BaseModel {
 	
 	@Column(name = "ACTIVE") 
-	protected boolean active;
+	private boolean active;
 	
 	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)  
-	protected String createdUser; 
+	private String createdUser; 
 
 	@NotNull(message = "Created timestamp can't be null")
 	@Column(name = "CREATED_TS", nullable = false) 	
-	protected Timestamp createdTS;
+	private Timestamp createdTS;
 	
 	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)  
-	protected String modifiedUser;
+	private String modifiedUser;
 	
 	@NotNull(message = "Modified timestamp can't be null")
 	@Column(name = "MODIFIED_TS", nullable = false) 	
-	protected Timestamp modifiedTS;
+	private Timestamp modifiedTS;
 
 	/**
 	 * @return the active
