@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.prod.inwise.services.model.Store;
+import com.prod.inwise.services.data.Store;
 
 /**
  * Repository class for Store entity

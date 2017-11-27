@@ -1,6 +1,6 @@
 package com.prod.inwise.services.dao;
 
-import com.prod.inwise.services.model.Store;
+import com.prod.inwise.services.data.Store;
 
 /**
  * Interface declares CRUD operation on Store Entity

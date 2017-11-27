@@ -1,4 +1,4 @@
-package com.prod.inwise.services.model;
+package com.prod.inwise.services.data;
 
 import java.math.BigInteger;
 

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.dao.StoreDAO;
-import com.prod.inwise.services.model.Store;
+import com.prod.inwise.services.data.Store;
 
 /**
  * REST Resource exposes operation on Store resource
