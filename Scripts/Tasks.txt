@@ -1,0 +1,30 @@
+Modules:
+********
+- CRUD operations on Store, Tax, Category, Type & Items entities
+- Create operation on INVOICE
+
+Data Reporting:
+***************
+  - By Category / Date
+  - By Type / Date
+  - By Brand / Date
+  - By Amount / Date
+  - By date
+
+
+Users:
+******
+  - Admin access for reporting
+  - Admin access for creating invoice
+  - Admin access for CRUD operations
+
+  - User group access to stores, invoice & reporting
+
+
+Data encryption:
+****************
+
+
+- Data dual writing to Postgres & Cassandra
+- Identifying Front end technology
+- Functional test cases for Services
