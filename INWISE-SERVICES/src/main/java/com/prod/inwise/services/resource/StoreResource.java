@@ -9,8 +9,8 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.prod.inwise.services.dao.StoreDAO;
 import com.prod.inwise.services.data.Store;
+import com.prod.inwise.services.repo.StoreRepository;
 
 /**
  * REST Resource exposes operation on Store resource
@@ -24,7 +24,7 @@ import com.prod.inwise.services.data.Store;
 public class StoreResource {
 	
 	@Autowired
-	private StoreDAO storeDAO;
+	private StoreRepository storeRepo;
     
 	/**
 	 * Service operation to find resource by name.
@@ -35,6 +35,6 @@ public class StoreResource {
 	@GET
 	@Path("/{name}")
 	public Store findByName(@PathParam("name") String name) {
-		return storeDAO.findByName(name);
+		return storeRepo.findByName(name);
 	}
 }
