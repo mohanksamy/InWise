@@ -28,3 +28,7 @@ Data encryption:
 - Data dual writing to Postgres & Cassandra
 - Identifying Front end technology
 - Functional test cases for Services
+
+
+
+Spring-data-JPA: https://stackoverflow.com/questions/37012437/spring-hibernate-versus-spring-data-jpa-are-they-different
