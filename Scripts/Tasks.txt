@@ -34,4 +34,20 @@ Cancel / return of invoice:
 ****************************
 
 
+REFERENCES:
+***********
+
 Spring-data-JPA: https://stackoverflow.com/questions/37012437/spring-hibernate-versus-spring-data-jpa-are-they-different
+
+Node.JS:
+  https://www.infoworld.com/article/3210589/node-js/what-is-nodejs-javascript-runtime-explained.html
+  https://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js
+
+Front end:
+  https://www.upwork.com/hiring/for-clients/how-to-choose-a-technology-stack-for-web-application-development/
+  http://frontendinsights.com/modern-front-end-development-technology-stack/
+  https://medium.freecodecamp.org/what-to-learn-in-2017-if-youre-a-frontend-developer-b6cfef46effd
+
+  https://www.sitepoint.com/5-most-popular-frontend-frameworks-compared/
+  https://medium.com/this-dot-labs/building-modern-web-applications-in-2017-791d2ef2e341
+  https://gearheart.io/blog/7-best-frameworks-for-web-development-in-2017/
