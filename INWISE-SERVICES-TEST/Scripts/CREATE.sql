@@ -1,96 +1,163 @@
+-- ENUM TYPES
 
-CREATE TABLE STORE (
-  ID              BIGINT      NOT NULL,
-  NAME            TEXT        NOT NULL,
-  ADDRESS         TEXT        NOT NULL,
-  UIN             TEXT        NOT NULL,
-  PHONE           BIGINT      NOT NULL,
-  ACTIVE          BOOLEAN     NOT NULL,
-  CREATED_USER    TEXT        NOT NULL,
-  CREATED_TS      TIMESTAMP   NOT NULL,
-  MODIFIED_USER   TEXT        NOT NULL,
-  MODIFIED_TS     TIMESTAMP   NOT NULL,
-  PRIMARY KEY     (ID)
-);
+CREATE TYPE BRAND AS ENUM ('POOMER', 'POOMEX', 'GRS', 'E-FRESH');
 
 CREATE TYPE CATEGORY AS ENUM ('MENS', 'WOMENS', 'BOYS', 'GIRLS', 'BABY BOYS', 'BABY GIRLS', 'INFANTS');
 
 CREATE TYPE SUB_CATEGORY AS ENUM ('INNERS', 'OUT FITTINGS', 'TOP', 'BOTTOM', 'FROCK');
 
-CREATE TYPE SIZE AS ENUM ('55', '60', '65', '70', '75', 'S', 'M', 'L', 'XL', 'XXL');
+CREATE TYPE SIZE AS ENUM ('55', '60', '65', '70', '75', 'S', 'M', 'L', 'XL', 'XXL', 'NA');
+
+
+
+CREATE TABLE STORE (
+	ID              	BIGINT      NOT NULL,
+  	NAME            	TEXT        NOT NULL,
+ 	ADDRESS         	TEXT        NOT NULL,
+  	UIN             	TEXT        NOT NULL,
+  	PHONE           	BIGINT      NOT NULL,
+  	ACTIVE          	BOOLEAN     NOT NULL,
+  	CREATED_USER    	TEXT        NOT NULL,
+  	CREATED_TS      	TIMESTAMP   NOT NULL,
+  	MODIFIED_USER   	TEXT        NOT NULL,
+  	MODIFIED_TS     	TIMESTAMP   NOT NULL,
+  	PRIMARY KEY     	(ID)
+);
+
 
 CREATE TABLE TAX (
-  ID              BIGINT      NOT NULL,
-  CGST            FLOAT       NOT NULL,
-  SGST            FLOAT       NOT NULL,
-  STORE_ID        BIGINT      NOT NULL,
-  ACTIVE          BOOLEAN     NOT NULL,
-  CREATED_USER    TEXT        NOT NULL,
-  CREATED_TS      TIMESTAMP   NOT NULL,
-  MODIFIED_USER   TEXT        NOT NULL,
-  MODIFIED_TS     TIMESTAMP   NOT NULL,
-  PRIMARY KEY     (ID),
-  FOREIGN KEY     (STORE_ID)  REFERENCES STORE (ID)
+  	ID              	BIGINT      NOT NULL,
+  	CGST            	FLOAT       NOT NULL,
+ 	SGST            	FLOAT       NOT NULL,
+	STORE_ID        	BIGINT      NOT NULL,
+	ACTIVE          	BOOLEAN     NOT NULL,
+	CREATED_USER    	TEXT        NOT NULL,
+	CREATED_TS      	TIMESTAMP   NOT NULL,
+	MODIFIED_USER   	TEXT        NOT NULL,
+	MODIFIED_TS     	TIMESTAMP   NOT NULL,
+	PRIMARY KEY     	(ID),
+	FOREIGN KEY     	(STORE_ID)  REFERENCES STORE (ID)
 );
+
 
 CREATE TABLE ITEM (
-  ID              BIGINT      NOT NULL,
-  NAME            TEXT        NOT NULL,
-  PART_NO         BIGINT,
-  PRICE           FLOAT       NOT NULL,
-  HSN_SAC         TEXT,
-  CATEGORY        CATEGORY,
-  SUB_CATEGORY    SUB_CATEGORY,
-  SIZE            SIZE,
-  STORE_ID        BIGINT      NOT NULL,
-  TAX_ID          BIGINT      NOT NULL,
-  ACTIVE          BOOLEAN     NOT NULL,
-  CREATED_USER    TEXT        NOT NULL,
-  CREATED_TS      TIMESTAMP   NOT NULL,
-  MODIFIED_USER   TEXT        NOT NULL,
-  MODIFIED_TS     TIMESTAMP   NOT NULL,
-  PRIMARY KEY     (ID),
-  FOREIGN KEY     (STORE_ID)  REFERENCES STORE (ID),
-  FOREIGN KEY     (TAX_ID)    REFERENCES TAX (ID)
+	ID              	BIGINT      NOT NULL,
+	NAME            	TEXT        NOT NULL,
+	PART_NO         	BIGINT,
+	PRICE           	FLOAT       NOT NULL,
+	HSN_SAC         	TEXT,
+  	CATEGORY        	CATEGORY,
+  	SUB_CATEGORY    	SUB_CATEGORY,
+  	BRAND    			BRAND,
+  	SIZE            	SIZE,
+  	STORE_ID        	BIGINT      NOT NULL,
+  	TAX_ID          	BIGINT      NOT NULL,
+  	ACTIVE          	BOOLEAN     NOT NULL,
+  	CREATED_USER    	TEXT        NOT NULL,
+  	CREATED_TS      	TIMESTAMP   NOT NULL,
+  	MODIFIED_USER   	TEXT        NOT NULL,
+  	MODIFIED_TS     	TIMESTAMP   NOT NULL,
+  	PRIMARY KEY     	(ID),
+  	FOREIGN KEY     	(STORE_ID)  REFERENCES STORE (ID),
+  	FOREIGN KEY     	(TAX_ID)    REFERENCES TAX (ID)
 );
-
 
 
 CREATE TABLE INVOICE (
-  ID                          BIGINT    NOT NULL,
-  STORE_ID                    BIGINT    NOT NULL,
-  BUYER_NAME                  TEXT,
-  DESPATCHED_THROUGH          TEXT,
-  DESPATCHED_DOCUMENT_NO      TEXT,
-  DESTINATION                 TEXT,
-  MODE_OR_TERMS_OF_PAYMENT    TEXT,
-  SUPPLIER_REFERENCE          TEXT,
-  ACTIVE                      BOOLEAN     NOT NULL,
-  CREATED_USER                TEXT        NOT NULL,
-  CREATED_TS                  TIMESTAMP   NOT NULL,
-  MODIFIED_USER               TEXT        NOT NULL,
-  MODIFIED_TS                 TIMESTAMP   NOT NULL,
-  PRIMARY KEY                 (ID),
-  FOREIGN KEY                 (STORE_ID)  REFERENCES STORE (ID)
+	ID                          BIGINT    NOT NULL,
+  	STORE_ID                    BIGINT    NOT NULL,
+  	TOTAL_TAX          			FLOAT     NOT NULL,
+	TOTAL_PRICE         		FLOAT     NOT NULL,
+  	BUYER_NAME                  TEXT,
+  	DESPATCHED_THROUGH          TEXT,
+  	DESPATCHED_DOCUMENT_NO      TEXT,
+  	DESTINATION                 TEXT,
+  	MODE_OR_TERMS_OF_PAYMENT    TEXT,
+  	SUPPLIER_REFERENCE          TEXT,
+  	ACTIVE                      BOOLEAN     NOT NULL,
+  	CREATED_USER                TEXT        NOT NULL,
+  	CREATED_TS                  TIMESTAMP   NOT NULL,
+  	MODIFIED_USER               TEXT        NOT NULL,
+  	MODIFIED_TS                 TIMESTAMP   NOT NULL,
+  	PRIMARY KEY                 (ID),
+  	FOREIGN KEY                 (STORE_ID)  REFERENCES STORE (ID)
 );
 
 
 CREATE TABLE LINE_ITEM (
-  LINE_ITEM_ID      BIGINT          NOT NULL,
-  INVOICE_ID        BIGINT          NOT NULL,
-  ITEM_ID           BIGINT          NOT NULL,
-  ITEM_QUANTITY     SMALLINT,
-  ACTIVE            BOOLEAN         NOT NULL,
-  CREATED_USER      TEXT            NOT NULL,
-  CREATED_TS        TIMESTAMP       NOT NULL,
-  MODIFIED_USER     TEXT            NOT NULL,
-  MODIFIED_TS       TIMESTAMP       NOT NULL,
-  PRIMARY KEY       (LINE_ITEM_ID),
-  FOREIGN KEY       (INVOICE_ID)    REFERENCES INVOICE (ID),
-  FOREIGN KEY       (ITEM_ID)       REFERENCES ITEM (ID)
+	LINE_ITEM_ID      	BIGINT          NOT NULL,
+	INVOICE_ID        	BIGINT          NOT NULL,
+	ITEM_ID           	BIGINT          NOT NULL,
+ 	QUANTITY			INTEGER     	NOT NULL,
+ 	TOTAL_TAX           FLOAT     		NOT NULL,
+	TOTAL_PRICE         FLOAT     		NOT NULL,
+	--TOTAL_CGST                FLOAT     NOT NULL,
+	--TOTAL_SGST                FLOAT     NOT NULL,
+	ACTIVE            	BOOLEAN         NOT NULL,
+	CREATED_USER      	TEXT            NOT NULL,
+	CREATED_TS        	TIMESTAMP       NOT NULL,
+	MODIFIED_USER     	TEXT            NOT NULL,
+	MODIFIED_TS       	TIMESTAMP       NOT NULL,
+	PRIMARY KEY       	(LINE_ITEM_ID),
+	FOREIGN KEY       	(INVOICE_ID)    REFERENCES INVOICE (ID),
+	FOREIGN KEY       	(ITEM_ID)       REFERENCES ITEM (ID)
 );
 
-TOTAL_CGST                FLOAT     NOT NULL,
-TOTAL_SGST                FLOAT     NOT NULL,
-TOTAL_TAX                 FLOAT     NOT NULL,
-TOTAL_PRICE               FLOAT     NOT NULL,
+
+CREATE TABLE STOCK (
+	ID              	BIGINT      	NOT NULL,
+  	ITEM_ID         	BIGINT      	NOT NULL,
+  	QUANTITY			INTEGER     	NOT NULL,
+  	ACTIVE          	BOOLEAN     	NOT NULL,
+  	CREATED_USER    	TEXT        	NOT NULL,
+  	CREATED_TS      	TIMESTAMP   	NOT NULL,
+  	MODIFIED_USER   	TEXT        	NOT NULL,
+  	MODIFIED_TS     	TIMESTAMP   	NOT NULL,
+  	PRIMARY KEY     	(ID),
+  	FOREIGN KEY     	(ITEM_ID)  		REFERENCES ITEM (ID)
+);
+
+
+CREATE TABLE STOCK_BATCH (
+  	ID              	BIGINT      	NOT NULL,
+  	ACTIVE          	BOOLEAN     	NOT NULL,
+  	CREATED_USER    	TEXT        	NOT NULL,
+  	CREATED_TS      	TIMESTAMP   	NOT NULL,
+  	MODIFIED_USER   	TEXT        	NOT NULL,
+  	MODIFIED_TS     	TIMESTAMP   	NOT NULL,
+  	PRIMARY KEY     	(ID)
+);
+
+
+CREATE TABLE VENDOR (
+  	ID              	BIGINT      	NOT NULL,
+  	NAME            	TEXT        	NOT NULL,
+  	CODE				TEXT        	NOT NULL,
+  	ADDRESS         	TEXT        	NOT NULL,
+  	PHONE           	BIGINT      	NOT NULL,
+  	ACTIVE          	BOOLEAN     	NOT NULL,
+  	CREATED_USER    	TEXT        	NOT NULL,
+  	CREATED_TS      	TIMESTAMP   	NOT NULL,
+  	MODIFIED_USER   	TEXT        	NOT NULL,
+  	MODIFIED_TS     	TIMESTAMP   	NOT NULL,
+  	PRIMARY KEY     	(ID)
+);
+
+
+CREATE TABLE STOCK_HISTORY (
+  	ID              	BIGINT      	NOT NULL,
+  	STOCK_BATCH_ID		BIGINT      	NOT NULL,
+  	ITEM_ID         	BIGINT      	NOT NULL,
+  	VENDOR_ID			BIGINT      	NOT NULL,
+  	BASE_PRICE        	FLOAT       	NOT NULL,
+  	QUANTITY			INTEGER     	NOT NULL,
+  	ACTIVE          	BOOLEAN     	NOT NULL,
+  	CREATED_USER    	TEXT        	NOT NULL,
+  	CREATED_TS      	TIMESTAMP   	NOT NULL,
+  	MODIFIED_USER   	TEXT        	NOT NULL,
+  	MODIFIED_TS     	TIMESTAMP   	NOT NULL,
+  	PRIMARY KEY     	(ID),
+  	FOREIGN KEY     	(STOCK_BATCH_ID)	REFERENCES STOCK_BATCH (ID),
+  	FOREIGN KEY     	(ITEM_ID)  			REFERENCES ITEM (ID),
+  	FOREIGN KEY     	(VENDOR_ID)	 		REFERENCES VENDOR (ID)
+);
