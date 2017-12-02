@@ -20,7 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  */
 @Entity
-@Table(name = "STORES")
+@Table(name = "STORE")
 @XmlRootElement
 public class Store extends BaseModel {
 	
