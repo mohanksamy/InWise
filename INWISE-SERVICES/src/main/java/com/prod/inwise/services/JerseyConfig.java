@@ -2,6 +2,12 @@ package com.prod.inwise.services;
 
 import java.util.logging.Logger;
 
+import static com.prod.inwise.services.util.Constants.REST_TRACING_TYPE;
+import static com.prod.inwise.services.util.Constants.REST_LOGGING;
+import static com.prod.inwise.services.util.Constants.REST_BASE_PACKAGE;
+import static com.prod.inwise.services.util.Constants.REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK;
+import static com.prod.inwise.services.util.Constants.REST_BV_SEND_ERROR_IN_RESPONSE;
+
 import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -23,13 +29,12 @@ public class JerseyConfig extends ResourceConfig {
         property(ServerProperties.TRACING, AppConfig.JERSEY_SERVER_PROPERTIES);*/
 		
 		
-		packages("com.prod.inwise.services.resource");
-        register(new LoggingFilter(logger, Boolean.TRUE)); 
-        property(ServerProperties.TRACING, "ALL"); 
-        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true); 
-        property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, true);
+		packages(REST_BASE_PACKAGE);
+        register(new LoggingFilter(logger, REST_LOGGING)); 
+        property(ServerProperties.TRACING, REST_TRACING_TYPE); 
+        property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, REST_BV_SEND_ERROR_IN_RESPONSE); 
+        property(ServerProperties.BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK, REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK);
         register(RequestContextFilter.class);
-		register(CORSFilter.class);	
-		 
+		register(CORSFilter.class);
     }	
 }
