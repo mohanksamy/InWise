@@ -25,13 +25,16 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>com.prod.inwise.Application</start-class> 
 		
-		<testng.version>6.8.8</testng.version>     
+		<!-- <testng.version>6.8.8</testng.version>     
 		<rest.assured.version>2.9.0</rest.assured.version>   
 		<hamcrest.all.version>1.3</hamcrest.all.version> 
 		<groovy.all.version>2.4.5</groovy.all.version>
 		<jackson.xml.databind.version>0.6.2</jackson.xml.databind.version>
 		<gcm.server.version>1.0.2</gcm.server.version>  
-		<json.patch.version>1.9</json.patch.version>       
+		<json.patch.version>1.9</json.patch.version> -->
+		
+		<spring-swagger-version>2.6.1</spring-swagger-version>
+		<postgresql-driver-version>42.1.4</postgresql-driver-version>       
 		
 	</properties> 
 
@@ -49,6 +52,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency> 
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		
 		<!--https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test
 		<dependency>
@@ -125,11 +133,24 @@
 	       <version>${json.patch.version}</version> 
 	    </dependency>  -->
 	    
+	    <!-- Spring Swagger libraries -->
+	    <dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${spring-swagger-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${spring-swagger-version}</version>
+		</dependency>
+	    
 	    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 		    <groupId>org.postgresql</groupId>
 		    <artifactId>postgresql</artifactId>
-		    <version>42.1.4</version>
+		    <version>${postgresql-driver-version}</version>
 		</dependency>
 		 
 	</dependencies>      
@@ -170,13 +191,13 @@
 		<plugins>  
 		
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-			<plugin> 
+			<!-- <plugin> 
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>   
 	            <configuration> 
 			   		<layout>ZIP</layout>
 			    </configuration>        
-			</plugin>     
+			</plugin>     --> 
 			
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 			<plugin>
