@@ -3,6 +3,8 @@ package com.prod.inwise.services.resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+import static com.prod.inwise.services.util.Constants.REST_HEALTH_MESSAGE;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +16,6 @@ public class HealthResource {
 	 */
 	@GET
 	public String health() {
-        return "InWise REST Services: Up and Running!"; 
+        return REST_HEALTH_MESSAGE; 
 	}
 }

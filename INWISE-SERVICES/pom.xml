@@ -23,7 +23,7 @@
 	<properties>    
 	
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.prod.inwise.Application</start-class> 
+		<start-class>com.prod.inwise.services.Application</start-class> 
 		
 		<!-- <testng.version>6.8.8</testng.version>     
 		<rest.assured.version>2.9.0</rest.assured.version>   

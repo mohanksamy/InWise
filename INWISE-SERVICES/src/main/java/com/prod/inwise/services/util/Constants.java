@@ -17,4 +17,9 @@ public interface Constants {
 	boolean REST_BV_SEND_ERROR_IN_RESPONSE							= true;
 	
 	boolean REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK 	= true;
+	
+
+	
+	// RESOURCE URI CONSTANTS
+	String REST_HEALTH_MESSAGE 										= "InWise REST Services: Up and Running!";
 }
