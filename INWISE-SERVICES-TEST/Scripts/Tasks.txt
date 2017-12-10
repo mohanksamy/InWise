@@ -51,3 +51,7 @@ Front end:
   https://www.sitepoint.com/5-most-popular-frontend-frameworks-compared/
   https://medium.com/this-dot-labs/building-modern-web-applications-in-2017-791d2ef2e341
   https://gearheart.io/blog/7-best-frameworks-for-web-development-in-2017/
+
+  
+  
+https://stackoverflow.com/questions/39343021/how-to-turn-my-jersey-rest-api-into-an-executable-jar

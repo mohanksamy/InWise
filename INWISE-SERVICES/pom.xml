@@ -12,18 +12,18 @@
 	
 	<!-- Project Details -->   
 	<name>INWISE-SERVICES</name>
-	<artifactId>INWISE-SERVICES</artifactId>       
-	<groupId>com.prod.inwise</groupId>   
-	<modelVersion>4.0.0</modelVersion>        	       
-	<url>http://maven.apache.org</url>            
-	<version>1.0-SNAPSHOT</version>               
-	<packaging>jar</packaging>         
+	<artifactId>INWISE-SERVICES</artifactId>
+	<groupId>com.prod.inwise</groupId>
+	<modelVersion>4.0.0</modelVersion>
+	<url>http://maven.apache.org</url>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	  
 	<!-- Properties Details -->          
-	<properties>    
+	<properties>
 	
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.prod.inwise.services.Application</start-class> 
+		<start-class>com.prod.inwise.services.Application</start-class>
 		
 		<!-- <testng.version>6.8.8</testng.version>     
 		<rest.assured.version>2.9.0</rest.assured.version>   
@@ -34,8 +34,8 @@
 		<json.patch.version>1.9</json.patch.version> -->
 		
 		<spring-swagger-version>2.6.1</spring-swagger-version>
-		<postgresql-driver-version>42.1.4</postgresql-driver-version>       
-		
+		<postgresql-driver-version>42.1.4</postgresql-driver-version>
+
 	</properties> 
 
 	<!-- Dependencies Details -->   
@@ -44,14 +44,14 @@
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jersey -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jersey</artifactId>     
-		</dependency> 
+			<artifactId>spring-boot-starter-jersey</artifactId>
+		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency> 
+		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -153,42 +153,42 @@
 		    <version>${postgresql-driver-version}</version>
 		</dependency>
 		 
-	</dependencies>      
+	</dependencies>
 	
 	<!-- Profile Details --> 
 	<profiles>
 	
 		<!-- Profile For Local Environment -->    
 		<profile>
-		    <id>local</id>   
+		    <id>local</id>
 		    <activation>
-		        <activeByDefault>true</activeByDefault>      
-		    </activation> 
-		    <properties>  
+		        <activeByDefault>true</activeByDefault>
+		    </activation>
+		    <properties>
 		    	<activatedProfileFinalName>LOCAL</activatedProfileFinalName>
-		    </properties> 
-		    <build>  
+		    </properties>
+		    <build>
 			    <!-- Build Resource Details -->	 
-				<resources>   
-			        <resource>   
-			            <directory>src/main/resources</directory>       
-			            <filtering>true</filtering>    
-			        </resource> 
-			    </resources> 
-		    </build> 
+				<resources>
+			        <resource>
+			            <directory>src/main/resources</directory>
+			            <filtering>true</filtering>
+			        </resource>
+			    </resources>
+		    </build>
 		</profile>
-		
-	</profiles> 
+
+	</profiles>
 	 
 	<!-- Build Details -->      
-	<build> 
+	<build>
 	   
 	 	<!-- Build Final Name --> 
 		<!-- <finalName>${project.artifactId}-${project.version}-${activatedProfileFinalName}</finalName> -->
 		<finalName>${project.artifactId}-${project.version}</finalName>
 	   
 	    <!-- Build Plugins Details --> 	 
-		<plugins>  
+		<plugins>
 		
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
 			<!-- <plugin> 
@@ -202,17 +202,17 @@
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>   
-				<configuration>  
-					<suiteXmlFiles>  
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->    
-					 	<suiteXmlFile>testng-suite/health-suite.xml</suiteXmlFile> 
-					</suiteXmlFiles>     
-					<skipTests>true</skipTests>   
-				</configuration>  
-			</plugin>    	 	          
+					 	<suiteXmlFile>testng-suite/health-suite.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
 			  
 		</plugins>
-	</build>         
-	
+	</build>
+
 </project>
