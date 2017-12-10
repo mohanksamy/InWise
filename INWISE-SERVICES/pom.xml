@@ -191,27 +191,28 @@
 		<plugins>
 		
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-			<!-- <plugin> 
+			<!-- Plug-in to run the REST services as standalone application -->
+			<plugin> 
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>   
-	            <configuration> 
+				<artifactId>spring-boot-maven-plugin</artifactId>
+	            <!-- <configuration>
 			   		<layout>ZIP</layout>
-			    </configuration>        
-			</plugin>     --> 
+			    </configuration> -->
+			</plugin>     
 			
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<suiteXmlFiles>
-						<!-- TestNG suite XML files -->    
+						TestNG suite XML files    
 					 	<suiteXmlFile>testng-suite/health-suite.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<skipTests>true</skipTests>
 				</configuration>
-			</plugin>
-			  
+			</plugin> -->
+			
 		</plugins>
 	</build>
 

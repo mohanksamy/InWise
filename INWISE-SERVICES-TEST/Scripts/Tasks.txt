@@ -55,3 +55,4 @@ Front end:
   
   
 https://stackoverflow.com/questions/39343021/how-to-turn-my-jersey-rest-api-into-an-executable-jar
+https://stackoverflow.com/questions/20740703/java-lang-classnotfoundexception-org-springframework-boot-springapplication-mav
