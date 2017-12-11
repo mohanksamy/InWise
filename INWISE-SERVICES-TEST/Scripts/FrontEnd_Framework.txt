@@ -1,0 +1,20 @@
+
+Reasons Picking ReactJS over other frameworks or libraries:
+- ReactJS is a library than a framework compared to AngularJS, one of the popular framework
+- We could choose framework like AngularJS but how much we make use of the framework is a open question
+- Framework will be a over kill on the performance when at least 30% of the features are not being used
+
+Advantages of ReactJS compared to any other libraries / frameworks:
+- Works with Virtual DOM than actual DOM
+- HTML will be embedded into JavaScript unlike in other JS libraries JS will be embedded in HTML
+
+
+- Lightweight DOM For Better Performance
+- Easy Learning Curve
+- A desired interface can be created in a relatively easy manner
+- Components Support And Little Dependencies
+
+
+https://www.devsaran.com/blog/useful-features-reactjs-and-one-can-leave-angularjs
+https://www.scnsoft.com/blog/capabilities-of-reactjs
+https://moduscreate.com/blog/key-concepts-to-help-learn-reactjs/
