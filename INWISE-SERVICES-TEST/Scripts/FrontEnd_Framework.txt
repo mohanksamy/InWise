@@ -18,3 +18,6 @@ Advantages of ReactJS compared to any other libraries / frameworks:
 https://www.devsaran.com/blog/useful-features-reactjs-and-one-can-leave-angularjs
 https://www.scnsoft.com/blog/capabilities-of-reactjs
 https://moduscreate.com/blog/key-concepts-to-help-learn-reactjs/
+
+Prototype projects using React.JS:
+https://medium.com/learning-new-stuff/building-your-first-react-js-app-d53b0c98dc
