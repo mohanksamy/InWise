@@ -20,7 +20,7 @@ import com.prod.inwise.services.repo.StoreRepository;
  */
 @Component
 @Path("/store")
-@Produces( {MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML} )
+@Produces(MediaType.APPLICATION_JSON)
 public class StoreResource {
 	
 	@Autowired
