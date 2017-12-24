@@ -1,47 +1,43 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+// import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import './App.css';
+import LoginScreen from './Loginscreen';
+import UploadScreen from './UploadScreen';
+import UploadPage from './UploadPage';
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+// injectTapEventPlugin();
 
 class App extends Component {
-  
-  constructor() {
-    super();
-
-    this.state = {
-      todos: [],
-      currentTodo: ""
-    };
+  constructor(props){
+    super(props);
+    this.state={
+      loginPage:[],
+      uploadScreen:[]
+    }
   }
 
-  onChange = e => {
-    this.setState({currentTodo: e.target.value});
-  }
-
-  add = e => {
-    
-    let todosCopy = this.state.todos.slice();
-    todosCopy.push(this.state.currentTodo);
-
-    this.setState({todos: todosCopy, currentTodo: ""});
+  componentWillMount(){
+    var loginPage =[];
+    loginPage.push(<LoginScreen appContext={this}/>);
+    this.setState({loginPage:loginPage})
   }
 
   render() {
-
-    let bulletedTodos = this.state.todos.map((e, i) => {
-      return (
-          <li key={i}>{e}</li>
-        );
-    });
-
     return (
-        <div>
-          <input placeholder="Enter todo here!" value={this.state.currentTodo} onChange={this.onChange}/>
-          <button onClick={this.add}>Add</button>
-          <br/>
-          {this.state.todos.length == 0 ? "No ToDos yet!" : <ul>{bulletedTodos}</ul>}
-        </div>
-      );
+      <div className="App">
+        {this.state.loginPage}
+        {this.state.uploadScreen}
+      </div>
+    );
   }
 }
+
+const style = {
+  margin: 15,
+};
 
 export default App;
