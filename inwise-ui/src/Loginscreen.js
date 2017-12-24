@@ -68,8 +68,8 @@ class Loginscreen extends Component {
                    })
     }
     else{
-      var loginscreen=[],loginButtons=[];
-      loginButtons.push(
+      var lscreen=[],lButtons=[];
+      lButtons.push(
         <div>
         <MuiThemeProvider>
           <div>
@@ -83,12 +83,12 @@ class Loginscreen extends Component {
         </MuiThemeProvider>
         </div>
       )
-      loginscreen.push(<Login parentContext={this} appContext={this.props.appContext} role={userRole}/>);
+      lscreen.push(<Login parentContext={this} appContext={this.props.appContext} role={userRole}/>);
       loginmessage = "Not Registered yet.Go to registration";
       this.setState({
-                     loginscreen:loginscreen,
+                     loginscreen:lscreen,
                      loginmessage:loginmessage,
-                     loginButtons:loginButtons,
+                     loginButtons:lButtons,
                      isLogin:true
                    })
     }

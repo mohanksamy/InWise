@@ -11,12 +11,13 @@ Module:Material-UI
 Material-UI is used for designing ui of the app
 */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
+// import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+// import Drawer from 'material-ui/Drawer';
+// import MenuItem from 'material-ui/MenuItem';
 import FontIcon from 'material-ui/FontIcon';
-import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+// import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import {blue500} from 'material-ui/styles/colors';
 
 /*
 Module:Dropzone
@@ -50,10 +51,10 @@ class UploadScreen extends Component {
     var printcount;
     //set upload limit based on user role
     if(this.props.role){
-      if(this.props.role == 'student'){
+      if(this.props.role === 'student'){
         printcount = 5;
       }
-      else if(this.props.role == 'teacher'){
+      else if(this.props.role === 'teacher'){
         printcount =10;
       }
     }
@@ -65,7 +66,7 @@ class UploadScreen extends Component {
   Usage:This fxn is used to remove file from filesPreview div
   if user clicks close icon adjacent to selected file
   */
-  handleCloseClick(event,index){
+  handleCloseClick(index){
     // console.log("filename",index);
     var filesToBeSent=this.state.filesToBeSent;
     filesToBeSent.splice(index,1);
@@ -75,10 +76,10 @@ class UploadScreen extends Component {
       filesPreview.push(<div>
         {filesToBeSent[i][0].name}
         <MuiThemeProvider>
-        <a href="#"><FontIcon
+        <a href=""><FontIcon
           className="material-icons customstyle"
           color={blue500}
-          onClick={(event) => this.handleCloseClick(event,i)}
+          onClick={this.handleCloseClick(i)}
         >clear</FontIcon></a>
         </MuiThemeProvider>
         </div>
@@ -102,11 +103,11 @@ class UploadScreen extends Component {
           filesPreview.push(<div>
             {filesToBeSent[i][0].name}
             <MuiThemeProvider>
-            <a href="#"><FontIcon
+            <a href=""><FontIcon
               className="material-icons customstyle"
               color={blue500}
               styles={{ top:10,}}
-              onClick={(event) => this.handleCloseClick(event,i)}
+              onClick={this.handleCloseClick(i)}
             >clear</FontIcon></a>
             </MuiThemeProvider>
             </div>

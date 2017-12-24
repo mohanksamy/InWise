@@ -4,7 +4,8 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
-import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+// import {blue500, red500, greenA200} from 'material-ui/styles/colors';
+import {blue500} from 'material-ui/styles/colors';
 import UploadScreen from './UploadScreen';
 import Pastfiles from './Pastfiles';
 import LoginScreen from './Loginscreen'
@@ -21,8 +22,8 @@ class App extends Component {
   }
   /**
    * Toggle opening and closing of drawer
-   * @param {*} event 
-   */ 
+   * @param {*} event
+   */
   toggleDrawer(event){
   // console.log("drawer click");
   this.setState({draweropen: !this.state.draweropen})
@@ -30,22 +31,24 @@ class App extends Component {
   handleMenuClick(event,page){
     switch(page){
       case "openprint":
-      // console.log("need to open uploadapge")
-      var currentScreen=[];
-      currentScreen.push(<UploadScreen appContext={this.props.appContext} role={this.props.role}/>);
-      this.setState({currentScreen})
-      break;
+            // console.log("need to open uploadapge")
+            var currScreen=[];
+            currScreen.push(<UploadScreen appContext={this.props.appContext} role={this.props.role}/>);
+            this.setState({currScreen})
+            break;
       case "openpast":
-      // console.log("need to open pastfiles")
-      var currentScreen=[];
-      currentScreen.push(<Pastfiles appContext={this.props.appContext} role={this.props.role}/>);
-      this.setState({currentScreen})
-      break;
+            // console.log("need to open pastfiles")
+            var curScreen=[];
+            currScreen.push(<Pastfiles appContext={this.props.appContext} role={this.props.role}/>);
+            this.setState({curScreen})
+            break;
       case "logout":
-      var loginPage =[];
-      loginPage.push(<LoginScreen appContext={this.props.appContext}/>);
-      this.props.appContext.setState({loginPage:loginPage,uploadScreen:[]})
-      break;
+            var loginPage =[];
+            loginPage.push(<LoginScreen appContext={this.props.appContext}/>);
+            this.props.appContext.setState({loginPage:loginPage,uploadScreen:[]})
+            break;
+      default:
+
     }
     this.setState({draweropen:false})
   }
@@ -63,7 +66,7 @@ class App extends Component {
             <MenuItem>
               <div>
               User Profile
-              <a href="#"><FontIcon
+              <a href=""><FontIcon
                 className="material-icons drawerclosebutton"
                 color={blue500}
                 styles={{ top:10,}}
@@ -81,7 +84,7 @@ class App extends Component {
               <MenuItem onClick={(event) => this.handleMenuClick(event,"logout")}>
                   Logout
               </MenuItem>
-              </div> 
+              </div>
           </Drawer>
         </MuiThemeProvider>
         <div>

@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 
 import './App.css';
 import LoginScreen from './Loginscreen';
-import UploadScreen from './UploadScreen';
-import UploadPage from './UploadPage';
+// import UploadScreen from './UploadScreen';
+// import UploadPage from './UploadPage';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -36,8 +36,8 @@ class App extends Component {
   }
 }
 
-const style = {
-  margin: 15,
-};
+// const style = {
+//   margin: 15,
+// };
 
 export default App;
