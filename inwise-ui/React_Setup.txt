@@ -1,0 +1,26 @@
+
+
+Setting up React in local:
+  sudo npm install -g create-react-app
+
+Creating new react project:
+  - Naigate to the directory where new project needs to be created
+  - create-react-app <project-name>
+
+  npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd <project-directory>
+  npm start
