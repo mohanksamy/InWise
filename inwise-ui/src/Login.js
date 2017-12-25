@@ -73,8 +73,8 @@ class Login extends Component {
     }
     else if(this.props.role === 'teacher'){
       console.log("in teacher componentWillMount");
-      var llComponent=[];
-      llComponent.push(
+      var localloginComponent=[];
+      localloginComponent.push(
         <MuiThemeProvider>
           <div>
            <TextField
@@ -155,9 +155,9 @@ class Login extends Component {
       )
     }
     else if(value === 2){
-      var llComponent=[];
+      var localloginComponent=[];
       loginRole='teacher';
-      llComponent.push(
+      localloginComponent.push(
         <MuiThemeProvider>
           <div>
            <TextField
