@@ -42,6 +42,17 @@
 	 
 	<!-- Build Details -->      
 	<build>
+		<plugins>
+			<plugin>
+	          <artifactId>maven-surefire-plugin</artifactId>
+	          <configuration>
+	            <excludes>
+	              <exclude>**/db/**</exclude>
+	            </excludes>
+	            <!-- <skipTests>true</skipTests> -->
+	          </configuration>
+	        </plugin>
+		</plugins>
 	</build>         
 
 </project>

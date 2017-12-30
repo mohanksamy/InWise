@@ -1,5 +1,11 @@
 package com.prod.inwise.services.test.db.util;
 
+/**
+ * Interface to hold all the constants for this module
+ * 
+ * @author mohan_kandasamy
+ *
+ */
 public interface Constants {
 
 	// JDBC Driver Name & Database URL

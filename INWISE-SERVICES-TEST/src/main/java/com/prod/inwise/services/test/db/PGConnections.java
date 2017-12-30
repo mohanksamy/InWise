@@ -3,6 +3,7 @@ package com.prod.inwise.services.test.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
@@ -54,12 +55,16 @@ public class PGConnections {
 	}
 
 	// This Method Is Used To Print The Connection Pool Status
-	private void printDbStatus() {
+	private void printDBStatus() {
 		System.out.println("Max.: " + connectionPool.getMaxActive() + "; Active: " + connectionPool.getNumActive() + "; Idle: " + connectionPool.getNumIdle());
 	}
 	
 	public DataSource getDataSource() {
 		return pgDataSource;
+	}
+	
+	public static Connection getConnection() throws SQLException {
+		return pgDataSource.getConnection();
 	}
 
 	public static void main(String[] args) {
@@ -72,12 +77,12 @@ public class PGConnections {
 		
 		try {	
 			
-			pgConnections.printDbStatus();
+			pgConnections.printDBStatus();
 
 			// Performing Database Operation!
-			System.out.println("\n=====Making A New Connection Object For Db Transaction=====\n");
+			System.out.println("\n=====Making A New Connection Object For DB Transaction=====\n");
 			connection = pgConnections.getDataSource().getConnection();
-			pgConnections.printDbStatus(); 
+			pgConnections.printDBStatus(); 
 
 			preparedStatement = connection.prepareStatement("SELECT * FROM STORE");
 			resultSet = preparedStatement.executeQuery();
@@ -117,6 +122,6 @@ public class PGConnections {
 			}
 		}
 		
-		pgConnections.printDbStatus();
+		pgConnections.printDBStatus();
 	}
 }
