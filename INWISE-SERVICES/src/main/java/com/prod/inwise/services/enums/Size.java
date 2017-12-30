@@ -18,12 +18,16 @@ import org.apache.commons.lang.StringUtils;
 public enum Size {
 
 	// Enums
-	55("55","55"),60("60","60"),65("65","65"),70("70","70");75("75","75"),
+	_55("55","55"),
+	_60("60","60"),
+	_65("65","65"),
+	_70("70","70"),
+	_75("75","75"),
 	S("S", "S"),
 	M("M", "M"),
-	L("L", "L");
-	XL("XL", "XL");
-	XXL("XXL", "XXL");
+	L("L", "L"),
+	XL("XL", "XL"),
+	XXL("XXL", "XXL"),
 	NA("NA", "NA");
 	
 	// Maps loaded with enums

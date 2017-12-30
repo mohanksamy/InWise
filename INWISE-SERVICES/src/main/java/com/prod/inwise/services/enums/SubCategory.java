@@ -18,7 +18,9 @@ public enum SubCategory {
 
 	// Enums
 	INNERS("Inners", "INNERS"),
-	OUT FITTINGS("Out Fittings", "OUT FITTINGS"), TOP("Top", "TOP"), BOTTOM("Bottom", "BOTTOM"),
+	OUTFITTINGS("Out Fittings", "OUT FITTINGS"),
+	TOP("Top", "TOP"),
+	BOTTOM("Bottom", "BOTTOM"),
 	FROCK("Frock", "FROCK");
 	
 	// Maps loaded with enums

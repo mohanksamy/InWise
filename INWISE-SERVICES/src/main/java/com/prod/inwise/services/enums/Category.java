@@ -18,7 +18,7 @@ public enum Category {
 
 	// Enums
 	MENS("Mens", "MENS"), WOMENS("Womens", "WOMENS"), BOYS("Boys", "BOYS"), GIRLS("Girls", "GIRLS"),
-	BABY BOYS("Baby Boys", "BABY BOYS"), BABY GIRLS("Baby Girls", "BABY GIRLS"),
+	BABY_BOYS("Baby Boys", "BABY BOYS"), BABY_GIRLS("Baby Girls", "BABY GIRLS"),
 	INFANTS("Infants", "INFANTS");
 	
 	// Maps loaded with enums
