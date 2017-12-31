@@ -1,5 +1,6 @@
 package com.prod.inwise.services.test.db;
 
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,12 @@ public class PGQueryExecutor implements QueryExecutor {
 		
 		return connection.prepareStatement(query);
 	}
+	
+	@Override
+	public ResultSet executeQuery(PreparedStatement preparedStatement) throws SQLException {
+		
+		return preparedStatement.executeQuery();
+	}
 
 	@Override
 	public int executeUpdate(PreparedStatement preparedStatement) throws SQLException {
@@ -34,7 +41,29 @@ public class PGQueryExecutor implements QueryExecutor {
 	}
 	
 	@Override
-	public void close(ResultSet resultSet, PreparedStatement preparedStatement) {
+	public int[] executeBatch(PreparedStatement preparedStatement) throws SQLException {
+		
+		return preparedStatement.executeBatch();
+	}
+	
+	@Override
+	public BigInteger getParentId(String query, String searchBy, boolean closeConnection) throws SQLException {
+		
+		PreparedStatement preparedStatement = getPreparedStatement(query);
+		
+		preparedStatement.setString(1, searchBy);
+		
+		ResultSet resultSet = executeQuery(preparedStatement);
+		
+		BigInteger parentId = resultSet.next() ? resultSet.getBigDecimal(1).toBigInteger() : null;
+		
+		close(resultSet, preparedStatement, closeConnection);
+		
+		return parentId;
+	}
+	
+	@Override
+	public void close(ResultSet resultSet, PreparedStatement preparedStatement, boolean closeConnection) {
 		
 		try {
 			
@@ -43,7 +72,7 @@ public class PGQueryExecutor implements QueryExecutor {
 				resultSet.close();
 			}
 			
-			close(preparedStatement);
+			close(preparedStatement, closeConnection);
 		
 		} catch(Exception sqlException) {
 			
@@ -52,7 +81,7 @@ public class PGQueryExecutor implements QueryExecutor {
 	}
 
 	@Override
-	public void close(PreparedStatement preparedStatement) {
+	public void close(PreparedStatement preparedStatement, boolean closeConnection) {
 		
 		try {
 			
@@ -62,7 +91,7 @@ public class PGQueryExecutor implements QueryExecutor {
 			}
 			
 			// Closing Connection Object
-			if ( null != connection ) {
+			if ( closeConnection && null != connection ) {
 				connection.close();
 			}
 		

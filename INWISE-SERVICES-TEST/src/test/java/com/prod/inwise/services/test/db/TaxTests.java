@@ -1,19 +1,20 @@
 package com.prod.inwise.services.test.db;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.PreparedStatement;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Test class for Store 
+ * Test class for Tax
  * 
  * @author mohan_kandasamy
  *
  */
-public class StoreTests {
-	
+public class TaxTests {
+
 	private static QueryExecutor queryExecutor;
 	
 	private static boolean closeConnection;
@@ -29,15 +30,16 @@ public class StoreTests {
 	@Test
 	public void test() throws Exception {
 		
-		String query = "INSERT INTO STORE(ID, NAME, ADDRESS, UIN, PHONE, ACTIVE, CREATED_USER, MODIFIED_USER)" + 
-				"VALUES(NEXTVAL('STORE_SEQ'), ?, ?, ?, ?, TRUE, 'APP-SERVICES', 'APP-SERVICES')";
+		BigInteger storeId = queryExecutor.getParentId("SELECT ID FROM STORE WHERE NAME = ?", "Anand Texttiles", closeConnection);
+		
+		String query = "INSERT INTO TAX(ID, CGST, SGST, STORE_ID, ACTIVE, CREATED_USER, MODIFIED_USER)" + 
+				"VALUES(NEXTVAL('TAX_SEQ'), ?, ?, ?, TRUE, 'APP-SERVICES', 'APP-SERVICES')";
 		
 		PreparedStatement preparedStatement = queryExecutor.getPreparedStatement(query);
 		
-		preparedStatement.setString(1, "Anand Texttiles");
-		preparedStatement.setString(2, "11, Palace road, Bangalore");
-		preparedStatement.setString(3, "BLR343769364564");
-		preparedStatement.setBigDecimal(4, new BigDecimal("9985645643"));
+		preparedStatement.setFloat(1, 2.5F);
+		preparedStatement.setFloat(2, 2.5F);
+		preparedStatement.setBigDecimal(3, new BigDecimal(storeId));
 		
 		queryExecutor.executeUpdate(preparedStatement);
 		

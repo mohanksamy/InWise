@@ -29,3 +29,12 @@ Adding required plug-ins:
 npm install --save material-ui axios react-tap-event-plugin
 npm install --save react-dropzone
 npm install --save superagent superagent-promise-plugin
+
+
+References:
+https://medium.com/technoetics/create-basic-login-forms-using-create-react-app-module-in-reactjs-511b9790dede
+http://www.joelotter.com/kajero/
+https://medium.com/learning-new-stuff/learn-react-js-in-7-min-92a1ef023003
+https://medium.com/learning-new-stuff/building-your-first-react-js-app-d53b0c98dc
+
+https://www.codementor.io/chrisharrington/react-tutorial-creating-a-simple-application-using-react-js-and-flux-architecture-85f6pccdv

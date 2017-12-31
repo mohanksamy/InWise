@@ -88,7 +88,7 @@ CREATE TABLE ITEM (
 	HSN_SAC         	TEXT,
   	CATEGORY        	CATEGORY,
   	SUB_CATEGORY    	SUB_CATEGORY,
-  	BRAND    			BRAND,
+  	BRAND    		BRAND,
   	SIZE            	SIZE,
   	STORE_ID        	BIGINT      NOT NULL,
   	TAX_ID          	BIGINT      NOT NULL,
