@@ -18,3 +18,6 @@ DROP TYPE CATEGORY;
 DROP TYPE SUB_CATEGORY;
 DROP TYPE BRAND;
 DROP TYPE SIZE;
+
+
+--SEQUENCES will be dropped when the referred column is dropped
