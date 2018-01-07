@@ -34,10 +34,15 @@ public class StoreTests {
 		
 		PreparedStatement preparedStatement = queryExecutor.getPreparedStatement(query);
 		
-		preparedStatement.setString(1, "Anand Texttiles");
+		/*preparedStatement.setString(1, "Anand Texttiles");
 		preparedStatement.setString(2, "11, Palace road, Bangalore");
 		preparedStatement.setString(3, "BLR343769364564");
-		preparedStatement.setBigDecimal(4, new BigDecimal("9985645643"));
+		preparedStatement.setBigDecimal(4, new BigDecimal("9985645643"));*/
+		
+		preparedStatement.setString(1, "VEL STORES");
+		preparedStatement.setString(2, "Chickpet, Bangalore");
+		preparedStatement.setString(3, "BLR343769364564");
+		preparedStatement.setBigDecimal(4, new BigDecimal("9448107285"));
 		
 		queryExecutor.executeUpdate(preparedStatement);
 		

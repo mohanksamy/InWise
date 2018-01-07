@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -34,8 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class StockBatch extends BaseModel {
 
 	@Id
-	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(sequenceName = "stock_batch_seq", allocationSize = 1, name = "STOCK_BATCH_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STOCK_BATCH_SEQ")
+	@Column(name="ID")
 	private Long id;
 
 	/**

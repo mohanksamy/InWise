@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.validation.constraints.NotNull;
 
 /**
  * Base model for all Entities
@@ -15,21 +14,19 @@ import javax.validation.constraints.NotNull;
 @MappedSuperclass
 public abstract class BaseModel {
 	
-	@Column(name = "ACTIVE") 
+	@Column(name = "ACTIVE")
 	private boolean active;
 	
 	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)  
-	private String createdUser; 
+	private String createdUser;
 
-	@NotNull(message = "Created timestamp can't be null")
-	@Column(name = "CREATED_TS", nullable = false) 	
+	@Column(name = "CREATED_TS", nullable = false)
 	private Timestamp createdTS;
 	
-	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)  
+	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)
 	private String modifiedUser;
 	
-	@NotNull(message = "Modified timestamp can't be null")
-	@Column(name = "MODIFIED_TS", nullable = false) 	
+	@Column(name = "MODIFIED_TS", nullable = false)
 	private Timestamp modifiedTS;
 
 	/**

@@ -8,11 +8,11 @@ package com.prod.inwise.services.util;
  */
 public interface Constants {
 
-	String REST_BASE_PACKAGE										= "com.prod.inwise.services.resource";
+	String REST_BASE_PACKAGE											= "com.prod.inwise.services.resource";
 	
-	String REST_TRACING_TYPE										= "ALL";
+	String REST_TRACING_TYPE											= "ALL";
 	
-	boolean REST_LOGGING											= true;
+	boolean REST_LOGGING												= true;
 	
 	boolean REST_BV_SEND_ERROR_IN_RESPONSE							= true;
 	
@@ -21,5 +21,5 @@ public interface Constants {
 
 	
 	// RESOURCE URI CONSTANTS
-	String REST_HEALTH_MESSAGE 										= "InWise REST Services: Up and Running!";
+	String REST_HEALTH_MESSAGE 										= "InWise REST Services Up and Running!";
 }
