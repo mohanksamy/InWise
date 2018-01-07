@@ -23,7 +23,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "STORE")
 @XmlRootElement
-public class Store extends BaseModel {
+public class Shop extends BaseModel {
 	
 	@Id
 	@SequenceGenerator(sequenceName = "store_seq", allocationSize = 1, name = "STORE_SEQ")
