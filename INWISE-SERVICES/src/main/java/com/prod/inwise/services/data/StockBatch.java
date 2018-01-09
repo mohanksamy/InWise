@@ -35,8 +35,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class StockBatch extends BaseModel {
 
 	@Id
-	@SequenceGenerator(sequenceName = "stock_batch_seq", allocationSize = 1, name = "STOCK_BATCH_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STOCK_BATCH_SEQ")
+	@SequenceGenerator(name = "stock_batch_seq", allocationSize = 1, sequenceName = "STOCK_BATCH_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_batch_seq")
 	@Column(name="ID")
 	private Long id;
 

@@ -16,7 +16,7 @@
 	<groupId>com.prod.inwise</groupId>
 	<modelVersion>4.0.0</modelVersion>
 	<url>http://maven.apache.org</url>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<!-- Properties Details -->

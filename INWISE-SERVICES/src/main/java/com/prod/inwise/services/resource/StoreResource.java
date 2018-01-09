@@ -6,6 +6,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import static javax.ws.rs.core.Response.status;
+import static javax.ws.rs.core.Response.Status.OK;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,8 +42,11 @@ public class StoreResource {
 	}*/
 	
 	@POST
-	public Shop createStore(Shop shop) {
-	  return shopRepo.save(shop);
+	public Response createStore(Shop shop) {
+		
+		shopRepo.save(shop);
+		
+		return status(OK).build();
 	}
 	
 	/**

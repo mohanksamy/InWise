@@ -26,25 +26,25 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Shop extends BaseModel {
 	
 	@Id
-	@SequenceGenerator(sequenceName = "store_seq", allocationSize = 1, name = "STORE_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STORE_SEQ")
+	@SequenceGenerator(name = "store_seq", allocationSize = 1, sequenceName = "STORE_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "store_seq")
 	@Column(name = "ID")
 	private Long id;
 	
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
 	@Column(name = "NAME", nullable = false) 	
-	private String name = "";
+	private String name;
 	
 	@NotNull(message = "Address can't be null")
 	@NotBlank(message = "Address can't be blank")
 	@Column(name = "ADDRESS", nullable = false) 	
-	private String address = "";
+	private String address;
 	
 	@NotNull(message = "UIN can't be null")
 	@NotBlank(message = "UIN can't be blank")
 	@Column(name = "UIN", nullable = false) 	
-	private String uin = "";
+	private String uin;
 	
 	@NotNull(message = "Phone can't be null")
 	@Column(name = "PHONE", nullable = false) 	
