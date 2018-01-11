@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,8 +43,9 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Tax extends BaseModel {
 
 	@Id
+	@SequenceGenerator(name = "tax_seq", allocationSize = 1, sequenceName = "TAX_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tax_seq")
 	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@NotNull(message = "CGST can't be null")

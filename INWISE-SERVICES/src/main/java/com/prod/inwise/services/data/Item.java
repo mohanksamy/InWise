@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -50,8 +51,9 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Item extends BaseModel {
 
 	@Id
+	@SequenceGenerator(name = "item_seq", allocationSize = 1, sequenceName = "ITEM_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
 	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@NotNull(message = "Name can't be null")
