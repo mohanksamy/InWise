@@ -1,0 +1,10 @@
+Services health check:
+	http://localhost:8080/inwise/health
+
+
+
+Swagger:
+	JSON: http://localhost:8080/inwise/swagger.json
+	UI: Use the JSON url from Swagger UI Console
+	
+	Notes: Adding swagger core dist to the application, enables access to swagger.json; for UI, resource config needs to be customized 

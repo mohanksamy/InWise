@@ -1,42 +1,34 @@
 package com.prod.inwise.services;
 
-import static springfox.documentation.builders.PathSelectors.regex;
+import static com.prod.inwise.services.util.Constants.REST_BASE_PACKAGE;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
 
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.jaxrs.config.BeanConfig;
 
-@Configuration
-@EnableSwagger2
+/**
+ * Swagger configuration class to customize the documentation page
+ * 
+ * @author mohan_kandasamy
+ *
+ */
 @Component
 public class SwaggerConfig {
-    
-	@Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("guru.springframework.controllers"))
-                .paths(regex("/product.*"))
-                .build()
-                .apiInfo(metaData());
-    }
-    
-    private ApiInfo metaData() {
-        ApiInfo apiInfo = new ApiInfo(
-                "Spring Boot REST API",
-                "Spring Boot REST API for Online Store",
-                "1.0",
-                "Terms of service",
-                new Contact("John Thompson", "https://springframework.guru/about/", "john@springfrmework.guru"),
-               "Apache License Version 2.0",
-                "https://www.apache.org/licenses/LICENSE-2.0");
-        return apiInfo;
+
+    @PostConstruct
+    public void configure() {
+
+    		BeanConfig config = new BeanConfig();
+		config.setConfigId("InWise Product Documentation");
+		config.setTitle("InWise Product Documentation");
+		config.setVersion("v1");
+		config.setContact("Inwise Contributors");
+		config.setSchemes(new String[] { "http", "https" });
+		config.setBasePath("/inwise");
+		config.setResourcePackage(REST_BASE_PACKAGE);
+		config.setPrettyPrint(true);
+		config.setScan(true);
     }
 }

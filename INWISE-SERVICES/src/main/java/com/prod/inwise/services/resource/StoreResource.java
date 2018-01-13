@@ -19,6 +19,11 @@ import com.prod.inwise.services.data.Store;
 import com.prod.inwise.services.repo.ShopRepository;
 import com.prod.inwise.services.repo.StoreRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
+
 /**
  * REST Resource exposes operation on Store resource
  * 
@@ -28,6 +33,7 @@ import com.prod.inwise.services.repo.StoreRepository;
 @Component
 @Path("/store")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "Store Service")
 public class StoreResource {
 	
 	/*@Autowired
@@ -42,6 +48,14 @@ public class StoreResource {
 	}*/
 	
 	@POST
+	@ApiOperation(value = "Create store", notes = "Create store model")
+	@ApiResponses(value = {
+			@ApiResponse(code = 404, message = "Invalid tenant specified"),
+			@ApiResponse(code = 401, message = "Invalid user specified"),
+			@ApiResponse(code = 401, message = "No permission to access model"),
+			@ApiResponse(code = 401, message = "No privilege to access model"),
+			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
+			@ApiResponse(code = 500, message = "Server Internal error")})
 	public Response createStore(Shop shop) {
 		
 		shopRepo.save(shop);
@@ -69,6 +83,14 @@ public class StoreResource {
 	 */
 	@GET
 	@Path("/{name}")
+	@ApiOperation(value = "Show Store", notes = "Show store model")
+	@ApiResponses(value = {	
+			@ApiResponse(code = 404, message = "Invalid tenant specified"),
+			@ApiResponse(code = 401, message = "Invalid user specified"),
+			@ApiResponse(code = 401, message = "No permission to access model"),
+			@ApiResponse(code = 401, message = "No privilege to access model"),
+			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
+			@ApiResponse(code = 500, message = "Server Internal error")})
 	public Shop findByName(@PathParam("name") String name) {
 		return shopRepo.findByName(name);
 	}

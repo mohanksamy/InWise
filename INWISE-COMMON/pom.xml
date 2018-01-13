@@ -13,15 +13,11 @@
 	<!-- Project Details -->
 	<name>INWISE-COMMON</name>
 	<artifactId>INWISE-COMMON</artifactId>
-	<groupId>com.prod.inwise</groupId>
 	<modelVersion>4.0.0</modelVersion>
-	<url>http://maven.apache.org</url>
-	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<!-- Properties Details -->
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<!-- Dependencies Details -->

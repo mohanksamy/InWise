@@ -2,10 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
-	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.prod.inwise</groupId>
 	<artifactId>INWISE-POM</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<modelVersion>4.0.0</modelVersion>
+	<url>http://maven.apache.org</url>
 	<packaging>pom</packaging>
 
 	<name>INWISE-POM</name>
@@ -13,9 +14,8 @@
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.4.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+    		<artifactId>spring-boot-starter-parent</artifactId>
+    		<version>1.5.9.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -96,5 +96,29 @@
 		</dependency>
 
 	</dependencies>
+	
+	<!-- Profiles -->
+	<profiles>
+		
+		<profile>
+			<id>build-this-pom</id>
+		</profile>
+		
+		<profile>
+			<id>build-projects</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>build-projects</name>
+				</property>
+			</activation>
+			<modules>
+				<module>../INWISE-COMMON</module>
+				<module>../INWISE-SERVICES</module>
+				<module>../INWISE-SERVICES-TEST</module>
+			</modules>
+		</profile>
+		
+	</profiles>
 
 </project>

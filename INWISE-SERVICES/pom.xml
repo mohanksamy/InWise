@@ -13,16 +13,13 @@
 	<!-- Project Details -->   
 	<name>INWISE-SERVICES</name>
 	<artifactId>INWISE-SERVICES</artifactId>
-	<groupId>com.prod.inwise</groupId>
 	<modelVersion>4.0.0</modelVersion>
-	<url>http://maven.apache.org</url>
-	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	
 	  
 	<!-- Properties Details -->          
 	<properties>
 	
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>com.prod.inwise.services.Application</start-class>
 		
 		<!-- <testng.version>6.8.8</testng.version>     
@@ -33,7 +30,7 @@
 		<gcm.server.version>1.0.2</gcm.server.version>  
 		<json.patch.version>1.9</json.patch.version> -->
 		
-		<spring-swagger-version>2.6.1</spring-swagger-version>
+		<swagger-jerysey-version>1.5.8</swagger-jerysey-version>
 		<postgresql-driver-version>42.1.4</postgresql-driver-version>
 
 	</properties> 
@@ -132,18 +129,11 @@
 	       <artifactId>json-patch</artifactId> 
 	       <version>${json.patch.version}</version> 
 	    </dependency>  -->
-	    
-	    <!-- Spring Swagger libraries -->
-	    <dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${spring-swagger-version}</version>
-		</dependency>
-
+		
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${spring-swagger-version}</version>
+  			<groupId>io.swagger</groupId>
+  			<artifactId>swagger-jersey2-jaxrs</artifactId>
+  			<version>${swagger-jerysey-version}</version>
 		</dependency>
 	    
 	    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -191,29 +181,14 @@
 		<plugins>
 		
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
-			<!-- Plug-in to run the REST services as standalone application -->
+			<!-- Plug-in to run the REST services as stand-alone application -->
 			<plugin> 
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-	            <!-- <configuration>
-			   		<layout>ZIP</layout>
-			    </configuration> -->
-			</plugin>     
-			
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-			<!-- <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<suiteXmlFiles>
-						TestNG suite XML files    
-					 	<suiteXmlFile>testng-suite/health-suite.xml</suiteXmlFile>
-					</suiteXmlFiles>
-					<skipTests>true</skipTests>
-				</configuration>
-			</plugin> -->
+			</plugin>
 			
 		</plugins>
+	
 	</build>
 
 </project>
