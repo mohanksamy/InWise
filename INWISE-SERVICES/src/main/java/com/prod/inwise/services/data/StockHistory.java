@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,8 +43,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class StockHistory extends BaseModel {
 
 	@Id
+	@SequenceGenerator(name = "stock_history_seq", allocationSize = 1, sequenceName = "STOCK_HISTORY_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_history_seq")
 	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne

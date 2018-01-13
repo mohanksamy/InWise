@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -44,8 +45,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Invoice extends BaseModel {
 
 	@Id
+	@SequenceGenerator(name = "invoice_seq", allocationSize = 1, sequenceName = "INVOICE_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_seq")
 	@Column(name = "ID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@ManyToOne
