@@ -1,10 +1,11 @@
 package com.prod.inwise.services.test;
 
-import org.junit.Test;
-
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
 import static org.apache.http.HttpStatus.SC_OK;
 
 import java.math.BigInteger;
+
+import org.junit.Test;
 
 import com.prod.inwise.dto.StoreDTO;
 
@@ -14,8 +15,6 @@ import com.prod.inwise.dto.StoreDTO;
  */
 public class StoreTests extends AbstractTests {
 
-	private static final String resourcePath 	= "store";
-	
 	@Test
 	public void createStore() {
 		
@@ -29,6 +28,6 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setCreatedUser("APP-SERVICES");
 		storeDTO.setModifiedUser("APP-SERVICES");
 		
-		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(resourcePath)).then().statusCode(SC_OK);
+		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
 }

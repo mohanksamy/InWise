@@ -1,14 +1,12 @@
 package com.prod.inwise.services.data;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -53,21 +51,19 @@ public class Tax extends BaseModel {
 	private Long id;
 
 	@NotNull(message = "CGST can't be null")
-	@NotBlank(message = "CGST can't be blank")
 	@Column(name = "CGST", nullable = false)
 	@ApiModelProperty
 	private Float cgst;
 
 	@NotNull(message = "SGST can't be null")
-	@NotBlank(message = "SGST can't be blank")
 	@Column(name = "SGST", nullable = false)
 	@ApiModelProperty
 	private Float sgst;
 
-	@OneToMany
+	@OneToOne
 	@JoinColumn(name = "STORE_ID", nullable = false)
 	@ApiModelProperty
-	private List<Store> store;
+	private Shop store;
 
 	/**
 	 * @return the id
@@ -114,14 +110,14 @@ public class Tax extends BaseModel {
 	/**
 	 * @return the store
 	 */
-	public List<Store> getStore() {
+	public Shop getStore() {
 		return store;
 	}
 
 	/**
 	 * @param store the store to set
 	 */
-	public void setStore(List<Store> store) {
+	public void setStore(Shop store) {
 		this.store = store;
 	}
 }

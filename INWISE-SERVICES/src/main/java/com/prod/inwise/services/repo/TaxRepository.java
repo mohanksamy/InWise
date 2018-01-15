@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.prod.inwise.services.repo;
 
 import org.springframework.data.repository.CrudRepository;

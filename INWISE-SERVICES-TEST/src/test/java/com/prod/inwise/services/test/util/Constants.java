@@ -8,13 +8,36 @@ import com.google.gson.Gson;
  */
 public interface Constants {
 	
-	Gson gson 				= new Gson();
+	Gson gson 					= new Gson();
 
-	String BASE_URI			= "http://localhost";
+	String BASE_URI				= "http://localhost";
 	
-	int PORT					= 8080;
+	int PORT						= 8080;
 	
-	String BASE_PATH			= "inwise";
+	String BASE_PATH				= "inwise";
 	
-	String URL_DELIMITER		= "/";
+	String URL_DELIMITER			= "/";
+	
+	// Resources
+	String RESOURCE_PATH_HEALTH	= "health";
+	
+	String RESOURCE_PATH_STORE 	= "store";
+	
+	String RESOURCE_PATH_TAX 	= "tax";
+	
+	/*String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";
+	
+	String RESOURCE_HEALTH 	= "health";*/
 }

@@ -87,4 +87,18 @@ public class StoreDTO extends BaseDTO {
 	public void setPhone(BigInteger phone) {
 		this.phone = phone;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StoreDTO [" + 
+				"id=" + id + 
+				", name=" + name + 
+				", address=" + address + 
+				", uin=" + uin + 
+				", phone=" + phone
+				+ "]";
+	}
 }

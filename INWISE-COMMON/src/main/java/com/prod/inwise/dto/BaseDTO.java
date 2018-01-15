@@ -12,11 +12,11 @@ public abstract class BaseDTO {
 	
 	private String createdUser;
 
-	private Timestamp createdTS;
+//	private Timestamp createdTS;
 	
 	private String modifiedUser;
 	
-	private Timestamp modifiedTS;
+//	private Timestamp modifiedTS;
 
 	/**
 	 * @return the active
@@ -49,16 +49,16 @@ public abstract class BaseDTO {
 	/**
 	 * @return the createdTS
 	 */
-	public Timestamp getCreatedTS() {
+	/*public Timestamp getCreatedTS() {
 		return createdTS;
 	}
 
-	/**
+	*//**
 	 * @param createdTS the createdTS to set
-	 */
+	 *//*
 	public void setCreatedTS(Timestamp createdTS) {
 		this.createdTS = createdTS;
-	}
+	}*/
 
 	/**
 	 * @return the modifiedUser
@@ -77,14 +77,14 @@ public abstract class BaseDTO {
 	/**
 	 * @return the modifiedTS
 	 */
-	public Timestamp getModifiedTS() {
+	/*public Timestamp getModifiedTS() {
 		return modifiedTS;
 	}
 
-	/**
+	*//**
 	 * @param modifiedTS the modifiedTS to set
-	 */
+	 *//*
 	public void setModifiedTS(Timestamp modifiedTS) {
 		this.modifiedTS = modifiedTS;
-	}
+	}*/
 }

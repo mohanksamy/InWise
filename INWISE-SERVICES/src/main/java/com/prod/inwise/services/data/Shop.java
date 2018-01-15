@@ -53,7 +53,6 @@ public class Shop extends BaseModel {
 	private String uin;
 	
 	@NotNull(message = "Phone can't be null")
-	@NotBlank(message = "Phone can't be blank")
 	@Column(name = "PHONE", nullable = false)
 	@ApiModelProperty(name="Phone", value="Phone number of the Store")
 	private BigInteger phone;
