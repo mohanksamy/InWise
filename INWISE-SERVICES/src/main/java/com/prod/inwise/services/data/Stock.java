@@ -12,13 +12,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Entity STOCK
  * 
  * @author Logu
  *
  */
-
 //CREATE TABLE STOCK (
 //		ID              	BIGINT      	NOT NULL,
 //	  	ITEM_ID         	BIGINT      	NOT NULL,
@@ -35,20 +37,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "STOCK")
 @XmlRootElement
+@ApiModel
 public class Stock extends BaseModel {
 
 	@Id
 	@SequenceGenerator(name = "stock_seq", allocationSize = 1, sequenceName = "STOCK_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_seq")
 	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "ITEM_ID", nullable = false)
+	@ApiModelProperty
 	private Item item;
 
 	@Column(name = "QUANTITY", nullable = false)
 	@NotNull(message = "Quantity can't be null")
+	@ApiModelProperty
 	private Integer quantity;
 
 	/**
@@ -59,8 +65,7 @@ public class Stock extends BaseModel {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -74,8 +79,7 @@ public class Stock extends BaseModel {
 	}
 
 	/**
-	 * @param item
-	 *            the item to set
+	 * @param item the item to set
 	 */
 	public void setItem(Item item) {
 		this.item = item;
@@ -89,11 +93,9 @@ public class Stock extends BaseModel {
 	}
 
 	/**
-	 * @param quantity
-	 *            the quantity to set
+	 * @param quantity the quantity to set
 	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-
 }

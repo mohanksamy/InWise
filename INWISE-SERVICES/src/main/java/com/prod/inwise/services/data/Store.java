@@ -14,6 +14,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Entity STORE
  * 
@@ -23,31 +26,37 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "STORE")
 @XmlRootElement
+@ApiModel
 public class Store extends BaseModel {
 	
 	@Id
 	@SequenceGenerator(sequenceName = "store_seq", allocationSize = 1, name = "STORE_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STORE_SEQ")
 	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 	
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
-	@Column(name = "NAME", nullable = false) 	
+	@Column(name = "NAME", nullable = false)
+	@ApiModelProperty
 	private String name = "";
 	
 	@NotNull(message = "Address can't be null")
 	@NotBlank(message = "Address can't be blank")
-	@Column(name = "ADDRESS", nullable = false) 	
+	@Column(name = "ADDRESS", nullable = false)
+	@ApiModelProperty
 	private String address = "";
 	
 	@NotNull(message = "UIN can't be null")
 	@NotBlank(message = "UIN can't be blank")
-	@Column(name = "UIN", nullable = false) 	
+	@Column(name = "UIN", nullable = false)
+	@ApiModelProperty
 	private String uin = "";
 	
 	@NotNull(message = "Phone can't be null")
-	@Column(name = "PHONE", nullable = false) 	
+	@Column(name = "PHONE", nullable = false)
+	@ApiModelProperty
 	private BigInteger phone;
 
 	/**

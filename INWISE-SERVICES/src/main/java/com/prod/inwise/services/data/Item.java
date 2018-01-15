@@ -16,13 +16,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Entity ITEM
  * 
  * @author Logu
  *
  */
-
 // CREATE TABLE ITEM (
 // ID BIGINT NOT NULL,
 // NAME TEXT NOT NULL,
@@ -48,59 +50,59 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Table(name = "ITEM")
 @XmlRootElement
+@ApiModel
 public class Item extends BaseModel {
 
 	@Id
 	@SequenceGenerator(name = "item_seq", allocationSize = 1, sequenceName = "ITEM_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
 	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
 	@Column(name = "NAME", nullable = false)
+	@ApiModelProperty
 	private String name;
 
 	@Column(name = "PART_NO")
+	@ApiModelProperty
 	private BigInteger partNo;
 
 	@NotNull(message = "Price can't be null")
 	@Column(name = "PRICE", nullable = false)
+	@ApiModelProperty
 	private Float price;
 
 	@Column(name = "HSN_SAC")
+	@ApiModelProperty
 	private String hsnSac;
 
 	@Column(name = "CATEGORY")
+	@ApiModelProperty
 	private String category;
 
 	@Column(name = "SUB_CATEGORY")
+	@ApiModelProperty
 	private String subCategory;
 
 	@Column(name = "BRAND")
+	@ApiModelProperty
 	private String brand;
 
 	@Column(name = "SIZE")
+	@ApiModelProperty
 	private String size;
-
-	// @Column(name = "CATEGORY")
-	// private Category category;
-	//
-	// @Column(name = "SUB_CATEGORY")
-	// private SubCategory subCategory;
-	//
-	// @Column(name = "BRAND")
-	// private Brand brand;
-	//
-	// @Column(name = "SIZE")
-	// private Size size;
 
 	@ManyToOne
 	@JoinColumn(name = "STORE_ID", nullable = false)
+	@ApiModelProperty
 	private Store store;
 
 	@ManyToOne
 	@JoinColumn(name = "TAX_ID", nullable = false)
+	@ApiModelProperty
 	private Tax tax;
 
 	/**
@@ -111,8 +113,7 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -126,8 +127,7 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -141,8 +141,7 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @param partNo
-	 *            the partNo to set
+	 * @param partNo the partNo to set
 	 */
 	public void setPartNo(BigInteger partNo) {
 		this.partNo = partNo;
@@ -156,8 +155,7 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @param price
-	 *            the price to set
+	 * @param price the price to set
 	 */
 	public void setPrice(Float price) {
 		this.price = price;
@@ -171,8 +169,7 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @param hsnSac
-	 *            the hsnSac to set
+	 * @param hsnSac the hsnSac to set
 	 */
 	public void setHsnSac(String hsnSac) {
 		this.hsnSac = hsnSac;
@@ -181,63 +178,58 @@ public class Item extends BaseModel {
 	/**
 	 * @return the category
 	 */
-	// public Category getCategory() {
-	// return category;
-	// }
-	//
-	// /**
-	// * @param category
-	// * the category to set
-	// */
-	// public void setCategory(Category category) {
-	// this.category = category;
-	// }
-	//
-	// /**
-	// * @return the subCategory
-	// */
-	// public SubCategory getSubCategory() {
-	// return subCategory;
-	// }
-	//
-	// /**
-	// * @param subCategory
-	// * the subCategory to set
-	// */
-	// public void setSubCategory(SubCategory subCategory) {
-	// this.subCategory = subCategory;
-	// }
-	//
-	// /**
-	// * @return the brand
-	// */
-	// public Brand getBrand() {
-	// return brand;
-	// }
-	//
-	// /**
-	// * @param brand
-	// * the brand to set
-	// */
-	// public void setBrand(Brand brand) {
-	// this.brand = brand;
-	// }
-	//
-	// /**
-	// * @return the size
-	// */
-	// public Size getSize() {
-	// return size;
-	// }
-	//
-	// /**
-	// * @param size
-	// * the size to set
-	// */
-	// public void setSize(Size size) {
-	// this.size = size;
-	// }
-	//
+	public String getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	/**
+	 * @return the subCategory
+	 */
+	public String getSubCategory() {
+		return subCategory;
+	}
+
+	/**
+	 * @param subCategory the subCategory to set
+	 */
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
+
+	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	/**
+	 * @return the size
+	 */
+	public String getSize() {
+		return size;
+	}
+
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(String size) {
+		this.size = size;
+	}
 
 	/**
 	 * @return the store
@@ -246,41 +238,8 @@ public class Item extends BaseModel {
 		return store;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
-	}
-
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public String getSize() {
-		return size;
-	}
-
-	public void setSize(String size) {
-		this.size = size;
-	}
-
 	/**
-	 * @param store
-	 *            the store to set
+	 * @param store the store to set
 	 */
 	public void setStore(Store store) {
 		this.store = store;
@@ -294,11 +253,9 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @param tax
-	 *            the tax to set
+	 * @param tax the tax to set
 	 */
 	public void setTax(Tax tax) {
 		this.tax = tax;
 	}
-
 }

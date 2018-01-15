@@ -4,6 +4,11 @@ import static com.prod.inwise.services.util.Constants.REST_HEALTH_MESSAGE;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import static javax.ws.rs.core.Response.Status.OK;
 
 import org.springframework.stereotype.Component;
 
@@ -12,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Component
 @Path("/health")
+@Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Application Health Service")
 public class HealthResource {
     
@@ -20,7 +26,7 @@ public class HealthResource {
 	 */
 	@GET
 	@ApiOperation(value = "Show Health Status", notes = "Indicates services health status")
-	public String health() {
-        return REST_HEALTH_MESSAGE; 
+	public Response health() {
+        return Response.status(OK).entity(REST_HEALTH_MESSAGE).build();
 	}
 }

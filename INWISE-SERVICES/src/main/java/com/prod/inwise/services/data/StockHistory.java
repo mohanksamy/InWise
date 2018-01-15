@@ -12,13 +12,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Entity STOCK_HISTORY
  * 
  * @author Logu
  *
  */
-
 // CREATE TABLE STOCK_HISTORY (
 // ID BIGINT NOT NULL,
 // STOCK_BATCH_ID BIGINT NOT NULL,
@@ -40,32 +42,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "STOCK_HISTORY")
 @XmlRootElement
+@ApiModel
 public class StockHistory extends BaseModel {
 
 	@Id
 	@SequenceGenerator(name = "stock_history_seq", allocationSize = 1, sequenceName = "STOCK_HISTORY_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_history_seq")
 	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "STOCK_BATCH_ID", nullable = false)
+	@ApiModelProperty
 	private StockBatch stockBatch;
 
 	@ManyToOne
 	@JoinColumn(name = "ITEM_ID", nullable = false)
+	@ApiModelProperty
 	private Item item;
 
 	@ManyToOne
 	@JoinColumn(name = "VENDOR_ID", nullable = false)
+	@ApiModelProperty
 	private Vendor vendor;
 
 	@Column(name = "BASE_PRICE", nullable = false)
 	@NotNull(message = "Base Price can't be null")
+	@ApiModelProperty
 	private Long basePrice;
 
 	@Column(name = "QUANTITY", nullable = false)
 	@NotNull(message = "Quantity can't be null")
+	@ApiModelProperty
 	private Integer quantity;
 
 	/**
@@ -76,8 +85,7 @@ public class StockHistory extends BaseModel {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -91,8 +99,7 @@ public class StockHistory extends BaseModel {
 	}
 
 	/**
-	 * @param stockBatch
-	 *            the stockBatch to set
+	 * @param stockBatch the stockBatch to set
 	 */
 	public void setStockBatch(StockBatch stockBatch) {
 		this.stockBatch = stockBatch;
@@ -106,8 +113,7 @@ public class StockHistory extends BaseModel {
 	}
 
 	/**
-	 * @param item
-	 *            the item to set
+	 * @param item the item to set
 	 */
 	public void setItem(Item item) {
 		this.item = item;
@@ -121,8 +127,7 @@ public class StockHistory extends BaseModel {
 	}
 
 	/**
-	 * @param vendor
-	 *            the vendor to set
+	 * @param vendor the vendor to set
 	 */
 	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
@@ -136,8 +141,7 @@ public class StockHistory extends BaseModel {
 	}
 
 	/**
-	 * @param basePrice
-	 *            the basePrice to set
+	 * @param basePrice the basePrice to set
 	 */
 	public void setBasePrice(Long basePrice) {
 		this.basePrice = basePrice;
@@ -151,11 +155,9 @@ public class StockHistory extends BaseModel {
 	}
 
 	/**
-	 * @param quantity
-	 *            the quantity to set
+	 * @param quantity the quantity to set
 	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-
 }

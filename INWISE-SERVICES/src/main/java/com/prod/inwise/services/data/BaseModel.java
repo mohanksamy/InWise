@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Base model for all Entities
  * 
@@ -15,18 +17,23 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseModel {
 	
 	@Column(name = "ACTIVE")
-	private boolean active;
+	@ApiModelProperty(hidden = true)
+	private boolean active = true;
 	
-	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)  
+	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)
+	@ApiModelProperty(hidden = true)
 	private String createdUser;
 
 	@Column(name = "CREATED_TS", nullable = false)
+	@ApiModelProperty(hidden = true)
 	private Timestamp createdTS;
 	
 	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)
+	@ApiModelProperty(hidden = true)
 	private String modifiedUser;
 	
 	@Column(name = "MODIFIED_TS", nullable = false)
+	@ApiModelProperty(hidden = true)
 	private Timestamp modifiedTS;
 
 	/**

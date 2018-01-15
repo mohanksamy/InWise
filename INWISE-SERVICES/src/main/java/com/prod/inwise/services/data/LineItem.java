@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Entity LINE_ITEM
@@ -41,32 +43,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "LINE_ITEM")
 @XmlRootElement
+@ApiModel
 public class LineItem extends BaseModel {
 
 	@Id
 	@SequenceGenerator(name = "line_item_seq", allocationSize = 1, sequenceName = "LINE_ITEM_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "line_item_seq")
 	@Column(name = "LINE_ITEM_ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "INVOICE_ID", nullable = false)
+	@ApiModelProperty
 	private Invoice invoice;
 
 	@ManyToOne
 	@JoinColumn(name = "ITEM_ID", nullable = false)
+	@ApiModelProperty
 	private Item item;
 
 	@NotNull(message = "Quantity can't be null")
 	@Column(name = "QUANTITY", nullable = false)
+	@ApiModelProperty
 	private Integer quantity;
 
 	@NotNull(message = "TotalTax can't be null")
 	@Column(name = "TOTAL_TAX", nullable = false)
+	@ApiModelProperty
 	private Float totalTax;
 
 	@NotNull(message = "TotalPrice can't be null")
 	@Column(name = "TOTAL_PRICE", nullable = false)
+	@ApiModelProperty
 	private Float totalPrice;
 
 	/**
@@ -77,8 +86,7 @@ public class LineItem extends BaseModel {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -92,8 +100,7 @@ public class LineItem extends BaseModel {
 	}
 
 	/**
-	 * @param invoice
-	 *            the invoice to set
+	 * @param invoice the invoice to set
 	 */
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
@@ -107,8 +114,7 @@ public class LineItem extends BaseModel {
 	}
 
 	/**
-	 * @param item
-	 *            the item to set
+	 * @param item the item to set
 	 */
 	public void setItem(Item item) {
 		this.item = item;
@@ -122,8 +128,7 @@ public class LineItem extends BaseModel {
 	}
 
 	/**
-	 * @param quantity
-	 *            the quantity to set
+	 * @param quantity the quantity to set
 	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
@@ -137,8 +142,7 @@ public class LineItem extends BaseModel {
 	}
 
 	/**
-	 * @param totalTax
-	 *            the totalTax to set
+	 * @param totalTax the totalTax to set
 	 */
 	public void setTotalTax(Float totalTax) {
 		this.totalTax = totalTax;
@@ -152,11 +156,9 @@ public class LineItem extends BaseModel {
 	}
 
 	/**
-	 * @param totalPrice
-	 *            the totalPrice to set
+	 * @param totalPrice the totalPrice to set
 	 */
 	public void setTotalPrice(Float totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
 }

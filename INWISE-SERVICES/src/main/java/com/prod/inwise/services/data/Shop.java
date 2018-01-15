@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Entity STORE
@@ -22,32 +24,38 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "STORE")
-@XmlRootElement
+@ApiModel
 public class Shop extends BaseModel {
 	
 	@Id
 	@SequenceGenerator(name = "store_seq", allocationSize = 1, sequenceName = "STORE_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "store_seq")
 	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 	
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
-	@Column(name = "NAME", nullable = false) 	
+	@Column(name = "NAME", nullable = false)
+	@ApiModelProperty(name="Name", value="Name of the Store")
 	private String name;
 	
 	@NotNull(message = "Address can't be null")
 	@NotBlank(message = "Address can't be blank")
-	@Column(name = "ADDRESS", nullable = false) 	
+	@Column(name = "ADDRESS", nullable = false)
+	@ApiModelProperty(name="Address", value="Address of the Store")
 	private String address;
 	
 	@NotNull(message = "UIN can't be null")
 	@NotBlank(message = "UIN can't be blank")
 	@Column(name = "UIN", nullable = false) 	
+	@ApiModelProperty(name="UIN", value="UIN number of the Store")
 	private String uin;
 	
 	@NotNull(message = "Phone can't be null")
-	@Column(name = "PHONE", nullable = false) 	
+	@NotBlank(message = "Phone can't be blank")
+	@Column(name = "PHONE", nullable = false)
+	@ApiModelProperty(name="Phone", value="Phone number of the Store")
 	private BigInteger phone;
 
 	/**

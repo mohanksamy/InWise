@@ -12,13 +12,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Entity INVOICE
  * 
  * @author Logu
  *
  */
-
 // CREATE TABLE INVOICE (
 // ID BIGINT NOT NULL,
 // STORE_ID BIGINT NOT NULL,
@@ -42,42 +44,53 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "INVOICE")
 @XmlRootElement
+@ApiModel
 public class Invoice extends BaseModel {
 
 	@Id
 	@SequenceGenerator(name = "invoice_seq", allocationSize = 1, sequenceName = "INVOICE_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_seq")
 	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
 	private Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "STORE_ID", nullable = false)
+	@ApiModelProperty
 	private Store store;
 
 	@NotNull(message = "TotalTax can't be null")
 	@Column(name = "TOTAL_TAX", nullable = false)
+	@ApiModelProperty
 	private Float totalTax;
 
 	@NotNull(message = "TotalPrice can't be null")
 	@Column(name = "TOTAL_PRICE", nullable = false)
+	@ApiModelProperty
 	private Float totalPrice;
 
 	@Column(name = "BUYER_NAME")
+	@ApiModelProperty
 	private String buyerName;
 
 	@Column(name = "DESPATCHED_THROUGH")
+	@ApiModelProperty
 	private String dispatchedThrough;
 
 	@Column(name = "DESPATCHED_DOCUMENT_NO")
+	@ApiModelProperty
 	private String dispatchedDocumentNo;
 
 	@Column(name = "DESTINATION")
+	@ApiModelProperty
 	private String destination;
 
 	@Column(name = "MODE_OR_TERMS_OF_PAYMENT")
+	@ApiModelProperty
 	private String modeOfPayment;
 
 	@Column(name = "SUPPLIER_REFERENCE")
+	@ApiModelProperty
 	private String supplierReference;
 
 	/**
@@ -88,8 +101,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -103,8 +115,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param store
-	 *            the store to set
+	 * @param store the store to set
 	 */
 	public void setStore(Store store) {
 		this.store = store;
@@ -118,8 +129,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param totalTax
-	 *            the totalTax to set
+	 * @param totalTax the totalTax to set
 	 */
 	public void setTotalTax(Float totalTax) {
 		this.totalTax = totalTax;
@@ -133,8 +143,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param totalPrice
-	 *            the totalPrice to set
+	 * @param totalPrice the totalPrice to set
 	 */
 	public void setTotalPrice(Float totalPrice) {
 		this.totalPrice = totalPrice;
@@ -148,8 +157,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param buyerName
-	 *            the buyerName to set
+	 * @param buyerName the buyerName to set
 	 */
 	public void setBuyerName(String buyerName) {
 		this.buyerName = buyerName;
@@ -163,8 +171,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param dispatchedThrough
-	 *            the dispatchedThrough to set
+	 * @param dispatchedThrough the dispatchedThrough to set
 	 */
 	public void setDispatchedThrough(String dispatchedThrough) {
 		this.dispatchedThrough = dispatchedThrough;
@@ -178,8 +185,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param dispatchedDocumentNo
-	 *            the dispatchedDocumentNo to set
+	 * @param dispatchedDocumentNo the dispatchedDocumentNo to set
 	 */
 	public void setDispatchedDocumentNo(String dispatchedDocumentNo) {
 		this.dispatchedDocumentNo = dispatchedDocumentNo;
@@ -193,8 +199,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param destination
-	 *            the destination to set
+	 * @param destination the destination to set
 	 */
 	public void setDestination(String destination) {
 		this.destination = destination;
@@ -208,8 +213,7 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param modeOfPayment
-	 *            the modeOfPayment to set
+	 * @param modeOfPayment the modeOfPayment to set
 	 */
 	public void setModeOfPayment(String modeOfPayment) {
 		this.modeOfPayment = modeOfPayment;
@@ -223,11 +227,9 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @param supplierReference
-	 *            the supplierReference to set
+	 * @param supplierReference the supplierReference to set
 	 */
 	public void setSupplierReference(String supplierReference) {
 		this.supplierReference = supplierReference;
 	}
-
 }
