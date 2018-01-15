@@ -91,7 +91,7 @@ public class StoreResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error")})
-	public Shop findByName(@PathParam("name") String name) {
-		return shopRepo.findByName(name);
+	public Response findByName(@PathParam("name") String name) {
+		return Response.status(OK).entity(shopRepo.findByName(name)).build();
 	}
 }
