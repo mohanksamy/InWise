@@ -17,7 +17,7 @@ import com.prod.inwise.services.data.Store;
 public interface StoreRepository extends CrudRepository<Store, Long> {
 
 	/**
-	 * Method find Store by given name
+	 * Method to find Store by given name
 	 * 
 	 * @param name
 	 * @return

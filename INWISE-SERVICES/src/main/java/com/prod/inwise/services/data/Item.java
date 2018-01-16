@@ -8,13 +8,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.prod.inwise.services.enums.Brand;
+import com.prod.inwise.services.enums.Category;
+import com.prod.inwise.services.enums.Size;
+import com.prod.inwise.services.enums.SubCategory;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -81,26 +86,26 @@ public class Item extends BaseModel {
 
 	@Column(name = "CATEGORY")
 	@ApiModelProperty
-	private String category;
+	private Category category;
 
 	@Column(name = "SUB_CATEGORY")
 	@ApiModelProperty
-	private String subCategory;
+	private SubCategory subCategory;
 
 	@Column(name = "BRAND")
 	@ApiModelProperty
-	private String brand;
+	private Brand brand;
 
 	@Column(name = "SIZE")
 	@ApiModelProperty
-	private String size;
+	private Size size;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "STORE_ID", nullable = false)
 	@ApiModelProperty
 	private Store store;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "TAX_ID", nullable = false)
 	@ApiModelProperty
 	private Tax tax;
@@ -178,56 +183,56 @@ public class Item extends BaseModel {
 	/**
 	 * @return the category
 	 */
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
 	/**
 	 * @param category the category to set
 	 */
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
 	/**
 	 * @return the subCategory
 	 */
-	public String getSubCategory() {
+	public SubCategory getSubCategory() {
 		return subCategory;
 	}
 
 	/**
 	 * @param subCategory the subCategory to set
 	 */
-	public void setSubCategory(String subCategory) {
+	public void setSubCategory(SubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
 
 	/**
 	 * @return the brand
 	 */
-	public String getBrand() {
+	public Brand getBrand() {
 		return brand;
 	}
 
 	/**
 	 * @param brand the brand to set
 	 */
-	public void setBrand(String brand) {
+	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
 
 	/**
 	 * @return the size
 	 */
-	public String getSize() {
+	public Size getSize() {
 		return size;
 	}
 
 	/**
 	 * @param size the size to set
 	 */
-	public void setSize(String size) {
+	public void setSize(Size size) {
 		this.size = size;
 	}
 

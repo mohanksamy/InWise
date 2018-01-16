@@ -14,4 +14,12 @@ import com.prod.inwise.services.data.Item;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Long> {
 
+	/**
+	 * Method to find Store by given Store name.
+	 * 
+	 * @param name
+	 * @return
+	 *//*
+	@Query("SELECT item FROM Item item WHERE and UPPER(item.store.name) = UPPER(:name)")
+	public Store findByName(@Param("name") String name);*/
 }

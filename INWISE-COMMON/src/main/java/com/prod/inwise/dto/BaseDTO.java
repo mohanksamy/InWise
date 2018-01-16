@@ -1,7 +1,5 @@
 package com.prod.inwise.dto;
 
-import java.sql.Timestamp;
-
 /**
  * @author mohan_kandasamy
  *

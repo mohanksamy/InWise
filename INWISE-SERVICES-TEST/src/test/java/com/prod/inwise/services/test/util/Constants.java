@@ -25,6 +25,8 @@ public interface Constants {
 	
 	String RESOURCE_PATH_TAX 	= "tax";
 	
+	String RESOURCE_PATH_ITEM 	= "item";
+	
 	/*String RESOURCE_HEALTH 	= "health";
 	
 	String RESOURCE_HEALTH 	= "health";
