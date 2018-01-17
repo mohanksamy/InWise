@@ -11,6 +11,9 @@ import org.springframework.stereotype.Component;
 import com.prod.inwise.services.data.StockBatch;
 import com.prod.inwise.services.repo.StockBatchRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * REST Resource exposes operation on Store resource
  * 
@@ -20,12 +23,14 @@ import com.prod.inwise.services.repo.StockBatchRepository;
 @Component
 @Path("/stockBatch")
 @Produces(MediaType.APPLICATION_JSON)
+@Api(value = "Stock Batch Service")
 public class StockBatchResource {
 	
 	@Autowired
 	private StockBatchRepository stockBatchRepo;
 	
 	@POST
+	@ApiOperation(value = "Create Stock Batch", notes = "Create stock batch model")
 	public StockBatch createStockBatch(StockBatch stockBatch) {
 		return stockBatchRepo.save(stockBatch);
 	}
