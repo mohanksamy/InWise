@@ -4,6 +4,8 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.prod.inwise.services.enums.Brand;
@@ -54,6 +58,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(name = "ITEM")
+@TypeDef(name = "pgsql_enum", typeClass = PostgreSQLEnumType.class)
 @XmlRootElement
 @ApiModel
 public class Item extends BaseModel {
@@ -84,19 +89,27 @@ public class Item extends BaseModel {
 	@ApiModelProperty
 	private String hsnSac;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "CATEGORY")
+	@Type(type = "pgsql_enum")
 	@ApiModelProperty
 	private Category category;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "SUB_CATEGORY")
+	@Type(type = "pgsql_enum")
 	@ApiModelProperty
 	private SubCategory subCategory;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "BRAND")
+	@Type(type = "pgsql_enum")
 	@ApiModelProperty
 	private Brand brand;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "SIZE")
+	@Type(type = "pgsql_enum")
 	@ApiModelProperty
 	private Size size;
 
@@ -262,5 +275,20 @@ public class Item extends BaseModel {
 	 */
 	public void setTax(Tax tax) {
 		this.tax = tax;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Item [name=" + name +
+				", partNo=" + partNo +
+				", price=" + price +
+				", hsnSac=" + hsnSac +
+				", category=" + category +
+				", subCategory=" + subCategory +
+				", brand=" + brand +
+				", size=" + size + "]";
 	}
 }

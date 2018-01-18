@@ -6,6 +6,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -18,6 +19,7 @@ import com.prod.inwise.services.repo.ItemRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -59,5 +61,11 @@ public class ItemResource {
 		itemRepo.save(item);
 		
 		return status(OK).build();
+	}
+	@GET
+	@Path("/{name}")
+	@ApiOperation(value = "Get item", notes = "Get item model")
+	public Response findByName(@ApiParam @PathParam("name") String name) {
+		return Response.status(OK).entity(itemRepo.findByName(name)).build();
 	}
 }

@@ -10,3 +10,8 @@ https://medium.com/learning-new-stuff/building-your-first-react-js-app-d53b0c98d
 Swagger:
 ********
 http://tech.asimio.net/2016/04/05/Microservices-using-Spring-Boot-Jersey-Swagger-and-Docker.html
+
+
+Java Enum to map with Postgres Enums:
+https://vladmihalcea.com/the-best-way-to-map-an-enum-type-with-jpa-and-hibernate/
+https://www.softteco.com/blog/postgres-enum-java-enum-and-jpa/

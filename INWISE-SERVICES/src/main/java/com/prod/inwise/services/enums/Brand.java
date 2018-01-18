@@ -9,6 +9,9 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Enum component for Brand
  * 
+ * Name to code and code to name conversions are only for educational purposes 
+ * and not being used anywhere in the application
+ * 
  * @author mohan.kandasamy
  *
  */
@@ -18,7 +21,7 @@ public enum Brand {
 	POOMER("Poomer", "POOMER"),
 	POOMEX("Poomex", "POOMEX"),
 	GRS("GRS", "GRS"),
-	EFRESH("e-fresh", "E-FRESH");
+	EFRESH("efresh", "EFRESH");
 	
 	// Maps loaded with enums
 	private static Map<String, Brand> nameMap = new HashMap<String, Brand>();

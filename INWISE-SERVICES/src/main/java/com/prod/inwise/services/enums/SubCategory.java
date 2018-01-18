@@ -9,6 +9,9 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Enum component for SubCategory
  * 
+ * Name to code and code to name conversions are only for educational purposes 
+ * and not being used anywhere in the application
+ * 
  * @author Logu
  *
  */
@@ -18,7 +21,7 @@ public enum SubCategory {
 
 	// Enums
 	INNERS("Inners", "INNERS"),
-	OUTFITTINGS("Out Fittings", "OUT FITTINGS"),
+	OUTFITTINGS("Out Fittings", "OUT_FITTINGS"),
 	TOP("Top", "TOP"),
 	BOTTOM("Bottom", "BOTTOM"),
 	FROCK("Frock", "FROCK");

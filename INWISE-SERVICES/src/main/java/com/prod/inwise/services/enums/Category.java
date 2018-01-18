@@ -9,6 +9,9 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Enum component for Category
  * 
+ * Name to code and code to name conversions are only for educational purposes 
+ * and not being used anywhere in the application
+ * 
  * @author Logu
  *
  */
@@ -17,8 +20,12 @@ import org.apache.commons.lang.StringUtils;
 public enum Category {
 
 	// Enums
-	MENS("Mens", "MENS"), WOMENS("Womens", "WOMENS"), BOYS("Boys", "BOYS"), GIRLS("Girls", "GIRLS"),
-	BABY_BOYS("Baby Boys", "BABY BOYS"), BABY_GIRLS("Baby Girls", "BABY GIRLS"),
+	MENS("Mens", "MENS"),
+	WOMENS("Womens", "WOMENS"),
+	BOYS("Boys", "BOYS"),
+	GIRLS("Girls", "GIRLS"),
+	BABY_BOYS("Baby Boys", "BABY_BOYS"),
+	BABY_GIRLS("Baby Girls", "BABY_GIRLS"),
 	INFANTS("Infants", "INFANTS");
 	
 	// Maps loaded with enums

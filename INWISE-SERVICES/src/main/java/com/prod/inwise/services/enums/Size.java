@@ -9,6 +9,9 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Enum component for Size
  * 
+ * Name to code and code to name conversions are only for educational purposes 
+ * and not being used anywhere in the application
+ * 
  * @author Logu
  *
  */
@@ -18,11 +21,16 @@ import org.apache.commons.lang.StringUtils;
 public enum Size {
 
 	// Enums
-	_55("55","55"),
-	_60("60","60"),
-	_65("65","65"),
-	_70("70","70"),
-	_75("75","75"),
+	S_30("S_30","S_30"),
+	S_35("S_35","S_35"),
+	S_40("S_40","S_40"),
+	S_45("S_45","S_45"),
+	S_50("S_50","S_50"),
+	S_55("S_55","S_55"),
+	S_60("S_60","S_60"),
+	S_65("S_65","S_65"),
+	S_70("S_70","S_70"),
+	S_75("S_75","S_75"),
 	S("S", "S"),
 	M("M", "M"),
 	L("L", "L"),

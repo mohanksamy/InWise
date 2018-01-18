@@ -2,6 +2,11 @@ package com.prod.inwise.dto;
 
 import java.math.BigInteger;
 
+import com.prod.inwise.enums.Brand;
+import com.prod.inwise.enums.Category;
+import com.prod.inwise.enums.Size;
+import com.prod.inwise.enums.SubCategory;
+
 /**
  * @author mohan_kandasamy
  *
@@ -18,13 +23,13 @@ public class ItemDTO extends BaseDTO {
 
 	private String hsnSac;
 
-	private String category;
+	private Category category;
 
-	private String subCategory;
+	private SubCategory subCategory;
 
-	private String brand;
+	private Brand brand;
 
-	private String size;
+	private Size size;
 
 	private StoreDTO store;
 	
@@ -103,56 +108,56 @@ public class ItemDTO extends BaseDTO {
 	/**
 	 * @return the category
 	 */
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
 	/**
 	 * @param category the category to set
 	 */
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
 	/**
 	 * @return the subCategory
 	 */
-	public String getSubCategory() {
+	public SubCategory getSubCategory() {
 		return subCategory;
 	}
 
 	/**
 	 * @param subCategory the subCategory to set
 	 */
-	public void setSubCategory(String subCategory) {
+	public void setSubCategory(SubCategory subCategory) {
 		this.subCategory = subCategory;
 	}
 
 	/**
 	 * @return the brand
 	 */
-	public String getBrand() {
+	public Brand getBrand() {
 		return brand;
 	}
 
 	/**
 	 * @param brand the brand to set
 	 */
-	public void setBrand(String brand) {
+	public void setBrand(Brand brand) {
 		this.brand = brand;
 	}
 
 	/**
 	 * @return the size
 	 */
-	public String getSize() {
+	public Size getSize() {
 		return size;
 	}
 
 	/**
 	 * @param size the size to set
 	 */
-	public void setSize(String size) {
+	public void setSize(Size size) {
 		this.size = size;
 	}
 
