@@ -2,40 +2,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
-	<!-- Parent Artifact Details -->                            
+	<!-- Parent Artifact Details -->
 	<parent>
-		<artifactId>INWISE-POM</artifactId>   
-		<groupId>com.prod.inwise</groupId>    
-		<version>1.0.0-SNAPSHOT</version>    
-	</parent> 
+		<groupId>com.prod.inwise</groupId>
+		<artifactId>INWISE-POM</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 	
 	
-	<!-- Project Details -->   
+	<!-- Project Details -->
 	<name>INWISE-SERVICES</name>
 	<artifactId>INWISE-SERVICES</artifactId>
 	<modelVersion>4.0.0</modelVersion>
 	<packaging>jar</packaging>
 	
 	  
-	<!-- Properties Details -->          
+	<!-- Properties Details -->
 	<properties>
 	
 		<start-class>com.prod.inwise.services.Application</start-class>
 		
-		<!-- <testng.version>6.8.8</testng.version>     
-		<rest.assured.version>2.9.0</rest.assured.version>   
-		<hamcrest.all.version>1.3</hamcrest.all.version> 
+		<!-- <testng.version>6.8.8</testng.version>
+		<rest.assured.version>2.9.0</rest.assured.version>
+		<hamcrest.all.version>1.3</hamcrest.all.version>
 		<groovy.all.version>2.4.5</groovy.all.version>
 		<jackson.xml.databind.version>0.6.2</jackson.xml.databind.version>
-		<gcm.server.version>1.0.2</gcm.server.version>  
+		<gcm.server.version>1.0.2</gcm.server.version>
 		<json.patch.version>1.9</json.patch.version> -->
 		
 		<swagger-jerysey-version>1.5.8</swagger-jerysey-version>
 		<postgresql-driver-version>42.1.4</postgresql-driver-version>
 
-	</properties> 
+	</properties>
 
-	<!-- Dependencies Details -->   
+	<!-- Dependencies Details -->
 	<dependencies>
         
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jersey -->
@@ -60,10 +60,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>	 
+		</dependency>
 		 				
 		https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging
-		<dependency> 
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 			<exclusions>
@@ -72,62 +72,62 @@
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency> 
+		</dependency>
         
         https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j</artifactId>
-		</dependency> 
+		</dependency>
 	     
 	    https://mvnrepository.com/artifact/com.fasterxml/jackson-xml-databind
-	    <dependency>  
+	    <dependency>
 		    <groupId>com.fasterxml</groupId>
 		    <artifactId>jackson-xml-databind</artifactId>
 		    <version>${jackson.xml.databind.version}</version>
-		</dependency>  
+		</dependency>
 		
 		https://mvnrepository.com/artifact/com.google.gcm/gcm-server
 		<dependency>
             <groupId>com.ganyo</groupId>
             <artifactId>gcm-server</artifactId>
             <version>${gcm.server.version}</version>
-        </dependency> 
+        </dependency>
                         
         https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>  
-        </dependency> 
+            <artifactId>json-simple</artifactId>
+        </dependency>
 		  
 		https://mvnrepository.com/artifact/com.jayway.restassured/rest-assured
 		<dependency>
 		   <groupId>com.jayway.restassured</groupId>
-		   <artifactId>rest-assured</artifactId>  
-		   <version>${rest.assured.version}</version> 
+		   <artifactId>rest-assured</artifactId>
+		   <version>${rest.assured.version}</version>
 		   <scope>test</scope>
-		</dependency> 
+		</dependency>
 		
 		https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all
 		<dependency>
 		   <groupId>org.hamcrest</groupId>
-		   <artifactId>hamcrest-all</artifactId>  
-		   <version>${hamcrest.all.version}</version> 
-		   <scope>test</scope>  
+		   <artifactId>hamcrest-all</artifactId>
+		   <version>${hamcrest.all.version}</version>
+		   <scope>test</scope>
 		</dependency>
 		  
-		https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all 
+		https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
 		<dependency>
-		    <groupId>org.codehaus.groovy</groupId> 
+		    <groupId>org.codehaus.groovy</groupId>
 		    <artifactId>groovy-all</artifactId>
-		    <version>${groovy.all.version}</version>   
-		</dependency>        
+		    <version>${groovy.all.version}</version>
+		</dependency>
 		
 		https://mvnrepository.com/artifact/com.github.fge/json-patch
 	    <dependency>
 	       <groupId>com.github.fge</groupId>
-	       <artifactId>json-patch</artifactId> 
-	       <version>${json.patch.version}</version> 
+	       <artifactId>json-patch</artifactId>
+	       <version>${json.patch.version}</version>
 	    </dependency>  -->
 		
 		<dependency>
@@ -145,10 +145,10 @@
 		 
 	</dependencies>
 	
-	<!-- Profile Details --> 
+	<!-- Profile Details -->
 	<profiles>
 	
-		<!-- Profile For Local Environment -->    
+		<!-- Profile For Local Environment -->
 		<profile>
 		    <id>local</id>
 		    <activation>
@@ -158,7 +158,7 @@
 		    	<activatedProfileFinalName>LOCAL</activatedProfileFinalName>
 		    </properties>
 		    <build>
-			    <!-- Build Resource Details -->	 
+			    <!-- Build Resource Details -->
 				<resources>
 			        <resource>
 			            <directory>src/main/resources</directory>
@@ -170,19 +170,19 @@
 
 	</profiles>
 	 
-	<!-- Build Details -->      
+	<!-- Build Details -->
 	<build>
 	   
-	 	<!-- Build Final Name --> 
+	 	<!-- Build Final Name -->
 		<!-- <finalName>${project.artifactId}-${project.version}-${activatedProfileFinalName}</finalName> -->
 		<finalName>${project.artifactId}-${project.version}</finalName>
 	   
-	    <!-- Build Plugins Details --> 	 
+	    <!-- Build Plugins Details -->
 		<plugins>
 		
 			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
 			<!-- Plug-in to run the REST services as stand-alone application -->
-			<plugin> 
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>

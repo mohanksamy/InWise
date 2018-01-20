@@ -4,8 +4,8 @@
 
 	<!-- Parent Artifact Details -->
 	<parent>
-		<artifactId>INWISE-POM</artifactId>
 		<groupId>com.prod.inwise</groupId>
+		<artifactId>INWISE-POM</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
