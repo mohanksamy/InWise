@@ -34,46 +34,33 @@ import io.swagger.annotations.ApiResponses;
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Store Service")
 public class StoreResource {
-	
-	/*@Autowired
-	private StoreRepository storeRepo;*/
-	
+
+	/*
+	 * @Autowired private StoreRepository storeRepo;
+	 */
+
 	@Autowired
 	private ShopRepository shopRepo;
-	
-	/*@POST
-	public Store createStore(Store store) {
-	  return storeRepo.save(store);
-	}*/
-	
+
+	/*
+	 * @POST public Store createStore(Store store) { return storeRepo.save(store); }
+	 */
+
 	@POST
 	@ApiOperation(value = "Create store", notes = "Create store model")
-	@ApiResponses(value = {
-			@ApiResponse(code = 404, message = "Invalid tenant specified"),
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
 			@ApiResponse(code = 401, message = "No permission to access model"),
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
-			@ApiResponse(code = 500, message = "Server Internal error")})
+			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response createStore(Shop shop) {
-		
+
 		shopRepo.save(shop);
-		
+
 		return status(OK).build();
 	}
-	
-	/**
-	 * Service operation to find resource by name.
-	 * 
-	 * @param name
-	 * @return
-	 */
-	/*@GET
-	@Path("/{name}")
-	public Store findByName(@PathParam("name") String name) {
-		return storeRepo.findByName(name);
-	}*/
-    
+
 	/**
 	 * Service operation to find resource by name.
 	 *
@@ -83,14 +70,14 @@ public class StoreResource {
 	@GET
 	@Path("/{name}")
 	@ApiOperation(value = "Show Store", notes = "Show store model")
-	@ApiResponses(value = {	
-			@ApiResponse(code = 404, message = "Invalid tenant specified"),
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
 			@ApiResponse(code = 401, message = "No permission to access model"),
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
-			@ApiResponse(code = 500, message = "Server Internal error")})
+			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response findByName(@ApiParam @PathParam("name") String name) {
-		return Response.status(OK).entity(shopRepo.findByName(name)).build();
+
+		return Response.status(OK).entity(shopRepo.findByNameIgnoreCase(name)).build();
 	}
 }

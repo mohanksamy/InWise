@@ -1,6 +1,5 @@
 package com.prod.inwise.services.repo;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,6 +21,5 @@ public interface ShopRepository extends CrudRepository<Shop, Long> {
 	 * @param name
 	 * @return
 	 */
-	@Query("SELECT s FROM Shop s WHERE UPPER(s.name) = UPPER(:name)")
-	public Shop findByName(@Param("name") String name);
+	public Shop findByNameIgnoreCase(@Param("name") String name);
 }

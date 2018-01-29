@@ -34,31 +34,30 @@ import io.swagger.annotations.ApiResponses;
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Tax Service")
 public class TaxResource {
-	
+
 	@Autowired
 	private TaxRepository taxRepo;
-	
+
 	@POST
 	@ApiOperation(value = "Create tax", notes = "Create tax model")
-	@ApiResponses(value = {
-			@ApiResponse(code = 404, message = "Invalid tenant specified"),
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
 			@ApiResponse(code = 401, message = "No permission to access model"),
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
-			@ApiResponse(code = 500, message = "Server Internal error")})
+			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response createTax(Tax tax) {
-		
+
 		taxRepo.save(tax);
-		
+
 		return status(OK).build();
 	}
-	
+
 	@GET
 	@Path("/store/{name}")
 	@ApiOperation(value = "Get tax", notes = "Get tax model")
 	public Response getTax(@ApiParam @PathParam("name") String name) {
-		
-		return status(OK).entity(taxRepo.findByStoreName(name)).build();
+
+		return status(OK).entity(taxRepo.findByStoreNameIgnoreCase(name)).build();
 	}
 }
