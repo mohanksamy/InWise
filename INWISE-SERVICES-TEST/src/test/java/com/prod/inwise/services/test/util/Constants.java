@@ -38,5 +38,4 @@ public interface Constants {
 	String RESOURCE_PATH_STOCK_HISTORY = "stockHistory";
 
 	String RESOURCE_PATH_VENDOR = "vendor";
-
 }
