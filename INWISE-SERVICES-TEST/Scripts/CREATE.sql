@@ -7,7 +7,7 @@ CREATE TYPE CATEGORY AS ENUM ('MENS', 'WOMENS', 'BOYS', 'GIRLS', 'BABY_BOYS', 'B
 
 CREATE TYPE SUB_CATEGORY AS ENUM ('INNERS', 'OUT_FITTINGS', 'TOP', 'BOTTOM', 'FROCK');
 
-CREATE TYPE SIZE AS ENUM ('X_30', 'X_35', 'X_40', 'X_45', 'X_50', 'X_55', 'X_60', 'X_65', 'X_70', 'X_75', 'S', 'M', 'L', 'XL', 'XXL', 'NA');
+CREATE TYPE SIZE AS ENUM ('S_30', 'S_35', 'S_40', 'S_45', 'S_50', 'S_55', 'S_60', 'S_65', 'S_70', 'S_75', 'S', 'M', 'L', 'XL', 'XXL', 'NA');
 
 
 
