@@ -13,5 +13,4 @@ import com.prod.inwise.services.data.LineItem;
  */
 @Repository
 public interface LineItemRepository extends CrudRepository<LineItem, Long> {
-
 }

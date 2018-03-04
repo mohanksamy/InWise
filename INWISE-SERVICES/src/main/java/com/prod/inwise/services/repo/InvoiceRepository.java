@@ -13,5 +13,4 @@ import com.prod.inwise.services.data.Invoice;
  */
 @Repository
 public interface InvoiceRepository extends CrudRepository<Invoice, Long> {
-
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.prod.inwise.services.repo;
 
 import org.springframework.data.repository.CrudRepository;
@@ -16,5 +13,4 @@ import com.prod.inwise.services.data.StockBatch;
  */
 @Repository
 public interface StockBatchRepository extends CrudRepository<StockBatch, Long> {
-
 }

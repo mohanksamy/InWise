@@ -66,6 +66,6 @@ public class ItemResource {
 	@Path("/{name}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
 	public Response findByName(@ApiParam @PathParam("name") String name) {
-		return Response.status(OK).entity(itemRepo.findByName(name)).build();
+		return Response.status(OK).entity(itemRepo.findByNameIgnoreCase(name)).build();
 	}
 }
