@@ -15,3 +15,10 @@ http://tech.asimio.net/2016/04/05/Microservices-using-Spring-Boot-Jersey-Swagger
 Java Enum to map with Postgres Enums:
 https://vladmihalcea.com/the-best-way-to-map-an-enum-type-with-jpa-and-hibernate/
 https://www.softteco.com/blog/postgres-enum-java-enum-and-jpa/
+
+Printing content:
+https://stackoverflow.com/questions/29337166/print-to-printer-from-a-jsp-page-using-a-button-to-retrieve-data-from-a-databas
+
+<form>
+<input type="button" value="Print this page" onClick="window.print()">
+</form>

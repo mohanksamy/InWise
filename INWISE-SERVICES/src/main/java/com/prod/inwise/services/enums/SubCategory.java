@@ -21,7 +21,7 @@ public enum SubCategory {
 
 	// Enums
 	INNERS("Inners", "INNERS"),
-	OUTFITTINGS("Out Fittings", "OUT_FITTINGS"),
+	OUTFITTINGS("Out Fittings", "OUTFITTINGS"),
 	TOP("Top", "TOP"),
 	BOTTOM("Bottom", "BOTTOM"),
 	FROCK("Frock", "FROCK");
