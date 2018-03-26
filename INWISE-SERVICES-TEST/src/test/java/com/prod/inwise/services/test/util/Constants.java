@@ -8,34 +8,43 @@ import com.google.gson.Gson;
  */
 public interface Constants {
 
-	Gson gson = new Gson();
+	public static final Gson gson 							= new Gson();
 
-	String BASE_URI = "http://localhost";
+	public static final String BASE_URI 						= "http://localhost";
 
-	int PORT = 8080;
+	public static final int PORT 							= 8080;
 
-	String BASE_PATH = "inwise";
+	public static final String BASE_PATH 					= "inwise";
 
-	String URL_DELIMITER = "/";
+	public static final String URL_DELIMITER 				= "/";
 
 	// Resources
-	String RESOURCE_PATH_HEALTH = "health";
+	public static final String RESOURCE_PATH_HEALTH 			= "health";
 
-	String RESOURCE_PATH_STORE = "store";
+	public static final String RESOURCE_PATH_STORE 			= "store";
 
-	String RESOURCE_PATH_TAX = "tax";
+	public static final String RESOURCE_PATH_TAX 			= "tax";
 
-	String RESOURCE_PATH_ITEM = "item";
+	public static final String RESOURCE_PATH_ITEM 			= "item";
 
-	String RESOURCE_PATH_INVOICE = "invoice";
+	public static final String RESOURCE_PATH_INVOICE 		= "invoice";
 
-	String RESOURCE_PATH_LINEITEM = "lineItem";
+	public static final String RESOURCE_PATH_LINEITEM 		= "lineItem";
 
-	String RESOURCE_PATH_STOCK = "stock";
+	public static final String RESOURCE_PATH_STOCK 			= "stock";
 
-	String RESOURCE_PATH_STOCK_BATCH = "stockBatch";
+	public static final String RESOURCE_PATH_STOCK_BATCH 	= "stockBatch";
 
-	String RESOURCE_PATH_STOCK_HISTORY = "stockHistory";
+	public static final String RESOURCE_PATH_STOCK_HISTORY 	= "stockHistory";
 
-	String RESOURCE_PATH_VENDOR = "vendor";
+	public static final String RESOURCE_PATH_VENDOR 			= "vendor";
+	
+	// APP Properties
+	public static final String APP_USER						= "APP-SERVICES";
+	
+	public static final String DATA_DELIMITER				= ",";
+	
+	public static final String STRING_EMPTY					= "";
+	
+	public static final String STRING_SPACE					= " ";
 }

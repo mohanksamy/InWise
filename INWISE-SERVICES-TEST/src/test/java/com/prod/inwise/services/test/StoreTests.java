@@ -1,5 +1,6 @@
 package com.prod.inwise.services.test;
 
+import static com.prod.inwise.services.test.util.Constants.APP_USER;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
 import static org.apache.http.HttpStatus.SC_OK;
 
@@ -14,7 +15,7 @@ import com.prod.inwise.dto.StoreDTO;
  *
  */
 public class StoreTests extends AbstractTests {
-
+	
 	@Test
 	public void createStore1() {
 		
@@ -25,8 +26,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
@@ -41,8 +42,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
@@ -57,8 +58,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
@@ -73,8 +74,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
@@ -89,8 +90,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
@@ -105,8 +106,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}
@@ -121,8 +122,8 @@ public class StoreTests extends AbstractTests {
 		storeDTO.setPhone(new  BigInteger("919448107285"));
 		
 		storeDTO.setActive(true);
-		storeDTO.setCreatedUser("APP-SERVICES");
-		storeDTO.setModifiedUser("APP-SERVICES");
+		storeDTO.setCreatedUser(APP_USER);
+		storeDTO.setModifiedUser(APP_USER);
 		
 		getRequestSpecificationWithJsonBody(storeDTO).post(getPath(RESOURCE_PATH_STORE)).then().statusCode(SC_OK);
 	}

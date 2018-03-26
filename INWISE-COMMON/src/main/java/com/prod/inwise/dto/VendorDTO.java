@@ -88,4 +88,13 @@ public class VendorDTO extends BaseDTO {
 	public void setPhone(BigInteger phone) {
 		this.phone = phone;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "VendorDTO [id=" + id + ", name=" + name + ", code=" + code + ", address=" + address + ", phone=" + phone
+				+ "]";
+	}
 }

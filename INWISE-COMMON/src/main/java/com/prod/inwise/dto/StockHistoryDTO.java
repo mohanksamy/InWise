@@ -104,4 +104,12 @@ public class StockHistoryDTO extends BaseDTO {
 		this.quantity = quantity;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StockHistoryDTO [id=" + id + ", stockBatch=" + stockBatch + ", item=" + item + ", vendor=" + vendor
+				+ ", basePrice=" + basePrice + ", quantity=" + quantity + "]";
+	}
 }

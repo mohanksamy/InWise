@@ -188,4 +188,14 @@ public class ItemDTO extends BaseDTO {
 	public void setTax(TaxDTO tax) {
 		this.tax = tax;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ItemDTO [id=" + id + ", name=" + name + ", partNo=" + partNo + ", price=" + price + ", hsnSac=" + hsnSac
+				+ ", category=" + category + ", subCategory=" + subCategory + ", brand=" + brand + ", size=" + size
+				+ "]";
+	}
 }

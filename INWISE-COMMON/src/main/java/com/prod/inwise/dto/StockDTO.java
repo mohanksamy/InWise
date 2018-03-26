@@ -53,4 +53,11 @@ public class StockDTO extends BaseDTO {
 		this.quantity = quantity;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "StockDTO [id=" + id + ", item=" + item + ", quantity=" + quantity + "]";
+	}
 }

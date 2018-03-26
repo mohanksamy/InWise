@@ -56,8 +56,8 @@ CREATE TRIGGER STORE_BIT
 
 CREATE TABLE TAX (
   	ID              	BIGINT      NOT NULL,
-  	CGST            	FLOAT       NOT NULL,
- 	SGST            	FLOAT       NOT NULL,
+  	CGST            	FLOAT(2)    NOT NULL,
+ 	SGST            	FLOAT(2)    NOT NULL,
 	STORE_ID        	BIGINT      NOT NULL,
 	ACTIVE          	BOOLEAN     NOT NULL,
 	CREATED_USER    	TEXT        NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE ITEM (
 	ID              	BIGINT      NOT NULL,
 	NAME            	TEXT        NOT NULL,
 	PART_NO         	BIGINT,
-	PRICE           	FLOAT       NOT NULL,
+	PRICE           	FLOAT(2)    NOT NULL,
 	HSN_SAC         	TEXT,
   	CATEGORY        	CATEGORY,
   	SUB_CATEGORY    	SUB_CATEGORY,

@@ -104,4 +104,12 @@ public class LineItemDTO extends BaseDTO {
 		this.totalPrice = totalPrice;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LineItemDTO [id=" + id + ", invoice=" + invoice + ", item=" + item + ", quantity=" + quantity
+				+ ", totalTax=" + totalTax + ", totalPrice=" + totalPrice + "]";
+	}
 }

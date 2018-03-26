@@ -69,4 +69,12 @@ public class TaxDTO extends BaseDTO {
 	public void setStore(StoreDTO store) {
 		this.store = store;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TaxDTO [id=" + id + ", cgst=" + cgst + ", sgst=" + sgst + ", store=" + store + "]";
+	}
 }

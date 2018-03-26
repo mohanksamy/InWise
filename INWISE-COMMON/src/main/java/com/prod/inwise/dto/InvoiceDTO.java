@@ -172,4 +172,14 @@ public class InvoiceDTO extends BaseDTO {
 		this.supplierReference = supplierReference;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "InvoiceDTO [id=" + id + ", store=" + store + ", totalTax=" + totalTax + ", totalPrice=" + totalPrice
+				+ ", buyerName=" + buyerName + ", dispatchedThrough=" + dispatchedThrough + ", dispatchedDocumentNo="
+				+ dispatchedDocumentNo + ", destination=" + destination + ", modeOfPayment=" + modeOfPayment
+				+ ", supplierReference=" + supplierReference + "]";
+	}
 }
