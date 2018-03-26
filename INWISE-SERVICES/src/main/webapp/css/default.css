@@ -412,21 +412,6 @@ td.tabsSelected {
 .odd_row_color {
 }
 
-.corteraTableHeader {
-	font-family: verdana, sans-serif;
-	font-size: 9px;
-	font: bold;
-	align: center;
-	background-image: url(../images/crosshatchTile.gif);
-	background-position: center left;
-	background-repeat: repeat-x repeat-y;
-	padding-left: 0px;
-}
-
-.corteraTableData {
-	font-family: verdana, sans-serif;
-	font-size: 9px;
-}
 
 /* added popmenu for customer menu label*/
 .popupmenu {
