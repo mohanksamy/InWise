@@ -4,8 +4,8 @@ import org.junit.BeforeClass;
 
 import static com.jayway.restassured.RestAssured.given;
 import static com.prod.inwise.services.test.util.Constants.BASE_PATH;
-import static com.prod.inwise.services.test.util.Constants.PORT;
 import static com.prod.inwise.services.test.util.Constants.BASE_URI;
+import static com.prod.inwise.services.test.util.Constants.PORT;
 import static com.prod.inwise.services.test.util.Constants.URL_DELIMITER;
 import static com.prod.inwise.services.test.util.Constants.gson;
 

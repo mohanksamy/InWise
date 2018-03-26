@@ -1,9 +1,5 @@
 package com.prod.inwise.services.test;
 
-import static com.prod.inwise.services.test.util.Constants.APP_USER;
-import static com.prod.inwise.services.test.util.Constants.DATA_DELIMITER;
-import static com.prod.inwise.services.test.util.Constants.STRING_SPACE;
-
 import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -35,6 +31,12 @@ public class DataUtil {
 	private static final Random random 			= new Random();
 	
 	private static final NumberFormat number 	= NumberFormat.getNumberInstance();
+	
+	private static final String DATA_DELIMITER	= ",";
+	
+	private static final String STRING_SPACE		= " ";
+	
+	private static final String APP_USER			= "APP-SERVICES";
 
 	public static StoreDTO getStore() {
 		
