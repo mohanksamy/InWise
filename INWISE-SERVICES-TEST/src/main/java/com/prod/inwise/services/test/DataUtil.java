@@ -6,6 +6,7 @@ import static com.prod.inwise.services.test.util.Constants.ITEM_SUFFIX;
 import static com.prod.inwise.services.test.util.Constants.STRING_SPACE;
 import static com.prod.inwise.services.test.util.Constants.number;
 import static com.prod.inwise.services.test.util.Constants.random;
+import static java.lang.Float.parseFloat;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public final class DataUtil {
 		StoreDTO store = new StoreDTO();
 		store.setName(dataFactory.getBusinessName());
 		store.setAddress(getString(dataFactory.getAddress(), DATA_DELIMITER, STRING_SPACE, dataFactory.getCity()));
-		store.setUin(dataFactory.getRandomChars(3).toUpperCase() + dataFactory.getNumberText(10));
+		store.setUin(getString(dataFactory.getRandomChars(3).toUpperCase(), dataFactory.getNumberText(10)));
 		store.setPhone(new BigInteger(dataFactory.getNumberText(10)));
 		
 		store.setActive(true);
@@ -53,8 +54,8 @@ public final class DataUtil {
 		number.setMaximumFractionDigits(2);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(Float.parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
-		tax.setSgst(Float.parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
+		tax.setCgst(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
+		tax.setSgst(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
 		tax.setCreatedUser(APP_USER);
 		tax.setModifiedUser(APP_USER);
 		
@@ -72,8 +73,8 @@ public final class DataUtil {
 		for ( int index = 0; index <= dataFactory.getNumberUpTo(30); index++ ) {
 		
 			ItemDTO item = new ItemDTO();
-			item.setName(getString(dataFactory.getRandomWord(), STRING_SPACE, ITEM_SUFFIX));
-			item.setPrice(Float.parseFloat(number.format(random.nextFloat() * (maxPrice - minPrice) + minPrice)));
+			item.setName(getString(dataFactory.getRandomChars(15).toUpperCase(), Integer.toString(random.nextInt(1000))/*, STRING_SPACE, ITEM_SUFFIX*/));
+			item.setPrice(parseFloat(number.format(random.nextFloat() * (maxPrice - minPrice) + minPrice)));
 			
 			item.setCategory(dataFactory.getItem(Category.values()));
 			item.setSubCategory(dataFactory.getItem(SubCategory.values()));

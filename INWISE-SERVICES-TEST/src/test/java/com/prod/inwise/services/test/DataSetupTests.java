@@ -26,7 +26,7 @@ public class DataSetupTests extends AbstractTests {
 	@Test
 	public void createStoreTaxItem() {
 		
-		int storeCount = 3;
+		int storeCount = 1;
 		
 		for ( int count = 0; count < storeCount; count++ ) {
 			
