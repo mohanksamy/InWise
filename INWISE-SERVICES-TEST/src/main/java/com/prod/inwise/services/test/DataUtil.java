@@ -1,10 +1,15 @@
 package com.prod.inwise.services.test;
 
+import static com.prod.inwise.services.test.util.Constants.APP_USER;
+import static com.prod.inwise.services.test.util.Constants.DATA_DELIMITER;
+import static com.prod.inwise.services.test.util.Constants.ITEM_SUFFIX;
+import static com.prod.inwise.services.test.util.Constants.STRING_SPACE;
+import static com.prod.inwise.services.test.util.Constants.number;
+import static com.prod.inwise.services.test.util.Constants.random;
+
 import java.math.BigInteger;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.fluttercode.datafactory.impl.DataFactory;
 
@@ -16,7 +21,7 @@ import com.prod.inwise.enums.Category;
 import com.prod.inwise.enums.Size;
 import com.prod.inwise.enums.SubCategory;
 
-public class DataUtil {
+public final class DataUtil {
 	
 	private static final DataFactory dataFactory = new DataFactory();
 	
@@ -27,24 +32,14 @@ public class DataUtil {
 	private static final float minPrice 			= 35.0f;
 	
 	private static final float maxPrice 			= 750.0f;
-	
-	private static final Random random 			= new Random();
-	
-	private static final NumberFormat number 	= NumberFormat.getNumberInstance();
-	
-	private static final String DATA_DELIMITER	= ",";
-	
-	private static final String STRING_SPACE		= " ";
-	
-	private static final String APP_USER			= "APP-SERVICES";
 
 	public static StoreDTO getStore() {
 		
 		StoreDTO store = new StoreDTO();
 		store.setName(dataFactory.getBusinessName());
-		store.setAddress(dataFactory.getAddress() + DATA_DELIMITER + STRING_SPACE + dataFactory.getCity());
+		store.setAddress(getString(dataFactory.getAddress(), DATA_DELIMITER, STRING_SPACE, dataFactory.getCity()));
 		store.setUin(dataFactory.getRandomChars(3).toUpperCase() + dataFactory.getNumberText(10));
-		store.setPhone(new  BigInteger(dataFactory.getNumberText(10)));
+		store.setPhone(new BigInteger(dataFactory.getNumberText(10)));
 		
 		store.setActive(true);
 		store.setCreatedUser(APP_USER);
@@ -77,7 +72,7 @@ public class DataUtil {
 		for ( int index = 0; index <= dataFactory.getNumberUpTo(30); index++ ) {
 		
 			ItemDTO item = new ItemDTO();
-			item.setName(dataFactory.getRandomWord() + " item");
+			item.setName(getString(dataFactory.getRandomWord(), STRING_SPACE, ITEM_SUFFIX));
 			item.setPrice(Float.parseFloat(number.format(random.nextFloat() * (maxPrice - minPrice) + minPrice)));
 			
 			item.setCategory(dataFactory.getItem(Category.values()));
@@ -95,5 +90,16 @@ public class DataUtil {
 		}
 		
 		return items;
+	}
+	
+	private static String getString(String... v1) {
+		
+		StringBuffer stringBuffer = new StringBuffer();
+		
+		for ( Object obj : v1 ) {
+			stringBuffer.append(obj.toString());
+		}
+		
+		return stringBuffer.toString();
 	}
 }

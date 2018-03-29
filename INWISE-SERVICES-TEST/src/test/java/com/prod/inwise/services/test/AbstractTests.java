@@ -46,7 +46,7 @@ public class AbstractTests {
 	 * 
 	 * @return
 	 */
-	protected RequestSpecification  getRequestSpecificationWithSessionHeader() {
+	protected RequestSpecification getRequestSpecificationWithSessionHeader() {
 		
 		return getDefaultRequestSpecification().header("header-key", "header-value");
 	}

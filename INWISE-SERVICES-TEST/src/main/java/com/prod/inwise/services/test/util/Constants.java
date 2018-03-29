@@ -1,5 +1,8 @@
 package com.prod.inwise.services.test.util;
 
+import java.text.NumberFormat;
+import java.util.Random;
+
 import com.google.gson.Gson;
 
 /**
@@ -47,4 +50,10 @@ public interface Constants {
 	public static final String STRING_EMPTY					= "";
 	
 	public static final String STRING_SPACE					= " ";
+	
+	public static final String ITEM_SUFFIX					= "item";
+	
+	public static final Random random 						= new Random();
+	
+	public static final NumberFormat number 					= NumberFormat.getNumberInstance();
 }
