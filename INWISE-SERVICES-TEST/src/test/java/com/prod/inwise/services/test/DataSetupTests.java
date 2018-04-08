@@ -5,19 +5,24 @@ import static com.prod.inwise.services.test.DataUtil.getStockHistories;
 import static com.prod.inwise.services.test.DataUtil.getStore;
 import static com.prod.inwise.services.test.DataUtil.getTax;
 import static com.prod.inwise.services.test.DataUtil.getVendor;
+import static com.prod.inwise.services.test.DataUtil.getLineItems;
+import static com.prod.inwise.services.test.DataUtil.getRandomNumberBetween;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK_BATCH;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_VENDOR;
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE;
 import static com.prod.inwise.services.test.util.Constants.STRING_EMPTY;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
+import com.prod.inwise.dto.LineItemDTO;
 import com.prod.inwise.dto.StockHistoryDTO;
 import com.prod.inwise.dto.StoreDTO;
 import com.prod.inwise.dto.TaxDTO;
@@ -75,7 +80,15 @@ public class DataSetupTests extends AbstractTests {
 				getRequestSpecificationWithJsonBody(item).post(getPath(RESOURCE_PATH_ITEM)).then().statusCode(SC_OK);
 			}
 			
-			ItemDTO item = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, items.get(0).getName())).andReturn().getBody().as(ItemDTO.class);
+			List<ItemDTO> savedItems = new ArrayList<>(items.size());
+			
+			// Load all created Items
+			for ( ItemDTO item : items ) {
+				
+				item = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, item.getName())).andReturn().getBody().as(ItemDTO.class);
+				
+				savedItems.add(item);
+			}
 			
 			VendorDTO vendor = getVendor();
 			
@@ -92,20 +105,26 @@ public class DataSetupTests extends AbstractTests {
 			
 			// Create Stock
 			for ( StockHistoryDTO stockHistory : stockHistories ) {
-				stockHistory.setItem(item);
+				stockHistory.setItem(savedItems.get(getRandomNumberBetween(0, savedItems.size()-1)));
 				stockHistory.setVendor(vendor);
 			}
 			
 			getRequestSpecificationWithJsonBody(stockHistories).post(getPath(RESOURCE_PATH_STOCK_BATCH)).then().statusCode(SC_OK);
 			
 			// Create Invoice
+			List<LineItemDTO> lineItems = getLineItems();
 			
-			// Create Line Items
+			// Create Invoice
+			for ( LineItemDTO lineItem : lineItems ) {
+				
+				ItemDTO item = savedItems.get(getRandomNumberBetween(0, savedItems.size()-1));
+				
+				System.out.println(item);
+				
+				lineItem.setItem(item);
+			}
+			
+			getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
 		}
-	}
-	
-	@Test
-	public void createVendor() {
-		getRequestSpecificationWithJsonBody(getVendor()).post(getPath(RESOURCE_PATH_VENDOR)).then().statusCode(SC_OK);
 	}
 }

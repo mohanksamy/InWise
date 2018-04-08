@@ -6,7 +6,6 @@ import static com.prod.inwise.services.test.util.Constants.STRING_SPACE;
 import static com.prod.inwise.services.test.util.Constants.number;
 import static com.prod.inwise.services.test.util.Constants.random;
 import static java.lang.Float.parseFloat;
-import static java.lang.Integer.parseInt;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -15,6 +14,7 @@ import java.util.List;
 import org.fluttercode.datafactory.impl.DataFactory;
 
 import com.prod.inwise.dto.ItemDTO;
+import com.prod.inwise.dto.LineItemDTO;
 import com.prod.inwise.dto.StockHistoryDTO;
 import com.prod.inwise.dto.StoreDTO;
 import com.prod.inwise.dto.TaxDTO;
@@ -128,6 +128,30 @@ public final class DataUtil {
 		}
 		
 		return stockHistories;
+	}
+	
+	public static List<LineItemDTO> getLineItems() {
+		
+		List<LineItemDTO> lineItems = new ArrayList<>();
+		
+		for ( int index = 0; index <= dataFactory.getNumberBetween(3, 10); index++ ) {
+			
+			LineItemDTO lineItem = new LineItemDTO();
+			lineItem.setQuantity(Integer.valueOf(dataFactory.getNumberBetween(3, 20)));
+			
+			lineItem.setActive(true);
+			lineItem.setCreatedUser(APP_USER);
+			lineItem.setModifiedUser(APP_USER);
+			
+			lineItems.add(lineItem);
+		}
+		
+		return lineItems;
+	}
+	
+	public static int getRandomNumberBetween(int min, int max) {
+		
+		return dataFactory.getNumberBetween(min, max);
 	}
 	
 	private static String getString(String... v1) {

@@ -16,9 +16,9 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.prod.inwise.services.data.Invoice;
 import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.repo.InvoiceRepository;
+import com.prod.inwise.services.services.InvoiceService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,8 +40,12 @@ public class InvoiceResource {
 
 	@Autowired
 	private InvoiceRepository invoiceRepo;
+	
+	@Autowired
+	private InvoiceService invoiceService;
 
 	@POST
+	@Path("/store/{id}")
 	@ApiOperation(value = "Create Invoice", notes = "Create invoice model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
@@ -49,10 +53,9 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(List<LineItem> lineItems) {
+	public Response createInvoice(@PathParam("id") Long storeId, List<LineItem> lineItems) {
 
-		
-//		invoiceRepo.save(invoice);
+		invoiceService.createInvoice(storeId, lineItems);
 
 		return status(OK).build();
 	}

@@ -14,9 +14,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.prod.inwise.services.data.StockBatch;
 import com.prod.inwise.services.data.StockHistory;
-import com.prod.inwise.services.repo.StockBatchRepository;
 import com.prod.inwise.services.services.StockService;
 
 import io.swagger.annotations.Api;
