@@ -1,16 +1,16 @@
 package com.prod.inwise.services.test.db;
 
+import static com.prod.inwise.services.test.db.util.Constants.JDBC_DB_URL;
+import static com.prod.inwise.services.test.db.util.Constants.JDBC_DRIVER;
+import static com.prod.inwise.services.test.db.util.Constants.JDBC_PASS;
+import static com.prod.inwise.services.test.db.util.Constants.JDBC_USER;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
-
-import static com.prod.inwise.services.test.db.util.Constants.JDBC_DB_URL;
-import static com.prod.inwise.services.test.db.util.Constants.JDBC_DRIVER;
-import static com.prod.inwise.services.test.db.util.Constants.JDBC_PASS;
-import static com.prod.inwise.services.test.db.util.Constants.JDBC_USER;
 
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.dbcp.DriverManagerConnectionFactory;

@@ -2,11 +2,11 @@ package com.prod.inwise.services.test;
 
 import static com.prod.inwise.services.test.util.Constants.APP_USER;
 import static com.prod.inwise.services.test.util.Constants.DATA_DELIMITER;
-import static com.prod.inwise.services.test.util.Constants.ITEM_SUFFIX;
 import static com.prod.inwise.services.test.util.Constants.STRING_SPACE;
 import static com.prod.inwise.services.test.util.Constants.number;
 import static com.prod.inwise.services.test.util.Constants.random;
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -15,8 +15,10 @@ import java.util.List;
 import org.fluttercode.datafactory.impl.DataFactory;
 
 import com.prod.inwise.dto.ItemDTO;
+import com.prod.inwise.dto.StockHistoryDTO;
 import com.prod.inwise.dto.StoreDTO;
 import com.prod.inwise.dto.TaxDTO;
+import com.prod.inwise.dto.VendorDTO;
 import com.prod.inwise.enums.Brand;
 import com.prod.inwise.enums.Category;
 import com.prod.inwise.enums.Size;
@@ -91,6 +93,41 @@ public final class DataUtil {
 		}
 		
 		return items;
+	}
+	
+	public static VendorDTO getVendor() {
+		
+		VendorDTO vendor = new VendorDTO();
+		vendor.setName(dataFactory.getBusinessName());
+		vendor.setCode(vendor.getName().toUpperCase());
+		vendor.setAddress(getString(dataFactory.getAddress(), DATA_DELIMITER, STRING_SPACE, dataFactory.getCity()));
+		vendor.setPhone(new BigInteger(dataFactory.getNumberText(10)));
+		
+		vendor.setActive(true);
+		vendor.setCreatedUser(APP_USER);
+		vendor.setModifiedUser(APP_USER);
+		
+		return vendor;
+	}
+	
+	public static List<StockHistoryDTO> getStockHistories() {
+		
+		List<StockHistoryDTO> stockHistories = new ArrayList<>();
+		
+		for ( int index = 0; index <= dataFactory.getNumberBetween(3, 15); index++ ) {
+			
+			StockHistoryDTO stockHistory = new StockHistoryDTO();
+			stockHistory.setBasePrice(Integer.valueOf(dataFactory.getNumberBetween(10, 100)).longValue());
+			stockHistory.setQuantity(Integer.valueOf(dataFactory.getNumberBetween(3, 20)));
+			
+			stockHistory.setActive(true);
+			stockHistory.setCreatedUser(APP_USER);
+			stockHistory.setModifiedUser(APP_USER);
+			
+			stockHistories.add(stockHistory);
+		}
+		
+		return stockHistories;
 	}
 	
 	private static String getString(String... v1) {

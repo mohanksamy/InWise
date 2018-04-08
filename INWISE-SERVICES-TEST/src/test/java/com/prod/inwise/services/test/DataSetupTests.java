@@ -1,11 +1,15 @@
 package com.prod.inwise.services.test;
 
 import static com.prod.inwise.services.test.DataUtil.getItem;
+import static com.prod.inwise.services.test.DataUtil.getStockHistories;
 import static com.prod.inwise.services.test.DataUtil.getStore;
 import static com.prod.inwise.services.test.DataUtil.getTax;
+import static com.prod.inwise.services.test.DataUtil.getVendor;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK_BATCH;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_VENDOR;
 import static com.prod.inwise.services.test.util.Constants.STRING_EMPTY;
 import static org.apache.http.HttpStatus.SC_OK;
 
@@ -14,8 +18,10 @@ import java.util.List;
 import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
+import com.prod.inwise.dto.StockHistoryDTO;
 import com.prod.inwise.dto.StoreDTO;
 import com.prod.inwise.dto.TaxDTO;
+import com.prod.inwise.dto.VendorDTO;
 
 /**
  * @author mohan_kandasamy
@@ -65,11 +71,41 @@ public class DataSetupTests extends AbstractTests {
 			
 			for ( ItemDTO item : items ) {
 				
-				System.out.println(item);
-				
 				// Save Item
 				getRequestSpecificationWithJsonBody(item).post(getPath(RESOURCE_PATH_ITEM)).then().statusCode(SC_OK);
 			}
+			
+			ItemDTO item = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, items.get(0).getName())).andReturn().getBody().as(ItemDTO.class);
+			
+			VendorDTO vendor = getVendor();
+			
+			// Create Vendor
+			
+			if ( getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_VENDOR, vendor.getName())).asString().contentEquals(STRING_EMPTY) ) {
+				
+				getRequestSpecificationWithJsonBody(vendor).post(getPath(RESOURCE_PATH_VENDOR)).then().statusCode(SC_OK);
+			}
+			
+			vendor = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_VENDOR, vendor.getName())).andReturn().getBody().as(VendorDTO.class);
+			
+			List<StockHistoryDTO> stockHistories = getStockHistories();
+			
+			// Create Stock
+			for ( StockHistoryDTO stockHistory : stockHistories ) {
+				stockHistory.setItem(item);
+				stockHistory.setVendor(vendor);
+			}
+			
+			getRequestSpecificationWithJsonBody(stockHistories).post(getPath(RESOURCE_PATH_STOCK_BATCH)).then().statusCode(SC_OK);
+			
+			// Create Invoice
+			
+			// Create Line Items
 		}
+	}
+	
+	@Test
+	public void createVendor() {
+		getRequestSpecificationWithJsonBody(getVendor()).post(getPath(RESOURCE_PATH_VENDOR)).then().statusCode(SC_OK);
 	}
 }

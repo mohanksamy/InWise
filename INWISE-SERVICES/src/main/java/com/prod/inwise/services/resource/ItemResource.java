@@ -55,14 +55,6 @@ public class ItemResource {
 	}
 	
 	@GET
-	@ApiOperation(value = "Get item", notes = "Get item model")
-	public Response getItem(Item item) {
-		
-		itemRepo.save(item);
-		
-		return status(OK).build();
-	}
-	@GET
 	@Path("/{name}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
 	public Response findByName(@ApiParam @PathParam("name") String name) {

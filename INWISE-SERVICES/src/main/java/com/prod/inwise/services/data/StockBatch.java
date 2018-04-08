@@ -40,7 +40,7 @@ public class StockBatch extends BaseModel {
 	@Column(name="ID")
 	@ApiModelProperty(hidden = true)
 	private Long id;
-
+	
 	/**
 	 * @return the id
 	 */

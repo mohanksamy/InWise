@@ -3,6 +3,8 @@ package com.prod.inwise.services.resource;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.Invoice;
+import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.repo.InvoiceRepository;
 
 import io.swagger.annotations.Api;
@@ -46,9 +49,10 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(Invoice invoice) {
+	public Response createInvoice(List<LineItem> lineItems) {
 
-		invoiceRepo.save(invoice);
+		
+//		invoiceRepo.save(invoice);
 
 		return status(OK).build();
 	}

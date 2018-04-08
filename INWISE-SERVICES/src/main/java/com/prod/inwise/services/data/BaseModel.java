@@ -20,20 +20,20 @@ public abstract class BaseModel {
 	@ApiModelProperty(hidden = true)
 	private boolean active = true;
 	
-	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)
 	@ApiModelProperty(hidden = true)
+	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)
 	private String createdUser;
 
-	@Column(name = "CREATED_TS", nullable = false)
 	@ApiModelProperty(hidden = true)
+	@Column(name = "CREATED_TS", nullable = false)
 	private Timestamp createdTS;
 	
-	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)
 	@ApiModelProperty(hidden = true)
+	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)
 	private String modifiedUser;
 	
-	@Column(name = "MODIFIED_TS", nullable = false)
 	@ApiModelProperty(hidden = true)
+	@Column(name = "MODIFIED_TS", nullable = false)
 	private Timestamp modifiedTS;
 
 	/**

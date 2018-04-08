@@ -1,3 +1,24 @@
+Integration testing:
+********************
+1. Services:
+	Stock:
+		- Create STOCK_BATCH
+		- Record stock in STOCK_HISTORY
+		- Update STOCK
+		
+	Invoice:
+		- Create INVOICE
+		- Create LINE_ITEM and update INVOICE table
+		- Update STOCK
+	
+2. Test module:
+	Stock:
+		- Create stocks
+		
+	Invoice:
+		- Create invoices
+
+
 Modules:
 ********
 - CRUD operations on Store, Tax, Category, Type & Items entities
