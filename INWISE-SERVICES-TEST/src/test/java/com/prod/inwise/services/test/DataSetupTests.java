@@ -1,18 +1,18 @@
 package com.prod.inwise.services.test;
 
 import static com.prod.inwise.services.test.DataUtil.getItem;
+import static com.prod.inwise.services.test.DataUtil.getLineItems;
+import static com.prod.inwise.services.test.DataUtil.getRandomNumberBetween;
 import static com.prod.inwise.services.test.DataUtil.getStockHistories;
 import static com.prod.inwise.services.test.DataUtil.getStore;
 import static com.prod.inwise.services.test.DataUtil.getTax;
 import static com.prod.inwise.services.test.DataUtil.getVendor;
-import static com.prod.inwise.services.test.DataUtil.getLineItems;
-import static com.prod.inwise.services.test.DataUtil.getRandomNumberBetween;
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK_BATCH;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_VENDOR;
-import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE;
 import static com.prod.inwise.services.test.util.Constants.STRING_EMPTY;
 import static org.apache.http.HttpStatus.SC_OK;
 
