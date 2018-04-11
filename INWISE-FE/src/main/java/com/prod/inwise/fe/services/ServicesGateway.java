@@ -1,6 +1,8 @@
 package com.prod.inwise.fe.services;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 import javax.ws.rs.core.MediaType;
@@ -8,6 +10,8 @@ import javax.ws.rs.core.MediaType;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,13 +21,37 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.prod.inwise.dto.StoreDTO;
+
 /**
  * @author mohan_kandasamy
  *
  */
 public class ServicesGateway {
+	
+	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
+	
+	public static StoreDTO getStore() throws Exception {
+		
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/store/Tucker Gymnasium", HttpMethod.GET, null);
+		
+		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>(){});
+		
+		removeUnwantedElements(storeJson);
+		
+		StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
+		
+		System.out.println("Store details received from Server: " + store);
+		
+		return store;
+		
+	}
 
-	public synchronized static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method, Object entity, String tenant) throws Exception {
+	private static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method, Object entity) {
 
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		
@@ -35,8 +63,6 @@ public class ServicesGateway {
 		HttpHeaders headers = new HttpHeaders();
 		
 		headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
-
-		headers.set("token", "token");
 
 		// Populating headers
 		if ( null != headerProperties ) {
@@ -55,7 +81,7 @@ public class ServicesGateway {
 
 		response = restTemplate.exchange(uri, method, httpEntity, String.class);
 		
-//		log.info("API call {} | Time taken(in ms) {}", uri, (System.currentTimeMillis() - startTime) );
+		log.info("API call {} | Time taken(in ms) {}", uri, (System.currentTimeMillis() - startTime) );
 		
 		return response;
 	}
@@ -70,7 +96,7 @@ public class ServicesGateway {
 	    return new HttpComponentsClientHttpRequestFactory(client);
 	}
 	
-	private synchronized static HttpEntity getHttpEntity(Object entity, HttpHeaders headers) {
+	private static HttpEntity getHttpEntity(Object entity, HttpHeaders headers) {
 		
 		HttpEntity httpEntity = null;
 		
@@ -84,5 +110,14 @@ public class ServicesGateway {
 		}
 		
 		return httpEntity;
+	}
+	
+	private static void removeUnwantedElements(JsonNode jsonNode) {
+		
+		// Removing unwanted elements
+		ObjectNode objectNode = (ObjectNode) jsonNode;
+		
+		objectNode.remove("createdTS");
+		objectNode.remove("modifiedTS");
 	}
 }
