@@ -1,8 +1,9 @@
 package com.prod.inwise.fe.services;
 
+import static com.prod.inwise.util.Constants.KEY_CREATEDTS;
+import static com.prod.inwise.util.Constants.KEY_MODIFIEDTS;
+
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 
 import javax.ws.rs.core.MediaType;
@@ -115,9 +116,15 @@ public class ServicesGateway {
 	private static void removeUnwantedElements(JsonNode jsonNode) {
 		
 		// Removing unwanted elements
-		ObjectNode objectNode = (ObjectNode) jsonNode;
+		removeElementIfExists(jsonNode, KEY_CREATEDTS);
+		removeElementIfExists(jsonNode, KEY_MODIFIEDTS);
+	}
+	
+	private static void removeElementIfExists(JsonNode jsonNode, String elementName) {
 		
-		objectNode.remove("createdTS");
-		objectNode.remove("modifiedTS");
+		if ( jsonNode.has(elementName) & jsonNode instanceof ObjectNode ) {
+			
+			((ObjectNode) jsonNode).remove(elementName);
+		}
 	}
 }
