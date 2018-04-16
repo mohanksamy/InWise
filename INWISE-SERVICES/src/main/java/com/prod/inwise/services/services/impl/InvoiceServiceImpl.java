@@ -1,6 +1,8 @@
 package com.prod.inwise.services.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,8 +10,10 @@ import org.springframework.stereotype.Service;
 import com.prod.inwise.services.data.Invoice;
 import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.data.Store;
+import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.repo.LineItemRepository;
+import com.prod.inwise.services.repo.StockRepository;
 import com.prod.inwise.services.services.InvoiceService;
 
 /**
@@ -25,8 +29,19 @@ public class InvoiceServiceImpl implements InvoiceService {
 	@Autowired
 	private LineItemRepository lineItemRepo;
 	
+	@Autowired
+	private StockRepository stockRepo;
+	
 	@Override
-	public void createInvoice(Long storeId, List<LineItem> lineItems) {
+	public void createInvoice(Long storeId, List<LineItem> lineItems) throws OutOfStockException {
+		
+		List<LineItem> outOfStockLineItems = new ArrayList<>(lineItems);
+		
+		outOfStockLineItems = checkItemsInStock(outOfStockLineItems);
+		
+		if ( !outOfStockLineItems.isEmpty() ) {
+			throw new OutOfStockException(outOfStockLineItems);
+		}
 		
 		// Populate LineItem Tax & Price
 		populateLineItemTaxAndPrice(lineItems);
@@ -68,6 +83,18 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		invoice.setTotalPrice(Double.valueOf(lineItems.stream().mapToDouble(i -> i.getTotalPrice()).sum()).floatValue());
 		
+		// Setting date time for functional cases when date time triggers are disabled
+		// These date time will be ignored when triggers are enabled
+		invoice.setCreatedTS(lineItems.get(0).getCreatedTS());
+		invoice.setModifiedTS(lineItems.get(0).getModifiedTS());
+		
 		return invoice;
+	}
+	
+	private List<LineItem> checkItemsInStock(List<LineItem> lineItems) {
+		
+		lineItems.parallelStream().forEach(lineItem -> lineItem.setQuantityInStock(stockRepo.findByItemId(lineItem.getItem().getId()).getQuantity()));
+		
+		return lineItems.parallelStream().filter( lineItem -> lineItem.getQuantity() > lineItem.getQuantityInStock()).collect(Collectors.toList());
 	}
 }

@@ -1,5 +1,8 @@
 package com.prod.inwise.services.repo;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,4 +25,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 	 * @return
 	 */
 	public Item findByNameIgnoreCase(@Param("name") String name);
+	
+	@Query("SELECT item FROM Item item WHERE item.store.id = :id")
+	public List<Item> findItemsByStore(@Param("id") Long storeId);
 }

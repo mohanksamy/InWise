@@ -2,22 +2,25 @@ Integration testing:
 ********************
 1. Services:
 	Stock:
-		- Create STOCK_BATCH
-		- Record stock in STOCK_HISTORY
-		- Update STOCK
+		- Create STOCK_BATCH							- DONE
+		- Record stock in STOCK_HISTORY				- DONE
+		- Update STOCK								- DONE
 		
 	Invoice:
-		- Create INVOICE
-		- Create LINE_ITEM and update INVOICE table
-		- Update STOCK
+		- Create INVOICE								- DONE	
+		- Create LINE_ITEM and update INVOICE table	- DONE
+		- Update STOCK								- DONE
+		- Check stock availability and return		- DONE
+		- Create LineItems in various dates			-   
 	
 2. Test module:
 	Stock:
-		- Create stocks
+		- Create stocks								- DONE
 		
 	Invoice:
-		- Create invoices
+		- Create invoices							- DONE
 
+3. Reporting queries									- 
 
 Modules:
 ********

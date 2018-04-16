@@ -9,8 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -67,6 +70,10 @@ public class LineItem extends BaseModel {
 	@Column(name = "QUANTITY", nullable = false)
 	@ApiModelProperty
 	private Integer quantity;
+	
+	@JsonIgnore
+	@Transient
+	private Integer quantityInStock;
 
 	@NotNull(message = "TotalTax can't be null")
 	@Column(name = "TOTAL_TAX", nullable = false)
@@ -132,6 +139,20 @@ public class LineItem extends BaseModel {
 	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	
+	/**
+	 * @return the quantityInStock
+	 */
+	public Integer getQuantityInStock() {
+		return quantityInStock;
+	}
+
+	/**
+	 * @param quantityInStock the quantityInStock to set
+	 */
+	public void setQuantityInStock(Integer quantityInStock) {
+		this.quantityInStock = quantityInStock;
 	}
 
 	/**

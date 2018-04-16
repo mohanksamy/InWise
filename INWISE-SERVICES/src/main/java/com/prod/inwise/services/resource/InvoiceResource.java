@@ -1,6 +1,7 @@
 package com.prod.inwise.services.resource;
 
 import static javax.ws.rs.core.Response.status;
+import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 import static javax.ws.rs.core.Response.Status.OK;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.LineItem;
+import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.services.InvoiceService;
 
@@ -55,9 +57,20 @@ public class InvoiceResource {
 			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response createInvoice(@PathParam("id") Long storeId, List<LineItem> lineItems) {
 
-		invoiceService.createInvoice(storeId, lineItems);
+		Response response = null;
+		
+		try {
+			
+			invoiceService.createInvoice(storeId, lineItems);
+			
+			response = status(OK).build();
+		
+		} catch (OutOfStockException ofs) {
+			
+			response = Response.status(INTERNAL_SERVER_ERROR).entity(ofs.getMessage()).build();
+		}
 
-		return status(OK).build();
+		return response;
 	}
 
 	@GET

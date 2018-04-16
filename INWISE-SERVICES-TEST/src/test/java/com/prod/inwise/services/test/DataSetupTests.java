@@ -117,14 +117,50 @@ public class DataSetupTests extends AbstractTests {
 			// Create Invoice
 			for ( LineItemDTO lineItem : lineItems ) {
 				
-				ItemDTO item = savedItems.get(getRandomNumberBetween(0, savedItems.size()-1));
+				StockHistoryDTO stockHistory = stockHistories.get(getRandomNumberBetween(0, stockHistories.size()-1));
 				
-				System.out.println(item);
+				// Use the items in Stock
+				lineItem.setItem(stockHistory.getItem());
 				
-				lineItem.setItem(item);
+				lineItem.setQuantity(getRandomNumberBetween(1, stockHistory.getQuantity()));
 			}
 			
 			getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
 		}
+	}
+	
+	@Test
+	public void testCreateInvoices() {
+		
+		List<ItemDTO> items = getItem(null);
+		
+		List<ItemDTO> savedItems = new ArrayList<>(items.size());
+		
+		// Load all created Items
+		for ( ItemDTO item : items ) {
+			
+			if ( !getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, item.getName())).asString().contentEquals(STRING_EMPTY) ) {
+			
+				item = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, item.getName())).andReturn().getBody().as(ItemDTO.class);
+			
+				savedItems.add(item);
+			}
+		}
+		
+		// Create Invoice
+		List<LineItemDTO> lineItems = getLineItems();
+		
+		// Create Invoice
+		for ( LineItemDTO lineItem : lineItems ) {
+			
+			ItemDTO item = savedItems.get(getRandomNumberBetween(0, savedItems.size()-1));
+			
+			System.out.println(item);
+			
+			lineItem.setItem(item);
+		}
+		
+//		getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
+		
 	}
 }

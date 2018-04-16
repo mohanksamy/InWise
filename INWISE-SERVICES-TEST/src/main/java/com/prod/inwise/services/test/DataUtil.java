@@ -83,8 +83,10 @@ public final class DataUtil {
 			item.setBrand(dataFactory.getItem(Brand.values()));
 			item.setSize(dataFactory.getItem(Size.values()));
 			
-			item.setTax(tax);
-			item.setStore(tax.getStore());
+			if ( null != tax ) {
+				item.setTax(tax);
+				item.setStore(tax.getStore());
+			}
 			
 			item.setCreatedUser(APP_USER);
 			item.setModifiedUser(APP_USER);

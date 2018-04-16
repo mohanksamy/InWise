@@ -3,13 +3,19 @@ package com.prod.inwise.services.resource;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -55,9 +61,36 @@ public class ItemResource {
 	}
 	
 	@GET
+	@Path("/id/{id}")
+	@ApiOperation(value = "Get item", notes = "Get item model")
+	public Response findByName(@ApiParam @PathParam("id") Long id) {
+		return Response.status(OK).entity(itemRepo.findOne(id)).build();
+	}
+	
+	@GET
 	@Path("/{name}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
 	public Response findByName(@ApiParam @PathParam("name") String name) {
 		return Response.status(OK).entity(itemRepo.findByNameIgnoreCase(name)).build();
+	}
+	
+	@GET
+	@ApiOperation(value = "Get all items", notes = "Get all item model")
+	public Response findAll() {
+		return Response.status(OK).entity(itemRepo.findAll()).build();
+	}
+	
+	@GET
+	@Path("/store/{id}")
+	@ApiOperation(value = "Get item", notes = "Get item model")
+	public Response findAllItemsByStore(@Context UriInfo uriInfo, @ApiParam @PathParam("id") Long storeId) {
+		
+		List<Item> items = itemRepo.findItemsByStore(storeId);
+		
+		Map<String, String> itemsMap = new HashMap<>();
+			
+		items.parallelStream().forEach( item -> itemsMap.put(item.getName(), uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(Long.toString(item.getId())).build().toString()));
+		
+		return Response.status(OK).entity(itemsMap).build();
 	}
 }
