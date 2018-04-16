@@ -4,6 +4,7 @@ import java.text.NumberFormat;
 import java.util.Random;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * @author mohan_kandasamy
@@ -11,7 +12,7 @@ import com.google.gson.Gson;
  */
 public interface Constants {
 
-	public static final Gson gson 							= new Gson();
+	public static final Gson gson 							= new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
 	public static final String BASE_URI 						= "http://localhost";
 

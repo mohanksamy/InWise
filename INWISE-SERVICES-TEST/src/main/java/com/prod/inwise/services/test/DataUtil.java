@@ -9,6 +9,8 @@ import static java.lang.Float.parseFloat;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.fluttercode.datafactory.impl.DataFactory;
@@ -154,6 +156,15 @@ public final class DataUtil {
 	public static int getRandomNumberBetween(int min, int max) {
 		
 		return dataFactory.getNumberBetween(min, max);
+	}
+	
+	public static Date getRandomDate(int startingYear) {
+		
+		Calendar baseDate = Calendar.getInstance();
+		baseDate.set(Calendar.MONTH, getRandomNumberBetween(Calendar.JANUARY, Calendar.DECEMBER));
+		baseDate.set(Calendar.YEAR, getRandomNumberBetween(startingYear, 2018));
+		
+		return dataFactory.getDate(baseDate.getTime(), 01, 30);
 	}
 	
 	private static String getString(String... v1) {

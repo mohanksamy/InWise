@@ -1,5 +1,9 @@
 package com.prod.inwise.dto;
 
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * @author mohan_kandasamy
  *
@@ -10,7 +14,13 @@ public abstract class BaseDTO {
 	
 	private String createdUser;
 
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+	private Timestamp createdTS;
+	
 	private String modifiedUser;
+
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+	private Timestamp modifiedTS;
 	
 	/**
 	 * @return the active
@@ -41,6 +51,20 @@ public abstract class BaseDTO {
 	}
 
 	/**
+	 * @return the createdTS
+	 */
+	public Timestamp getCreatedTS() {
+		return createdTS;
+	}
+
+	/**
+	 * @param createdTS the createdTS to set
+	 */
+	public void setCreatedTS(Timestamp createdTS) {
+		this.createdTS = createdTS;
+	}
+
+	/**
 	 * @return the modifiedUser
 	 */
 	public String getModifiedUser() {
@@ -52,5 +76,19 @@ public abstract class BaseDTO {
 	 */
 	public void setModifiedUser(String modifiedUser) {
 		this.modifiedUser = modifiedUser;
+	}
+
+	/**
+	 * @return the modifiedTS
+	 */
+	public Timestamp getModifiedTS() {
+		return modifiedTS;
+	}
+
+	/**
+	 * @param modifiedTS the modifiedTS to set
+	 */
+	public void setModifiedTS(Timestamp modifiedTS) {
+		this.modifiedTS = modifiedTS;
 	}
 }

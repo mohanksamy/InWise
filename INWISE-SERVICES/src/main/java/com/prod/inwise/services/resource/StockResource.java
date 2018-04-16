@@ -3,8 +3,10 @@ package com.prod.inwise.services.resource;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -17,6 +19,7 @@ import com.prod.inwise.services.repo.StockRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -49,5 +52,15 @@ public class StockResource {
 		stockRepo.save(stock);
 
 		return status(OK).build();
+	}
+	
+	@GET
+	@Path("/item/{id}")
+	@ApiOperation(value = "Get stock", notes = "Get stock model")
+	public Response findByItem(@ApiParam @PathParam("id") Long itemId) {
+		
+		Stock stock = stockRepo.findByItemId(itemId);
+		
+		return Response.status(OK).entity(stock).build();
 	}
 }

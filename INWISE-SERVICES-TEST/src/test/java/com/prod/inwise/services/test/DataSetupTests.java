@@ -2,6 +2,7 @@ package com.prod.inwise.services.test;
 
 import static com.prod.inwise.services.test.DataUtil.getItem;
 import static com.prod.inwise.services.test.DataUtil.getLineItems;
+import static com.prod.inwise.services.test.DataUtil.getRandomDate;
 import static com.prod.inwise.services.test.DataUtil.getRandomNumberBetween;
 import static com.prod.inwise.services.test.DataUtil.getStockHistories;
 import static com.prod.inwise.services.test.DataUtil.getStore;
@@ -9,6 +10,7 @@ import static com.prod.inwise.services.test.DataUtil.getTax;
 import static com.prod.inwise.services.test.DataUtil.getVendor;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK_BATCH;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
@@ -16,13 +18,17 @@ import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_VENDOR;
 import static com.prod.inwise.services.test.util.Constants.STRING_EMPTY;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
 import com.prod.inwise.dto.LineItemDTO;
+import com.prod.inwise.dto.StockDTO;
 import com.prod.inwise.dto.StockHistoryDTO;
 import com.prod.inwise.dto.StoreDTO;
 import com.prod.inwise.dto.TaxDTO;
@@ -132,35 +138,61 @@ public class DataSetupTests extends AbstractTests {
 	@Test
 	public void testCreateInvoices() {
 		
-		List<ItemDTO> items = getItem(null);
+		StoreDTO store = new StoreDTO();
+		store.setId(1001L);
 		
-		List<ItemDTO> savedItems = new ArrayList<>(items.size());
+		// Fetched items by Store
+		Map<String, String> itemsMap = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, RESOURCE_PATH_STORE, store.getId().toString())).andReturn().getBody().as(Map.class);
+		
+		List<ItemDTO> savedItems = new ArrayList<>(itemsMap.size());
+		
+		Iterator<String> iter = itemsMap.keySet().iterator();
 		
 		// Load all created Items
-		for ( ItemDTO item : items ) {
+		while ( iter.hasNext() ) {
 			
-			if ( !getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, item.getName())).asString().contentEquals(STRING_EMPTY) ) {
+			savedItems.add(getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, "id", iter.next())).andReturn().getBody().as(ItemDTO.class));
+		}
+		
+		for ( int invoiceIndex = 0; invoiceIndex <= getRandomNumberBetween(0, 10); invoiceIndex++ ) {
 			
-				item = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, item.getName())).andReturn().getBody().as(ItemDTO.class);
+			// Create Invoice
+			List<LineItemDTO> lineItems = new ArrayList<>();
 			
-				savedItems.add(item);
+			// Set Timestamp
+			// Disable triggers in INVOICE & LINE_ITEM
+			// If not disabled, trigger will play it's role!
+			Timestamp timestamp = new Timestamp(getRandomDate(2016).getTime());
+			
+			// Create Invoice
+			for ( LineItemDTO lineItem : getLineItems() ) {
+				
+				ItemDTO item = savedItems.get(getRandomNumberBetween(0, savedItems.size()-1));
+				
+				if ( !getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STOCK, RESOURCE_PATH_ITEM, item.getId().toString())).asString().contentEquals(STRING_EMPTY) ) {
+				
+					StockDTO stock = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STOCK, RESOURCE_PATH_ITEM, item.getId().toString())).andReturn().getBody().as(StockDTO.class);
+				
+					lineItem.setItem(item);
+				
+					// Ignore the LineItem if it's out of stock
+					if ( 0 == stock.getQuantity() ) {
+						continue;
+					}
+					
+					lineItem.setQuantity(getRandomNumberBetween(1, stock.getQuantity()));
+					
+					lineItem.setCreatedTS(timestamp);
+					lineItem.setModifiedTS(timestamp);
+					
+					lineItems.add(lineItem);
+				}
+			}
+			
+			// Create invoices only if LineItems are available
+			if ( !lineItems.isEmpty() ) {
+				getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
 			}
 		}
-		
-		// Create Invoice
-		List<LineItemDTO> lineItems = getLineItems();
-		
-		// Create Invoice
-		for ( LineItemDTO lineItem : lineItems ) {
-			
-			ItemDTO item = savedItems.get(getRandomNumberBetween(0, savedItems.size()-1));
-			
-			System.out.println(item);
-			
-			lineItem.setItem(item);
-		}
-		
-//		getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
-		
 	}
 }

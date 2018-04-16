@@ -89,7 +89,7 @@ public class ItemResource {
 		
 		Map<String, String> itemsMap = new HashMap<>();
 			
-		items.parallelStream().forEach( item -> itemsMap.put(item.getName(), uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(Long.toString(item.getId())).build().toString()));
+		items.parallelStream().forEach( item -> itemsMap.put(item.getId().toString(), uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(Long.toString(item.getId())).build().toString()));
 		
 		return Response.status(OK).entity(itemsMap).build();
 	}

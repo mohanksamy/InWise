@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -26,6 +28,7 @@ public abstract class BaseModel {
 
 	@ApiModelProperty(hidden = true)
 	@Column(name = "CREATED_TS", nullable = false)
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private Timestamp createdTS;
 	
 	@ApiModelProperty(hidden = true)
@@ -34,6 +37,7 @@ public abstract class BaseModel {
 	
 	@ApiModelProperty(hidden = true)
 	@Column(name = "MODIFIED_TS", nullable = false)
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private Timestamp modifiedTS;
 
 	/**
