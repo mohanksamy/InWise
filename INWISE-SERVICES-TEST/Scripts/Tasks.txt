@@ -11,7 +11,7 @@ Integration testing:
 		- Create LINE_ITEM and update INVOICE table	- DONE
 		- Update STOCK								- DONE
 		- Check stock availability and return		- DONE
-		- Create LineItems in various dates			-   
+		- Create LineItems in various dates			- DONE
 	
 2. Test module:
 	Stock:

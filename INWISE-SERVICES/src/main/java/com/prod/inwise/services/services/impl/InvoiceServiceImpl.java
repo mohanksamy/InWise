@@ -1,7 +1,9 @@
 package com.prod.inwise.services.services.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.prod.inwise.services.data.Invoice;
 import com.prod.inwise.services.data.LineItem;
+import com.prod.inwise.services.data.Stock;
 import com.prod.inwise.services.data.Store;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.repo.InvoiceRepository;
@@ -35,6 +38,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 	@Override
 	public void createInvoice(Long storeId, List<LineItem> lineItems) throws OutOfStockException {
 		
+		// Merge line items in case same items are repeated in the invoice
+		lineItems = mergeLineItems(lineItems);
+		
 		List<LineItem> outOfStockLineItems = new ArrayList<>(lineItems);
 		
 		outOfStockLineItems = checkItemsInStock(outOfStockLineItems);
@@ -51,8 +57,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		// Link Invoice to LineItems and Save
 		lineItems.forEach( lineItem -> {
+			
 			lineItem.setInvoice(invoice);
 			lineItemRepo.save(lineItem);
+			
+			// Deduct quantity in Stock
+			Stock stock = stockRepo.findByItemId(lineItem.getItem().getId());
+			stock.setQuantity(stock.getQuantity() - lineItem.getQuantity());
+			stockRepo.save(stock);
 		});
 	}
 	
@@ -96,5 +108,26 @@ public class InvoiceServiceImpl implements InvoiceService {
 		lineItems.parallelStream().forEach(lineItem -> lineItem.setQuantityInStock(stockRepo.findByItemId(lineItem.getItem().getId()).getQuantity()));
 		
 		return lineItems.parallelStream().filter( lineItem -> lineItem.getQuantity() > lineItem.getQuantityInStock()).collect(Collectors.toList());
+	}
+	
+	private List<LineItem> mergeLineItems(List<LineItem> lineItems) {
+		
+		Map<Long, LineItem> lineItemsMap = new HashMap();
+		
+		for ( LineItem lineItem : lineItems ) {
+		
+			if ( null == lineItemsMap.get(lineItem.getItem().getId()) ) {
+				
+				lineItemsMap.put(lineItem.getItem().getId(), lineItem);
+			
+			} else {
+				
+				LineItem existingLineItem = lineItemsMap.get(lineItem.getItem().getId());
+				
+				existingLineItem.setQuantity(existingLineItem.getQuantity() + lineItem.getQuantity());
+			}
+		}
+		
+		return new ArrayList<>(lineItemsMap.values());
 	}
 }

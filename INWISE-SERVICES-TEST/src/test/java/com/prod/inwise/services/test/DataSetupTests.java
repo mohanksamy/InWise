@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -125,13 +126,22 @@ public class DataSetupTests extends AbstractTests {
 				
 				StockHistoryDTO stockHistory = stockHistories.get(getRandomNumberBetween(0, stockHistories.size()-1));
 				
-				// Use the items in Stock
-				lineItem.setItem(stockHistory.getItem());
-				
-				lineItem.setQuantity(getRandomNumberBetween(1, stockHistory.getQuantity()));
+				if ( stockHistory.getQuantity() > 1 ) {
+					
+					// Use the items in Stock
+					lineItem.setItem(stockHistory.getItem());
+					
+					lineItem.setQuantity(getRandomNumberBetween(1, stockHistory.getQuantity()));
+					
+					// Reduce the quantity in the stock
+					stockHistory.setQuantity(stockHistory.getQuantity() - lineItem.getQuantity());
+				}
 			}
 			
-			getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
+			// Remove any Line Item doesn't have a mapping Item
+			List<LineItemDTO> consolidatedLineItems = lineItems.parallelStream().filter( lineItem -> null != lineItem.getItem()).collect(Collectors.toList());
+			
+			getRequestSpecificationWithJsonBody(consolidatedLineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_STORE, store.getId().toString())).then().statusCode(SC_OK);
 		}
 	}
 	
@@ -142,6 +152,7 @@ public class DataSetupTests extends AbstractTests {
 		store.setId(1001L);
 		
 		// Fetched items by Store
+		@SuppressWarnings("unchecked")
 		Map<String, String> itemsMap = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_ITEM, RESOURCE_PATH_STORE, store.getId().toString())).andReturn().getBody().as(Map.class);
 		
 		List<ItemDTO> savedItems = new ArrayList<>(itemsMap.size());
