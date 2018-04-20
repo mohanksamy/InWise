@@ -1,15 +1,23 @@
 package com.prod.inwise.services.resource;
 
+import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -59,6 +67,21 @@ public class StoreResource {
 		shopRepo.save(shop);
 
 		return status(OK).build();
+	}
+	
+	@GET
+	@ApiOperation(value = "Get All Store", notes = "Get Store URIs")
+	public Response findAllStore(@Context UriInfo uriInfo) {
+		
+		Iterable<Shop> shops = shopRepo.findAll();
+		
+		List<Shop> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
+		
+		Map<String, String> shopsMap = new HashMap<>();
+			
+		shopsList.parallelStream().forEach( shop -> shopsMap.put(shop.getName(), uriInfo.getBaseUriBuilder().path(StoreResource.class).path(shop.getName()).build().toString()));
+		
+		return Response.status(OK).entity(shopsMap).build();
 	}
 
 	/**

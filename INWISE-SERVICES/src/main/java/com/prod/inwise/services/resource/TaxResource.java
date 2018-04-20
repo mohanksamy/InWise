@@ -1,15 +1,23 @@
 package com.prod.inwise.services.resource;
 
+import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -51,6 +59,21 @@ public class TaxResource {
 		taxRepo.save(tax);
 
 		return status(OK).build();
+	}
+	
+	@GET
+	@ApiOperation(value = "Get All Taxes", notes = "Get Tax URIs")
+	public Response findAllTaxes(@Context UriInfo uriInfo) {
+		
+		Iterable<Tax> taxes = taxRepo.findAll();
+		
+		List<Tax> taxesList = stream(taxes.spliterator(), false).collect(Collectors.toList());
+		
+		Map<String, String> taxesMap = new HashMap<>();
+			
+		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getStore().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getStore().getName()).build().toString()));
+		
+		return Response.status(OK).entity(taxesMap).build();
 	}
 
 	@GET

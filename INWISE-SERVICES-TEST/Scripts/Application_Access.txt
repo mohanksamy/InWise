@@ -8,3 +8,17 @@ Swagger:
 	UI: Use the JSON url from Swagger UI Console
 	
 	Notes: Adding swagger core dist to the application, enables access to swagger.json; for UI, resource config needs to be customized 
+	
+	
+URIs:
+*****
+
+Store:
+-------
+GET - http://localhost:8080/inwise/store
+POST - http://localhost:8080/inwise/store
+
+
+Tax:
+-----
+GET - http://localhost:8080/inwise/tax
