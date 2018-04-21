@@ -3,9 +3,8 @@ package com.prod.inwise.services.resource;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -63,7 +62,7 @@ public class ItemResource {
 	@GET
 	@Path("/id/{id}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
-	public Response findByName(@ApiParam @PathParam("id") Long id) {
+	public Response findById(@ApiParam @PathParam("id") Long id) {
 		return Response.status(OK).entity(itemRepo.findOne(id)).build();
 	}
 	
@@ -87,10 +86,10 @@ public class ItemResource {
 		
 		List<Item> items = itemRepo.findItemsByStore(storeId);
 		
-		Map<String, String> itemsMap = new HashMap<>();
+		List<String> links = new ArrayList<>();
 			
-		items.parallelStream().forEach( item -> itemsMap.put(item.getId().toString(), uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(Long.toString(item.getId())).build().toString()));
+		items.parallelStream().forEach( item -> links.add(uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(Long.toString(item.getId())).build().toString()));
 		
-		return Response.status(OK).entity(itemsMap).build();
+		return Response.status(OK).entity(links).build();
 	}
 }

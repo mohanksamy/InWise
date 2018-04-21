@@ -60,6 +60,7 @@ public final class DataUtil {
 		TaxDTO tax = new TaxDTO();
 		tax.setCgst(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
 		tax.setSgst(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
+		tax.setActive(true);
 		tax.setCreatedUser(APP_USER);
 		tax.setModifiedUser(APP_USER);
 		

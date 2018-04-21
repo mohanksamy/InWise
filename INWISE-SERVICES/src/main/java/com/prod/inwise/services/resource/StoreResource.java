@@ -4,9 +4,8 @@ import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
@@ -38,22 +37,20 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/store")
+@Path("/stores")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Store Service")
 public class StoreResource {
-
+	
 	/*
 	 * @Autowired private StoreRepository storeRepo;
 	 */
-
 	@Autowired
 	private ShopRepository shopRepo;
 
 	/*
 	 * @POST public Store createStore(Store store) { return storeRepo.save(store); }
 	 */
-
 	@POST
 	@ApiOperation(value = "Create store", notes = "Create store model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
@@ -71,17 +68,17 @@ public class StoreResource {
 	
 	@GET
 	@ApiOperation(value = "Get All Store", notes = "Get Store URIs")
-	public Response findAllStore(@Context UriInfo uriInfo) {
+	public Response findAll(@Context UriInfo uriInfo) {
 		
 		Iterable<Shop> shops = shopRepo.findAll();
 		
 		List<Shop> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
 		
-		Map<String, String> shopsMap = new HashMap<>();
+		List<String> links = new ArrayList<>();
 			
-		shopsList.parallelStream().forEach( shop -> shopsMap.put(shop.getName(), uriInfo.getBaseUriBuilder().path(StoreResource.class).path(shop.getName()).build().toString()));
+		shopsList.parallelStream().forEach( shop -> links.add(uriInfo.getBaseUriBuilder().path(StoreResource.class).path(shop.getName()).build().toString()));
 		
-		return Response.status(OK).entity(shopsMap).build();
+		return Response.status(OK).entity(links).build();
 	}
 
 	/**

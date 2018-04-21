@@ -22,4 +22,6 @@ public interface TaxRepository extends CrudRepository<Tax, Long> {
 	 * @return
 	 */
 	public Tax findByStoreNameIgnoreCase(@Param("name") String name);
+	
+	public Tax findByStoreId(@Param("storeId") Long storeId);
 }

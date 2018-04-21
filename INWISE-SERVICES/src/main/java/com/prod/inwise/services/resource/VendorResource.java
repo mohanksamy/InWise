@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/vendor")
+@Path("/vendors")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Vendor Service")
 public class VendorResource {
