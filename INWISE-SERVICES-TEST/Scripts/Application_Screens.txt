@@ -1,0 +1,34 @@
+App Admin:
+***********
+- Create stores
+- Create users to stores
+
+Vendor Admin:
+**************
+- Categories
+- Sub-categories
+- Brand
+- Size
+- Edit stores (Create in DB)
+- Create tax (Create in DB)
+- Create items (Name, Price, StoreId & TaxId - Editable combo box?)
+- Edit stock history / stock (brain storm again)
+- Edit invoice
+
+
+App User:
+***********
+- Create new stock histories
+- Create invoices / Print
+	- Tax can be added?
+	- Missing fields (Price & Quantity)
+- View reports
+
+
+Tasks:
+- Create Invoice:
+	Add new fields: Price & Quantity
+	Mapping fields:
+		Bank name - Buyer name
+		GST# - Despatch document no
+		Branch, region & address - Combine to fit in DESPATCHED_THROUGH column
