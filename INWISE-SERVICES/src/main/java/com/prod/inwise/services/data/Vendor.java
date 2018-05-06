@@ -23,32 +23,18 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Logu
  *
  */
-// CREATE TABLE VENDOR (
-// ID BIGINT NOT NULL,
-// NAME TEXT NOT NULL,
-// CODE TEXT NOT NULL,
-// ADDRESS TEXT NOT NULL,
-// PHONE BIGINT NOT NULL,
-// ACTIVE BOOLEAN NOT NULL,
-// CREATED_USER TEXT NOT NULL,
-// CREATED_TS TIMESTAMP NOT NULL,
-// MODIFIED_USER TEXT NOT NULL,
-// MODIFIED_TS TIMESTAMP NOT NULL,
-// PRIMARY KEY (ID)
-// );
-
 @Entity
 @Table(name = "VENDOR")
 @XmlRootElement
 @ApiModel
 public class Vendor extends BaseModel {
 
-	@Id
+	/*@Id
 	@SequenceGenerator(name = "vendor_seq", allocationSize = 1, sequenceName = "VENDOR_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vendor_seq")
 	@Column(name = "ID")
 	@ApiModelProperty(hidden = true)
-	private Long id;
+	private Long id;*/
 
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
@@ -72,20 +58,6 @@ public class Vendor extends BaseModel {
 	@Column(name = "PHONE", nullable = false)
 	@ApiModelProperty
 	private BigInteger phone;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the name

@@ -21,7 +21,7 @@ import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.prod.inwise.services.data.Shop;
+import com.prod.inwise.services.data.Merchant;
 import com.prod.inwise.services.repo.ShopRepository;
 
 import io.swagger.annotations.Api;
@@ -59,7 +59,7 @@ public class StoreResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createStore(Shop shop) {
+	public Response createStore(Merchant shop) {
 
 		shopRepo.save(shop);
 
@@ -70,9 +70,9 @@ public class StoreResource {
 	@ApiOperation(value = "Get All Store", notes = "Get Store URIs")
 	public Response findAll(@Context UriInfo uriInfo) {
 		
-		Iterable<Shop> shops = shopRepo.findAll();
+		Iterable<Merchant> shops = shopRepo.findAll();
 		
-		List<Shop> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
+		List<Merchant> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
 		
 		List<String> links = new ArrayList<>();
 			

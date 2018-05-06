@@ -4,6 +4,7 @@ import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -55,7 +56,7 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(@PathParam("id") Long storeId, List<LineItem> lineItems) {
+	public Response createInvoice(@PathParam("id") BigInteger storeId, List<LineItem> lineItems) {
 
 		Response response = null;
 		

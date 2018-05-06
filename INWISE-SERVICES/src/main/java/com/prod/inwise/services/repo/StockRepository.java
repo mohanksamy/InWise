@@ -1,5 +1,7 @@
 package com.prod.inwise.services.repo;
 
+import java.math.BigInteger;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +16,7 @@ import com.prod.inwise.services.data.Stock;
  *
  */
 @Repository
-public interface StockRepository extends CrudRepository<Stock, Long> {
+public interface StockRepository extends CrudRepository<Stock, BigInteger> {
 	
 	/**
 	 * Method to find Stock by ItemId.
@@ -23,5 +25,5 @@ public interface StockRepository extends CrudRepository<Stock, Long> {
 	 * @return
 	 */
 	@Query("SELECT s FROM Stock s WHERE s.item.id = :itemId")
-	public Stock findByItemId(@Param("itemId") Long itemId);
+	public Stock findByItemId(@Param("itemId") BigInteger itemId);
 }

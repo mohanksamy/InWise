@@ -1,8 +1,12 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,6 +21,12 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @MappedSuperclass
 public abstract class BaseModel {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "ID")
+	@ApiModelProperty(hidden = true)
+	private BigInteger id;
 	
 	@Column(name = "ACTIVE")
 	@ApiModelProperty(hidden = true)
@@ -40,6 +50,20 @@ public abstract class BaseModel {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private Timestamp modifiedTS;
 
+	/**
+	 * @return the id
+	 */
+	public BigInteger getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+	
 	/**
 	 * @return the active
 	 */

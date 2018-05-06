@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.prod.inwise.services.data.Shop;
+import com.prod.inwise.services.data.Merchant;
 
 /**
  * Repository class for Shop entity
@@ -13,7 +13,7 @@ import com.prod.inwise.services.data.Shop;
  *
  */
 @Repository
-public interface ShopRepository extends CrudRepository<Shop, Long> {
+public interface ShopRepository extends CrudRepository<Merchant, Long> {
 
 	/**
 	 * Method find Shop by given name
@@ -21,5 +21,5 @@ public interface ShopRepository extends CrudRepository<Shop, Long> {
 	 * @param name
 	 * @return
 	 */
-	public Shop findByNameIgnoreCase(@Param("name") String name);
+	public Merchant findByNameIgnoreCase(@Param("name") String name);
 }

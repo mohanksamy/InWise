@@ -1,5 +1,6 @@
 package com.prod.inwise.services.services.impl;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.prod.inwise.services.data.Invoice;
 import com.prod.inwise.services.data.LineItem;
+import com.prod.inwise.services.data.Merchant;
 import com.prod.inwise.services.data.Stock;
-import com.prod.inwise.services.data.Store;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.repo.LineItemRepository;
@@ -36,7 +37,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	private StockRepository stockRepo;
 	
 	@Override
-	public void createInvoice(Long storeId, List<LineItem> lineItems) throws OutOfStockException {
+	public void createInvoice(BigInteger storeId, List<LineItem> lineItems) throws OutOfStockException {
 		
 		// Merge line items in case same items are repeated in the invoice
 		lineItems = mergeLineItems(lineItems);
@@ -80,14 +81,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 		});
 	}
 	
-	private Invoice populateInvoiceWithTaxAndPrice(Long storeId, List<LineItem> lineItems) {
+	private Invoice populateInvoiceWithTaxAndPrice(BigInteger storeId, List<LineItem> lineItems) {
 		
 		Invoice invoice = new Invoice();
 		
-		Store store = new Store();
+		Merchant store = new Merchant();
 		store.setId(storeId);
 		
-		invoice.setStore(store);
+		invoice.setMerchant(store);
 		invoice.setCreatedUser(lineItems.get(0).getCreatedUser());
 		invoice.setModifiedUser(lineItems.get(0).getCreatedUser());
 		
@@ -112,7 +113,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	
 	private List<LineItem> mergeLineItems(List<LineItem> lineItems) {
 		
-		Map<Long, LineItem> lineItemsMap = new HashMap();
+		Map<BigInteger, LineItem> lineItemsMap = new HashMap();
 		
 		for ( LineItem lineItem : lineItems ) {
 		

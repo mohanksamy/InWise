@@ -1,5 +1,7 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,38 +14,36 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Entity TAX
  * 
- * @author Logu
+ * @author mohan_kandasamy
  *
  */
 
 @Entity
-@Table(name = "TAX")
+@Table(name = "BRAND")
 @XmlRootElement
 @ApiModel
-public class Tax extends BaseModel {
+public class Brand extends BaseModel {
 
 	/*@Id
-	@SequenceGenerator(name = "tax_seq", allocationSize = 1, sequenceName = "TAX_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tax_seq")
+	@SequenceGenerator(name = "brand_seq", allocationSize = 1, sequenceName = "BRAND_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "brand_seq")
 	@Column(name = "ID")
 	@ApiModelProperty(hidden = true)
-	private Long id;*/
+	private BigInteger id;*/
 
-	@NotNull(message = "CGST can't be null")
-	@Column(name = "CGST", nullable = false)
-	@ApiModelProperty
-	private Float cgst;
-
-	@NotNull(message = "SGST can't be null")
-	@Column(name = "SGST", nullable = false)
-	@ApiModelProperty
-	private Float sgst;
+	@NotNull(message = "Name can't be null")
+	@NotBlank(message = "Name can't be blank")
+	@Column(name = "NAME", nullable = false)
+	@ApiModelProperty(name="Name", value="Name of the Store")
+	private String name;
 
 	@OneToOne
 	@JoinColumn(name = "MERCHANT_ID", nullable = false)
@@ -51,31 +51,17 @@ public class Tax extends BaseModel {
 	private Merchant merchant;
 
 	/**
-	 * @return the cgst
+	 * @return the name
 	 */
-	public Float getCgst() {
-		return cgst;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param cgst the cgst to set
+	 * @param name the name to set
 	 */
-	public void setCgst(Float cgst) {
-		this.cgst = cgst;
-	}
-
-	/**
-	 * @return the sgst
-	 */
-	public Float getSgst() {
-		return sgst;
-	}
-
-	/**
-	 * @param sgst the sgst to set
-	 */
-	public void setSgst(Float sgst) {
-		this.sgst = sgst;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

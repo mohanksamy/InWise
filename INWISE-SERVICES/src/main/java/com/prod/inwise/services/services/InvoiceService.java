@@ -1,5 +1,6 @@
 package com.prod.inwise.services.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,5 +15,5 @@ import com.prod.inwise.services.exceptions.OutOfStockException;
 @Service
 public interface InvoiceService {
 
-	public void createInvoice(Long storeId, List<LineItem> lineItems) throws OutOfStockException;
+	public void createInvoice(BigInteger storeId, List<LineItem> lineItems) throws OutOfStockException;
 }

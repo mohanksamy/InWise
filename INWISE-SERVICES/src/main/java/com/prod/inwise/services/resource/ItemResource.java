@@ -88,7 +88,7 @@ public class ItemResource {
 		
 		List<String> links = new ArrayList<>();
 			
-		items.parallelStream().forEach( item -> links.add(uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(Long.toString(item.getId())).build().toString()));
+		items.parallelStream().forEach( item -> links.add(uriInfo.getBaseUriBuilder().path(ItemResource.class).path("id").path(item.getId().toString()).build().toString()));
 		
 		return Response.status(OK).entity(links).build();
 	}

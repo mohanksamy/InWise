@@ -4,13 +4,8 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -18,60 +13,38 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Entity STORE
+ * Entity MERCHANT
  * 
  * @author mohan.kandasamy
  *
  */
 @Entity
-@Table(name = "STORE")
-@XmlRootElement
+@Table(name = "MERCHANT")
 @ApiModel
-public class Store extends BaseModel {
-	
-	@Id
-	@SequenceGenerator(sequenceName = "store_seq", allocationSize = 1, name = "STORE_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STORE_SEQ")
-	@Column(name = "ID")
-	@ApiModelProperty(hidden = true)
-	private Long id;
+public class Merchant extends BaseModel {
 	
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
 	@Column(name = "NAME", nullable = false)
-	@ApiModelProperty
-	private String name = "";
+	@ApiModelProperty(name="Name", value="Name of the Store")
+	private String name;
 	
 	@NotNull(message = "Address can't be null")
 	@NotBlank(message = "Address can't be blank")
 	@Column(name = "ADDRESS", nullable = false)
-	@ApiModelProperty
-	private String address = "";
+	@ApiModelProperty(name="Address", value="Address of the Store")
+	private String address;
 	
 	@NotNull(message = "UIN can't be null")
 	@NotBlank(message = "UIN can't be blank")
-	@Column(name = "UIN", nullable = false)
-	@ApiModelProperty
-	private String uin = "";
+	@Column(name = "UIN", nullable = false) 	
+	@ApiModelProperty(name="UIN", value="UIN number of the Store")
+	private String uin;
 	
 	@NotNull(message = "Phone can't be null")
 	@Column(name = "PHONE", nullable = false)
-	@ApiModelProperty
+	@ApiModelProperty(name="Phone", value="Phone number of the Store")
 	private BigInteger phone;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the name

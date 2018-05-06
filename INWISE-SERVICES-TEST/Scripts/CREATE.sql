@@ -26,7 +26,7 @@ LANGUAGE 'plpgsql';
 ---------------------------------------------------------------------------
 
 CREATE TABLE MERCHANT (
-	ID              	BIGINT      NOT NULL,
+	ID              	BIGSERIAL,
   	NAME            	TEXT        NOT NULL,
  	ADDRESS         	TEXT        NOT NULL,
 	UIN             	TEXT,
@@ -56,7 +56,7 @@ CREATE TRIGGER MERCHANT_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE TAX (
-  	ID              	BIGINT      NOT NULL,
+  	ID              	BIGSERIAL,
   	CGST            	FLOAT(2)    NOT NULL,
  	SGST            	FLOAT(2)    NOT NULL,
 	MERCHANT_ID     BIGINT      NOT NULL,
@@ -82,40 +82,11 @@ CREATE TRIGGER TAX_BIT
 
 
 ---------------------------------------------------------------------------
---						TABLE: BRAND
----------------------------------------------------------------------------
-
-CREATE TABLE BRAND (
-	ID				BIGINT      NOT NULL,
-	NAME				TEXT			NOT NULL,
-	MERCHANT_ID     BIGINT      NOT NULL,
-	ACTIVE          	BOOLEAN     NOT NULL,
-	CREATED_USER    	TEXT        NOT NULL,
-	CREATED_TS      	TIMESTAMP   NOT NULL,
-	MODIFIED_USER   	TEXT        NOT NULL,
-	MODIFIED_TS     	TIMESTAMP   NOT NULL,
-	PRIMARY KEY     	(ID),
-	FOREIGN KEY     	(MERCHANT_ID)  REFERENCES MERCHANT (ID)
-);
-
-CREATE SEQUENCE IF NOT EXISTS BRAND_SEQ
-	INCREMENT BY 1
-	START WITH 1001
-	NO CYCLE
-	OWNED BY BRAND.ID;
-
-CREATE TRIGGER BRAND_BIT
-	BEFORE INSERT OR UPDATE ON BRAND
-	FOR EACH ROW EXECUTE PROCEDURE TRIGGER_FN();
-
-
-
----------------------------------------------------------------------------
 --						TABLE: CATEGORY
 ---------------------------------------------------------------------------
 
 CREATE TABLE CATEGORY (
-	ID              	BIGINT      NOT NULL,
+	ID              	BIGSERIAL,
 	NAME            	TEXT			NOT NULL,
 	MERCHANT_ID     BIGINT      NOT NULL,
 	ACTIVE          	BOOLEAN     NOT NULL,
@@ -144,7 +115,7 @@ CREATE TRIGGER CATEGORY_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE SUBCATEGORY (
-	ID              	BIGINT      NOT NULL,
+	ID              	BIGSERIAL,
 	NAME            	TEXT			NOT NULL,
 	MERCHANT_ID     BIGINT      NOT NULL,
 	ACTIVE          	BOOLEAN     NOT NULL,
@@ -169,11 +140,40 @@ CREATE TRIGGER SUBCATEGORY_BIT
 
 
 ---------------------------------------------------------------------------
---						TABLE: SIZE
+--						TABLE: BRAND
 ---------------------------------------------------------------------------
 
-CREATE TABLE SIZE (
-	ID              	BIGINT      NOT NULL,
+CREATE TABLE BRAND (
+	ID				BIGSERIAL,
+	NAME				TEXT			NOT NULL,
+	MERCHANT_ID     BIGINT      NOT NULL,
+	ACTIVE          	BOOLEAN     NOT NULL,
+	CREATED_USER    	TEXT        NOT NULL,
+	CREATED_TS      	TIMESTAMP   NOT NULL,
+	MODIFIED_USER   	TEXT        NOT NULL,
+	MODIFIED_TS     	TIMESTAMP   NOT NULL,
+	PRIMARY KEY     	(ID),
+	FOREIGN KEY     	(MERCHANT_ID)  REFERENCES MERCHANT (ID)
+);
+
+CREATE SEQUENCE IF NOT EXISTS BRAND_SEQ
+	INCREMENT BY 1
+	START WITH 1001
+	NO CYCLE
+	OWNED BY BRAND.ID;
+
+CREATE TRIGGER BRAND_BIT
+	BEFORE INSERT OR UPDATE ON BRAND
+	FOR EACH ROW EXECUTE PROCEDURE TRIGGER_FN();
+
+
+
+---------------------------------------------------------------------------
+--						TABLE: MODEL
+---------------------------------------------------------------------------
+
+CREATE TABLE MODEL (
+	ID              	BIGSERIAL,
 	NAME            	TEXT			NOT NULL,
 	MERCHANT_ID     BIGINT      NOT NULL,
 	ACTIVE          	BOOLEAN     NOT NULL,
@@ -185,14 +185,14 @@ CREATE TABLE SIZE (
 	FOREIGN KEY     	(MERCHANT_ID)  REFERENCES MERCHANT (ID)
 );
 
-CREATE SEQUENCE IF NOT EXISTS SIZE_SEQ
+CREATE SEQUENCE IF NOT EXISTS MODEL_SEQ
 	INCREMENT BY 1
 	START WITH 1001
 	NO CYCLE
-	OWNED BY SIZE.ID;
+	OWNED BY MODEL.ID;
 
-CREATE TRIGGER SIZE_BIT
-	BEFORE INSERT OR UPDATE ON SIZE
+CREATE TRIGGER MODEL_BIT
+	BEFORE INSERT OR UPDATE ON MODEL
 	FOR EACH ROW EXECUTE PROCEDURE TRIGGER_FN();
 
 
@@ -202,7 +202,7 @@ CREATE TRIGGER SIZE_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE ITEM (
-	ID              	BIGINT      NOT NULL,
+	ID              	BIGSERIAL,
 	NAME            	TEXT        NOT NULL,
 	PART_NO         	BIGINT,
 	PRICE           	FLOAT(2)    NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE ITEM (
 	CATEGORY_ID		BIGINT,
 	SUBCATEGORY_ID	BIGINT,
 	BRAND_ID			BIGINT,
-	SIZE_ID			BIGINT,
+	MODEL_ID			BIGINT,
 	MERCHANT_ID     BIGINT      NOT NULL,
   	TAX_ID          	BIGINT      NOT NULL,
   	ACTIVE          	BOOLEAN     NOT NULL,
@@ -224,7 +224,7 @@ CREATE TABLE ITEM (
 	FOREIGN KEY     	(CATEGORY_ID)  		REFERENCES CATEGORY (ID),
 	FOREIGN KEY     	(SUBCATEGORY_ID)  	REFERENCES SUBCATEGORY (ID),
 	FOREIGN KEY     	(BRAND_ID)  			REFERENCES BRAND (ID),
-	FOREIGN KEY     	(SIZE_ID)  			REFERENCES SIZE (ID)
+	FOREIGN KEY     	(MODEL_ID)  			REFERENCES MODEL (ID)
 );
 
 CREATE SEQUENCE IF NOT EXISTS ITEM_SEQ
@@ -244,16 +244,17 @@ CREATE TRIGGER ITEM_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE INVOICE (
-	ID							BIGINT		NOT NULL,
+	ID							BIGSERIAL,
 	MERCHANT_ID					BIGINT		NOT NULL,
   	TOTAL_TAX					FLOAT(2)		NOT NULL,
 	TOTAL_PRICE         			FLOAT(2)		NOT NULL,
   	BUYER_NAME					TEXT,
-  	DESPATCHED_THROUGH			TEXT,
-  	DESPATCHED_DOCUMENT_NO		TEXT,
-  	DESTINATION					TEXT,
-  	MODE_OR_TERMS_OF_PAYMENT		TEXT,
-  	SUPPLIER_REFERENCE			TEXT,
+  	BUYER_ADDRESS				TEXT,
+  	REFERENCE_1					TEXT,
+  	REFERENCE_2					TEXT,
+  	REFERENCE_3					TEXT,
+  	REFERENCE_4					TEXT,
+  	REFERENCE_5					TEXT,
   	ACTIVE						BOOLEAN		NOT NULL,
   	CREATED_USER					TEXT			NOT NULL,
   	CREATED_TS					TIMESTAMP	NOT NULL,
@@ -280,7 +281,7 @@ CREATE TRIGGER INVOICE_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE LINE_ITEM (
-	LINE_ITEM_ID      	BIGINT			NOT NULL,
+	ID      				BIGSERIAL,
 	INVOICE_ID        	BIGINT			NOT NULL,
 	ITEM_ID				BIGINT			NOT NULL,
  	QUANTITY				INTEGER			NOT NULL,
@@ -315,7 +316,7 @@ CREATE TRIGGER LINE_ITEM_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE STOCK (
-	ID              	BIGINT      	NOT NULL,
+	ID              	BIGSERIAL,
   	ITEM_ID         	BIGINT      	NOT NULL,
   	QUANTITY			INTEGER     	NOT NULL,
   	ACTIVE          	BOOLEAN     	NOT NULL,
@@ -344,7 +345,7 @@ CREATE TRIGGER STOCK_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE STOCK_BATCH (
-  	ID              	BIGINT      	NOT NULL,
+  	ID              	BIGSERIAL,
   	ACTIVE          	BOOLEAN     	NOT NULL,
   	CREATED_USER    	TEXT        	NOT NULL,
   	CREATED_TS      	TIMESTAMP   	NOT NULL,
@@ -370,7 +371,7 @@ CREATE TRIGGER STOCK_BATCH_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE VENDOR (
-  	ID              	BIGINT      	NOT NULL,
+  	ID              	BIGSERIAL,
   	NAME            	TEXT        	NOT NULL,
   	CODE				TEXT        	NOT NULL,
   	ADDRESS         	TEXT        	NOT NULL,
@@ -400,7 +401,7 @@ CREATE TRIGGER VENDOR_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE STOCK_HISTORY (
-  	ID              	BIGINT		NOT NULL,
+  	ID              	BIGSERIAL,
   	STOCK_BATCH_ID	BIGINT      	NOT NULL,
   	ITEM_ID         	BIGINT      	NOT NULL,
   	VENDOR_ID		BIGINT      	NOT NULL,
@@ -434,12 +435,12 @@ CREATE TRIGGER STOCK_HISTORY_BIT
 ---------------------------------------------------------------------------
 
 CREATE TABLE USERS (
-	ID              	BIGINT      NOT NULL,
+	ID              	BIGSERIAL,
 	NAME				TEXT			NOT NULL,
 	USER_NAME		TEXT			NOT NULL,
 	PASSWORD			TEXT			NOT NULL,
 	MERCHANT_ID     BIGINT      NOT NULL,
-	LAST_ACCESSED	TIMESTAMP   NOT NULL,
+	LAST_LOGIN		TIMESTAMP   NOT NULL,
 	ACTIVE          	BOOLEAN     NOT NULL,
 	CREATED_USER    	TEXT        NOT NULL,
 	CREATED_TS      	TIMESTAMP   NOT NULL,

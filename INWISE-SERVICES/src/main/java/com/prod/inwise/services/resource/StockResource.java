@@ -3,6 +3,8 @@ package com.prod.inwise.services.resource;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.math.BigInteger;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -57,7 +59,7 @@ public class StockResource {
 	@GET
 	@Path("/item/{id}")
 	@ApiOperation(value = "Get stock", notes = "Get stock model")
-	public Response findByItem(@ApiParam @PathParam("id") Long itemId) {
+	public Response findByItem(@ApiParam @PathParam("id") BigInteger itemId) {
 		
 		Stock stock = stockRepo.findByItemId(itemId);
 		

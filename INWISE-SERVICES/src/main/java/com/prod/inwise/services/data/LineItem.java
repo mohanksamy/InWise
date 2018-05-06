@@ -2,12 +2,8 @@ package com.prod.inwise.services.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -24,37 +20,18 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Logu
  *
  */
-// CREATE TABLE LINE_ITEM (
-// LINE_ITEM_ID BIGINT NOT NULL,
-// INVOICE_ID BIGINT NOT NULL,
-// ITEM_ID BIGINT NOT NULL,
-// QUANTITY INTEGER NOT NULL,
-// TOTAL_TAX FLOAT NOT NULL,
-// TOTAL_PRICE FLOAT NOT NULL,
-// --TOTAL_CGST FLOAT NOT NULL,
-// --TOTAL_SGST FLOAT NOT NULL,
-// ACTIVE BOOLEAN NOT NULL,
-// CREATED_USER TEXT NOT NULL,
-// CREATED_TS TIMESTAMP NOT NULL,
-// MODIFIED_USER TEXT NOT NULL,
-// MODIFIED_TS TIMESTAMP NOT NULL,
-// PRIMARY KEY (LINE_ITEM_ID),
-// FOREIGN KEY (INVOICE_ID) REFERENCES INVOICE (ID),
-// FOREIGN KEY (ITEM_ID) REFERENCES ITEM (ID)
-// );
-
 @Entity
 @Table(name = "LINE_ITEM")
 @XmlRootElement
 @ApiModel
 public class LineItem extends BaseModel {
 
-	@Id
+	/*@Id
 	@SequenceGenerator(name = "line_item_seq", allocationSize = 1, sequenceName = "LINE_ITEM_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "line_item_seq")
 	@Column(name = "LINE_ITEM_ID")
 	@ApiModelProperty(hidden = true)
-	private Long id;
+	private Long id;*/
 
 	@ManyToOne
 	@JoinColumn(name = "INVOICE_ID", nullable = false)
@@ -84,20 +61,6 @@ public class LineItem extends BaseModel {
 	@Column(name = "TOTAL_PRICE", nullable = false)
 	@ApiModelProperty
 	private Float totalPrice;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the invoice

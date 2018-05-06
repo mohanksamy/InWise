@@ -2,12 +2,8 @@ package com.prod.inwise.services.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,25 +17,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Logu
  *
  */
-// CREATE TABLE INVOICE (
-// ID BIGINT NOT NULL,
-// STORE_ID BIGINT NOT NULL,
-// TOTAL_TAX FLOAT NOT NULL,
-// TOTAL_PRICE FLOAT NOT NULL,
-// BUYER_NAME TEXT,
-// DESPATCHED_THROUGH TEXT,
-// DESPATCHED_DOCUMENT_NO TEXT,
-// DESTINATION TEXT,
-// MODE_OR_TERMS_OF_PAYMENT TEXT,
-// SUPPLIER_REFERENCE TEXT,
-// ACTIVE BOOLEAN NOT NULL,
-// CREATED_USER TEXT NOT NULL,
-// CREATED_TS TIMESTAMP NOT NULL,
-// MODIFIED_USER TEXT NOT NULL,
-// MODIFIED_TS TIMESTAMP NOT NULL,
-// PRIMARY KEY (ID),
-// FOREIGN KEY (STORE_ID) REFERENCES STORE (ID)
-// );
 
 @Entity
 @Table(name = "INVOICE")
@@ -47,17 +24,17 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Invoice extends BaseModel {
 
-	@Id
+	/*@Id
 	@SequenceGenerator(name = "invoice_seq", allocationSize = 1, sequenceName = "INVOICE_SEQ")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_seq")
 	@Column(name = "ID")
 	@ApiModelProperty(hidden = true)
-	private Long id;
+	private Long id;*/
 
 	@ManyToOne
-	@JoinColumn(name = "STORE_ID", nullable = false)
+	@JoinColumn(name = "MERCHANT_ID", nullable = false)
 	@ApiModelProperty
-	private Store store;
+	private Merchant merchant;
 
 	@NotNull(message = "TotalTax can't be null")
 	@Column(name = "TOTAL_TAX", nullable = false)
@@ -72,53 +49,43 @@ public class Invoice extends BaseModel {
 	@Column(name = "BUYER_NAME")
 	@ApiModelProperty
 	private String buyerName;
-
-	@Column(name = "DESPATCHED_THROUGH")
+	
+	@Column(name = "BUYER_ADDRESS")
 	@ApiModelProperty
-	private String dispatchedThrough;
-
-	@Column(name = "DESPATCHED_DOCUMENT_NO")
+	private String buyerAddress;
+	
+	@Column(name = "REFERENCE_1")
 	@ApiModelProperty
-	private String dispatchedDocumentNo;
+	private String reference1;
 
-	@Column(name = "DESTINATION")
+	@Column(name = "REFERENCE_2")
 	@ApiModelProperty
-	private String destination;
+	private String reference2;
 
-	@Column(name = "MODE_OR_TERMS_OF_PAYMENT")
+	@Column(name = "REFERENCE_3")
 	@ApiModelProperty
-	private String modeOfPayment;
+	private String reference3;
 
-	@Column(name = "SUPPLIER_REFERENCE")
+	@Column(name = "REFERENCE_4")
 	@ApiModelProperty
-	private String supplierReference;
+	private String reference4;
+
+	@Column(name = "REFERENCE_5")
+	@ApiModelProperty
+	private String reference5;
 
 	/**
-	 * @return the id
+	 * @return the merchant
 	 */
-	public Long getId() {
-		return id;
+	public Merchant getMerchant() {
+		return merchant;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param merchant the merchant to set
 	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the store
-	 */
-	public Store getStore() {
-		return store;
-	}
-
-	/**
-	 * @param store the store to set
-	 */
-	public void setStore(Store store) {
-		this.store = store;
+	public void setMerchant(Merchant merchant) {
+		this.merchant = merchant;
 	}
 
 	/**
@@ -164,72 +131,86 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @return the dispatchedThrough
+	 * @return the buyerAddress
 	 */
-	public String getDispatchedThrough() {
-		return dispatchedThrough;
+	public String getBuyerAddress() {
+		return buyerAddress;
 	}
 
 	/**
-	 * @param dispatchedThrough the dispatchedThrough to set
+	 * @param buyerAddress the buyerAddress to set
 	 */
-	public void setDispatchedThrough(String dispatchedThrough) {
-		this.dispatchedThrough = dispatchedThrough;
+	public void setBuyerAddress(String buyerAddress) {
+		this.buyerAddress = buyerAddress;
 	}
 
 	/**
-	 * @return the dispatchedDocumentNo
+	 * @return the reference1
 	 */
-	public String getDispatchedDocumentNo() {
-		return dispatchedDocumentNo;
+	public String getReference1() {
+		return reference1;
 	}
 
 	/**
-	 * @param dispatchedDocumentNo the dispatchedDocumentNo to set
+	 * @param reference1 the reference1 to set
 	 */
-	public void setDispatchedDocumentNo(String dispatchedDocumentNo) {
-		this.dispatchedDocumentNo = dispatchedDocumentNo;
+	public void setReference1(String reference1) {
+		this.reference1 = reference1;
 	}
 
 	/**
-	 * @return the destination
+	 * @return the reference2
 	 */
-	public String getDestination() {
-		return destination;
+	public String getReference2() {
+		return reference2;
 	}
 
 	/**
-	 * @param destination the destination to set
+	 * @param reference2 the reference2 to set
 	 */
-	public void setDestination(String destination) {
-		this.destination = destination;
+	public void setReference2(String reference2) {
+		this.reference2 = reference2;
 	}
 
 	/**
-	 * @return the modeOfPayment
+	 * @return the reference3
 	 */
-	public String getModeOfPayment() {
-		return modeOfPayment;
+	public String getReference3() {
+		return reference3;
 	}
 
 	/**
-	 * @param modeOfPayment the modeOfPayment to set
+	 * @param reference3 the reference3 to set
 	 */
-	public void setModeOfPayment(String modeOfPayment) {
-		this.modeOfPayment = modeOfPayment;
+	public void setReference3(String reference3) {
+		this.reference3 = reference3;
 	}
 
 	/**
-	 * @return the supplierReference
+	 * @return the reference4
 	 */
-	public String getSupplierReference() {
-		return supplierReference;
+	public String getReference4() {
+		return reference4;
 	}
 
 	/**
-	 * @param supplierReference the supplierReference to set
+	 * @param reference4 the reference4 to set
 	 */
-	public void setSupplierReference(String supplierReference) {
-		this.supplierReference = supplierReference;
+	public void setReference4(String reference4) {
+		this.reference4 = reference4;
+	}
+
+	/**
+	 * @return the reference5
+	 */
+	public String getReference5() {
+		return reference5;
+	}
+
+	/**
+	 * @param reference5 the reference5 to set
+	 */
+	public void setReference5(String reference5) {
+		this.reference5 = reference5;
 	}
 }

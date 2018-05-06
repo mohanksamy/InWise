@@ -71,7 +71,7 @@ public class TaxResource {
 		
 		Map<String, String> taxesMap = new HashMap<>();
 			
-		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getStore().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getStore().getName()).build().toString()));
+		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getMerchant().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getMerchant().getName()).build().toString()));
 		
 		return Response.status(OK).entity(taxesMap).build();
 	}
