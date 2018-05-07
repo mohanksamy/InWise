@@ -19,6 +19,6 @@ DROP TABLE MODEL;
 
 DROP TABLE TAX;
 DROP TABLE USERS;
-DROP TABLE MERCHANT;
+DROP TABLE TRADER;
 
 --SEQUENCES will be dropped when the referred column is dropped

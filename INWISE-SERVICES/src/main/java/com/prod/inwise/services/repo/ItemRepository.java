@@ -1,5 +1,6 @@
 package com.prod.inwise.services.repo;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +17,7 @@ import com.prod.inwise.services.data.Item;
  *
  */
 @Repository
-public interface ItemRepository extends CrudRepository<Item, Long> {
+public interface ItemRepository extends CrudRepository<Item, BigInteger> {
 
 	/**
 	 * Method to find Item by given Item name.
@@ -26,6 +27,6 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
 	 */
 	public Item findByNameIgnoreCase(@Param("name") String name);
 	
-	@Query("SELECT item FROM Item item WHERE item.store.id = :id")
-	public List<Item> findItemsByStore(@Param("id") Long storeId);
+	@Query("SELECT item FROM Item item WHERE item.trader.id = :id")
+	public List<Item> findItemsByTrader(@Param("id") BigInteger storeId);
 }

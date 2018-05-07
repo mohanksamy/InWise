@@ -1,5 +1,7 @@
 package com.prod.inwise.services.repo;
 
+import java.math.BigInteger;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -13,7 +15,7 @@ import com.prod.inwise.services.data.Tax;
  *
  */
 @Repository
-public interface TaxRepository extends CrudRepository<Tax, Long> {
+public interface TaxRepository extends CrudRepository<Tax, BigInteger> {
 
 	/**
 	 * Method to find Tax by given Store name.
@@ -21,7 +23,7 @@ public interface TaxRepository extends CrudRepository<Tax, Long> {
 	 * @param name
 	 * @return
 	 */
-	public Tax findByStoreNameIgnoreCase(@Param("name") String name);
+	public Tax findByTraderNameIgnoreCase(@Param("name") String name);
 	
-	public Tax findByStoreId(@Param("storeId") Long storeId);
+	public Tax findByTraderId(@Param("storeId") BigInteger storeId);
 }

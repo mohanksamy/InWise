@@ -21,8 +21,8 @@ import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.prod.inwise.services.data.Merchant;
-import com.prod.inwise.services.repo.ShopRepository;
+import com.prod.inwise.services.data.Trader;
+import com.prod.inwise.services.repo.TraderRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,16 +37,16 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/stores")
+@Path("/traders")
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "Store Service")
-public class StoreResource {
+@Api(value = "Trader Service")
+public class TraderResource {
 	
 	/*
 	 * @Autowired private StoreRepository storeRepo;
 	 */
 	@Autowired
-	private ShopRepository shopRepo;
+	private TraderRepository traderRepo;
 
 	/*
 	 * @POST public Store createStore(Store store) { return storeRepo.save(store); }
@@ -59,9 +59,9 @@ public class StoreResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createStore(Merchant shop) {
+	public Response createStore(Trader trader) {
 
-		shopRepo.save(shop);
+		traderRepo.save(trader);
 
 		return status(OK).build();
 	}
@@ -70,13 +70,13 @@ public class StoreResource {
 	@ApiOperation(value = "Get All Store", notes = "Get Store URIs")
 	public Response findAll(@Context UriInfo uriInfo) {
 		
-		Iterable<Merchant> shops = shopRepo.findAll();
+		Iterable<Trader> shops = traderRepo.findAll();
 		
-		List<Merchant> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
+		List<Trader> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
 		
 		List<String> links = new ArrayList<>();
 			
-		shopsList.parallelStream().forEach( shop -> links.add(uriInfo.getBaseUriBuilder().path(StoreResource.class).path(shop.getName()).build().toString()));
+		shopsList.parallelStream().forEach( shop -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(shop.getName()).build().toString()));
 		
 		return Response.status(OK).entity(links).build();
 	}
@@ -98,6 +98,6 @@ public class StoreResource {
 			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response findByName(@ApiParam @PathParam("name") String name) {
 
-		return Response.status(OK).entity(shopRepo.findByNameIgnoreCase(name)).build();
+		return Response.status(OK).entity(traderRepo.findByNameIgnoreCase(name)).build();
 	}
 }

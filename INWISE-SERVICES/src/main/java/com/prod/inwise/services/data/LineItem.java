@@ -26,13 +26,6 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class LineItem extends BaseModel {
 
-	/*@Id
-	@SequenceGenerator(name = "line_item_seq", allocationSize = 1, sequenceName = "LINE_ITEM_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "line_item_seq")
-	@Column(name = "LINE_ITEM_ID")
-	@ApiModelProperty(hidden = true)
-	private Long id;*/
-
 	@ManyToOne
 	@JoinColumn(name = "INVOICE_ID", nullable = false)
 	@ApiModelProperty

@@ -10,8 +10,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -25,20 +23,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "ITEM")
 @XmlRootElement
 @ApiModel
-public class Item extends BaseModel {
-
-	/*@Id
-	@SequenceGenerator(name = "item_seq", allocationSize = 1, sequenceName = "ITEM_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq")
-	@Column(name = "ID")
-	@ApiModelProperty(hidden = true)
-	private BigInteger id;*/
-
-	@NotNull(message = "Name can't be null")
-	@NotBlank(message = "Name can't be blank")
-	@Column(name = "NAME", nullable = false)
-	@ApiModelProperty
-	private String name;
+public class Item extends NameCodeModel {
 
 	@Column(name = "PART_NO")
 	@ApiModelProperty
@@ -74,28 +59,14 @@ public class Item extends BaseModel {
 	private Model model;
 
 	@ManyToOne
-	@JoinColumn(name = "MERCHANT_ID", nullable = false)
+	@JoinColumn(name = "TRADER_ID", nullable = false)
 	@ApiModelProperty
-	private Merchant merchant;
+	private Trader trader;
 
 	@ManyToOne
 	@JoinColumn(name = "TAX_ID", nullable = false)
 	@ApiModelProperty
 	private Tax tax;
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	/**
 	 * @return the partNo
@@ -196,17 +167,17 @@ public class Item extends BaseModel {
 	}
 
 	/**
-	 * @return the merchant
+	 * @return the trader
 	 */
-	public Merchant getMerchant() {
-		return merchant;
+	public Trader getTrader() {
+		return trader;
 	}
 
 	/**
-	 * @param merchant the merchant to set
+	 * @param trader the trader to set
 	 */
-	public void setMerchant(Merchant merchant) {
-		this.merchant = merchant;
+	public void setTrader(Trader trader) {
+		this.trader = trader;
 	}
 
 	/**

@@ -3,6 +3,7 @@ package com.prod.inwise.services.resource;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class ItemResource {
 	@GET
 	@Path("/id/{id}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
-	public Response findById(@ApiParam @PathParam("id") Long id) {
+	public Response findById(@ApiParam @PathParam("id") BigInteger id) {
 		return Response.status(OK).entity(itemRepo.findOne(id)).build();
 	}
 	
@@ -82,9 +83,9 @@ public class ItemResource {
 	@GET
 	@Path("/store/{id}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
-	public Response findAllItemsByStore(@Context UriInfo uriInfo, @ApiParam @PathParam("id") Long storeId) {
+	public Response findAllItemsByStore(@Context UriInfo uriInfo, @ApiParam @PathParam("id") BigInteger storeId) {
 		
-		List<Item> items = itemRepo.findItemsByStore(storeId);
+		List<Item> items = itemRepo.findItemsByTrader(storeId);
 		
 		List<String> links = new ArrayList<>();
 			

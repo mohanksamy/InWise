@@ -71,7 +71,7 @@ public class TaxResource {
 		
 		Map<String, String> taxesMap = new HashMap<>();
 			
-		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getMerchant().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getMerchant().getName()).build().toString()));
+		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getTrader().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getTrader().getName()).build().toString()));
 		
 		return Response.status(OK).entity(taxesMap).build();
 	}
@@ -81,6 +81,6 @@ public class TaxResource {
 	@ApiOperation(value = "Get tax", notes = "Get tax model")
 	public Response getTax(@ApiParam @PathParam("name") String name) {
 
-		return status(OK).entity(taxRepo.findByStoreNameIgnoreCase(name)).build();
+		return status(OK).entity(taxRepo.findByTraderNameIgnoreCase(name)).build();
 	}
 }

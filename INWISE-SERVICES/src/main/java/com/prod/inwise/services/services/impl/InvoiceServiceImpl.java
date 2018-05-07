@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.prod.inwise.services.data.Invoice;
 import com.prod.inwise.services.data.LineItem;
-import com.prod.inwise.services.data.Merchant;
 import com.prod.inwise.services.data.Stock;
+import com.prod.inwise.services.data.Trader;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.repo.LineItemRepository;
@@ -85,10 +85,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		Invoice invoice = new Invoice();
 		
-		Merchant store = new Merchant();
+		Trader store = new Trader();
 		store.setId(storeId);
 		
-		invoice.setMerchant(store);
+		invoice.setTrader(store);
 		invoice.setCreatedUser(lineItems.get(0).getCreatedUser());
 		invoice.setModifiedUser(lineItems.get(0).getCreatedUser());
 		

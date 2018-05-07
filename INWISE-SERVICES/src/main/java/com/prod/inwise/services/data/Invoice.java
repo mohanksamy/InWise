@@ -24,17 +24,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Invoice extends BaseModel {
 
-	/*@Id
-	@SequenceGenerator(name = "invoice_seq", allocationSize = 1, sequenceName = "INVOICE_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_seq")
-	@Column(name = "ID")
-	@ApiModelProperty(hidden = true)
-	private Long id;*/
-
 	@ManyToOne
-	@JoinColumn(name = "MERCHANT_ID", nullable = false)
+	@JoinColumn(name = "TRADER_ID", nullable = false)
 	@ApiModelProperty
-	private Merchant merchant;
+	private Trader trader;
 
 	@NotNull(message = "TotalTax can't be null")
 	@Column(name = "TOTAL_TAX", nullable = false)
@@ -75,17 +68,17 @@ public class Invoice extends BaseModel {
 	private String reference5;
 
 	/**
-	 * @return the merchant
+	 * @return the trader
 	 */
-	public Merchant getMerchant() {
-		return merchant;
+	public Trader getTrader() {
+		return trader;
 	}
 
 	/**
-	 * @param merchant the merchant to set
+	 * @param trader the trader to set
 	 */
-	public void setMerchant(Merchant merchant) {
-		this.merchant = merchant;
+	public void setTrader(Trader trader) {
+		this.trader = trader;
 	}
 
 	/**

@@ -23,13 +23,6 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class StockHistory extends BaseModel {
 
-	/*@Id
-	@SequenceGenerator(name = "stock_history_seq", allocationSize = 1, sequenceName = "STOCK_HISTORY_SEQ")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_history_seq")
-	@Column(name = "ID")
-	@ApiModelProperty(hidden = true)
-	private Long id;*/
-
 	@ManyToOne
 	@JoinColumn(name = "STOCK_BATCH_ID", nullable = false)
 	@ApiModelProperty

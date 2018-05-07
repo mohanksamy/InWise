@@ -1,25 +1,27 @@
 package com.prod.inwise.services.repo;
 
+import java.math.BigInteger;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.prod.inwise.services.data.Merchant;
+import com.prod.inwise.services.data.Trader;
 
 /**
- * Repository class for Shop entity
+ * Repository class for Merchant entity
  * 
  * @author mohan.kandasamy
  *
  */
 @Repository
-public interface ShopRepository extends CrudRepository<Merchant, Long> {
+public interface TraderRepository extends CrudRepository<Trader, BigInteger> {
 
 	/**
-	 * Method find Shop by given name
+	 * Method to find Trader by given name
 	 * 
 	 * @param name
 	 * @return
 	 */
-	public Merchant findByNameIgnoreCase(@Param("name") String name);
+	public Trader findByNameIgnoreCase(@Param("name") String name);
 }
