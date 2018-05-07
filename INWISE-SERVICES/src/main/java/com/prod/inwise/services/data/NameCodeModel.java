@@ -20,13 +20,13 @@ public abstract class NameCodeModel extends BaseModel {
 	@NotNull(message = "Name can't be null")
 	@NotBlank(message = "Name can't be blank")
 	@Column(name = "NAME", nullable = false)
-	@ApiModelProperty
+	@ApiModelProperty(name="Name", value="Name of the entity")
 	private String name;
 
 	@NotNull(message = "Code can't be null")
 	@NotBlank(message = "Code can't be blank")
 	@Column(name = "CODE", nullable = false)
-	@ApiModelProperty
+	@ApiModelProperty(name="Code", value="Code of the entity")
 	private String code;
 
 	/**

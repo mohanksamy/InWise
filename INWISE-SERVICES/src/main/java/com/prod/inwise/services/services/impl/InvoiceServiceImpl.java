@@ -113,7 +113,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	
 	private List<LineItem> mergeLineItems(List<LineItem> lineItems) {
 		
-		Map<BigInteger, LineItem> lineItemsMap = new HashMap();
+		Map<BigInteger, LineItem> lineItemsMap = new HashMap<BigInteger, LineItem>();
 		
 		for ( LineItem lineItem : lineItems ) {
 		

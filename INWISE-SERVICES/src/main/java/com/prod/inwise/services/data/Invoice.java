@@ -17,7 +17,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Logu
  *
  */
-
 @Entity
 @Table(name = "INVOICE")
 @XmlRootElement

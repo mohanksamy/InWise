@@ -15,7 +15,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @author mohan_kandasamy
  *
  */
-
 @Entity
 @Table(name = "SUBCATEGORY")
 @XmlRootElement

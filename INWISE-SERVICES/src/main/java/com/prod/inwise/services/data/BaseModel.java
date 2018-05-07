@@ -25,29 +25,29 @@ public abstract class BaseModel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "ID")
-	@ApiModelProperty(hidden = true)
+	@ApiModelProperty(name="Id", value="Id of the entity", hidden = true)
 	private BigInteger id;
 	
 	@Column(name = "ACTIVE")
-	@ApiModelProperty(hidden = true)
+	@ApiModelProperty(name="Active", value="Active flag of the entity", hidden = true)
 	private boolean active = true;
 	
-	@ApiModelProperty(hidden = true)
 	@Column(name = "CREATED_USER", nullable = false, insertable = true, updatable = false)
+	@ApiModelProperty(name="Created User", value="Created User of the entity", hidden = true)
 	private String createdUser;
 
-	@ApiModelProperty(hidden = true)
 	@Column(name = "CREATED_TS", nullable = false)
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+	@ApiModelProperty(name="Created TS", value="Created Timestamp of the entity", hidden = true)
 	private Timestamp createdTS;
 	
-	@ApiModelProperty(hidden = true)
 	@Column(name = "MODIFIED_USER", nullable = false, insertable = true, updatable = true)
+	@ApiModelProperty(name="Modified User", value="Modified User of the entity", hidden = true)
 	private String modifiedUser;
 	
-	@ApiModelProperty(hidden = true)
 	@Column(name = "MODIFIED_TS", nullable = false)
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+	@ApiModelProperty(name="Modified TS", value="Modified Timestamp of the entity", hidden = true)
 	private Timestamp modifiedTS;
 
 	/**
