@@ -2,8 +2,11 @@ package com.prod.inwise.services.data;
 
 import java.math.BigInteger;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,11 +26,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Trader extends NameCodeModel {
 	
-	@NotNull(message = "Address can't be null")
-	@NotBlank(message = "Address can't be blank")
-	@Column(name = "ADDRESS", nullable = false)
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "ADDRESS_ID", nullable = false)
 	@ApiModelProperty(name="Address", value="Address of the Trader")
-	private String address;
+	private Address address;
 	
 	@NotNull(message = "UIN can't be null")
 	@NotBlank(message = "UIN can't be blank")
@@ -43,14 +45,14 @@ public class Trader extends NameCodeModel {
 	/**
 	 * @return the address
 	 */
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
 	/**
 	 * @param address the address to set
 	 */
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

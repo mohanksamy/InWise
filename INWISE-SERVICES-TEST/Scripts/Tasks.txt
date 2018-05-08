@@ -1,3 +1,10 @@
+DB:
+***
+- Indexing
+- Compound indexing
+- Performance tuning
+- Best practices
+
 Integration testing:
 ********************
 1. Services:
