@@ -38,7 +38,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/tax")
+@Path("/taxes")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Tax Service")
 public class TaxResource {

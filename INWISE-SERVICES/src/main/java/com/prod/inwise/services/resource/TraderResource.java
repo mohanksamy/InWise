@@ -1,5 +1,6 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.services.util.Utils.isNull;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
@@ -22,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.Trader;
+import com.prod.inwise.services.repo.AddressRepository;
 import com.prod.inwise.services.repo.TraderRepository;
 
 import io.swagger.annotations.Api;
@@ -47,6 +49,9 @@ public class TraderResource {
 	 */
 	@Autowired
 	private TraderRepository traderRepo;
+	
+	@Autowired
+	private AddressRepository addressRepo;
 
 	/*
 	 * @POST public Store createStore(Store store) { return storeRepo.save(store); }
@@ -61,6 +66,11 @@ public class TraderResource {
 			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response createStore(Trader trader) {
 
+		if ( isNull(trader.getAddress().getId()) ) {
+			
+			trader.setAddress(addressRepo.save(trader.getAddress()));
+		}
+		
 		traderRepo.save(trader);
 
 		return status(OK).build();

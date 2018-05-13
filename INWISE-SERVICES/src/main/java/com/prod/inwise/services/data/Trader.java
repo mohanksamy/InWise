@@ -2,11 +2,10 @@ package com.prod.inwise.services.data;
 
 import java.math.BigInteger;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -26,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Trader extends NameCodeModel {
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "ADDRESS_ID", nullable = false)
 	@ApiModelProperty(name="Address", value="Address of the Trader")
 	private Address address;
