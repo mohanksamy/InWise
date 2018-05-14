@@ -6,57 +6,25 @@ import java.math.BigInteger;
  * @author mohan_kandasamy
  *
  */
-public class StoreDTO extends BaseDTO {
+public class TraderDTO extends NameCodeDTO {
 	
-	private Long id;
-	
-	private String name;
-	
-	private String address;
+	private AddressDTO address;
 	
 	private String uin;
 	
 	private BigInteger phone;
 
 	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
 	 * @return the address
 	 */
-	public String getAddress() {
+	public AddressDTO getAddress() {
 		return address;
 	}
 
 	/**
 	 * @param address the address to set
 	 */
-	public void setAddress(String address) {
+	public void setAddress(AddressDTO address) {
 		this.address = address;
 	}
 
@@ -93,12 +61,7 @@ public class StoreDTO extends BaseDTO {
 	 */
 	@Override
 	public String toString() {
-		return "StoreDTO [" + 
-				"id=" + id + 
-				", name=" + name + 
-				", address=" + address + 
-				", uin=" + uin + 
-				", phone=" + phone
-				+ "]";
+		return "TraderDTO [address=" + address + ", uin=" + uin + ", phone=" + phone + ", getName()=" + getName()
+				+ ", getCode()=" + getCode() + ", isActive()=" + isActive() + "]";
 	}
 }

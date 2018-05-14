@@ -1,5 +1,6 @@
 package com.prod.inwise.dto;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 public abstract class BaseDTO {
+	
+	private BigInteger id;
 
 	private boolean active;
 	
@@ -22,6 +25,20 @@ public abstract class BaseDTO {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
 	private Timestamp modifiedTS;
 	
+	/**
+	 * @return the id
+	 */
+	public BigInteger getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
 	/**
 	 * @return the active
 	 */

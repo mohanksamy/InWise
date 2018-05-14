@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/item")
+@Path("/items")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Item Service")
 public class ItemResource {

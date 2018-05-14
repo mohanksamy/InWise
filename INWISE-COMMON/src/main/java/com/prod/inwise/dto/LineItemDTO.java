@@ -2,8 +2,6 @@ package com.prod.inwise.dto;
 
 public class LineItemDTO extends BaseDTO {
 
-	private Long id;
-
 	private InvoiceDTO invoice;
 
 	private ItemDTO item;
@@ -13,21 +11,6 @@ public class LineItemDTO extends BaseDTO {
 	private Float totalTax;
 
 	private Float totalPrice;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the invoice
@@ -102,14 +85,5 @@ public class LineItemDTO extends BaseDTO {
 	 */
 	public void setTotalPrice(Float totalPrice) {
 		this.totalPrice = totalPrice;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "LineItemDTO [id=" + id + ", invoice=" + invoice + ", item=" + item + ", quantity=" + quantity
-				+ ", totalTax=" + totalTax + ", totalPrice=" + totalPrice + "]";
 	}
 }

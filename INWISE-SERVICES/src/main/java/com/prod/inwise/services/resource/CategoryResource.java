@@ -38,10 +38,10 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/taxes")
+@Path("/categories")
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "Tax Service")
-public class TaxResource {
+@Api(value = "Category Service")
+public class CategoryResource {
 
 	@Autowired
 	private TaxRepository taxRepo;
@@ -71,7 +71,7 @@ public class TaxResource {
 		
 		Map<String, String> taxesMap = new HashMap<>();
 			
-		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getTrader().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getTrader().getName()).build().toString()));
+		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getTrader().getName(), uriInfo.getBaseUriBuilder().path(CategoryResource.class).path("store").path(tax.getTrader().getName()).build().toString()));
 		
 		return Response.status(OK).entity(taxesMap).build();
 	}

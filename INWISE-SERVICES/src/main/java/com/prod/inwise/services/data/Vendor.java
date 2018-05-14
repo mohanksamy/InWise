@@ -4,11 +4,11 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -25,11 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Vendor extends NameCodeModel {
 
-	@NotNull(message = "Address can't be null")
-	@NotBlank(message = "Address can't be blank")
-	@Column(name = "ADDRESS", nullable = false)
-	@ApiModelProperty
-	private String address;
+	@ManyToOne
+	@JoinColumn(name = "ADDRESS_ID", nullable = false)
+	@ApiModelProperty(name="Address", value="Address of the Trader")
+	private Address address;
 
 	@NotNull(message = "Phone can't be null")
 	@Column(name = "PHONE", nullable = false)
@@ -39,14 +38,14 @@ public class Vendor extends NameCodeModel {
 	/**
 	 * @return the address
 	 */
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
 	/**
 	 * @param address the address to set
 	 */
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

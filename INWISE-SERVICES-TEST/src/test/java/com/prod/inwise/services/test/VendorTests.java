@@ -22,7 +22,7 @@ public class VendorTests extends AbstractTests {
 
 		vendorDTO.setName("EFresh");
 		vendorDTO.setCode("1234");
-		vendorDTO.setAddress("Bangalore");
+//		vendorDTO.setAddress("Bangalore");
 		vendorDTO.setPhone(new BigInteger("917760488623"));
 
 		vendorDTO.setActive(true);

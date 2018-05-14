@@ -1,5 +1,7 @@
 package com.prod.inwise.services.repo;
 
+import java.math.BigInteger;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +14,5 @@ import com.prod.inwise.services.data.StockHistory;
  *
  */
 @Repository
-public interface StockHistoryRepository extends CrudRepository<StockHistory, Long> {
+public interface StockHistoryRepository extends CrudRepository<StockHistory, BigInteger> {
 }

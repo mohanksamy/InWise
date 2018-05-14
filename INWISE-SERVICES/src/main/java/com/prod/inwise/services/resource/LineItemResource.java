@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/lineItem")
+@Path("/lineItems")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "LineItem Service")
 public class LineItemResource {

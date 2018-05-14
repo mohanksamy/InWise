@@ -25,23 +25,23 @@ public interface Constants {
 	// Resources
 	public static final String RESOURCE_PATH_HEALTH 			= "health";
 
-	public static final String RESOURCE_PATH_STORE 			= "store";
+	public static final String RESOURCE_PATH_TRADERS 		= "traders";
 
-	public static final String RESOURCE_PATH_TAX 			= "tax";
+	public static final String RESOURCE_PATH_TAX 			= "taxes";
 
-	public static final String RESOURCE_PATH_ITEM 			= "item";
+	public static final String RESOURCE_PATH_ITEM 			= "items";
 
-	public static final String RESOURCE_PATH_INVOICE 		= "invoice";
+	public static final String RESOURCE_PATH_INVOICE 		= "invoices";
 
-	public static final String RESOURCE_PATH_LINEITEM 		= "lineItem";
+	public static final String RESOURCE_PATH_LINEITEM 		= "lineItems";
 
-	public static final String RESOURCE_PATH_STOCK 			= "stock";
+	public static final String RESOURCE_PATH_STOCK 			= "stocks";
 
-	public static final String RESOURCE_PATH_STOCK_BATCH 	= "stockBatch";
+	public static final String RESOURCE_PATH_STOCK_BATCH 	= "stockBatches";
 
-	public static final String RESOURCE_PATH_STOCK_HISTORY 	= "stockHistory";
+	public static final String RESOURCE_PATH_STOCK_HISTORY 	= "stockHistories";
 
-	public static final String RESOURCE_PATH_VENDOR 			= "vendor";
+	public static final String RESOURCE_PATH_VENDOR 			= "vendors";
 	
 	// APP Properties
 	public static final String APP_USER						= "APP-SERVICES";

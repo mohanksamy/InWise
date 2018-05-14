@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/invoice")
+@Path("/invoices")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Invoice Service")
 public class InvoiceResource {

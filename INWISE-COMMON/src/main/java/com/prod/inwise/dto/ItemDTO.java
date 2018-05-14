@@ -2,66 +2,29 @@ package com.prod.inwise.dto;
 
 import java.math.BigInteger;
 
-import com.prod.inwise.enums.Brand;
-import com.prod.inwise.enums.Category;
-import com.prod.inwise.enums.Size;
-import com.prod.inwise.enums.SubCategory;
-
 /**
  * @author mohan_kandasamy
  *
  */
-public class ItemDTO extends BaseDTO {
+public class ItemDTO extends NameCodeDTO {
 	
-	private Long id;
-	
-	private String name;
-
 	private BigInteger partNo;
 
 	private Float price;
 
 	private String hsnSac;
 
-	private Category category;
+	private CategoryDTO category;
 
-	private SubCategory subCategory;
+	private SubCategoryDTO subCategory;
 
-	private Brand brand;
+	private BrandDTO brand;
 
-	private Size size;
+	private ModelDTO model;
 
-	private StoreDTO store;
+	private TraderDTO trader;
 	
 	private TaxDTO tax;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	/**
 	 * @return the partNo
@@ -104,75 +67,89 @@ public class ItemDTO extends BaseDTO {
 	public void setHsnSac(String hsnSac) {
 		this.hsnSac = hsnSac;
 	}
-
+	
 	/**
 	 * @return the category
 	 */
-	public Category getCategory() {
+	public CategoryDTO getCategory() {
 		return category;
 	}
 
 	/**
 	 * @param category the category to set
 	 */
-	public void setCategory(Category category) {
+	public void setCategory(CategoryDTO category) {
 		this.category = category;
 	}
 
 	/**
 	 * @return the subCategory
 	 */
-	public SubCategory getSubCategory() {
+	public SubCategoryDTO getSubCategory() {
 		return subCategory;
 	}
 
 	/**
 	 * @param subCategory the subCategory to set
 	 */
-	public void setSubCategory(SubCategory subCategory) {
+	public void setSubCategory(SubCategoryDTO subCategory) {
 		this.subCategory = subCategory;
 	}
 
 	/**
 	 * @return the brand
 	 */
-	public Brand getBrand() {
+	public BrandDTO getBrand() {
 		return brand;
 	}
 
 	/**
 	 * @param brand the brand to set
 	 */
-	public void setBrand(Brand brand) {
+	public void setBrand(BrandDTO brand) {
 		this.brand = brand;
 	}
 
 	/**
-	 * @return the size
+	 * @return the model
 	 */
-	public Size getSize() {
-		return size;
+	public ModelDTO getModel() {
+		return model;
 	}
 
 	/**
-	 * @param size the size to set
+	 * @param model the model to set
 	 */
-	public void setSize(Size size) {
-		this.size = size;
+	public void setModel(ModelDTO model) {
+		this.model = model;
+	}
+
+	/**
+	 * @return the trader
+	 */
+	public TraderDTO getTrader() {
+		return trader;
+	}
+
+	/**
+	 * @param trader the trader to set
+	 */
+	public void setTrader(TraderDTO trader) {
+		this.trader = trader;
 	}
 
 	/**
 	 * @return the store
 	 */
-	public StoreDTO getStore() {
-		return store;
+	public TraderDTO getStore() {
+		return trader;
 	}
 
 	/**
 	 * @param store the store to set
 	 */
-	public void setStore(StoreDTO store) {
-		this.store = store;
+	public void setStore(TraderDTO store) {
+		this.trader = store;
 	}
 
 	/**
@@ -187,15 +164,5 @@ public class ItemDTO extends BaseDTO {
 	 */
 	public void setTax(TaxDTO tax) {
 		this.tax = tax;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "ItemDTO [id=" + id + ", name=" + name + ", partNo=" + partNo + ", price=" + price + ", hsnSac=" + hsnSac
-				+ ", category=" + category + ", subCategory=" + subCategory + ", brand=" + brand + ", size=" + size
-				+ "]";
 	}
 }

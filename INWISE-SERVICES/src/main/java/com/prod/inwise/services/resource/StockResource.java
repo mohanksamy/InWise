@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/stock")
+@Path("/stocks")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Stock Service")
 public class StockResource {

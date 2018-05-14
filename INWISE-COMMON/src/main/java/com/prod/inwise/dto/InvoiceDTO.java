@@ -2,9 +2,7 @@ package com.prod.inwise.dto;
 
 public class InvoiceDTO extends BaseDTO {
 
-	private Long id;
-
-	private StoreDTO store;
+	private TraderDTO trader;
 
 	private Float totalTax;
 
@@ -23,33 +21,17 @@ public class InvoiceDTO extends BaseDTO {
 	private String supplierReference;
 
 	/**
-	 * @return the id
+	 * @return the trader
 	 */
-	public Long getId() {
-		return id;
+	public TraderDTO getTrader() {
+		return trader;
 	}
 
 	/**
-	 * @param id
-	 *            the id to set
+	 * @param trader the trader to set
 	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the store
-	 */
-	public StoreDTO getStore() {
-		return store;
-	}
-
-	/**
-	 * @param store
-	 *            the store to set
-	 */
-	public void setStore(StoreDTO store) {
-		this.store = store;
+	public void setTrader(TraderDTO trader) {
+		this.trader = trader;
 	}
 
 	/**
@@ -170,16 +152,5 @@ public class InvoiceDTO extends BaseDTO {
 	 */
 	public void setSupplierReference(String supplierReference) {
 		this.supplierReference = supplierReference;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "InvoiceDTO [id=" + id + ", store=" + store + ", totalTax=" + totalTax + ", totalPrice=" + totalPrice
-				+ ", buyerName=" + buyerName + ", dispatchedThrough=" + dispatchedThrough + ", dispatchedDocumentNo="
-				+ dispatchedDocumentNo + ", destination=" + destination + ", modeOfPayment=" + modeOfPayment
-				+ ", supplierReference=" + supplierReference + "]";
 	}
 }

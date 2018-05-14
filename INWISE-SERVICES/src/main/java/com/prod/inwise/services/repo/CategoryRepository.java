@@ -6,24 +6,23 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.prod.inwise.services.data.Category;
 import com.prod.inwise.services.data.Tax;
 
 /**
- * Repository class for Tax entity
+ * Repository class for Category entity
  * 
- * @author Logu
+ * @author mohan_kandasamy
  *
  */
 @Repository
-public interface TaxRepository extends CrudRepository<Tax, BigInteger> {
+public interface CategoryRepository extends CrudRepository<Category, BigInteger> {
 
 	/**
-	 * Method to find Tax by given Store name.
+	 * Method to find Category by given Trader name.
 	 * 
 	 * @param name
 	 * @return
 	 */
 	public Tax findByTraderNameIgnoreCase(@Param("name") String name);
-	
-//	public Tax findByTraderId(@Param("storeId") BigInteger storeId);
 }

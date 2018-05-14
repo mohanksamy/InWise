@@ -1,5 +1,6 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.services.util.Utils.isNull;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.Vendor;
+import com.prod.inwise.services.repo.AddressRepository;
 import com.prod.inwise.services.repo.VendorRepository;
 
 import io.swagger.annotations.Api;
@@ -37,6 +39,9 @@ public class VendorResource {
 
 	@Autowired
 	private VendorRepository vendorRepo;
+	
+	@Autowired
+	private AddressRepository addressRepo;
 
 	@POST
 	@ApiOperation(value = "Create Vendor", notes = "Create vendor model")
@@ -48,6 +53,11 @@ public class VendorResource {
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error")})
 	public Response createVendor(Vendor vendor) {
+		
+		if ( isNull(vendor.getAddress().getId()) ) {
+			
+			vendor.setAddress(addressRepo.save(vendor.getAddress()));
+		}
 
 		vendorRepo.save(vendor);
 

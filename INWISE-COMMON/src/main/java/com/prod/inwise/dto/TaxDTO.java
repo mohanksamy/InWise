@@ -6,27 +6,11 @@ package com.prod.inwise.dto;
  */
 public class TaxDTO extends BaseDTO {
 	
-	private Long id;
-	
 	private Float cgst;
 	
 	private Float sgst;
 	
-	private StoreDTO store;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private TraderDTO trader;
 
 	/**
 	 * @return the cgst
@@ -57,24 +41,16 @@ public class TaxDTO extends BaseDTO {
 	}
 
 	/**
-	 * @return the store
+	 * @return the trader
 	 */
-	public StoreDTO getStore() {
-		return store;
+	public TraderDTO getTrader() {
+		return trader;
 	}
 
 	/**
-	 * @param store the store to set
+	 * @param trader the trader to set
 	 */
-	public void setStore(StoreDTO store) {
-		this.store = store;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "TaxDTO [id=" + id + ", cgst=" + cgst + ", sgst=" + sgst + ", store=" + store + "]";
+	public void setTrader(TraderDTO trader) {
+		this.trader = trader;
 	}
 }

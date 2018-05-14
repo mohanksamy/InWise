@@ -2,8 +2,6 @@ package com.prod.inwise.dto;
 
 public class StockHistoryDTO extends BaseDTO {
 
-	private Long id;
-
 	private StockBatchDTO stockBatch;
 
 	private ItemDTO item;
@@ -13,21 +11,6 @@ public class StockHistoryDTO extends BaseDTO {
 	private Long basePrice;
 
 	private Integer quantity;
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
-	 */
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	/**
 	 * @return the stockBatch
@@ -102,14 +85,5 @@ public class StockHistoryDTO extends BaseDTO {
 	 */
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "StockHistoryDTO [id=" + id + ", stockBatch=" + stockBatch + ", item=" + item + ", vendor=" + vendor
-				+ ", basePrice=" + basePrice + ", quantity=" + quantity + "]";
 	}
 }

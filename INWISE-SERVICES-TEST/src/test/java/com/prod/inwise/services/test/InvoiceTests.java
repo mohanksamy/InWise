@@ -1,13 +1,13 @@
 package com.prod.inwise.services.test;
 
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE;
-import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STORE;
+import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TRADERS;
 import static org.apache.http.HttpStatus.SC_OK;
 
 import org.junit.Test;
 
 import com.prod.inwise.dto.InvoiceDTO;
-import com.prod.inwise.dto.StoreDTO;
+import com.prod.inwise.dto.TraderDTO;
 
 /**
  * @author Logu
@@ -20,8 +20,8 @@ public class InvoiceTests extends AbstractTests {
 	@Test
 	public void createInvoice1() {
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -33,10 +33,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -46,8 +46,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-A";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -59,10 +59,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -72,8 +72,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-B";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -85,10 +85,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -98,8 +98,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-C";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -111,10 +111,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -124,8 +124,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-D";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -137,10 +137,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -150,8 +150,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-E";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -163,10 +163,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -176,8 +176,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-F";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -189,10 +189,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -202,8 +202,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-F";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -215,10 +215,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -228,8 +228,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-E";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -241,10 +241,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -254,8 +254,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-D";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -267,10 +267,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -280,8 +280,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-C";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -293,10 +293,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -306,8 +306,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-B";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -319,10 +319,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -332,8 +332,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-A";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -345,10 +345,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -358,8 +358,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-A";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -371,10 +371,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -384,8 +384,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-C";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -397,10 +397,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -410,8 +410,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-E";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -423,10 +423,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -436,8 +436,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-F";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -449,10 +449,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -462,8 +462,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-F";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -475,10 +475,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -488,8 +488,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-F";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -501,10 +501,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}
@@ -514,8 +514,8 @@ public class InvoiceTests extends AbstractTests {
 		
 		STORE_NAME = "STORE-B";
 
-		StoreDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_STORE, STORE_NAME)).andReturn()
-				.getBody().as(StoreDTO.class);
+		TraderDTO trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn()
+				.getBody().as(TraderDTO.class);
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
@@ -527,10 +527,10 @@ public class InvoiceTests extends AbstractTests {
 		invoice.setDestination("Tirupur");
 		invoice.setModeOfPayment("Cash");
 		invoice.setSupplierReference("123");
-		invoice.setStore(store);
+		invoice.setTrader(trader);
 
-		invoice.setCreatedUser(store.getCreatedUser());
-		invoice.setModifiedUser(store.getModifiedUser());
+		invoice.setCreatedUser(trader.getCreatedUser());
+		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 	}

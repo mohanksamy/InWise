@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
  *
  */
 @Component
-@Path("/stockBatch")
+@Path("/stockBatches")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Stock Batch Service")
 public class StockBatchResource {

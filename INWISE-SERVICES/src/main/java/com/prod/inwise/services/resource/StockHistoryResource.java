@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/stockHistory")
+@Path("/stockHistories")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "StockHistory Service")
 public class StockHistoryResource {
