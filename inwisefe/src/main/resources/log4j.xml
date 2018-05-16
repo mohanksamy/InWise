@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+       <!-- Appenders -->
+       <!-- Comment one of the "inwise" appender -->
+       <!-- ConsoleAppender for local testing -->
+          <!-- A Size-based log file that rolls over to a new file after 10000KB and keeps at most 10 log files -->
+        <appender name="inwise" class="org.apache.log4j.rolling.RollingFileAppender">
+             <rollingPolicy class="org.apache.log4j.rolling.FixedWindowRollingPolicy" >
+                             <param name="activeFileName" value="${catalina.home}/logs/inwise.log" />
+                             <param name="fileNamePattern" value="${catalina.home}/logs/inwise.log.%i" />
+                             <param name="minIndex" value="1" />
+                             <param name="maxIndex" value="10" />
+             </rollingPolicy>
+             <triggeringPolicy class="org.apache.log4j.rolling.SizeBasedTriggeringPolicy">
+                             <param name="maxFileSize" value="1048576" />
+             </triggeringPolicy>
+             <layout class="org.apache.log4j.PatternLayout">
+                             <param name="ConversionPattern" value="[%d] [%p %x] [%c] %m%n" />
+             </layout>
+        </appender>
+       <!-- Application Loggers -->
+       <logger name=com.prod.inwise.fe"  additivity="false"><level value="debug"/><appender-ref ref="inwise"/></logger>
+       <!-- 3rdparty Loggers -->
+       <!--  add/remove 3rd party loggers as required -->
+       <logger name="org.hibernate.SQL" additivity="false"><level value="debug"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.core"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>  
+       <logger name="org.springframework.beans"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.context"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.transaction"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.orm"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.orm.jpa" additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.web"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.validation"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.data"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.cache.annotation"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.ws.client"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.ws.server"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.security"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.ws"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.oxm"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="org.springframework.xml"  additivity="false"><level value="info"/><appender-ref ref="inwise"/></logger>
+       <logger name="net.sf.ehcache"  additivity="false"><level value="debug"/><appender-ref ref="inwise"/></logger>
+
+       <!-- Root Logger -->
+       <root><priority value="info"/><appender-ref ref="console"/></root>
+
+</log4j:configuration>

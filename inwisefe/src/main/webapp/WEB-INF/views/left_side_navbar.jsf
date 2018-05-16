@@ -1,0 +1,71 @@
+<form action="" method="post" name="navform">
+<table cellspacing="0" id="contentwrapper"><tr><td>
+	<div id="leftsideminimized">
+		<div id="expandsidebar"><a href="#"><span>Expand Sidebar</span></a></div>
+	</div>
+	<div id="leftside">
+		<div id="sidenav">
+			<div id="sidenavheader">
+<!-- 				<span><a href="#" class="hideicon" id="collapseallsidenav">Collapse All</a></span> -->
+<!-- 				<span><a href="#" class="expandicon" id="expandallsidenav">Expand All</a></span> -->
+<!-- 				<span><a href="#" class="hideicon" id="hidesidenav">Hide All</a></span> -->
+			</div>
+			<ul>
+				<li id="storeSetupHeader"><a href="#" class="closed">Store</a>
+					<ul>	
+						<li id="storeCreate" class="none">	
+							<a href ="addStore">create</a>
+						</li>
+						<li id="storeUpdate" class="none">
+							<a href ="editStore">update</a>
+						</li>
+						<li id="storeList" class="none">
+							<a href ="stores">list</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li id="itemSetupHeader"><a href="#" class="closed">Item</a>
+					<ul>	
+						<li id="itemCreate" class="none">	
+							<a href ="addItem">create</a>
+						</li>
+						<li id="itemUpdate" class="none">
+							<a href ="editItem">update</a>
+						</li>
+						<li id="itemList" class="none">
+							<a href ="items">list</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li id="invoiceSetupHeader"><a href="#" class="closed">Invoice</a>
+					<ul>	
+						<li id="invoiceCreate" class="none">	
+							<a href ="addInvoice">create</a>
+						</li>
+						<li id="invoiceUpdate" class="none">
+							<a href ="editInvoice">update</a>
+						</li>
+						<li id="invoiceList" class="none">
+							<a href ="invoices">list</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li id="reportSetupHeader"><a href="#" class="closed">Reports</a>
+					<ul>	
+						<li id="reports" class="none">	
+							<a href ="#">reports</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+<!-- end #leftside  --> 
+</td><td>
+</form>
+
+<div id="contentarea">	
+<div id="colwide">

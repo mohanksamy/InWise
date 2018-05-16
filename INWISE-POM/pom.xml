@@ -115,6 +115,7 @@
 			</activation>
 			<modules>
 				<module>../INWISE-COMMON</module>
+				<module>../inwisefe</module>
 				<module>../INWISE-FE</module>
 				<module>../INWISE-SERVICES</module>
 				<module>../INWISE-SERVICES-TEST</module>
