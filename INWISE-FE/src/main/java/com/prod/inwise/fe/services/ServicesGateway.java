@@ -26,7 +26,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.prod.inwise.dto.StoreDTO;
+import com.prod.inwise.dto.TraderDTO;
 
 /**
  * @author mohan_kandasamy
@@ -36,7 +36,7 @@ public class ServicesGateway {
 	
 	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
 	
-	public static StoreDTO getStore() throws Exception {
+	public static TraderDTO getTrader() throws Exception {
 		
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/store/Tucker Gymnasium", HttpMethod.GET, null);
 		
@@ -44,11 +44,11 @@ public class ServicesGateway {
 		
 		removeUnwantedElements(storeJson);
 		
-		StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
+		TraderDTO trader = (new ObjectMapper().treeToValue(storeJson, TraderDTO.class));
 		
-		System.out.println("Store details received from Server: " + store);
+		System.out.println("Store details received from Server: " + trader);
 		
-		return store;
+		return trader;
 		
 	}
 

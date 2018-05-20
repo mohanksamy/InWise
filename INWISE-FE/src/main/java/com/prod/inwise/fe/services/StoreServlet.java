@@ -1,6 +1,6 @@
 package com.prod.inwise.fe.services;
 
-import static com.prod.inwise.fe.services.ServicesGateway.getStore;
+import static com.prod.inwise.fe.services.ServicesGateway.getTrader;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +39,7 @@ public class StoreServlet extends HttpServlet {
 		
 		try {
 		
-			out.println(getStore().toString());
+			out.println(getTrader().toString());
 		
 		} catch (Exception e) {
 			
