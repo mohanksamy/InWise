@@ -11,16 +11,16 @@
 <!-- 				<span><a href="#" class="hideicon" id="hidesidenav">Hide All</a></span> -->
 			</div>
 			<ul>
-				<li id="storeSetupHeader"><a href="#" class="closed">Store</a>
+				<li id="traderSetupHeader"><a href="#" class="closed">Trader</a>
 					<ul>	
-						<li id="storeCreate" class="none">	
-							<a href ="addStore">create</a>
+						<li id="addTrader" class="none">	
+							<a href ="addTrader">create</a>
 						</li>
-						<li id="storeUpdate" class="none">
-							<a href ="editStore">update</a>
+						<li id="editTrader" class="none">
+							<a href ="editTrader">update</a>
 						</li>
-						<li id="storeList" class="none">
-							<a href ="stores">list</a>
+						<li id="traderList" class="none">
+							<a href ="traders">list</a>
 						</li>
 					</ul>
 				</li>

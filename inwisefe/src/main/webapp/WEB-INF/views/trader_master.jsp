@@ -2,18 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
-<%@ page import="com.prod.inwise.dto.StoreDTO"%>
+<%@ page import="com.prod.inwise.dto.TraderDTO"%>
 <%@ page import="java.util.*"%>
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>InWise Verion 1.0 - Store Master</title>
+<title>InWise Verion 1.0 - Trader Master</title>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
 <%
-	List<StoreDTO> dtos = (List<StoreDTO>) request.getAttribute("stores");
+	List<TraderDTO> dtos = (List<TraderDTO>) request.getAttribute("traders");
 // 	pageContext.setAttribute("dtos", stores);
 %>
 </head>
@@ -23,7 +23,7 @@
 <%@ include file="left_side_navbar.jsf"%>	
 	<nobr>
 		<div class="boxheader">
-			<span>Stores</span>
+			<span>Traders</span>
 		</div>
 	</nobr>
 
@@ -41,25 +41,21 @@
 						<tr>
 							<th class="column-name">&nbsp;</th>
 							<th class="column-name">&nbsp;</th>
-							<th class="column-name">Store Name</th>
+							<th class="column-name">Trader Name</th>
 							<th class="column-name">Address</th>
 							<th class="column-name">UIN</th>
 							<th class="column-name">Phone #</th>
 						</tr>
 					</thead>
 					<tbody>
-					<%
-					for(StoreDTO dto : dtos) {
-						 %>
 						<tr>
 							<td><a class="td-link" href="#">view</a></td>
 							<td><a class="td-link" href="#">edit</a></td>
-							<td><%= dto.getName() %></td>
-							<td><%= dto.getAddress() %></td>
-							<td><%= dto.getUin() %></td>
-							<td><%= dto.getPhone() %></td>
+							<td>VelStores</td>
+							<td>Bangalore</td>
+							<td>1234567</td>
+							<td>7760488623</td>
 						</tr>
-				<% } %>	
 					</tbody>
 				</table>
 			</td>

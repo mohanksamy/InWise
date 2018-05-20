@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<%@ page import="java.util.*"%>
 
 <head>
 
@@ -45,12 +46,14 @@
 							<td><a class="td-link" href="#">edit</a></td>
 							<td>CCTV System</td>
 							<td>1000</td>
+							<td>05-07-2018</td>
 						</tr>
 						<tr>
 							<td><a class="td-link" href="#">view</a></td>
 							<td><a class="td-link" href="#">edit</a></td>
 							<td>Fire Alarm</td>
 							<td>1050</td>
+							<td>05-07-2018</td>
 						</tr>
 					</tbody>
 				</table>
