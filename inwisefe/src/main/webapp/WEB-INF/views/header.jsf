@@ -1,0 +1,25 @@
+<table width="100%" cellspacing="0" id="pagewrapper"><tr><td>
+<div id="pageheader">
+  <div id="top-corner-links">
+  
+        Hi, Test	
+	
+		<a href="#">Admin</a>        
+        <a href="#">Help</a>
+      	<a href="#">About</a>
+      	<a href="javascript:applicationLogout()">Logout</a>
+  </div>
+
+  <div id="logo">
+  <a href="health"><img src="<c:url value="/resources/images/inwise_logo.png" />" width="144" height="59" /></a>
+  </div>
+  <div id="cologo">
+  </div>
+
+  <div id="subnav">
+	
+  </div>
+</div>
+<div id="content">
+<!-- <form action="#" method="post" name="customer_form"> -->
+<!-- </form> -->

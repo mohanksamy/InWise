@@ -1,0 +1,177 @@
+package com.prod.inwise.fe.services;
+
+import static com.prod.inwise.util.Constants.KEY_CREATEDTS;
+import static com.prod.inwise.util.Constants.KEY_MODIFIEDTS;
+
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.ws.rs.core.MediaType;
+
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.ClientHttpRequestFactory;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.prod.inwise.dto.ItemDTO;
+import com.prod.inwise.dto.StoreDTO;
+
+/**
+ * @author mohan_kandasamy
+ *
+ */
+public class ServicesGateway {
+	
+	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
+	
+	public static StoreDTO getStore() throws Exception {
+		
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/stores/Tucker Gymnasium", HttpMethod.GET, null);
+		
+		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>(){});
+		
+		removeUnwantedElements(storeJson);
+		
+		StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
+		
+		System.out.println("Store details received from Server: " + store);
+		
+		return store;
+		
+	}
+
+	public static List<StoreDTO> getStores() throws Exception {
+
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/stores", HttpMethod.GET, null);
+
+		List<JsonNode> storeJsons = new ObjectMapper().readValue(response.getBody(),
+				new TypeReference<List<JsonNode>>() {
+				});
+
+		List<StoreDTO> stores = new ArrayList<>();
+
+		for (JsonNode storeJson : storeJsons) {
+
+			removeUnwantedElements(storeJson);
+
+			StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
+
+			stores.add(store);
+
+		}
+
+		System.out.println("Store details received from Server: " + stores);
+
+		return stores;
+
+	}
+
+
+	public static Map<String, String> getItems() throws Exception {
+		
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/item/store/1001", HttpMethod.GET, null);
+		
+		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>(){});
+		
+		removeUnwantedElements(storeJson);
+		
+		Map<String, String> items = (Map<String, String>) (new ObjectMapper().treeToValue(storeJson, ItemDTO.class));
+		
+		System.out.println("Item details received from Server: " + items);
+		
+		return items;
+	}
+	
+	
+	private static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method, Object entity) {
+
+		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
+		
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+		
+		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
+		
+		// get session
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
+
+		// Populating headers
+		if ( null != headerProperties ) {
+
+			for ( Object key : headerProperties.keySet() ) {
+
+				headers.add(key.toString(), headerProperties.getProperty(key.toString()));
+			}
+		}
+
+		HttpEntity httpEntity = getHttpEntity(entity, headers);
+
+		ResponseEntity<String> response = null;
+
+		long startTime = System.currentTimeMillis();
+
+		response = restTemplate.exchange(uri, method, httpEntity, String.class);
+		
+		log.info("API call {} | Time taken(in ms) {}", uri, (System.currentTimeMillis() - startTime) );
+		
+		return response;
+	}
+	
+	private static ClientHttpRequestFactory getClientHttpRequestFactory() {
+//	    int timeout = 50000;
+	    
+		RequestConfig config = RequestConfig.custom().build();
+	    
+		CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
+	    
+	    return new HttpComponentsClientHttpRequestFactory(client);
+	}
+	
+	private static HttpEntity getHttpEntity(Object entity, HttpHeaders headers) {
+		
+		HttpEntity httpEntity = null;
+		
+		if ( null == entity ) {
+
+			httpEntity = new HttpEntity(headers);
+
+		} else {
+
+			httpEntity = new HttpEntity(entity, headers);
+		}
+		
+		return httpEntity;
+	}
+	
+	private static void removeUnwantedElements(JsonNode jsonNode) {
+		
+		// Removing unwanted elements
+		removeElementIfExists(jsonNode, KEY_CREATEDTS);
+		removeElementIfExists(jsonNode, KEY_MODIFIEDTS);
+	}
+	
+	private static void removeElementIfExists(JsonNode jsonNode, String elementName) {
+		
+		if ( jsonNode.has(elementName) & jsonNode instanceof ObjectNode ) {
+			
+			((ObjectNode) jsonNode).remove(elementName);
+		}
+	}
+}
