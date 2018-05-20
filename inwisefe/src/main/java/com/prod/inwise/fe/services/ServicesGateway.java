@@ -30,7 +30,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.prod.inwise.dto.ItemDTO;
-import com.prod.inwise.dto.StoreDTO;
+
+import com.prod.inwise.dto.TraderDTO;
 
 /**
  * @author mohan_kandasamy
@@ -40,15 +41,15 @@ public class ServicesGateway {
 	
 	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
 	
-	public static StoreDTO getStore() throws Exception {
+	public static TraderDTO getTrader() throws Exception {
 		
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/stores/Tucker Gymnasium", HttpMethod.GET, null);
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/Tucker Gymnasium", HttpMethod.GET, null);
 		
 		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>(){});
 		
 		removeUnwantedElements(storeJson);
 		
-		StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
+		TraderDTO store = (new ObjectMapper().treeToValue(storeJson, TraderDTO.class));
 		
 		System.out.println("Store details received from Server: " + store);
 		
@@ -56,31 +57,31 @@ public class ServicesGateway {
 		
 	}
 
-	public static List<StoreDTO> getStores() throws Exception {
-
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/stores", HttpMethod.GET, null);
-
-		List<JsonNode> storeJsons = new ObjectMapper().readValue(response.getBody(),
-				new TypeReference<List<JsonNode>>() {
-				});
-
-		List<StoreDTO> stores = new ArrayList<>();
-
-		for (JsonNode storeJson : storeJsons) {
-
-			removeUnwantedElements(storeJson);
-
-			StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
-
-			stores.add(store);
-
-		}
-
-		System.out.println("Store details received from Server: " + stores);
-
-		return stores;
-
-	}
+//	public static List<StoreDTO> getStores() throws Exception {
+//
+//		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/stores", HttpMethod.GET, null);
+//
+//		List<JsonNode> storeJsons = new ObjectMapper().readValue(response.getBody(),
+//				new TypeReference<List<JsonNode>>() {
+//				});
+//
+//		List<StoreDTO> stores = new ArrayList<>();
+//
+//		for (JsonNode storeJson : storeJsons) {
+//
+//			removeUnwantedElements(storeJson);
+//
+//			StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
+//
+//			stores.add(store);
+//
+//		}
+//
+//		System.out.println("Store details received from Server: " + stores);
+//
+//		return stores;
+//
+//	}
 
 
 	public static Map<String, String> getItems() throws Exception {
