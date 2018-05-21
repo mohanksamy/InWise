@@ -55,6 +55,28 @@
 							<td>1050</td>
 							<td>05-07-2018</td>
 						</tr>
+												<tr>
+							<td><a class="td-link" href="#">view</a></td>
+							<td><a class="td-link" href="#">edit</a></td>
+							<td>Fire Alarm</td>
+							<td>1050</td>
+							<td>05-07-2018</td>
+						</tr>
+						<tr>
+							<td><a class="td-link" href="#">view</a></td>
+							<td><a class="td-link" href="#">edit</a></td>
+							<td>Fire Alarm</td>
+							<td>1050</td>
+							<td>05-07-2018</td>
+						</tr>
+						<tr>
+							<td><a class="td-link" href="#">view</a></td>
+							<td><a class="td-link" href="#">edit</a></td>
+							<td>Fire Alarm</td>
+							<td>1050</td>
+							<td>05-07-2018</td>
+						</tr>
+						
 					</tbody>
 				</table>
 			</td>

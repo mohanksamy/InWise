@@ -13,15 +13,22 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
 <%
-	TraderDTO trader = (TraderDTO) request.getAttribute("traders");
+	TraderDTO trader = (TraderDTO) request.getAttribute("trader");
 	pageContext.setAttribute("dto", trader);
 %>
 <script type="text/javascript">
 function initialize() {
   	document.detail_form.name.value = "<c:out value ="${dto.getName()}" />";
-  	document.detail_form.address.value = "<c:out value ="${dto.getAddress()}" />";
+  	//document.detail_form.address.value = "<c:out value ="${dto.getAddress()}" />";
   	document.detail_form.uin.value = "<c:out value ="${dto.getUin()}" />";
   	document.detail_form.phone.value = "<c:out value ="${dto.getPhone()}" />";
+ 	document.detail_form.street1.value = "<c:out value ="${dto.getAddress().getStreet1()}" />";
+  	document.detail_form.street2.value = "<c:out value ="${dto.getAddress().getStreet2()}" />";
+  	document.detail_form.city.value = "<c:out value ="${dto.getAddress().getCity()}" />";
+  	document.detail_form.state.value = "<c:out value ="${dto.getAddress().getState()}" />";
+  	document.detail_form.country.value = "<c:out value ="${dto.getAddress().getCountry()}" />";
+  	document.detail_form.postalCode.value = "<c:out value ="${dto.getAddress().getPostalCode()}" />";
+  	
 }
 </script>
 </head>
@@ -64,7 +71,27 @@ function initialize() {
 				<td class="optional"><label>Phone #:</label></td>
 				<td><input class="optional" type="text" id="phone" name="phone" maxlength="50" size="30" /> </td>
 			</tr>
-			
+			<tr>
+				<td class="optional"><label>Street1:</label></td>
+				<td><input class="optional" type="text" id="street1" name="street1" maxlength="50" size="30" /></td>
+				
+				<td class="optional"><label>Street2:</label></td>
+				<td><input class="optional" type="text" id="street2" name="street2" maxlength="50" size="30" /> </td>
+			</tr>
+			<tr>
+				<td class="optional"><label>City:</label></td>
+				<td><input class="optional" type="text" id="city" name="city" maxlength="50" size="30" /></td>
+				
+				<td class="optional"><label>State:</label></td>
+				<td><input class="optional" type="text" id="state" name="state" maxlength="50" size="30" /> </td>
+			</tr>
+			<tr>
+				<td class="optional"><label>Country:</label></td>
+				<td><input class="optional" type="text" id="country" name="country" maxlength="50" size="30" /></td>
+				
+				<td class="optional"><label>PostalCode:</label></td>
+				<td><input class="optional" type="text" id="postalCode" name="postalCode" maxlength="50" size="30" /> </td>
+			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
@@ -72,7 +99,7 @@ function initialize() {
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
  					<a href ="saveStore"><input type="button" class="button" name="Save" value="Save" /></a>
-  					<a href ="stores"><input type="button" class="button" name="Cancel" value="Cancel" /></a>
+  					<a href ="traders"><input type="button" class="button" name="Cancel" value="Cancel" /></a>
  				</td>
 			</tr>
 		</table>

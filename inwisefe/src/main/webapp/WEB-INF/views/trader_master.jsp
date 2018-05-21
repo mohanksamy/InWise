@@ -40,22 +40,57 @@
 					<thead>
 						<tr>
 							<th class="column-name">&nbsp;</th>
-							<th class="column-name">&nbsp;</th>
 							<th class="column-name">Trader Name</th>
 							<th class="column-name">Address</th>
 							<th class="column-name">UIN</th>
 							<th class="column-name">Phone #</th>
+							<th class="column-name">City</th>
+							<th class="column-name">State</th>
+							<th class="column-name">PostalCode</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
+							<td><a class="td-link" href="editTrader">view/Edit</a></td>
 							<td>VelStores</td>
 							<td>Bangalore</td>
 							<td>1234567</td>
 							<td>7760488623</td>
+							<td>Banagalore</td>
+							<td>Karnataka</td>
+							<td>560001</td>
 						</tr>
+						<tr>
+							<td><a class="td-link" href="editTrader">view/Edit</a></td>
+							<td>VelStores</td>
+							<td>Bangalore</td>
+							<td>1234567</td>
+							<td>7760488623</td>
+							<td>Banagalore</td>
+							<td>Karnataka</td>
+							<td>560001</td>
+						</tr>
+						<tr>
+							<td><a class="td-link" href="editTrader">view/Edit</a></td>
+							<td>VelStores</td>
+							<td>Bangalore</td>
+							<td>1234567</td>
+							<td>7760488623</td>
+							<td>Banagalore</td>
+							<td>Karnataka</td>
+							<td>560001</td>
+						</tr>
+						<tr>
+							<td><a class="td-link" href="editTrader">view/Edit</a></td>
+							<td>VelStores</td>
+							<td>Bangalore</td>
+							<td>1234567</td>
+							<td>7760488623</td>
+							<td>Banagalore</td>
+							<td>Karnataka</td>
+							<td>560001</td>
+						</tr>
+						
 					</tbody>
 				</table>
 			</td>
@@ -63,7 +98,7 @@
 
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
-				<a href="addStore"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a> 
+				<a href="addTrader"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a> 
 <!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
 		</tr>
 	</table>

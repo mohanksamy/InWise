@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import static com.prod.inwise.fe.services.ServicesGateway.getTrader;
 
 import com.prod.inwise.dto.TraderDTO;
 
@@ -34,21 +35,22 @@ public class TraderController {
 	@GetMapping(value = "/addTrader")
 	public String addTrader(Model model) throws Exception {
 
-//		TraderDTO dto = new TraderDTO();
-//
-//		model.addAttribute("trader", dto);
-//
+		TraderDTO dto = new TraderDTO();
+
+		model.addAttribute("trader", dto);
+
 		return "trader_detail";
 	}
 
 	@GetMapping(value = "/editTrader")
-	public String editStore(Model model) throws Exception {
+	public String editTrader(Model model) throws Exception {
 
-//		TraderDTO dto = getTrader();
-//
-//		model.addAttribute("trader", dto);
+		TraderDTO dto = getTrader();	
+
+		model.addAttribute("trader", dto);
 
 		return "trader_detail";
 	}
+
 
 }
