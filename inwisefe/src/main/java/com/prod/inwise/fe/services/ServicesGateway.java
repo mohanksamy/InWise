@@ -4,7 +4,6 @@ import static com.prod.inwise.util.Constants.KEY_CREATEDTS;
 import static com.prod.inwise.util.Constants.KEY_MODIFIEDTS;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -38,90 +37,106 @@ import com.prod.inwise.dto.TraderDTO;
  *
  */
 public class ServicesGateway {
-	
+
 	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
-	
-	public static TraderDTO getTrader() throws Exception {
-		
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/Tucker Gymnasium", HttpMethod.GET, null);
-		
-		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>(){});
-		
-		removeUnwantedElements(storeJson);
-		
-		TraderDTO store = (new ObjectMapper().treeToValue(storeJson, TraderDTO.class));
-		
-		System.out.println("Store details received from Server: " + store);
-		
-		return store;
-		
+
+	public static TraderDTO findTraderByName() throws Exception {
+
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/Tucker Gymnasium",
+				HttpMethod.GET, null);
+
+		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
+		});
+
+		removeUnwantedElements(traderJson);
+
+		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
+
+		System.out.println("Trader details received from Server: " + trader);
+
+		return trader;
+
 	}
 
-//	public static List<StoreDTO> getStores() throws Exception {
-//
-//		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/stores", HttpMethod.GET, null);
-//
-//		List<JsonNode> storeJsons = new ObjectMapper().readValue(response.getBody(),
-//				new TypeReference<List<JsonNode>>() {
-//				});
-//
-//		List<StoreDTO> stores = new ArrayList<>();
-//
-//		for (JsonNode storeJson : storeJsons) {
-//
-//			removeUnwantedElements(storeJson);
-//
-//			StoreDTO store = (new ObjectMapper().treeToValue(storeJson, StoreDTO.class));
-//
-//			stores.add(store);
-//
-//		}
-//
-//		System.out.println("Store details received from Server: " + stores);
-//
-//		return stores;
-//
-//	}
+	public static TraderDTO findTraderById() throws Exception {
 
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1001", HttpMethod.GET,
+				null);
+
+		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
+		});
+
+		removeUnwantedElements(traderJson);
+
+		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
+
+		System.out.println("Trader details received from Server: " + trader);
+
+		return trader;
+
+	}
+
+	public static List<TraderDTO> findAllTraders() throws Exception {
+
+		// ResponseEntity<String> response = invokeAPI(null,
+		// "http://localhost:8080/inwise/traders", HttpMethod.GET, null);
+		//
+		// JsonObject traderJson = new ObjectMapper().readValue(response.getBody(), new
+		// TypeReference<JsonNode>(){});
+		//
+		// //removeUnwantedElements(traderJson);
+		//
+		// TraderDTO trader = (new ObjectMapper().treeToValue(traderJson,
+		// TraderDTO.class));
+		//
+		// System.out.println("Trader details received from Server: " + trader);
+		//
+		// return trader;
+		return null;
+	}
 
 	public static Map<String, String> getItems() throws Exception {
-		
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/item/store/1001", HttpMethod.GET, null);
-		
-		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>(){});
-		
+
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/item/store/1001",
+				HttpMethod.GET, null);
+
+		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
+		});
+
 		removeUnwantedElements(storeJson);
-		
+
+		@SuppressWarnings("unchecked")
 		Map<String, String> items = (Map<String, String>) (new ObjectMapper().treeToValue(storeJson, ItemDTO.class));
-		
+
 		System.out.println("Item details received from Server: " + items);
-		
+
 		return items;
 	}
-	
-	
-	private static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method, Object entity) {
+
+	private static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method,
+			Object entity) {
 
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
-		
+
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
-		
+
 		restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
-		
+
 		// get session
 		HttpHeaders headers = new HttpHeaders();
-		
+
 		headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
 
 		// Populating headers
-		if ( null != headerProperties ) {
+		if (null != headerProperties) {
 
-			for ( Object key : headerProperties.keySet() ) {
+			for (Object key : headerProperties.keySet()) {
 
 				headers.add(key.toString(), headerProperties.getProperty(key.toString()));
 			}
 		}
 
+		@SuppressWarnings("rawtypes")
 		HttpEntity httpEntity = getHttpEntity(entity, headers);
 
 		ResponseEntity<String> response = null;
@@ -129,27 +144,28 @@ public class ServicesGateway {
 		long startTime = System.currentTimeMillis();
 
 		response = restTemplate.exchange(uri, method, httpEntity, String.class);
-		
-		log.info("API call {} | Time taken(in ms) {}", uri, (System.currentTimeMillis() - startTime) );
-		
+
+		log.info("API call {} | Time taken(in ms) {}", uri, (System.currentTimeMillis() - startTime));
+
 		return response;
 	}
-	
+
 	private static ClientHttpRequestFactory getClientHttpRequestFactory() {
-//	    int timeout = 50000;
-	    
+		// int timeout = 50000;
+
 		RequestConfig config = RequestConfig.custom().build();
-	    
+
 		CloseableHttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(config).build();
-	    
-	    return new HttpComponentsClientHttpRequestFactory(client);
+
+		return new HttpComponentsClientHttpRequestFactory(client);
 	}
-	
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private static HttpEntity getHttpEntity(Object entity, HttpHeaders headers) {
-		
+
 		HttpEntity httpEntity = null;
-		
-		if ( null == entity ) {
+
+		if (null == entity) {
 
 			httpEntity = new HttpEntity(headers);
 
@@ -157,21 +173,21 @@ public class ServicesGateway {
 
 			httpEntity = new HttpEntity(entity, headers);
 		}
-		
+
 		return httpEntity;
 	}
-	
+
 	private static void removeUnwantedElements(JsonNode jsonNode) {
-		
+
 		// Removing unwanted elements
 		removeElementIfExists(jsonNode, KEY_CREATEDTS);
 		removeElementIfExists(jsonNode, KEY_MODIFIEDTS);
 	}
-	
+
 	private static void removeElementIfExists(JsonNode jsonNode, String elementName) {
-		
-		if ( jsonNode.has(elementName) & jsonNode instanceof ObjectNode ) {
-			
+
+		if (jsonNode.has(elementName) & jsonNode instanceof ObjectNode) {
+
 			((ObjectNode) jsonNode).remove(elementName);
 		}
 	}

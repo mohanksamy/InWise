@@ -1,9 +1,9 @@
 package com.prod.inwise.fe.services;
 
-import static com.prod.inwise.fe.services.ServicesGateway.getTrader;
+//import static com.prod.inwise.fe.services.ServicesGateway.getTrader;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

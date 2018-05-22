@@ -37,10 +37,10 @@
 			</tr>
 			<tr>
 				<td class="mandatory"><label>Item Name:</label></td>
-				<td><input type="text" id="itemName" name="itemName" maxlength="40" size="30" /></td>
+				<td><input type="text" id="itemName" name="itemName" maxlength="40" size="25" /></td>
 
 				<td class="optional"><label>Price:</label></td>
-				<td><input type="text" id="price" name="price" maxlength="40" size="30" /></td>
+				<td><input type="text" id="price" name="price" maxlength="40" size="25" /></td>
 			</tr>
 			
 			<tr>
@@ -49,7 +49,6 @@
 					<label>CGST:</label>
 					<input class="optional" type="text" id="centralTax" name="centralTax" maxlength="12" size="10" />
 					&nbsp;
-					<br /><br />
 					<label>SGST:</label>
 					<input class="optional" type="text" id="stateTax" name="stateTax" maxlength="12" size="10" />
 				</td>

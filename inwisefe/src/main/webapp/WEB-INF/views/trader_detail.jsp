@@ -19,7 +19,7 @@
 <script type="text/javascript">
 function initialize() {
   	document.detail_form.name.value = "<c:out value ="${dto.getName()}" />";
-  	//document.detail_form.address.value = "<c:out value ="${dto.getAddress()}" />";
+  	document.detail_form.code.value = "<c:out value ="${dto.getCode()}" />";
   	document.detail_form.uin.value = "<c:out value ="${dto.getUin()}" />";
   	document.detail_form.phone.value = "<c:out value ="${dto.getPhone()}" />";
  	document.detail_form.street1.value = "<c:out value ="${dto.getAddress().getStreet1()}" />";
@@ -59,38 +59,38 @@ function initialize() {
 			</tr>
 			<tr>
 				<td class="mandatory"><label>Trader Name:</label></td>
-				<td><input type="text" id="name" name="name" maxlength="40" size="30" /></td>
+				<td><input type="text" id="name" name="name" maxlength="40" size="25" /></td>
 
-				<td class="optional"><label>Address:</label></td>
-				<td><input type="text" id="address" name="address" maxlength="40" size="30" /></td>
+				<td class="optional"><label>Code:</label></td>
+				<td><input type="text" id="code" name="code" maxlength="40" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="optional"><label>UIN:</label></td>
-				<td><input class="optional" type="text" id="uin" name="uin" maxlength="50" size="30" /></td>
+				<td><input class="optional" type="text" id="uin" name="uin" maxlength="10" size="25" /></td>
 				
 				<td class="optional"><label>Phone #:</label></td>
-				<td><input class="optional" type="text" id="phone" name="phone" maxlength="50" size="30" /> </td>
+				<td><input class="optional" type="text" id="phone" name="phone" maxlength="15" size="25" /> </td>
 			</tr>
 			<tr>
 				<td class="optional"><label>Street1:</label></td>
-				<td><input class="optional" type="text" id="street1" name="street1" maxlength="50" size="30" /></td>
+				<td><input class="optional" type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
 				
 				<td class="optional"><label>Street2:</label></td>
-				<td><input class="optional" type="text" id="street2" name="street2" maxlength="50" size="30" /> </td>
+				<td><input class="optional" type="text" id="street2" name="street2" maxlength="30" size="25" /> </td>
 			</tr>
 			<tr>
 				<td class="optional"><label>City:</label></td>
-				<td><input class="optional" type="text" id="city" name="city" maxlength="50" size="30" /></td>
+				<td><input class="optional" type="text" id="city" name="city" maxlength="20" size="25" /></td>
 				
 				<td class="optional"><label>State:</label></td>
-				<td><input class="optional" type="text" id="state" name="state" maxlength="50" size="30" /> </td>
+				<td><input class="optional" type="text" id="state" name="state" maxlength="20" size="25" /> </td>
 			</tr>
 			<tr>
 				<td class="optional"><label>Country:</label></td>
-				<td><input class="optional" type="text" id="country" name="country" maxlength="50" size="30" /></td>
+				<td><input class="optional" type="text" id="country" name="country" maxlength="20" size="25" /></td>
 				
 				<td class="optional"><label>PostalCode:</label></td>
-				<td><input class="optional" type="text" id="postalCode" name="postalCode" maxlength="50" size="30" /> </td>
+				<td><input class="optional" type="text" id="postalCode" name="postalCode" maxlength="20" size="25" /> </td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

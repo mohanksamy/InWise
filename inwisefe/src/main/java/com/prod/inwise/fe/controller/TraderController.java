@@ -5,11 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import static com.prod.inwise.fe.services.ServicesGateway.getTrader;
+import static com.prod.inwise.fe.services.ServicesGateway.findTraderByName;
 
 import com.prod.inwise.dto.TraderDTO;
-
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class TraderController {
 	public String getTraderList(Model model) throws Exception {
 		logger.info("Entering into getTraderList...");
 
-		// List<TraderDTO> dtos = getTrader();
+		// List<TraderDTO> dtos = findAllTraders();
 
 		List<TraderDTO> dtos = new ArrayList<>();
 
@@ -45,12 +43,10 @@ public class TraderController {
 	@GetMapping(value = "/editTrader")
 	public String editTrader(Model model) throws Exception {
 
-		TraderDTO dto = getTrader();	
+		TraderDTO dto = findTraderByName();
 
 		model.addAttribute("trader", dto);
 
 		return "trader_detail";
 	}
-
-
 }

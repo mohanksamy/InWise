@@ -35,10 +35,10 @@ function initData() {
 	<form action="" method="post" name="detail_form" accept-charset="UTF-8">
 		<table cellspacing="2" width="100%" border="0" class="formtable">
  			<tr>
- 				<td colspan="4" align="left" valign="top">
+<!--  				<td colspan="4" align="left" valign="top"> -->
 <!--  					<a href ="saveInvoice"><input type="button" class="button" name="Save" value="Save" onClick="#" /></a> -->
 <!--   					<a href ="invoices"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a> -->
-  				</td>
+<!--   				</td> -->
   			</tr>
 			<tr>
 				<td colspan="4">&nbsp;
@@ -49,38 +49,38 @@ function initData() {
 			</tr>
 			<tr>
 				<td class="mandatory"><label>Bank Name:</label></td>
-				<td><input type="text" id="bankName" name="bankName" maxlength="40" size="30" /></td>
+				<td><input type="text" id="bankName" name="bankName" maxlength="40" size="25" /></td>
 
 				<td class="optional"><label>Invoice Date:</label></td>
-				<td><input type="text" id="invoiceDate" name="invoiceDate" maxlength="40" size="30" /></td>
+				<td><input type="text" id="invoiceDate" name="invoiceDate" maxlength="40" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="optional"><label>Region:</label></td>
-				<td><input class="optional" type="text" id="region" name="region" maxlength="50" size="30" /></td>
+				<td><input class="optional" type="text" id="region" name="region" maxlength="50" size="25" /></td>
 				
 				<td class="optional"><label>Invoice #:</label></td>
-				<td><input class="optional" type="text" id="invoiceNo" name="invoiceNo" maxlength="50" size="30" /> </td>
+				<td><input class="optional" type="text" id="invoiceNo" name="invoiceNo" maxlength="50" size="25" /> </td>
 			</tr>
 			<tr>
 				<td class="optional"><label>Branch:</label></td>
-				<td><input class="optional" type="text" id="branch" name="branch" maxlength="40" size="30" /> </td>
+				<td><input class="optional" type="text" id="branch" name="branch" maxlength="40" size="25" /> </td>
 				
 				<td class="optional"><label>Order Reference:</label></td>
-				<td><input class="optional" type="text" id="orderReference" name="orderReference" maxlength="12" size="30" /></td>
+				<td><input class="optional" type="text" id="orderReference" name="orderReference" maxlength="12" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="optional"><label>Address:</label></td>
-				<td><input class="optional" type="text" id="address" name="address" maxlength="50" size="30" /></td>
+				<td><input class="optional" type="text" id="address" name="address" maxlength="50" size="25" /></td>
 				
 				<td class="optional"><label>Price:</label></td>
-				<td><input class="optional" type="text" id="price" name="price" maxlength="12" size="30" /></td>
+				<td><input class="optional" type="text" id="price" name="price" maxlength="12" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="mandatory"><label>GST #:</label></td>
-				<td><input class="optional" type="text" id="gstNo" name="gstNo" maxlength="12" size="30" /></td>
+				<td><input class="optional" type="text" id="gstNo" name="gstNo" maxlength="12" size="25" /></td>
 				
 				<td class="optional"><label>Quantity:</label></td>
-				<td><input class="optional" type="text" id="quantity" name="quantity" maxlength="12" size="30" /></td>
+				<td><input class="optional" type="text" id="quantity" name="quantity" maxlength="12" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="optional"><label>Description:</label></td>
