@@ -46,7 +46,7 @@ public class StockServiceImpl implements StockService {
 			stockHistory.setStockBatch(stockBatch);
 			
 			stockHistoryRepo.save(stockHistory);
-			
+
 			Stock stock = stockRepo.findByItemId(stockHistory.getItem().getId());
 			
 			// No items exist in Stock

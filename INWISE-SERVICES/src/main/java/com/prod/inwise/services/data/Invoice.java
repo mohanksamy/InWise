@@ -1,5 +1,7 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -38,33 +40,14 @@ public class Invoice extends BaseModel {
 	@ApiModelProperty
 	private Float totalPrice;
 
-	@Column(name = "BUYER_NAME")
+	@ManyToOne
+	@JoinColumn(name = "BUYER_ID")
 	@ApiModelProperty
-	private String buyerName;
+	private Buyer buyer;
 	
-	@Column(name = "BUYER_ADDRESS")
+	@Column(name = "PHONE")
 	@ApiModelProperty
-	private String buyerAddress;
-	
-	@Column(name = "REFERENCE_1")
-	@ApiModelProperty
-	private String reference1;
-
-	@Column(name = "REFERENCE_2")
-	@ApiModelProperty
-	private String reference2;
-
-	@Column(name = "REFERENCE_3")
-	@ApiModelProperty
-	private String reference3;
-
-	@Column(name = "REFERENCE_4")
-	@ApiModelProperty
-	private String reference4;
-
-	@Column(name = "REFERENCE_5")
-	@ApiModelProperty
-	private String reference5;
+	private BigInteger phone;
 
 	/**
 	 * @return the trader
@@ -109,100 +92,30 @@ public class Invoice extends BaseModel {
 	}
 
 	/**
-	 * @return the buyerName
+	 * @return the buyer
 	 */
-	public String getBuyerName() {
-		return buyerName;
+	public Buyer getBuyer() {
+		return buyer;
 	}
 
 	/**
-	 * @param buyerName the buyerName to set
+	 * @param buyer the buyer to set
 	 */
-	public void setBuyerName(String buyerName) {
-		this.buyerName = buyerName;
+	public void setBuyer(Buyer buyer) {
+		this.buyer = buyer;
 	}
 
 	/**
-	 * @return the buyerAddress
+	 * @return the phone
 	 */
-	public String getBuyerAddress() {
-		return buyerAddress;
+	public BigInteger getPhone() {
+		return phone;
 	}
 
 	/**
-	 * @param buyerAddress the buyerAddress to set
+	 * @param phone the phone to set
 	 */
-	public void setBuyerAddress(String buyerAddress) {
-		this.buyerAddress = buyerAddress;
-	}
-
-	/**
-	 * @return the reference1
-	 */
-	public String getReference1() {
-		return reference1;
-	}
-
-	/**
-	 * @param reference1 the reference1 to set
-	 */
-	public void setReference1(String reference1) {
-		this.reference1 = reference1;
-	}
-
-	/**
-	 * @return the reference2
-	 */
-	public String getReference2() {
-		return reference2;
-	}
-
-	/**
-	 * @param reference2 the reference2 to set
-	 */
-	public void setReference2(String reference2) {
-		this.reference2 = reference2;
-	}
-
-	/**
-	 * @return the reference3
-	 */
-	public String getReference3() {
-		return reference3;
-	}
-
-	/**
-	 * @param reference3 the reference3 to set
-	 */
-	public void setReference3(String reference3) {
-		this.reference3 = reference3;
-	}
-
-	/**
-	 * @return the reference4
-	 */
-	public String getReference4() {
-		return reference4;
-	}
-
-	/**
-	 * @param reference4 the reference4 to set
-	 */
-	public void setReference4(String reference4) {
-		this.reference4 = reference4;
-	}
-
-	/**
-	 * @return the reference5
-	 */
-	public String getReference5() {
-		return reference5;
-	}
-
-	/**
-	 * @param reference5 the reference5 to set
-	 */
-	public void setReference5(String reference5) {
-		this.reference5 = reference5;
+	public void setPhone(BigInteger phone) {
+		this.phone = phone;
 	}
 }

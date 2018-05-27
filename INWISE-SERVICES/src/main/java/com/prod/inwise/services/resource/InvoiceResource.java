@@ -48,7 +48,7 @@ public class InvoiceResource {
 	private InvoiceService invoiceService;
 
 	@POST
-	@Path("/store/{id}")
+	@Path("/traders/{id}")
 	@ApiOperation(value = "Create Invoice", notes = "Create invoice model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),

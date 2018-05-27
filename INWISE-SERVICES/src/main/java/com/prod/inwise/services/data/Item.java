@@ -39,22 +39,22 @@ public class Item extends NameCodeModel {
 	private String hsnSac;
 
 	@ManyToOne
-	@JoinColumn(name = "CATEGORY_ID", nullable = false)
+	@JoinColumn(name = "CATEGORY_ID")
 	@ApiModelProperty
 	private Category category;
 
 	@ManyToOne
-	@JoinColumn(name = "SUBCATEGORY_ID", nullable = false)
+	@JoinColumn(name = "SUBCATEGORY_ID")
 	@ApiModelProperty
 	private SubCategory subCategory;
 
 	@ManyToOne
-	@JoinColumn(name = "BRAND_ID", nullable = false)
+	@JoinColumn(name = "BRAND_ID")
 	@ApiModelProperty
 	private Brand brand;
 
 	@ManyToOne
-	@JoinColumn(name = "MODEL_ID", nullable = false)
+	@JoinColumn(name = "MODEL_ID")
 	@ApiModelProperty
 	private Model model;
 
