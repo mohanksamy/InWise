@@ -4,6 +4,8 @@ import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TRADERS;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import com.prod.inwise.dto.InvoiceDTO;
@@ -25,8 +27,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(18f);
-		invoice.setTotalPrice(343f);
+		invoice.setTotalTax(new BigDecimal(18f));
+		invoice.setTotalPrice(new BigDecimal(343f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -51,8 +53,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(13f);
-		invoice.setTotalPrice(345f);
+		invoice.setTotalTax(new BigDecimal(13f));
+		invoice.setTotalPrice(new BigDecimal(345f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -77,8 +79,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(17f);
-		invoice.setTotalPrice(474f);
+		invoice.setTotalTax(new BigDecimal(17f));
+		invoice.setTotalPrice(new BigDecimal(474f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -103,8 +105,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(74f);
-		invoice.setTotalPrice(488f);
+		invoice.setTotalTax(new BigDecimal(74f));
+		invoice.setTotalPrice(new BigDecimal(488f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -129,8 +131,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(475f);
-		invoice.setTotalPrice(9674f);
+		invoice.setTotalTax(new BigDecimal(475f));
+		invoice.setTotalPrice(new BigDecimal(9674f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -155,8 +157,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(584f);
-		invoice.setTotalPrice(5758f);
+		invoice.setTotalTax(new BigDecimal(584f));
+		invoice.setTotalPrice(new BigDecimal(5758f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -181,8 +183,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(43f);
-		invoice.setTotalPrice(6964f);
+		invoice.setTotalTax(new BigDecimal(43f));
+		invoice.setTotalPrice(new BigDecimal(6964f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -207,8 +209,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(5675f);
-		invoice.setTotalPrice(96853f);
+		invoice.setTotalTax(new BigDecimal(5675f));
+		invoice.setTotalPrice(new BigDecimal(96853f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -233,8 +235,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(345f);
-		invoice.setTotalPrice(5753f);
+		invoice.setTotalTax(new BigDecimal(345f));
+		invoice.setTotalPrice(new BigDecimal(5753f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -259,8 +261,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(45f);
-		invoice.setTotalPrice(56754f);
+		invoice.setTotalTax(new BigDecimal(45f));
+		invoice.setTotalPrice(new BigDecimal(56754f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -285,8 +287,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(45f);
-		invoice.setTotalPrice(56758f);
+		invoice.setTotalTax(new BigDecimal(45f));
+		invoice.setTotalPrice(new BigDecimal(56758f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -311,8 +313,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(456f);
-		invoice.setTotalPrice(56858f);
+		invoice.setTotalTax(new BigDecimal(456f));
+		invoice.setTotalPrice(new BigDecimal(56858f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -337,8 +339,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(45675f);
-		invoice.setTotalPrice(474452f);
+		invoice.setTotalTax(new BigDecimal(45675f));
+		invoice.setTotalPrice(new BigDecimal(474452f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -363,8 +365,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(34f);
-		invoice.setTotalPrice(45747f);
+		invoice.setTotalTax(new BigDecimal(34f));
+		invoice.setTotalPrice(new BigDecimal(45747f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -389,8 +391,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(57f);
-		invoice.setTotalPrice(567573f);
+		invoice.setTotalTax(new BigDecimal(57f));
+		invoice.setTotalPrice(new BigDecimal(567573f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -415,8 +417,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(574f);
-		invoice.setTotalPrice(567559f);
+		invoice.setTotalTax(new BigDecimal(574f));
+		invoice.setTotalPrice(new BigDecimal(567559f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -441,8 +443,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(454f);
-		invoice.setTotalPrice(34636f);
+		invoice.setTotalTax(new BigDecimal(454f));
+		invoice.setTotalPrice(new BigDecimal(34636f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -467,8 +469,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(371f);
-		invoice.setTotalPrice(56753f);
+		invoice.setTotalTax(new BigDecimal(371f));
+		invoice.setTotalPrice(new BigDecimal(56753f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -493,8 +495,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(567f);
-		invoice.setTotalPrice(45747f);
+		invoice.setTotalTax(new BigDecimal(567f));
+		invoice.setTotalPrice(new BigDecimal(45747f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");
@@ -519,8 +521,8 @@ public class InvoiceTests extends AbstractTests {
 
 		InvoiceDTO invoice = new InvoiceDTO();
 
-		invoice.setTotalTax(23f);
-		invoice.setTotalPrice(346f);
+		invoice.setTotalTax(new BigDecimal(23f));
+		invoice.setTotalPrice(new BigDecimal(346f));
 		invoice.setBuyerName("eFresh");
 		invoice.setDispatchedThrough("Courier");
 		invoice.setDispatchedDocumentNo("12345");

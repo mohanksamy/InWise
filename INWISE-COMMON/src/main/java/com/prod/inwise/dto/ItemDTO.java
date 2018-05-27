@@ -1,5 +1,6 @@
 package com.prod.inwise.dto;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -10,7 +11,7 @@ public class ItemDTO extends NameCodeDTO {
 	
 	private BigInteger partNo;
 
-	private Float price;
+	private BigDecimal price;
 
 	private String hsnSac;
 
@@ -43,14 +44,14 @@ public class ItemDTO extends NameCodeDTO {
 	/**
 	 * @return the price
 	 */
-	public Float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(Float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

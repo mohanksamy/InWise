@@ -5,6 +5,8 @@ import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_LINEITEM;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import com.prod.inwise.dto.InvoiceDTO;
@@ -33,8 +35,8 @@ public class LineItemTests extends AbstractTests {
 		LineItemDTO lineItem = new LineItemDTO();
 
 		lineItem.setQuantity(100);
-		lineItem.setTotalTax(18f);
-		lineItem.setTotalPrice(10000f);
+		lineItem.setTotalTax(new BigDecimal(18f));
+		lineItem.setTotalPrice(new BigDecimal(10000f));
 
 		lineItem.setItem(item);
 		lineItem.setInvoice(invoice);
@@ -61,8 +63,8 @@ public class LineItemTests extends AbstractTests {
 		LineItemDTO lineItem = new LineItemDTO();
 
 		lineItem.setQuantity(100);
-		lineItem.setTotalTax(18f);
-		lineItem.setTotalPrice(10000f);
+		lineItem.setTotalTax(new BigDecimal(18f));
+		lineItem.setTotalPrice(new BigDecimal(10000f));
 
 		lineItem.setItem(item);
 		lineItem.setInvoice(invoice);

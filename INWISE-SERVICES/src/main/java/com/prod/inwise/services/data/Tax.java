@@ -1,5 +1,7 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -26,12 +28,12 @@ public class Tax extends BaseModel {
 	@NotNull(message = "CGST can't be null")
 	@Column(name = "CGST", nullable = false)
 	@ApiModelProperty
-	private Float cgst;
+	private BigDecimal cgst;
 
 	@NotNull(message = "SGST can't be null")
 	@Column(name = "SGST", nullable = false)
 	@ApiModelProperty
-	private Float sgst;
+	private BigDecimal sgst;
 
 	@OneToOne
 	@JoinColumn(name = "TRADER_ID", nullable = false)
@@ -41,28 +43,28 @@ public class Tax extends BaseModel {
 	/**
 	 * @return the cgst
 	 */
-	public Float getCgst() {
+	public BigDecimal getCgst() {
 		return cgst;
 	}
 
 	/**
 	 * @param cgst the cgst to set
 	 */
-	public void setCgst(Float cgst) {
+	public void setCgst(BigDecimal cgst) {
 		this.cgst = cgst;
 	}
 
 	/**
 	 * @return the sgst
 	 */
-	public Float getSgst() {
+	public BigDecimal getSgst() {
 		return sgst;
 	}
 
 	/**
 	 * @param sgst the sgst to set
 	 */
-	public void setSgst(Float sgst) {
+	public void setSgst(BigDecimal sgst) {
 		this.sgst = sgst;
 	}
 

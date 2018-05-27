@@ -1,5 +1,7 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -41,7 +43,7 @@ public class StockHistory extends BaseModel {
 	@Column(name = "BASE_PRICE", nullable = false)
 	@NotNull(message = "Base Price can't be null")
 	@ApiModelProperty
-	private Long basePrice;
+	private BigDecimal basePrice;
 
 	@Column(name = "QUANTITY", nullable = false)
 	@NotNull(message = "Quantity can't be null")
@@ -93,14 +95,14 @@ public class StockHistory extends BaseModel {
 	/**
 	 * @return the basePrice
 	 */
-	public Long getBasePrice() {
+	public BigDecimal getBasePrice() {
 		return basePrice;
 	}
 
 	/**
 	 * @param basePrice the basePrice to set
 	 */
-	public void setBasePrice(Long basePrice) {
+	public void setBasePrice(BigDecimal basePrice) {
 		this.basePrice = basePrice;
 	}
 

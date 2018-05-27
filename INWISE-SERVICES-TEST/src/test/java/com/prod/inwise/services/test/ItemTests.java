@@ -5,6 +5,8 @@ import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TRADERS;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
@@ -29,7 +31,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Test Item");
-		item.setPrice(213f);
+		item.setPrice(new BigDecimal(213f));
 		
 //		item.setCategory(Category.BABY_GIRLS);
 //		item.setSubCategory(SubCategory.FROCK);
@@ -54,7 +56,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X7");
-		item.setPrice(23f);
+		item.setPrice(new BigDecimal(23f));
 		
 		/*item.setCategory(Category.MENS);
 		item.setSubCategory(SubCategory.OUTFITTINGS);
@@ -79,7 +81,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X4");
-		item.setPrice(26f);
+		item.setPrice(new BigDecimal(26f));
 		
 		/*item.setCategory(Category.BOYS);
 		item.setSubCategory(SubCategory.TOP);
@@ -104,7 +106,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X8");
-		item.setPrice(118f);
+		item.setPrice(new BigDecimal(118f));
 		
 		/*item.setCategory(Category.MENS);
 		item.setSubCategory(SubCategory.BOTTOM);
@@ -129,7 +131,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X5");
-		item.setPrice(34f);
+		item.setPrice(new BigDecimal(34f));
 		
 		/*item.setCategory(Category.BABY_GIRLS);
 		item.setSubCategory(SubCategory.OUTFITTINGS);
@@ -154,7 +156,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X6");
-		item.setPrice(31f);
+		item.setPrice(new BigDecimal(31f));
 		
 		/*item.setCategory(Category.BABY_BOYS);
 		item.setSubCategory(SubCategory.OUTFITTINGS);
@@ -179,7 +181,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X3");
-		item.setPrice(13f);
+		item.setPrice(new BigDecimal(13f));
 		
 		/*item.setCategory(Category.BABY_GIRLS);
 		item.setSubCategory(SubCategory.TOP);
@@ -204,7 +206,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Test Item");
-		item.setPrice(25f);
+		item.setPrice(new BigDecimal(25f));
 		
 		/*item.setCategory(Category.GIRLS);
 		item.setSubCategory(SubCategory.FROCK);
@@ -229,7 +231,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X2");
-		item.setPrice(17f);
+		item.setPrice(new BigDecimal(17f));
 		
 		/*item.setCategory(Category.WOMENS);
 		item.setSubCategory(SubCategory.OUTFITTINGS);
@@ -254,7 +256,7 @@ public class ItemTests extends AbstractTests {
 		
 		ItemDTO item = new ItemDTO();
 		item.setName("Item-X1");
-		item.setPrice(53f);
+		item.setPrice(new BigDecimal(53f));
 		
 		/*item.setCategory(Category.BOYS);
 		item.setSubCategory(SubCategory.INNERS);

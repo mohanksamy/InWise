@@ -1,5 +1,6 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
@@ -33,12 +34,12 @@ public class Invoice extends BaseModel {
 	@NotNull(message = "TotalTax can't be null")
 	@Column(name = "TOTAL_TAX", nullable = false)
 	@ApiModelProperty
-	private Float totalTax;
+	private BigDecimal totalTax;
 
 	@NotNull(message = "TotalPrice can't be null")
 	@Column(name = "TOTAL_PRICE", nullable = false)
 	@ApiModelProperty
-	private Float totalPrice;
+	private BigDecimal totalPrice;
 
 	@ManyToOne
 	@JoinColumn(name = "BUYER_ID")
@@ -66,28 +67,28 @@ public class Invoice extends BaseModel {
 	/**
 	 * @return the totalTax
 	 */
-	public Float getTotalTax() {
+	public BigDecimal getTotalTax() {
 		return totalTax;
 	}
 
 	/**
 	 * @param totalTax the totalTax to set
 	 */
-	public void setTotalTax(Float totalTax) {
+	public void setTotalTax(BigDecimal totalTax) {
 		this.totalTax = totalTax;
 	}
 
 	/**
 	 * @return the totalPrice
 	 */
-	public Float getTotalPrice() {
+	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}
 
 	/**
 	 * @param totalPrice the totalPrice to set
 	 */
-	public void setTotalPrice(Float totalPrice) {
+	public void setTotalPrice(BigDecimal totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 

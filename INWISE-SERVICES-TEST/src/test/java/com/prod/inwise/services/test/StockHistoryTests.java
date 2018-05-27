@@ -4,6 +4,8 @@ import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK_HISTORY;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
@@ -27,7 +29,7 @@ public class StockHistoryTests extends AbstractTests {
 		StockHistoryDTO stockHistoryDTO = new StockHistoryDTO();
 		
 		stockHistoryDTO.setItem(item);
-		stockHistoryDTO.setBasePrice(1000l);
+		stockHistoryDTO.setBasePrice(new BigDecimal(1000l));
 		stockHistoryDTO.setQuantity(10);
 		//stockHistoryDTO.setStockBatch(stockBatch);
 		//stockHistoryDTO.setVendor(vendor);

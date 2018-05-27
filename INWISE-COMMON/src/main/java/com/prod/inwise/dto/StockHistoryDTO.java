@@ -1,5 +1,7 @@
 package com.prod.inwise.dto;
 
+import java.math.BigDecimal;
+
 public class StockHistoryDTO extends BaseDTO {
 
 	private StockBatchDTO stockBatch;
@@ -8,7 +10,7 @@ public class StockHistoryDTO extends BaseDTO {
 
 	private VendorDTO vendor;
 
-	private Long basePrice;
+	private BigDecimal basePrice;
 
 	private Integer quantity;
 
@@ -60,7 +62,7 @@ public class StockHistoryDTO extends BaseDTO {
 	/**
 	 * @return the basePrice
 	 */
-	public Long getBasePrice() {
+	public BigDecimal getBasePrice() {
 		return basePrice;
 	}
 
@@ -68,7 +70,7 @@ public class StockHistoryDTO extends BaseDTO {
 	 * @param basePrice
 	 *            the basePrice to set
 	 */
-	public void setBasePrice(Long basePrice) {
+	public void setBasePrice(BigDecimal basePrice) {
 		this.basePrice = basePrice;
 	}
 

@@ -1,5 +1,7 @@
 package com.prod.inwise.dto;
 
+import java.math.BigDecimal;
+
 public class LineItemDTO extends BaseDTO {
 
 	private InvoiceDTO invoice;
@@ -8,9 +10,9 @@ public class LineItemDTO extends BaseDTO {
 
 	private Integer quantity;
 
-	private Float totalTax;
+	private BigDecimal totalTax;
 
-	private Float totalPrice;
+	private BigDecimal totalPrice;
 
 	/**
 	 * @return the invoice
@@ -60,7 +62,7 @@ public class LineItemDTO extends BaseDTO {
 	/**
 	 * @return the totalTax
 	 */
-	public Float getTotalTax() {
+	public BigDecimal getTotalTax() {
 		return totalTax;
 	}
 
@@ -68,14 +70,14 @@ public class LineItemDTO extends BaseDTO {
 	 * @param totalTax
 	 *            the totalTax to set
 	 */
-	public void setTotalTax(Float totalTax) {
+	public void setTotalTax(BigDecimal totalTax) {
 		this.totalTax = totalTax;
 	}
 
 	/**
 	 * @return the totalPrice
 	 */
-	public Float getTotalPrice() {
+	public BigDecimal getTotalPrice() {
 		return totalPrice;
 	}
 
@@ -83,7 +85,7 @@ public class LineItemDTO extends BaseDTO {
 	 * @param totalPrice
 	 *            the totalPrice to set
 	 */
-	public void setTotalPrice(Float totalPrice) {
+	public void setTotalPrice(BigDecimal totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 }

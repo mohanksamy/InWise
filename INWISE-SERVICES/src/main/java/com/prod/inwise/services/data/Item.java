@@ -1,5 +1,6 @@
 package com.prod.inwise.services.data;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
@@ -32,7 +33,7 @@ public class Item extends NameCodeModel {
 	@NotNull(message = "Price can't be null")
 	@Column(name = "PRICE", nullable = false)
 	@ApiModelProperty
-	private Float price;
+	private BigDecimal price;
 
 	@Column(name = "HSN_SAC")
 	@ApiModelProperty
@@ -85,14 +86,14 @@ public class Item extends NameCodeModel {
 	/**
 	 * @return the price
 	 */
-	public Float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
 	/**
 	 * @param price the price to set
 	 */
-	public void setPrice(Float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

@@ -4,6 +4,8 @@ import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TRADERS;
 import static org.apache.http.HttpStatus.SC_OK;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
 
 import com.prod.inwise.dto.TaxDTO;
@@ -23,8 +25,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(2.5f);
-		tax.setSgst(2.5f);
+		tax.setCgst(new BigDecimal(2.5f));
+		tax.setSgst(new BigDecimal(2.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);
@@ -40,8 +42,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(1.5f);
-		tax.setSgst(4.5f);
+		tax.setCgst(new BigDecimal(1.5f));
+		tax.setSgst(new BigDecimal(4.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);
@@ -57,8 +59,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(3.5f);
-		tax.setSgst(4.5f);
+		tax.setCgst(new BigDecimal(3.5f));
+		tax.setSgst(new BigDecimal(4.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);
@@ -74,8 +76,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(3.5f);
-		tax.setSgst(1.5f);
+		tax.setCgst(new BigDecimal(3.5f));
+		tax.setSgst(new BigDecimal(1.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);
@@ -91,8 +93,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(2.5f);
-		tax.setSgst(3.5f);
+		tax.setCgst(new BigDecimal(2.5f));
+		tax.setSgst(new BigDecimal(3.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);
@@ -108,8 +110,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(2.5f);
-		tax.setSgst(3.5f);
+		tax.setCgst(new BigDecimal(2.5f));
+		tax.setSgst(new BigDecimal(3.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);
@@ -125,8 +127,8 @@ public class TaxTests extends AbstractTests {
 		TraderDTO store = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, STORE_NAME)).andReturn().getBody().as(TraderDTO.class);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(2.5f);
-		tax.setSgst(2.5f);
+		tax.setCgst(new BigDecimal(2.5f));
+		tax.setSgst(new BigDecimal(2.5f));
 		tax.setCreatedUser(store.getCreatedUser());
 		tax.setModifiedUser(store.getCreatedUser());
 //		tax.setStore(store);

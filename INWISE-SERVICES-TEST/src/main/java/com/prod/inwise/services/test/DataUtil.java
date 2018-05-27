@@ -8,6 +8,7 @@ import static com.prod.inwise.services.test.util.Constants.random;
 import static java.lang.Float.parseFloat;
 import static org.apache.commons.lang3.StringUtils.upperCase;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -81,8 +82,8 @@ public final class DataUtil {
 		number.setMaximumFractionDigits(2);
 		
 		TaxDTO tax = new TaxDTO();
-		tax.setCgst(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
-		tax.setSgst(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax)));
+		tax.setCgst(new BigDecimal(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax))));
+		tax.setSgst(new BigDecimal(parseFloat(number.format(random.nextFloat() * (maxTax - minTax) + minTax))));
 		tax.setActive(true);
 		tax.setCreatedUser(APP_USER);
 		tax.setModifiedUser(APP_USER);
@@ -103,7 +104,7 @@ public final class DataUtil {
 			ItemDTO item = new ItemDTO();
 			item.setName(getString(dataFactory.getRandomChars(15).toUpperCase(), Integer.toString(random.nextInt(1000))/*, STRING_SPACE, ITEM_SUFFIX*/));
 			item.setCode(upperCase(item.getName()));
-			item.setPrice(parseFloat(number.format(random.nextFloat() * (maxPrice - minPrice) + minPrice)));
+			item.setPrice(new BigDecimal(parseFloat(number.format(random.nextFloat() * (maxPrice - minPrice) + minPrice))));
 			
 //			item.setCategory(dataFactory.getItem(Category.values()));
 //			item.setSubCategory(dataFactory.getItem(SubCategory.values()));
@@ -146,7 +147,7 @@ public final class DataUtil {
 		for ( int index = 0; index <= dataFactory.getNumberBetween(3, 15); index++ ) {
 			
 			StockHistoryDTO stockHistory = new StockHistoryDTO();
-			stockHistory.setBasePrice(Integer.valueOf(dataFactory.getNumberBetween(10, 100)).longValue());
+			stockHistory.setBasePrice(BigDecimal.valueOf(dataFactory.getNumberBetween(10, 100)));
 			stockHistory.setQuantity(Integer.valueOf(dataFactory.getNumberBetween(3, 20)));
 			
 			stockHistory.setActive(true);

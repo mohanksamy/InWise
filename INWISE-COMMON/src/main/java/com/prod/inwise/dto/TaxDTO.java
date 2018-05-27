@@ -1,42 +1,44 @@
 package com.prod.inwise.dto;
 
+import java.math.BigDecimal;
+
 /**
  * @author mohan_kandasamy
  *
  */
 public class TaxDTO extends BaseDTO {
 	
-	private Float cgst;
+	private BigDecimal cgst;
 	
-	private Float sgst;
+	private BigDecimal sgst;
 	
 	private TraderDTO trader;
 
 	/**
 	 * @return the cgst
 	 */
-	public Float getCgst() {
+	public BigDecimal getCgst() {
 		return cgst;
 	}
 
 	/**
 	 * @param cgst the cgst to set
 	 */
-	public void setCgst(Float cgst) {
+	public void setCgst(BigDecimal cgst) {
 		this.cgst = cgst;
 	}
 
 	/**
 	 * @return the sgst
 	 */
-	public Float getSgst() {
+	public BigDecimal getSgst() {
 		return sgst;
 	}
 
 	/**
 	 * @param sgst the sgst to set
 	 */
-	public void setSgst(Float sgst) {
+	public void setSgst(BigDecimal sgst) {
 		this.sgst = sgst;
 	}
 

@@ -1,5 +1,6 @@
 package com.prod.inwise.services.services.impl;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,11 +74,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		// Populate LineItems with Tax & Price
 		lineItems.forEach( lineItem -> {
-			lineItem.setTotalPrice(lineItem.getQuantity()*lineItem.getItem().getPrice());
-			Float cgst = lineItem.getItem().getTax().getCgst();
-			Float sgst = lineItem.getItem().getTax().getSgst();
-			Float gst = cgst + sgst;
-			lineItem.setTotalTax(gst*lineItem.getQuantity());
+			lineItem.setTotalPrice(lineItem.getItem().getPrice().multiply(new BigDecimal(lineItem.getQuantity())));
+			BigDecimal cgst = lineItem.getItem().getTax().getCgst();
+			BigDecimal sgst = lineItem.getItem().getTax().getSgst();
+			BigDecimal gst = cgst.add(sgst);
+			lineItem.setTotalTax(gst.multiply(new BigDecimal(lineItem.getQuantity())));
 		});
 	}
 	
@@ -92,9 +93,9 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoice.setCreatedUser(lineItems.get(0).getCreatedUser());
 		invoice.setModifiedUser(lineItems.get(0).getCreatedUser());
 		
-		invoice.setTotalTax(Double.valueOf(lineItems.stream().mapToDouble(i -> i.getTotalTax()).sum()).floatValue());
+		invoice.setTotalTax(BigDecimal.valueOf(lineItems.stream().mapToDouble(i -> i.getTotalTax().doubleValue()).sum()));
 		
-		invoice.setTotalPrice(Double.valueOf(lineItems.stream().mapToDouble(i -> i.getTotalPrice()).sum()).floatValue());
+		invoice.setTotalPrice(BigDecimal.valueOf(lineItems.stream().mapToDouble(i -> i.getTotalPrice().doubleValue()).sum()));
 		
 		// Setting date time for functional cases when date time triggers are disabled
 		// These date time will be ignored when triggers are enabled
