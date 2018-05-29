@@ -28,5 +28,5 @@ public interface ItemRepository extends CrudRepository<Item, BigInteger> {
 	public Item findByNameIgnoreCase(@Param("name") String name);
 	
 	@Query("SELECT item FROM Item item WHERE item.trader.id = :id")
-	public List<Item> findItemsByTrader(@Param("id") BigInteger storeId);
+	public List<Item> findItemsByTrader(@Param("id") BigInteger traderId);
 }

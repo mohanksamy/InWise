@@ -5,10 +5,12 @@ import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -33,7 +35,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 /**
- * REST Resource exposes operation on Store resource
+ * REST Resource exposes operation on Trader resource
  * 
  * @author mohan.kandasamy
  *
@@ -52,19 +54,25 @@ public class TraderResource {
 	
 	@Autowired
 	private AddressRepository addressRepo;
+	
+	@Autowired
+	private TaxResource taxResource;
 
-	/*
-	 * @POST public Store createStore(Store store) { return storeRepo.save(store); }
+	/**
+	 * Service operation to create Trader
+	 * 
+	 * @param trader
+	 * @return
 	 */
 	@POST
-	@ApiOperation(value = "Create store", notes = "Create store model")
+	@ApiOperation(value = "Create Trader", notes = "Create trader model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
 			@ApiResponse(code = 401, message = "No permission to access model"),
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createStore(Trader trader) {
+	public Response createTrader(Trader trader) {
 
 		if ( isNull(trader.getAddress().getId()) ) {
 			
@@ -77,29 +85,29 @@ public class TraderResource {
 	}
 	
 	@GET
-	@ApiOperation(value = "Get All Store", notes = "Get Store URIs")
+	@ApiOperation(value = "Get All Traders", notes = "Get Trader URIs")
 	public Response findAll(@Context UriInfo uriInfo) {
 		
-		Iterable<Trader> shops = traderRepo.findAll();
+		Iterable<Trader> traders = traderRepo.findAll();
 		
-		List<Trader> shopsList = stream(shops.spliterator(), false).collect(Collectors.toList());
+		List<Trader> tradersList = stream(traders.spliterator(), false).collect(Collectors.toList());
 		
 		List<String> links = new ArrayList<>();
 			
-		shopsList.parallelStream().forEach( shop -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(shop.getName()).build().toString()));
+		tradersList.parallelStream().forEach( trader -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(trader.getName()).build().toString()));
 		
 		return Response.status(OK).entity(links).build();
 	}
 
 	/**
-	 * Service operation to find resource by name.
+	 * Service operation to find resource by name (for functional test case).
 	 *
 	 * @param name
 	 * @return
 	 */
 	@GET
 	@Path("/{name}")
-	@ApiOperation(value = "Show Store", notes = "Show store model")
+	@ApiOperation(value = "Show Trader", notes = "Show trader model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
 			@ApiResponse(code = 401, message = "No permission to access model"),
@@ -110,4 +118,62 @@ public class TraderResource {
 
 		return Response.status(OK).entity(traderRepo.findByNameIgnoreCase(name)).build();
 	}
+	
+	/*@GET
+	@Path("/{id}")
+	@ApiOperation(value = "Show Trader", notes = "Show trader model")
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
+			@ApiResponse(code = 401, message = "Invalid user specified"),
+			@ApiResponse(code = 401, message = "No permission to access model"),
+			@ApiResponse(code = 401, message = "No privilege to access model"),
+			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
+			@ApiResponse(code = 500, message = "Server Internal error") })
+	public Response findById(@ApiParam @PathParam("id") BigInteger id) {
+
+		return Response.status(OK).entity(traderRepo.findOne(id)).build();
+	}*/
+	
+	/**
+	 * Sub-resource - TaxResource
+	 * @return
+	 */
+	@Path("/{traderId}/taxes")
+	public TaxResource getTaxes() {
+		return taxResource;
+	}
+	
+	/**
+	 * Sub-resource - CategoryResource
+	 * @return
+	 */
+	
+	/**
+	 * Sub-resource - SubCategoryResource
+	 * @return
+	 */
+	
+	/**
+	 * Sub-resource - BrandResource
+	 * @return
+	 */
+	
+	/**
+	 * Sub-resource - ModelResource
+	 * @return
+	 */
+	
+	/**
+	 * Sub-resource - ItemResource
+	 * @return
+	 */
+	
+	/**
+	 * Sub-resource - InvoiceResource
+	 * @return
+	 */
+	
+	/**
+	 * Sub-resource - UserResource
+	 * @return
+	 */
 }

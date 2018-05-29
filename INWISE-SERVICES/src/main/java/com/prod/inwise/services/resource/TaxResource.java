@@ -3,10 +3,12 @@ package com.prod.inwise.services.resource;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
+import static javax.ws.rs.core.Response.Status.NO_CONTENT;
+import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_TAX;
 
-import java.util.HashMap;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
@@ -23,7 +25,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.Tax;
+import com.prod.inwise.services.data.Trader;
 import com.prod.inwise.services.repo.TaxRepository;
+import com.prod.inwise.services.repo.TraderRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,10 +42,13 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/taxes")
+@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Tax Service")
 public class TaxResource {
+
+	@Autowired
+	private TraderRepository traderRepo;
 
 	@Autowired
 	private TaxRepository taxRepo;
@@ -54,33 +61,65 @@ public class TaxResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createTax(Tax tax) {
+	public Response createTax(@ApiParam @PathParam("traderId") BigInteger traderId, Tax tax) {
+		
+		Response response = null;
+		
+		// Look up Trader using Id
+		Trader trader = traderRepo.findOne(traderId);
+		
+		if ( null == trader ) {
+			
+			response = status(NO_CONTENT).entity("Unable to locate the trader " + traderId).build();
+		
+		} else {
+			
+			tax.setTrader(trader);
+			
+			taxRepo.save(tax);
+			
+			response = status(OK).entity(tax.getId()).build();
+		}
 
-		taxRepo.save(tax);
-
-		return status(OK).build();
+		return response;
 	}
 	
 	@GET
 	@ApiOperation(value = "Get All Taxes", notes = "Get Tax URIs")
-	public Response findAllTaxes(@Context UriInfo uriInfo) {
+	public Response findAllTaxes(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
 		
-		Iterable<Tax> taxes = taxRepo.findAll();
+		Iterable<Tax> taxes = taxRepo.findByTraderId(traderId);
 		
 		List<Tax> taxesList = stream(taxes.spliterator(), false).collect(Collectors.toList());
 		
-		Map<String, String> taxesMap = new HashMap<>();
-			
-		taxesList.parallelStream().forEach( tax -> taxesMap.put(tax.getTrader().getName(), uriInfo.getBaseUriBuilder().path(TaxResource.class).path("store").path(tax.getTrader().getName()).build().toString()));
+		List<String> links = new ArrayList<>();
 		
-		return Response.status(OK).entity(taxesMap).build();
+		taxesList.parallelStream().forEach( tax -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_TAX).path(tax.getId().toString()).build().toString()));
+		
+//		taxesList.parallelStream().forEach( tax -> links.add(uriInfo.getBaseUriBuilder().path(TaxResource.class).path(tax.getId().toString()).build().toString()));
+		
+		return Response.status(OK).entity(links).build();
 	}
 
 	@GET
-	@Path("/traders/{name}")
+	@Path("/{id}")
 	@ApiOperation(value = "Get tax", notes = "Get tax model")
-	public Response getTax(@ApiParam @PathParam("name") String name) {
+	public Response getTax(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
 
-		return status(OK).entity(taxRepo.findByTraderNameIgnoreCase(name)).build();
+		Response response = null;
+		
+		// Look up Trader using Id
+		Tax tax = taxRepo.findByTraderIdAndId(traderId, id);
+		
+		if ( null == tax ) {
+			
+			response = status(NO_CONTENT).entity("Unable to locate the trader " + traderId + " and tax " + id).build();
+		
+		} else {
+			
+			response = status(OK).entity(tax).build();
+		}
+		
+		return response;
 	}
 }
