@@ -43,21 +43,30 @@ import io.swagger.annotations.ApiResponses;
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Trader Service")
 public class TraderResource {
-	
+
 	/*
 	 * @Autowired private StoreRepository storeRepo;
 	 */
 	@Autowired
 	private TraderRepository traderRepo;
-	
+
 	@Autowired
 	private AddressRepository addressRepo;
-	
+
 	@Autowired
 	private TaxResource taxResource;
-	
+
 	@Autowired
 	private CategoryResource categoryResource;
+
+	@Autowired
+	private SubCategoryResource subCategoryResource;
+
+	@Autowired
+	private BrandResource brandResource;
+
+	@Autowired
+	private ModelResource modelResource;
 
 	/**
 	 * Service operation to create Trader
@@ -75,28 +84,29 @@ public class TraderResource {
 			@ApiResponse(code = 500, message = "Server Internal error") })
 	public Response createTrader(Trader trader) {
 
-		if ( isNull(trader.getAddress().getId()) ) {
-			
+		if (isNull(trader.getAddress().getId())) {
+
 			trader.setAddress(addressRepo.save(trader.getAddress()));
 		}
-		
+
 		traderRepo.save(trader);
 
 		return status(OK).build();
 	}
-	
+
 	@GET
 	@ApiOperation(value = "Get All Traders", notes = "Get Trader URIs")
 	public Response findAll(@Context UriInfo uriInfo) {
-		
+
 		Iterable<Trader> traders = traderRepo.findAll();
-		
+
 		List<Trader> tradersList = stream(traders.spliterator(), false).collect(Collectors.toList());
-		
+
 		List<String> links = new ArrayList<>();
-			
-		tradersList.parallelStream().forEach( trader -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(trader.getName()).build().toString()));
-		
+
+		tradersList.parallelStream().forEach(trader -> links
+				.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(trader.getName()).build().toString()));
+
 		return Response.status(OK).entity(links).build();
 	}
 
@@ -119,66 +129,97 @@ public class TraderResource {
 
 		return Response.status(OK).entity(traderRepo.findByNameIgnoreCase(name)).build();
 	}
-	
-	/*@GET
-	@Path("/{id}")
-	@ApiOperation(value = "Show Trader", notes = "Show trader model")
-	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
-			@ApiResponse(code = 401, message = "Invalid user specified"),
-			@ApiResponse(code = 401, message = "No permission to access model"),
-			@ApiResponse(code = 401, message = "No privilege to access model"),
-			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
-			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response findById(@ApiParam @PathParam("id") BigInteger id) {
 
-		return Response.status(OK).entity(traderRepo.findOne(id)).build();
-	}*/
-	
+	/*
+	 * @GET
+	 * 
+	 * @Path("/{id}")
+	 * 
+	 * @ApiOperation(value = "Show Trader", notes = "Show trader model")
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 404, message =
+	 * "Invalid tenant specified"),
+	 * 
+	 * @ApiResponse(code = 401, message = "Invalid user specified"),
+	 * 
+	 * @ApiResponse(code = 401, message = "No permission to access model"),
+	 * 
+	 * @ApiResponse(code = 401, message = "No privilege to access model"),
+	 * 
+	 * @ApiResponse(code = 440, message =
+	 * "invalid session or access-token specified"),
+	 * 
+	 * @ApiResponse(code = 500, message = "Server Internal error") }) public
+	 * Response findById(@ApiParam @PathParam("id") BigInteger id) {
+	 * 
+	 * return Response.status(OK).entity(traderRepo.findOne(id)).build(); }
+	 */
+
 	/**
 	 * Sub-resource - TaxResource
+	 * 
 	 * @return
 	 */
 	@Path("/{traderId}/taxes")
 	public TaxResource getTaxes() {
 		return taxResource;
 	}
-	
+
 	/**
 	 * Sub-resource - CategoryResource
+	 * 
 	 * @return
 	 */
 	@Path("/{traderId}/categories")
 	public CategoryResource getCategories() {
 		return categoryResource;
 	}
-	
+
 	/**
 	 * Sub-resource - SubCategoryResource
+	 * 
 	 * @return
 	 */
-	
+	@Path("/{traderId}/subcategories")
+	public SubCategoryResource getSubCategories() {
+		return subCategoryResource;
+	}
+
 	/**
 	 * Sub-resource - BrandResource
+	 * 
 	 * @return
 	 */
-	
+	@Path("/{traderId}/brands")
+	public BrandResource getBrands() {
+		return brandResource;
+	}
+
 	/**
 	 * Sub-resource - ModelResource
+	 * 
 	 * @return
 	 */
-	
+	@Path("/{traderId}/models")
+	public ModelResource getModels() {
+		return modelResource;
+	}
+
 	/**
 	 * Sub-resource - ItemResource
+	 * 
 	 * @return
 	 */
-	
+
 	/**
 	 * Sub-resource - InvoiceResource
+	 * 
 	 * @return
 	 */
-	
+
 	/**
 	 * Sub-resource - UserResource
+	 * 
 	 * @return
 	 */
 }
