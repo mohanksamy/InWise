@@ -1,10 +1,10 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_TAX;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
-import static javax.ws.rs.core.Response.Status.OK;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
-import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_TAX;
+import static javax.ws.rs.core.Response.Status.OK;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -42,7 +42,6 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Tax Service")
 public class TaxResource {
@@ -94,9 +93,7 @@ public class TaxResource {
 		
 		List<String> links = new ArrayList<>();
 		
-		taxesList.parallelStream().forEach( tax -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_TAX).path(tax.getId().toString()).build().toString()));
-		
-//		taxesList.parallelStream().forEach( tax -> links.add(uriInfo.getBaseUriBuilder().path(TaxResource.class).path(tax.getId().toString()).build().toString()));
+		taxesList.stream().forEach( tax -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_TAX).path(tax.getId().toString()).build().toString()));
 		
 		return Response.status(OK).entity(links).build();
 	}

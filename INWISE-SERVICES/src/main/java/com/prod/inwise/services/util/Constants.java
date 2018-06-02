@@ -19,6 +19,14 @@ public interface Constants {
 	boolean REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK 	= true;
 	
 	public static final String RESOURCE_PATH_TAX 					= "taxes";
+	
+	public static final String RESOURCE_PATH_CATEGORIES 				= "categories";
+	
+	public static final String RESOURCE_PATH_SUBCATEGORIES 			= "subcategories";
+	
+	public static final String RESOURCE_PATH_BRANDS 					= "brands";
+	
+	public static final String RESOURCE_PATH_MODELS 					= "models";
 
 //	public static final String RESOURCE_PATH_ITEM 					= "items";
 

@@ -5,12 +5,10 @@ import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -57,6 +55,9 @@ public class TraderResource {
 	
 	@Autowired
 	private TaxResource taxResource;
+	
+	@Autowired
+	private CategoryResource categoryResource;
 
 	/**
 	 * Service operation to create Trader
@@ -146,6 +147,10 @@ public class TraderResource {
 	 * Sub-resource - CategoryResource
 	 * @return
 	 */
+	@Path("/{traderId}/categories")
+	public CategoryResource getCategories() {
+		return categoryResource;
+	}
 	
 	/**
 	 * Sub-resource - SubCategoryResource
