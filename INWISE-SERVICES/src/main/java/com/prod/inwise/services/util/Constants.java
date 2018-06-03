@@ -28,9 +28,9 @@ public interface Constants {
 	
 	public static final String RESOURCE_PATH_MODELS 					= "models";
 
-//	public static final String RESOURCE_PATH_ITEM 					= "items";
+	public static final String RESOURCE_PATH_ITEM 					= "items";
 
-//	public static final String RESOURCE_PATH_INVOICE 				= "invoices";
+	public static final String RESOURCE_PATH_INVOICE 				= "invoices";
 
 //	public static final String RESOURCE_PATH_LINEITEM 				= "lineItems";
 
@@ -41,6 +41,8 @@ public interface Constants {
 //	public static final String RESOURCE_PATH_STOCK_HISTORY			= "stockHistories";
 
 //	public static final String RESOURCE_PATH_VENDOR					= "vendors";
+	
+	public static final String RESOURCE_PATH_USER					= "users";
 
 	
 	// RESOURCE URI CONSTANTS

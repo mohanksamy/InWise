@@ -1,6 +1,6 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_ITEM;
+import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_USER;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
@@ -24,10 +24,10 @@ import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.prod.inwise.services.data.Item;
 import com.prod.inwise.services.data.Trader;
-import com.prod.inwise.services.repo.ItemRepository;
+import com.prod.inwise.services.data.User;
 import com.prod.inwise.services.repo.TraderRepository;
+import com.prod.inwise.services.repo.UserRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,32 +36,31 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
 /**
- * REST Resource exposes operation on Item resource
+ * REST Resource exposes operation on User resource
  * 
  * @author mohan.kandasamy
  *
  */
 @Component
-//@Path("/items")
 @Produces(MediaType.APPLICATION_JSON)
-@Api(value = "Item Service")
-public class ItemResource {
+@Api(value = "User Service")
+public class UserResource {
 	
 	@Autowired
 	private TraderRepository traderRepo;
 	
 	@Autowired
-	private ItemRepository itemRepo;
+	private UserRepository userRepo;
 	
 	@POST
-	@ApiOperation(value = "Create item", notes = "Create item model")
+	@ApiOperation(value = "Create user", notes = "Create user model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
 			@ApiResponse(code = 401, message = "No permission to access model"),
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createItem(@ApiParam @PathParam("traderId") BigInteger traderId, Item item) {
+	public Response createUser(@ApiParam @PathParam("traderId") BigInteger traderId, User user) {
 		
 		Response response = null;
 		
@@ -74,48 +73,48 @@ public class ItemResource {
 		
 		} else {
 			
-			item.setTrader(trader);
+			user.setTrader(trader);
 			
-			itemRepo.save(item);
+			userRepo.save(user);
 			
-			response = status(OK).entity(item.getId()).build();
+			response = status(OK).entity(user.getId()).build();
 		}
 
 		return response;
 	}
 	
 	@GET
-	@ApiOperation(value = "Get All Items", notes = "Get Item URIs")
-	public Response findAllItems(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+	@ApiOperation(value = "Get All Users", notes = "Get User URIs")
+	public Response findAllUsers(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
 		
-		Iterable<Item> items = itemRepo.findByTraderId(traderId);
+		Iterable<User> users = userRepo.findByTraderId(traderId);
 		
-		List<Item> itemsList = stream(items.spliterator(), false).collect(Collectors.toList());
+		List<User> usersList = stream(users.spliterator(), false).collect(Collectors.toList());
 		
 		List<String> links = new ArrayList<>();
 		
-		itemsList.stream().forEach( item -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_ITEM).path(item.getId().toString()).build().toString()));
+		usersList.stream().forEach( item -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_USER).path(item.getId().toString()).build().toString()));
 		
 		return Response.status(OK).entity(links).build();
 	}
 
 	@GET
 	@Path("/{id}")
-	@ApiOperation(value = "Get item", notes = "Get item model")
-	public Response getItem(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
+	@ApiOperation(value = "Get user", notes = "Get user model")
+	public Response getUser(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
 
 		Response response = null;
 		
 		// Look up Trader using Id
-		Item item = itemRepo.findByTraderIdAndId(traderId, id);
+		User user = userRepo.findByTraderIdAndId(traderId, id);
 		
-		if ( null == item ) {
+		if ( null == user ) {
 			
 			response = status(NO_CONTENT).entity("Unable to locate the trader " + traderId + " and tax " + id).build();
 		
 		} else {
 			
-			response = status(OK).entity(item).build();
+			response = status(OK).entity(user).build();
 		}
 		
 		return response;

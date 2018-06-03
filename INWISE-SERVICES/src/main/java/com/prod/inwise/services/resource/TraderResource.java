@@ -67,6 +67,15 @@ public class TraderResource {
 
 	@Autowired
 	private ModelResource modelResource;
+	
+	@Autowired
+	private ItemResource itemResource;
+	
+	@Autowired
+	private InvoiceResource invoiceResource;
+	
+	@Autowired
+	private UserResource userResource;
 
 	/**
 	 * Service operation to create Trader
@@ -210,16 +219,28 @@ public class TraderResource {
 	 * 
 	 * @return
 	 */
+	@Path("/{traderId}/items")
+	public ItemResource getItems() {
+		return itemResource;
+	}
 
 	/**
 	 * Sub-resource - InvoiceResource
 	 * 
 	 * @return
 	 */
+	@Path("/{traderId}/invoices")
+	public InvoiceResource getInvoices() {
+		return invoiceResource;
+	}
 
 	/**
 	 * Sub-resource - UserResource
 	 * 
 	 * @return
 	 */
+	@Path("/{traderId}/users")
+	public UserResource getUsers() {
+		return userResource;
+	}
 }

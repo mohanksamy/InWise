@@ -3,7 +3,6 @@ package com.prod.inwise.services.repo;
 import java.math.BigInteger;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -25,8 +24,12 @@ public interface ItemRepository extends CrudRepository<Item, BigInteger> {
 	 * @param name
 	 * @return
 	 */
-	public Item findByNameIgnoreCase(@Param("name") String name);
+//	public Item findByNameIgnoreCase(@Param("name") String name);
 	
-	@Query("SELECT item FROM Item item WHERE item.trader.id = :id")
-	public List<Item> findItemsByTrader(@Param("id") BigInteger traderId);
+//	@Query("SELECT item FROM Item item WHERE item.trader.id = :id")
+//	public List<Item> findItemsByTrader(@Param("id") BigInteger traderId);
+	
+	public List<Item> findByTraderId(@Param("traderId") BigInteger traderId);
+	
+	public Item findByTraderIdAndId(@Param("traderId") BigInteger traderId, @Param("id") BigInteger id);
 }

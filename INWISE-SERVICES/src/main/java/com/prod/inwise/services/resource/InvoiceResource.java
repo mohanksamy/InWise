@@ -1,23 +1,31 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_INVOICE;
+import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
+import static javax.ws.rs.core.Response.Status.NO_CONTENT;
 import static javax.ws.rs.core.Response.Status.OK;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.prod.inwise.services.data.Invoice;
 import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.repo.InvoiceRepository;
@@ -36,7 +44,6 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/invoices")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Invoice Service")
 public class InvoiceResource {
@@ -48,7 +55,6 @@ public class InvoiceResource {
 	private InvoiceService invoiceService;
 
 	@POST
-	@Path("/traders/{id}")
 	@ApiOperation(value = "Create Invoice", notes = "Create invoice model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
@@ -56,13 +62,13 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(@PathParam("id") BigInteger storeId, List<LineItem> lineItems) {
+	public Response createInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, List<LineItem> lineItems) {
 
 		Response response = null;
 		
 		try {
 			
-			invoiceService.createInvoice(storeId, lineItems);
+			invoiceService.createInvoice(traderId, lineItems);
 			
 			response = status(OK).build();
 		
@@ -73,18 +79,41 @@ public class InvoiceResource {
 
 		return response;
 	}
+	
+	@GET
+	@ApiOperation(value = "Get All Invoices", notes = "Get invoice URIs")
+	public Response findAllInvoices(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+		
+		Iterable<Invoice> invoices = invoiceRepo.findByTraderId(traderId);
+		
+		List<Invoice> invoicesList = stream(invoices.spliterator(), false).collect(Collectors.toList());
+		
+		List<String> links = new ArrayList<>();
+		
+		invoicesList.stream().forEach( invoice -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_INVOICE).path(invoice.getId().toString()).build().toString()));
+		
+		return Response.status(OK).entity(links).build();
+	}
 
 	@GET
 	@Path("/{id}")
-	@ApiOperation(value = "Show Invoice", notes = "Show invoice model")
-	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
-			@ApiResponse(code = 401, message = "Invalid user specified"),
-			@ApiResponse(code = 401, message = "No permission to access model"),
-			@ApiResponse(code = 401, message = "No privilege to access model"),
-			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
-			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response getInvoice(@ApiParam @PathParam("id") Long id) {
+	@ApiOperation(value = "Get Invoice", notes = "Get invoice model")
+	public Response getInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
 
-		return status(OK).entity(invoiceRepo.findOne(id)).build();
+		Response response = null;
+		
+		// Look up Trader using Id
+		Invoice invoice = invoiceRepo.findByTraderIdAndId(traderId, id);
+		
+		if ( null == invoice ) {
+			
+			response = status(NO_CONTENT).entity("Unable to locate the trader " + traderId + " and tax " + id).build();
+		
+		} else {
+			
+			response = status(OK).entity(invoice).build();
+		}
+		
+		return response;
 	}
 }

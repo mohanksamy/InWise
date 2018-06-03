@@ -38,7 +38,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	private StockRepository stockRepo;
 	
 	@Override
-	public void createInvoice(BigInteger storeId, List<LineItem> lineItems) throws OutOfStockException {
+	public void createInvoice(BigInteger traderId, List<LineItem> lineItems) throws OutOfStockException {
 		
 		// Merge line items in case same items are repeated in the invoice
 		lineItems = mergeLineItems(lineItems);
@@ -55,7 +55,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		populateLineItemTaxAndPrice(lineItems);
 		
 		// Create & Save Invoice
-		Invoice invoice = invoiceRepo.save(populateInvoiceWithTaxAndPrice(storeId, lineItems));
+		Invoice invoice = invoiceRepo.save(populateInvoiceWithTaxAndPrice(traderId, lineItems));
 		
 		// Link Invoice to LineItems and Save
 		lineItems.forEach( lineItem -> {
@@ -82,14 +82,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 		});
 	}
 	
-	private Invoice populateInvoiceWithTaxAndPrice(BigInteger storeId, List<LineItem> lineItems) {
+	private Invoice populateInvoiceWithTaxAndPrice(BigInteger traderId, List<LineItem> lineItems) {
 		
 		Invoice invoice = new Invoice();
 		
-		Trader store = new Trader();
-		store.setId(storeId);
+		Trader trader = new Trader();
+		trader.setId(traderId);
 		
-		invoice.setTrader(store);
+		invoice.setTrader(trader);
 		invoice.setCreatedUser(lineItems.get(0).getCreatedUser());
 		invoice.setModifiedUser(lineItems.get(0).getCreatedUser());
 		
