@@ -30,6 +30,7 @@
 		<gcm.server.version>1.0.2</gcm.server.version>
 		<json.patch.version>1.9</json.patch.version> -->
 		
+		<inwise-common.version>1.0.0-SNAPSHOT</inwise-common.version>
 		<swagger-jerysey-version>1.5.8</swagger-jerysey-version>
 		<postgresql-driver-version>42.1.4</postgresql-driver-version>
 
@@ -37,6 +38,13 @@
 
 	<!-- Dependencies Details -->
 	<dependencies>
+	
+		<!-- INWISE Dependencies -->
+		<dependency>
+		    <groupId>com.prod.inwise</groupId>
+		    <artifactId>INWISE-COMMON</artifactId>
+		    <version>${inwise-common.version}</version>
+		</dependency>
         
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jersey -->
 		<dependency>

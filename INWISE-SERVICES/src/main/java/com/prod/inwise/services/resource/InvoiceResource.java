@@ -1,6 +1,6 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_INVOICE;
+import static com.prod.inwise.util.Constants.RESOURCE_PATH_INVOICE;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;

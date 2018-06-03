@@ -1,6 +1,6 @@
 package com.prod.inwise.services;
 
-import static com.prod.inwise.services.util.Constants.REST_BASE_PACKAGE;
+import static com.prod.inwise.util.Constants.REST_BASE_PACKAGE;
 
 import javax.annotation.PostConstruct;
 

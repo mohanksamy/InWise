@@ -1,6 +1,6 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.services.util.Constants.REST_HEALTH_MESSAGE;
+import static com.prod.inwise.util.Constants.REST_HEALTH_MESSAGE;
 import static javax.ws.rs.core.Response.Status.OK;
 
 import javax.ws.rs.GET;

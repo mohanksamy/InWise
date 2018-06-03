@@ -1,10 +1,10 @@
 package com.prod.inwise.services;
 
-import static com.prod.inwise.services.util.Constants.REST_BASE_PACKAGE;
-import static com.prod.inwise.services.util.Constants.REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK;
-import static com.prod.inwise.services.util.Constants.REST_BV_SEND_ERROR_IN_RESPONSE;
-import static com.prod.inwise.services.util.Constants.REST_LOGGING;
-import static com.prod.inwise.services.util.Constants.REST_TRACING_TYPE;
+import static com.prod.inwise.util.Constants.REST_BASE_PACKAGE;
+import static com.prod.inwise.util.Constants.REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK;
+import static com.prod.inwise.util.Constants.REST_BV_SEND_ERROR_IN_RESPONSE;
+import static com.prod.inwise.util.Constants.REST_LOGGING;
+import static com.prod.inwise.util.Constants.REST_TRACING_TYPE;
 
 import java.util.logging.Logger;
 

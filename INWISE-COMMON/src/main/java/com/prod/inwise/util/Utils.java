@@ -1,4 +1,4 @@
-package com.prod.inwise.services.util;
+package com.prod.inwise.util;
 
 /**
  * Utility class for basic checks

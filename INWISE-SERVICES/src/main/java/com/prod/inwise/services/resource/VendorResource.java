@@ -1,6 +1,6 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.services.util.Utils.isNull;
+import static com.prod.inwise.util.Utils.isNull;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.OK;
 

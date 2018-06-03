@@ -1,6 +1,6 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.services.util.Constants.RESOURCE_PATH_SUBCATEGORIES;
+import static com.prod.inwise.util.Constants.RESOURCE_PATH_SUBCATEGORIES;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
