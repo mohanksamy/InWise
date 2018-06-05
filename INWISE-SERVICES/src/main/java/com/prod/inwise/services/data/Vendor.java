@@ -34,6 +34,11 @@ public class Vendor extends NameCodeModel {
 	@Column(name = "PHONE", nullable = false)
 	@ApiModelProperty
 	private BigInteger phone;
+	
+	@ManyToOne
+	@JoinColumn(name = "TRADER_ID", nullable = false)
+	@ApiModelProperty
+	private Trader trader;
 
 	/**
 	 * @return the address
@@ -61,5 +66,19 @@ public class Vendor extends NameCodeModel {
 	 */
 	public void setPhone(BigInteger phone) {
 		this.phone = phone;
+	}
+
+	/**
+	 * @return the trader
+	 */
+	public Trader getTrader() {
+		return trader;
+	}
+
+	/**
+	 * @param trader the trader to set
+	 */
+	public void setTrader(Trader trader) {
+		this.trader = trader;
 	}
 }
