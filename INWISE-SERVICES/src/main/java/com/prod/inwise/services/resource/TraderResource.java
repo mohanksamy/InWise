@@ -76,6 +76,9 @@ public class TraderResource {
 	
 	@Autowired
 	private UserResource userResource;
+	
+	@Autowired
+	private VendorResource vendorResource;
 
 	/**
 	 * Service operation to create Trader
@@ -242,5 +245,15 @@ public class TraderResource {
 	@Path("/{traderId}/users")
 	public UserResource getUsers() {
 		return userResource;
+	}
+	
+	/**
+	 * Sub-resource - VendorResource
+	 * 
+	 * @return
+	 */
+	@Path("/{traderId}/vendors")
+	public VendorResource getVendors() {
+		return vendorResource;
 	}
 }

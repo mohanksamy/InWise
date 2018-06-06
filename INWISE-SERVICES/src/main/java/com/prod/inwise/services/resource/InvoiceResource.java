@@ -68,6 +68,13 @@ public class InvoiceResource {
 		
 		try {
 			
+			for ( LineItem lineItem : lineItems ) {
+				
+				if ( traderId.equals(lineItem.getItem().getTrader().getId()) ) {
+					// throw new exception 
+				}
+			}
+			
 			invoiceService.createInvoice(traderId, lineItems);
 			
 			response = status(OK).build();
