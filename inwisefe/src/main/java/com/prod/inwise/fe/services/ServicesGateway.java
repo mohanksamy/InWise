@@ -113,7 +113,7 @@ public class ServicesGateway {
 		return items;
 	}
 
-	private static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method,
+	public static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method,
 			Object entity) {
 
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
@@ -177,7 +177,7 @@ public class ServicesGateway {
 		return httpEntity;
 	}
 
-	private static void removeUnwantedElements(JsonNode jsonNode) {
+	public static void removeUnwantedElements(JsonNode jsonNode) {
 
 		// Removing unwanted elements
 		removeElementIfExists(jsonNode, KEY_CREATEDTS);
