@@ -20,7 +20,7 @@
              </layout>
         </appender>
        <!-- Application Loggers -->
-       <logger name=com.prod.inwise.fe"  additivity="false"><level value="debug"/><appender-ref ref="inwise"/></logger>
+       <logger name="com.prod.inwise.fe"  additivity="false"><level value="debug"/><appender-ref ref="inwise"/></logger>
        <!-- 3rdparty Loggers -->
        <!--  add/remove 3rd party loggers as required -->
        <logger name="org.hibernate.SQL" additivity="false"><level value="debug"/><appender-ref ref="inwise"/></logger>
