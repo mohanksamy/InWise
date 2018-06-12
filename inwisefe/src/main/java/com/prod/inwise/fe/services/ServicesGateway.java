@@ -4,8 +4,7 @@ import static com.prod.inwise.util.Constants.KEY_CREATEDTS;
 import static com.prod.inwise.util.Constants.KEY_MODIFIEDTS;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
+
 import java.util.Properties;
 
 import javax.ws.rs.core.MediaType;
@@ -24,13 +23,8 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.prod.inwise.dto.ItemDTO;
-
-import com.prod.inwise.dto.TraderDTO;
 
 /**
  * @author mohan_kandasamy
@@ -40,80 +34,7 @@ public class ServicesGateway {
 
 	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
 
-	public static TraderDTO findTraderByName() throws Exception {
-
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/Tucker Gymnasium",
-				HttpMethod.GET, null);
-
-		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
-		});
-
-		removeUnwantedElements(traderJson);
-
-		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
-
-		System.out.println("Trader details received from Server: " + trader);
-
-		return trader;
-
-	}
-
-	public static TraderDTO findTraderById() throws Exception {
-
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1001", HttpMethod.GET,
-				null);
-
-		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
-		});
-
-		removeUnwantedElements(traderJson);
-
-		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
-
-		System.out.println("Trader details received from Server: " + trader);
-
-		return trader;
-
-	}
-
-	public static List<TraderDTO> findAllTraders() throws Exception {
-
-		// ResponseEntity<String> response = invokeAPI(null,
-		// "http://localhost:8080/inwise/traders", HttpMethod.GET, null);
-		//
-		// JsonObject traderJson = new ObjectMapper().readValue(response.getBody(), new
-		// TypeReference<JsonNode>(){});
-		//
-		// //removeUnwantedElements(traderJson);
-		//
-		// TraderDTO trader = (new ObjectMapper().treeToValue(traderJson,
-		// TraderDTO.class));
-		//
-		// System.out.println("Trader details received from Server: " + trader);
-		//
-		// return trader;
-		return null;
-	}
-
-	public static Map<String, String> getItems() throws Exception {
-
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/item/store/1001",
-				HttpMethod.GET, null);
-
-		JsonNode storeJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
-		});
-
-		removeUnwantedElements(storeJson);
-
-		@SuppressWarnings("unchecked")
-		Map<String, String> items = (Map<String, String>) (new ObjectMapper().treeToValue(storeJson, ItemDTO.class));
-
-		System.out.println("Item details received from Server: " + items);
-
-		return items;
-	}
-
-	private static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method,
+	public static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method,
 			Object entity) {
 
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
@@ -150,7 +71,7 @@ public class ServicesGateway {
 		return response;
 	}
 
-	private static ClientHttpRequestFactory getClientHttpRequestFactory() {
+	public static ClientHttpRequestFactory getClientHttpRequestFactory() {
 		// int timeout = 50000;
 
 		RequestConfig config = RequestConfig.custom().build();
@@ -161,7 +82,7 @@ public class ServicesGateway {
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static HttpEntity getHttpEntity(Object entity, HttpHeaders headers) {
+	public static HttpEntity getHttpEntity(Object entity, HttpHeaders headers) {
 
 		HttpEntity httpEntity = null;
 
@@ -177,14 +98,14 @@ public class ServicesGateway {
 		return httpEntity;
 	}
 
-	private static void removeUnwantedElements(JsonNode jsonNode) {
+	public static void removeUnwantedElements(JsonNode jsonNode) {
 
 		// Removing unwanted elements
 		removeElementIfExists(jsonNode, KEY_CREATEDTS);
 		removeElementIfExists(jsonNode, KEY_MODIFIEDTS);
 	}
 
-	private static void removeElementIfExists(JsonNode jsonNode, String elementName) {
+	public static void removeElementIfExists(JsonNode jsonNode, String elementName) {
 
 		if (jsonNode.has(elementName) & jsonNode instanceof ObjectNode) {
 

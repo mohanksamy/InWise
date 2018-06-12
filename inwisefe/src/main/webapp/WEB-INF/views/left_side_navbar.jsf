@@ -13,27 +13,75 @@
 			<ul>
 				<li id="traderSetupHeader"><a href="#" class="closed">Trader</a>
 					<ul>	
-						<li id="addTrader" class="none">	
-							<a href ="addTrader">create</a>
+						<li id="createTrader" class="none">	
+							<a href ="createTrader">create</a>
 						</li>
-						<li id="editTrader" class="none">
-							<a href ="editTrader">update</a>
-						</li>
-						<li id="traderList" class="none">
+						<li id="traders" class="none">
 							<a href ="traders">list</a>
 						</li>
 					</ul>
 				</li>
+
+				<li id="taxSetupHeader"><a href="#" class="closed">Tax</a>
+					<ul>	
+						<li id="createTax" class="none">	
+							<a href ="createTax">create</a>
+						</li>
+						<li id="taxs" class="none">
+							<a href ="taxs">list</a>
+						</li>
+					</ul>
+				</li>
+
+				<li id="categorySetupHeader"><a href="#" class="closed">Category</a>
+					<ul>	
+						<li id="createCategory" class="none">	
+							<a href ="createCategory">create</a>
+						</li>
+						<li id="categories" class="none">
+							<a href ="categories">list</a>
+						</li>
+					</ul>
+				</li>
+
+				<li id="subCategorySetupHeader"><a href="#" class="closed">SubCategory</a>
+					<ul>	
+						<li id="createSubCategory" class="none">	
+							<a href ="createSubCategory">create</a>
+						</li>
+						<li id="subCategories" class="none">
+							<a href ="subCategories">list</a>
+						</li>
+					</ul>
+				</li>
+
+				<li id="brandSetupHeader"><a href="#" class="closed">Brand</a>
+					<ul>	
+						<li id="createBrand" class="none">	
+							<a href ="createBrand">create</a>
+						</li>
+						<li id="brands" class="none">
+							<a href ="brands">list</a>
+						</li>
+					</ul>
+				</li>
 				
+				<li id="sizeSetupHeader"><a href="#" class="closed">Size</a>
+					<ul>	
+						<li id="createSize" class="none">	
+							<a href ="createSize">create</a>
+						</li>
+						<li id="sizez" class="none">
+							<a href ="sizes">list</a>
+						</li>
+					</ul>
+				</li>
 				<li id="itemSetupHeader"><a href="#" class="closed">Item</a>
 					<ul>	
-						<li id="itemCreate" class="none">	
-							<a href ="addItem">create</a>
+						<li id="createItem" class="none">	
+							<a href ="createItem">create</a>
 						</li>
-						<li id="itemUpdate" class="none">
-							<a href ="editItem">update</a>
-						</li>
-						<li id="itemList" class="none">
+						<li id="items" class="none">
 							<a href ="items">list</a>
 						</li>
 					</ul>
@@ -41,13 +89,10 @@
 				
 				<li id="invoiceSetupHeader"><a href="#" class="closed">Invoice</a>
 					<ul>	
-						<li id="invoiceCreate" class="none">	
-							<a href ="addInvoice">create</a>
+						<li id="createInvoice" class="none">	
+							<a href ="createInvoice">create</a>
 						</li>
-						<li id="invoiceUpdate" class="none">
-							<a href ="editInvoice">update</a>
-						</li>
-						<li id="invoiceList" class="none">
+						<li id="invoices" class="none">
 							<a href ="invoices">list</a>
 						</li>
 					</ul>

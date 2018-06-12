@@ -6,9 +6,9 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>InWise Verion 1.0 - Trader Detail</title>
+<title>InWise Verion 1.0 - Traders Detail</title>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="header_include.jsf" %>
 
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
@@ -30,6 +30,12 @@ function initialize() {
   	document.detail_form.postalCode.value = "<c:out value ="${dto.getAddress().getPostalCode()}" />";
   	
 }
+
+function saveTraders() {
+	alert("save Traders");
+    document.detail_form.submit();
+    return true;
+}
 </script>
 </head>
 
@@ -42,7 +48,7 @@ function initialize() {
 			<span>Trader Detail</span>
 		</div>
 	</nobr>
-	<form action="" method="post" name="detail_form" accept-charset="UTF-8">
+	<form action="saveTrader" method="post" name="detail_form" accept-charset="UTF-8">
 		<table cellspacing="2" width="100%" border="0" class="formtable">
  			<tr>
 <!--  				<td colspan="4" align="left" height="30" valign="top"> -->
@@ -98,7 +104,7 @@ function initialize() {
 			
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
- 					<a href ="saveStore"><input type="button" class="button" name="Save" value="Save" /></a>
+ 					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveTraders();"/>
   					<a href ="traders"><input type="button" class="button" name="Cancel" value="Cancel" /></a>
  				</td>
 			</tr>

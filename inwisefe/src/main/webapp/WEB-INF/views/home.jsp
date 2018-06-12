@@ -3,7 +3,8 @@
 <html>
 <head>
 <title>Inwise - Home</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="header_include.jsf" %>
+
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 </head>
 <body class="wnav>

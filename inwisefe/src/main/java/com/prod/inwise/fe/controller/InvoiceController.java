@@ -1,10 +1,14 @@
 package com.prod.inwise.fe.controller;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class InvoiceController {
@@ -20,16 +24,23 @@ public class InvoiceController {
 		return "invoice_master";
 	}
 
+	@GetMapping(value = "/createInvoice")
+	public String addInvoice(Model model) throws Exception {
+
+		return "invoice_detail";
+	}
+
 	@GetMapping(value = "/editInvoice")
 	public String saveInvoice(Model model) throws Exception {
 
 		return "invoice_detail";
 	}
 
-	@GetMapping(value = "/addInvoice")
-	public String addInvoice(Model model) throws Exception {
+	@PostMapping(value = "/saveInvoice")
+	public String saveInvoice(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
 
 		return "invoice_detail";
+
 	}
 
 }
