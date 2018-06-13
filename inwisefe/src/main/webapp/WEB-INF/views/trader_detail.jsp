@@ -25,6 +25,7 @@ function initialize() {
  	document.detail_form.street1.value = "<c:out value ="${dto.getAddress().getStreet1()}" />";
   	document.detail_form.street2.value = "<c:out value ="${dto.getAddress().getStreet2()}" />";
   	document.detail_form.city.value = "<c:out value ="${dto.getAddress().getCity()}" />";
+  	document.detail_form.region.value = "<c:out value ="${dto.getAddress().getRegion()}" />";
   	document.detail_form.state.value = "<c:out value ="${dto.getAddress().getState()}" />";
   	document.detail_form.country.value = "<c:out value ="${dto.getAddress().getCountry()}" />";
   	document.detail_form.postalCode.value = "<c:out value ="${dto.getAddress().getPostalCode()}" />";
@@ -39,7 +40,7 @@ function saveTraders() {
 </script>
 </head>
 
-<body class="wnav" onload="javascript:initialize();">
+<body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
@@ -88,15 +89,20 @@ function saveTraders() {
 				<td class="optional"><label>City:</label></td>
 				<td><input class="optional" type="text" id="city" name="city" maxlength="20" size="25" /></td>
 				
-				<td class="optional"><label>State:</label></td>
-				<td><input class="optional" type="text" id="state" name="state" maxlength="20" size="25" /> </td>
+				<td class="optional"><label>Region:</label></td>
+				<td><input class="optional" type="text" id="region" name="region" maxlength="20" size="25" /> </td>
 			</tr>
 			<tr>
+				<td class="optional"><label>State:</label></td>
+				<td><input class="optional" type="text" id="state" name="state" maxlength="20" size="25" /> </td>
+			
 				<td class="optional"><label>Country:</label></td>
 				<td><input class="optional" type="text" id="country" name="country" maxlength="20" size="25" /></td>
-				
+			</tr>
+			<tr>
 				<td class="optional"><label>PostalCode:</label></td>
 				<td><input class="optional" type="text" id="postalCode" name="postalCode" maxlength="20" size="25" /> </td>
+				
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

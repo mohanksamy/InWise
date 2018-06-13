@@ -19,7 +19,7 @@
 %>
 </head>
 
-<body class="wnav">
+<body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
 	<nobr>

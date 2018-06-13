@@ -111,6 +111,12 @@
 <!-- end #leftside  --> 
 </td><td>
 </form>
+<script type="text/javascript">
+	function submitRequest(requestid, params, page, section) {
+		putcookie("inwiseMenuSection", section, 1)
+		putcookie("inwiseMenuPage", page, 1)
+	}
+</script>
 
 <div id="contentarea">	
 <div id="colwide">

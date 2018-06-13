@@ -86,6 +86,7 @@ public class TraderController {
 		String street1 = requestParams.get("street1");
 		String street2 = requestParams.get("street2");
 		String city = requestParams.get("city");
+		String region = requestParams.get("region");
 		String state = requestParams.get("state");
 		String country = requestParams.get("country");
 		String postalCode = requestParams.get("postalCode");
@@ -97,11 +98,11 @@ public class TraderController {
 		traderDto.setActive(true);
 		traderDto.setCreatedUser("APP-SERVICES");
 		traderDto.setModifiedUser("APP-SERVICES");
-		// traderDto.setCreatedTS(new Timestamp());
 
 		addressDto.setStreet1(street1);
 		addressDto.setStreet2(street2);
 		addressDto.setCity(city);
+		addressDto.setRegion(region);
 		addressDto.setState(state);
 		addressDto.setCountry(country);
 		addressDto.setPostalCode(postalCode);
