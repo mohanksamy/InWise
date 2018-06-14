@@ -16,6 +16,7 @@ import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.data.Stock;
 import com.prod.inwise.services.data.Trader;
 import com.prod.inwise.services.exceptions.OutOfStockException;
+import com.prod.inwise.services.exceptions.UnexpectedItemException;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.repo.LineItemRepository;
 import com.prod.inwise.services.repo.StockRepository;
@@ -26,7 +27,7 @@ import com.prod.inwise.services.services.InvoiceService;
  *
  */
 @Service
-public class InvoiceServiceImpl implements InvoiceService {
+public class InvoiceServiceImpl extends AbstractService implements InvoiceService {
 	
 	@Autowired
 	private InvoiceRepository invoiceRepo;
@@ -38,7 +39,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 	private StockRepository stockRepo;
 	
 	@Override
-	public void createInvoice(BigInteger traderId, List<LineItem> lineItems) throws OutOfStockException {
+	public void createInvoice(BigInteger traderId, List<LineItem> lineItems) throws OutOfStockException, UnexpectedItemException {
+		
+		// Check all LineItems belong to this Trader
+		checkLineItemsBelongsToTrader(traderId, lineItems);
 		
 		// Merge line items in case same items are repeated in the invoice
 		lineItems = mergeLineItems(lineItems);
@@ -48,6 +52,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		outOfStockLineItems = checkItemsInStock(outOfStockLineItems);
 		
 		if ( !outOfStockLineItems.isEmpty() ) {
+			
 			throw new OutOfStockException(outOfStockLineItems);
 		}
 		

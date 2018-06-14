@@ -1,5 +1,6 @@
 package com.prod.inwise.services.services.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.prod.inwise.services.data.Stock;
 import com.prod.inwise.services.data.StockBatch;
 import com.prod.inwise.services.data.StockHistory;
+import com.prod.inwise.services.data.Trader;
+import com.prod.inwise.services.exceptions.UnexpectedItemException;
 import com.prod.inwise.services.repo.StockBatchRepository;
 import com.prod.inwise.services.repo.StockHistoryRepository;
 import com.prod.inwise.services.repo.StockRepository;
@@ -18,7 +21,7 @@ import com.prod.inwise.services.services.StockService;
  *
  */
 @Service
-public class StockServiceImpl implements StockService {
+public class StockServiceImpl extends AbstractService implements StockService {
 	
 	@Autowired
 	private StockBatchRepository stockBatchRepo;
@@ -30,13 +33,19 @@ public class StockServiceImpl implements StockService {
 	private StockRepository stockRepo;
 
 	@Override
-	public void createStock(List<StockHistory> stockHistories) {
+	public void createStock(BigInteger traderId, List<StockHistory> stockHistories) throws UnexpectedItemException {
+		
+		// Check all items in the history belongs to the Trader
+		checkStockHistoriesBelongsToTrader(traderId, stockHistories);
+		
+		Trader trader = new Trader();
+		trader.setId(traderId);
 		
 		// Create Stock
-		
 		StockBatch stockBatch = new StockBatch();
 		stockBatch.setCreatedUser(stockHistories.get(0).getCreatedUser());
 		stockBatch.setModifiedUser(stockHistories.get(0).getCreatedUser());
+		stockBatch.setTrader(trader);
 		
 		stockBatch = stockBatchRepo.save(stockBatch);
 		
@@ -61,6 +70,7 @@ public class StockServiceImpl implements StockService {
 			
 			// Update existing item quantity in Stock
 			} else {
+				
 				stock.setQuantity(stock.getQuantity() + stockHistory.getQuantity());
 			}
 			

@@ -26,8 +26,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.Invoice;
+import com.prod.inwise.services.data.Item;
 import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.exceptions.OutOfStockException;
+import com.prod.inwise.services.exceptions.UnexpectedItemException;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.services.InvoiceService;
 
@@ -68,16 +70,13 @@ public class InvoiceResource {
 		
 		try {
 			
-			for ( LineItem lineItem : lineItems ) {
-				
-				if ( traderId.equals(lineItem.getItem().getTrader().getId()) ) {
-					// throw new exception 
-				}
-			}
-			
 			invoiceService.createInvoice(traderId, lineItems);
 			
 			response = status(OK).build();
+		
+		} catch (UnexpectedItemException uie) {
+			
+			response = Response.status(INTERNAL_SERVER_ERROR).entity(uie.getMessage()).build();
 		
 		} catch (OutOfStockException ofs) {
 			

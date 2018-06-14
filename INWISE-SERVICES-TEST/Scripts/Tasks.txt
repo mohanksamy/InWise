@@ -65,6 +65,14 @@ Cancel / return of invoice:
 ****************************
 
 
+
+Open tasks:
+************
+- Exception handling
+- Refactor the code
+- Refactor library dependencies
+- Remove commented code
+
 REFERENCES:
 ***********
 

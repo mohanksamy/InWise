@@ -44,9 +44,6 @@ import io.swagger.annotations.ApiResponses;
 @Api(value = "Trader Service")
 public class TraderResource {
 
-	/*
-	 * @Autowired private StoreRepository storeRepo;
-	 */
 	@Autowired
 	private TraderRepository traderRepo;
 
@@ -70,6 +67,12 @@ public class TraderResource {
 	
 	@Autowired
 	private ItemResource itemResource;
+	
+	@Autowired
+	private StockBatchResource stockBatchResource;
+
+	@Autowired
+	private StockResource stockResource;
 	
 	@Autowired
 	private InvoiceResource invoiceResource;
@@ -225,6 +228,26 @@ public class TraderResource {
 	@Path("/{traderId}/items")
 	public ItemResource getItems() {
 		return itemResource;
+	}
+	
+	/**
+	 * Sub-resource - StockBatchResource
+	 * 
+	 * @return
+	 */
+	@Path("/{traderId}/stockBatches")
+	public StockBatchResource getStockBatches() {
+		return stockBatchResource;
+	}
+	
+	/**
+	 * Sub-resource - StockResource
+	 * 
+	 * @return
+	 */
+	@Path("/{traderId}/stocks")
+	public StockResource getStocks() {
+		return stockResource;
 	}
 
 	/**

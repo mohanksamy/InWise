@@ -32,7 +32,6 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-@Path("/stocks")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Stock Service")
 public class StockResource {
@@ -40,7 +39,7 @@ public class StockResource {
 	@Autowired
 	private StockRepository stockRepo;
 
-	@POST
+	/*@POST
 	@ApiOperation(value = "Create stock", notes = "Create stock model")
 	@ApiResponses(value = {
 			@ApiResponse(code = 404, message = "Invalid tenant specified"),
@@ -54,7 +53,7 @@ public class StockResource {
 		stockRepo.save(stock);
 
 		return status(OK).build();
-	}
+	}*/
 	
 	@GET
 	@Path("/item/{id}")

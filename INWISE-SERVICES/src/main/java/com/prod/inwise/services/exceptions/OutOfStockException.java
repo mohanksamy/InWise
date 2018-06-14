@@ -16,11 +16,13 @@ public class OutOfStockException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public OutOfStockException(List<LineItem> lineItems) {
+		
 		super(getExceptionMessage(lineItems));
 	}
 
 	@Override
 	public String getMessage() {
+		
 		return super.getMessage();
 	}
 	
