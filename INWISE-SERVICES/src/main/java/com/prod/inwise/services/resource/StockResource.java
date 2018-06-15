@@ -1,29 +1,35 @@
 package com.prod.inwise.services.resource;
 
-import static javax.ws.rs.core.Response.status;
+import static com.prod.inwise.util.Constants.RESOURCE_PATH_ITEM;
+import static com.prod.inwise.util.Constants.RESOURCE_PATH_STOCK;
+import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.Status.OK;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.prod.inwise.services.data.Item;
 import com.prod.inwise.services.data.Stock;
+import com.prod.inwise.services.repo.ItemRepository;
 import com.prod.inwise.services.repo.StockRepository;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 /**
  * REST Resource exposes operation on Stock resource
@@ -38,6 +44,9 @@ public class StockResource {
 
 	@Autowired
 	private StockRepository stockRepo;
+	
+	@Autowired
+	private ItemRepository itemRepo;
 
 	/*@POST
 	@ApiOperation(value = "Create stock", notes = "Create stock model")
@@ -56,12 +65,40 @@ public class StockResource {
 	}*/
 	
 	@GET
-	@Path("/item/{id}")
+	@ApiOperation(value = "Get All Stocks", notes = "Get Stock URIs")
+	public Response findAllStocks(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+		
+		Iterable<Stock> stocks = stockRepo.findByItemTraderId(traderId);
+		
+		List<Stock> stocksList = stream(stocks.spliterator(), false).collect(Collectors.toList());
+		
+		List<String> links = new ArrayList<>();
+		
+		stocksList.stream().forEach( stock -> links.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(traderId.toString()).path(RESOURCE_PATH_STOCK).path(RESOURCE_PATH_ITEM).path(stock.getItem().getId().toString()).build().toString()));
+		
+		return Response.status(OK).entity(links).build();
+	}
+	
+	@GET
+	@Path("/items/{id}")
 	@ApiOperation(value = "Get stock", notes = "Get stock model")
-	public Response findByItem(@ApiParam @PathParam("id") BigInteger itemId) {
+	public Response findByItem(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger itemId) {
 		
-		Stock stock = stockRepo.findByItemId(itemId);
+		Response response = null;
 		
-		return Response.status(OK).entity(stock).build();
+		Item item = itemRepo.findOne(itemId);
+		
+		if ( traderId.equals(item.getTrader().getId()) ) {
+		
+			Stock stock = stockRepo.findByItemId(itemId);
+			
+			response = Response.status(OK).entity(stock).build();
+		
+		} else {
+			
+			response = Response.status(OK).entity("Item " + item.getName() + " doesn't belongs to the Trader: " + traderId).build();
+		}
+		
+		return response;
 	}
 }
