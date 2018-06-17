@@ -61,7 +61,7 @@ public class TraderDTO extends NameCodeDTO {
 	 */
 	@Override
 	public String toString() {
-		return "TraderDTO [address=" + address + ", uin=" + uin + ", phone=" + phone + ", getName()=" + getName()
-				+ ", getCode()=" + getCode() + ", isActive()=" + isActive() + "]";
+		return "TraderDTO [address=" + address + ", uin=" + uin + ", phone=" + phone + ", name=" + getName()
+				+ ", code=" + getCode() + ", active=" + isActive() + "]";
 	}
 }

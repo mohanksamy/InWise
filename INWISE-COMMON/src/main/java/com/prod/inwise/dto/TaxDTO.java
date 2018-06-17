@@ -55,4 +55,12 @@ public class TaxDTO extends BaseDTO {
 	public void setTrader(TraderDTO trader) {
 		this.trader = trader;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TaxDTO [cgst=" + cgst + ", sgst=" + sgst + ", trader=" + trader + "]";
+	}
 }

@@ -184,6 +184,11 @@ public final class DataUtil {
 		return dataFactory.getNumberBetween(min, max);
 	}
 	
+	public static int getRandomObjectIndex(List<String> objectLinks) {
+		
+		return getRandomNumberBetween(0, objectLinks.size());
+	}
+	
 	public static Date getRandomDate(int startingYear) {
 		
 		Calendar baseDate = Calendar.getInstance();

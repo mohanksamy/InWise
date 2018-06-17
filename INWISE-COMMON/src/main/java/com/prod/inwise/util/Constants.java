@@ -32,7 +32,7 @@ public interface Constants {
 
 //	public static final String RESOURCE_PATH_LINEITEM 									= "lineItems";
 
-//	public static final String RESOURCE_PATH_STOCK 										= "stocks";
+	public static final String RESOURCE_PATH_STOCK 										= "stocks";
 
 //	public static final String RESOURCE_PATH_STOCK_BATCH									= "stockBatches";
 
