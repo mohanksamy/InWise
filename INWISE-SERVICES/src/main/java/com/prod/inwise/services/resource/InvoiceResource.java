@@ -26,7 +26,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.prod.inwise.services.data.Invoice;
-import com.prod.inwise.services.data.Item;
 import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.exceptions.UnexpectedItemException;

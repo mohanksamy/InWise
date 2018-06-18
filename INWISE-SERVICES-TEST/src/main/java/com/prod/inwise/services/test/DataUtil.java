@@ -1,8 +1,6 @@
 package com.prod.inwise.services.test;
 
 import static com.prod.inwise.services.test.util.Constants.APP_USER;
-import static com.prod.inwise.services.test.util.Constants.DATA_DELIMITER;
-import static com.prod.inwise.services.test.util.Constants.STRING_SPACE;
 import static com.prod.inwise.services.test.util.Constants.number;
 import static com.prod.inwise.services.test.util.Constants.random;
 import static java.lang.Float.parseFloat;
@@ -77,7 +75,7 @@ public final class DataUtil {
 		return trader;
 	}
 	
-	public static TaxDTO getTax(TraderDTO trader) {
+	public static TaxDTO getTax() {
 		
 		number.setMaximumFractionDigits(2);
 		
@@ -87,8 +85,6 @@ public final class DataUtil {
 		tax.setActive(true);
 		tax.setCreatedUser(APP_USER);
 		tax.setModifiedUser(APP_USER);
-		
-		tax.setTrader(trader);
 		
 		return tax;
 	}

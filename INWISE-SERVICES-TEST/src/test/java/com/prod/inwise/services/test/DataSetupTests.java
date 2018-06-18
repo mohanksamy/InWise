@@ -1,21 +1,12 @@
 package com.prod.inwise.services.test;
 
-import static com.prod.inwise.services.test.DataUtil.getItem;
 import static com.prod.inwise.services.test.DataUtil.getLineItems;
 import static com.prod.inwise.services.test.DataUtil.getRandomDate;
 import static com.prod.inwise.services.test.DataUtil.getRandomNumberBetween;
-import static com.prod.inwise.services.test.DataUtil.getRandomObjectIndex;
-import static com.prod.inwise.services.test.DataUtil.getStockHistories;
-import static com.prod.inwise.services.test.DataUtil.getTax;
-import static com.prod.inwise.services.test.DataUtil.getTrader;
-import static com.prod.inwise.services.test.DataUtil.getVendor;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_INVOICE;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_ITEM;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK;
-import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_STOCK_BATCH;
-import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TAX;
 import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_TRADERS;
-import static com.prod.inwise.services.test.util.Constants.RESOURCE_PATH_VENDOR;
 import static com.prod.inwise.services.test.util.Constants.STRING_EMPTY;
 import static org.apache.http.HttpStatus.SC_OK;
 
@@ -25,14 +16,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
 import com.prod.inwise.dto.LineItemDTO;
 import com.prod.inwise.dto.StockDTO;
-import com.prod.inwise.dto.StockHistoryDTO;
 import com.prod.inwise.dto.TaxDTO;
 import com.prod.inwise.dto.TraderDTO;
 import com.prod.inwise.dto.VendorDTO;
@@ -41,109 +30,32 @@ import com.prod.inwise.dto.VendorDTO;
  * @author mohan_kandasamy
  *
  */
-public class DataSetupTests extends AbstractTests {
+public class DataSetupTests extends ServicesTests {
 	
 	@Test
 	public void createInvoices() {
 		
 		int tradersCount = 1;
 		
-		for ( int count = 0; count < tradersCount; count++ ) {
+		for ( int traderIndex = 0; traderIndex < tradersCount; traderIndex++ ) {
 			
 			// Create Trader
-			TraderDTO trader = getTrader();
-			
-			System.out.println(trader);
-			
-			// Check the Trader already exists
-			if ( getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, trader.getName())).asString().contentEquals(STRING_EMPTY) ) {
-				
-				// Save Trader
-				getRequestSpecificationWithJsonBody(trader).post(getPath(RESOURCE_PATH_TRADERS)).then().statusCode(SC_OK);
-			}
-		
-			// Fetch Trader
-			trader = getDefaultRequestSpecification().get(getPath(RESOURCE_PATH_TRADERS, trader.getName())).andReturn().getBody().as(TraderDTO.class);
-			
-			BigInteger traderId = trader.getId();
+			TraderDTO trader = createTrader();
 
-			
 			// Create Tax
-			TaxDTO tax = getTax(trader);
+			TaxDTO tax = createTax(trader.getId());
 			
-			// Check the Trader already exists
-			if ( !resourceExist(traderId, RESOURCE_PATH_TAX) ) {
-							
-				// Save Tax
-				getRequestSpecificationWithJsonBody(tax).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_TAX)).then().statusCode(SC_OK);
-			}
+			// Create Items
+			List<ItemDTO> items = createItems(trader.getId(), tax);
 			
-			// Fetch Tax
-			tax = (TaxDTO) fetcResource(traderId, RESOURCE_PATH_TAX, TaxDTO.class);
+			// Create Vendors
+			VendorDTO vendor = createVendors(trader.getId());
 			
+			// Create Stock Batches
+			createStockBatches(trader.getId(), items, vendor);
 			
-			// Create Item
-			List<ItemDTO> items = getItem(tax);
-			
-			for ( ItemDTO item : items ) {
-				
-				// Save Item
-				item.setId(getRequestSpecificationWithJsonBody(item).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_ITEM)).andReturn().getBody().as(BigInteger.class));
-			}
-			
-			
-			VendorDTO vendor = getVendor();
-			
-			// Create Vendor
-			if ( !resourceExist(traderId, RESOURCE_PATH_VENDOR) ) {
-				
-				getRequestSpecificationWithJsonBody(vendor).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_VENDOR)).then().statusCode(SC_OK);
-			}
-			
-			vendor = (VendorDTO) fetcResource(traderId, RESOURCE_PATH_VENDOR, VendorDTO.class);
-			
-			
-			List<StockHistoryDTO> stockHistories = getStockHistories();
-			
-			// Create Stock
-			for ( StockHistoryDTO stockHistory : stockHistories ) {
-				
-				stockHistory.setItem(items.get(getRandomNumberBetween(0, items.size()-1)));
-				
-				stockHistory.setVendor(vendor);
-			}
-			
-			getRequestSpecificationWithJsonBody(stockHistories).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_STOCK_BATCH)).then().statusCode(SC_OK);
-			
-			
-			// Create Invoice
-			List<LineItemDTO> lineItems = getLineItems();
-			
-			List<StockDTO> stocks = new ArrayList<>();
-			
-			fetcResources(traderId, RESOURCE_PATH_STOCK, StockDTO.class, stocks);
-			
-			// Create Invoice
-			for ( LineItemDTO lineItem : lineItems ) {
-				
-				StockDTO stock = stocks.get(getRandomNumberBetween(0, stocks.size()-1));
-				
-				if ( stock.getQuantity() > 1 ) {
-					
-					// Use the items in Stock
-					lineItem.setItem(stock.getItem());
-					
-					lineItem.setQuantity(getRandomNumberBetween(1, stock.getQuantity()));
-					
-					// Reduce the quantity in the stock
-					stock.setQuantity(stock.getQuantity() - lineItem.getQuantity());
-				}
-			}
-			
-			// Remove any Line Item doesn't have a mapping Item
-			List<LineItemDTO> consolidatedLineItems = lineItems.parallelStream().filter( lineItem -> null != lineItem.getItem()).collect(Collectors.toList());
-			
-			getRequestSpecificationWithJsonBody(consolidatedLineItems).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
+			// Create Invoices
+			createInvoices(trader.getId());
 		}
 	}
 	
@@ -207,38 +119,6 @@ public class DataSetupTests extends AbstractTests {
 				
 				getRequestSpecificationWithJsonBody(lineItems).post(getPath(RESOURCE_PATH_INVOICE, RESOURCE_PATH_TRADERS, store.getId().toString())).then().statusCode(SC_OK);
 			}
-		}
-	}
-	
-	private List<String> fetchURIs(String... path) {
-	
-		return getDefaultRequestSpecification().get(getPath(path)).andReturn().getBody().as(List.class);
-	}
-	
-	private boolean resourceExist(BigInteger traderId, String subresource) {
-		
-		return (fetchURIs(RESOURCE_PATH_TRADERS, traderId.toString(), subresource).size() > 0);
-	}
-	
-	private Object fetchResource(String resourceURI, Class clazz) {
-		
-		return getDefaultRequestSpecification().get(resourceURI).andReturn().getBody().as(clazz);
-	}
-	
-	private Object fetcResource(BigInteger traderId, String subresource, Class clazz) {
-		
-		List<String> links = fetchURIs(RESOURCE_PATH_TRADERS, traderId.toString(), subresource);
-		
-		return fetchResource(links.get(getRandomObjectIndex(links)), clazz);
-	}
-	
-	private void fetcResources(BigInteger traderId, String subresource, Class clazz, List resources) {
-		
-		List<String> links = fetchURIs(RESOURCE_PATH_TRADERS, traderId.toString(), subresource);
-		
-		for ( String link : links ) {
-			
-			resources.add(fetchResource(link, clazz));
 		}
 	}
 }
