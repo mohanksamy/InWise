@@ -1,9 +1,12 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
-<%@ page import="com.prod.inwise.dto.TraderDTO"%>
 <%@ page import="java.util.*"%>
+<%@ page import="com.prod.inwise.dto.TraderDTO"%>
+<%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
+
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,14 +17,15 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
 <%
-	List<TraderDTO> dtos = (List<TraderDTO>) request.getAttribute("traders");
-// 	pageContext.setAttribute("dtos", stores);
+	List<TraderDTO> stores = (List<TraderDTO>) request.getAttribute(AttributeConstants.TRADER_LIST);
+	pageContext.setAttribute("dtos", stores);
 %>
 </head>
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
-<%@ include file="left_side_navbar.jsf"%>	
+
+.<%@ include file="left_side_navbar.jsf"%>	
 	<nobr>
 		<div class="boxheader">
 			<span>Traders</span>
@@ -42,7 +46,7 @@
 						<tr>
 							<th class="column-name">&nbsp;</th>
 							<th class="column-name">Trader Name</th>
-							<th class="column-name">Address</th>
+							<th class="column-name">Code</th>
 							<th class="column-name">UIN</th>
 							<th class="column-name">Phone #</th>
 							<th class="column-name">City</th>
@@ -51,47 +55,18 @@
 						</tr>
 					</thead>
 					<tbody>
+				 	<c:forEach var="trader" items="traders">
 						<tr>
 							<td><a class="td-link" href="editTrader">view/Edit</a></td>
-							<td>VelStores</td>
-							<td>Bangalore</td>
-							<td>1234567</td>
-							<td>7760488623</td>
-							<td>Banagalore</td>
-							<td>Karnataka</td>
-							<td>560001</td>
+							<td><c:out value="${trader.name}" /></td>
+							<td><c:out value="${trader.code}" /></td>
+							<td><c:out value="${trader.uin}" /></td>
+							<td><c:out value="${trader.phone}" /></td>
+							<td><c:out value="${trader.city}" /></td>
+							<td><c:out value="${trader.state}" /></td>
+							<td><c:out value="${trader.postalCode}" /></td>
 						</tr>
-						<tr>
-							<td><a class="td-link" href="editTrader">view/Edit</a></td>
-							<td>VelStores</td>
-							<td>Bangalore</td>
-							<td>1234567</td>
-							<td>7760488623</td>
-							<td>Banagalore</td>
-							<td>Karnataka</td>
-							<td>560001</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="editTrader">view/Edit</a></td>
-							<td>VelStores</td>
-							<td>Bangalore</td>
-							<td>1234567</td>
-							<td>7760488623</td>
-							<td>Banagalore</td>
-							<td>Karnataka</td>
-							<td>560001</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="editTrader">view/Edit</a></td>
-							<td>VelStores</td>
-							<td>Bangalore</td>
-							<td>1234567</td>
-							<td>7760488623</td>
-							<td>Banagalore</td>
-							<td>Karnataka</td>
-							<td>560001</td>
-						</tr>
-						
+					</c:forEach>
 					</tbody>
 				</table>
 			</td>

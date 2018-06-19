@@ -9,10 +9,15 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.prod.inwise.dto.TraderDTO;
 import com.prod.inwise.fe.services.TraderService;
 import static com.prod.inwise.fe.services.ServicesGateway.invokeAPI;
 import static com.prod.inwise.fe.services.ServicesGateway.removeUnwantedElements;
+import static com.prod.inwise.fe.services.ServicesGateway.decodeValue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Logu
@@ -24,23 +29,41 @@ public class TraderServiceImpl implements TraderService {
 
 	private static Logger log = LoggerFactory.getLogger(TraderServiceImpl.class);
 
-	public TraderDTO findTraderByName(String name) throws Exception {
+	public List<TraderDTO> findAllTraders() throws Exception {
 
-		log.debug(String.format("in Traderservice name: [%s]", name));
+		List<TraderDTO> traders = new ArrayList<>();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + name,
-				HttpMethod.GET, null);
+		TraderDTO trader = new TraderDTO();
 
-		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/", HttpMethod.GET,
+				null);
+		JsonNode traderJsons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
 
-		removeUnwantedElements(traderJson);
+		if (traderJsons.isArray()) {
 
-		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
+			for (JsonNode traderJson : traderJsons) {
 
-		System.out.println("Trader details received from Server: " + trader);
+				String traderURI = decodeValue(traderJson.toString());
+				System.out.println("traderURI :" + traderURI);
 
-		return trader;
+				ResponseEntity<String> traderResponse = invokeAPI(null, traderURI, HttpMethod.GET, null);
+
+				JsonNode jsonNode = new ObjectMapper().readValue(traderResponse.getBody(),
+						new TypeReference<JsonNode>() {
+						});
+
+				removeUnwantedElements(jsonNode);
+
+				trader = (new ObjectMapper().treeToValue(jsonNode, TraderDTO.class));
+
+				System.out.println("Trader details received from Server: " + trader);
+
+				traders.add(trader);
+			}
+		}
+
+		return traders;
 
 	}
 
@@ -62,7 +85,27 @@ public class TraderServiceImpl implements TraderService {
 
 	}
 
-	public TraderDTO createTrader(TraderDTO traderDto) throws Exception {
+	public TraderDTO findTraderByName(String name) throws Exception {
+
+		log.debug(String.format("in Traderservice name: [%s]", name));
+
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + name,
+				HttpMethod.GET, null);
+
+		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
+		});
+
+		removeUnwantedElements(traderJson);
+
+		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
+
+		System.out.println("Trader details received from Server: " + trader);
+
+		return trader;
+
+	}
+
+	public TraderDTO saveTrader(TraderDTO traderDto) throws Exception {
 
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/", HttpMethod.POST,
 				traderDto);
@@ -79,4 +122,5 @@ public class TraderServiceImpl implements TraderService {
 		return trader;
 
 	}
+
 }

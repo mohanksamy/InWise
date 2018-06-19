@@ -1,5 +1,7 @@
 package com.prod.inwise.fe.services;
 
+import java.util.List;
+
 import com.prod.inwise.dto.TraderDTO;
 
 /**
@@ -8,9 +10,12 @@ import com.prod.inwise.dto.TraderDTO;
  */
 public interface TraderService {
 
-	public TraderDTO findTraderByName(String name) throws Exception;
+	public List<TraderDTO> findAllTraders() throws Exception;
 
 	public TraderDTO findTraderById(Long id) throws Exception;
 
-	public TraderDTO createTrader(TraderDTO traderDto) throws Exception;
+	public TraderDTO findTraderByName(String name) throws Exception;
+
+	public TraderDTO saveTrader(TraderDTO traderDto) throws Exception;
+
 }

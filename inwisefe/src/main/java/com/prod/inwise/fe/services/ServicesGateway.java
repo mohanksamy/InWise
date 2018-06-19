@@ -3,6 +3,8 @@ package com.prod.inwise.fe.services;
 import static com.prod.inwise.util.Constants.KEY_CREATEDTS;
 import static com.prod.inwise.util.Constants.KEY_MODIFIEDTS;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import java.util.Properties;
@@ -111,5 +113,13 @@ public class ServicesGateway {
 
 			((ObjectNode) jsonNode).remove(elementName);
 		}
+	}
+
+	public static String encodeValue(String value) throws Exception {
+		return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+	}
+	
+	public static String decodeValue(String value) throws Exception {
+	    return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
 	}
 }

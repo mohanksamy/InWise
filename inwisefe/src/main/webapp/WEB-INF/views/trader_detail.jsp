@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
+<%@ page import="java.math.BigInteger"%>
 <%@ page import="com.prod.inwise.dto.TraderDTO"%>
+<%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -14,10 +16,19 @@
 
 <%
 	TraderDTO trader = (TraderDTO) request.getAttribute("trader");
+	BigInteger id = null;
+	
+	if(trader != null) {
+	 	id = trader.getId();
+	}
+
+	String mode = (String) request.getAttribute(AttributeConstants.MODE);
 	pageContext.setAttribute("dto", trader);
 %>
 <script type="text/javascript">
+
 function initialize() {
+	
   	document.detail_form.name.value = "<c:out value ="${dto.getName()}" />";
   	document.detail_form.code.value = "<c:out value ="${dto.getCode()}" />";
   	document.detail_form.uin.value = "<c:out value ="${dto.getUin()}" />";
@@ -33,7 +44,6 @@ function initialize() {
 }
 
 function saveTraders() {
-	alert("save Traders");
     document.detail_form.submit();
     return true;
 }
@@ -43,7 +53,9 @@ function saveTraders() {
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 
 <%@ include file="header.jsf" %>
-<%@ include file="left_side_navbar.jsf"%>	
+<%@ include file="left_side_navbar.jsf"%>
+<input type="hidden" name="<%= AttributeConstants.TRADER_ID %>" value ="<%= id %>" />
+<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
 	<nobr>
 		<div class="boxheader">
 			<span>Trader Detail</span>
