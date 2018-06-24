@@ -1,5 +1,7 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.util.Constants.PARAM_ID;
+import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_ITEM;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_STOCK;
 import static java.util.stream.StreamSupport.stream;
@@ -47,26 +49,10 @@ public class StockResource {
 	
 	@Autowired
 	private ItemRepository itemRepo;
-
-	/*@POST
-	@ApiOperation(value = "Create stock", notes = "Create stock model")
-	@ApiResponses(value = {
-			@ApiResponse(code = 404, message = "Invalid tenant specified"),
-			@ApiResponse(code = 401, message = "Invalid user specified"),
-			@ApiResponse(code = 401, message = "No permission to access model"),
-			@ApiResponse(code = 401, message = "No privilege to access model"),
-			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
-			@ApiResponse(code = 500, message = "Server Internal error")})
-	public Response createStock(Stock stock) {
-
-		stockRepo.save(stock);
-
-		return status(OK).build();
-	}*/
 	
 	@GET
 	@ApiOperation(value = "Get All Stocks", notes = "Get Stock URIs")
-	public Response findAllStocks(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+	public Response findAllStocks(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
 		
 		Iterable<Stock> stocks = stockRepo.findByItemTraderId(traderId);
 		
@@ -82,7 +68,7 @@ public class StockResource {
 	@GET
 	@Path("/items/{id}")
 	@ApiOperation(value = "Get stock", notes = "Get stock model")
-	public Response findByItem(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger itemId) {
+	public Response findByItem(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger itemId) {
 		
 		Response response = null;
 		

@@ -1,5 +1,7 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.util.Constants.PARAM_ID;
+import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_USER;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
@@ -60,7 +62,7 @@ public class UserResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createUser(@ApiParam @PathParam("traderId") BigInteger traderId, User user) {
+	public Response createUser(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, User user) {
 		
 		Response response = null;
 		
@@ -85,7 +87,7 @@ public class UserResource {
 	
 	@GET
 	@ApiOperation(value = "Get All Users", notes = "Get User URIs")
-	public Response findAllUsers(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+	public Response findAllUsers(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
 		
 		Iterable<User> users = userRepo.findByTraderId(traderId);
 		
@@ -101,7 +103,7 @@ public class UserResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get user", notes = "Get user model")
-	public Response getUser(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
+	public Response getUser(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
 
 		Response response = null;
 		

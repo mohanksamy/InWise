@@ -1,5 +1,7 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.util.Constants.PARAM_ID;
+import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_BRANDS;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
@@ -60,7 +62,7 @@ public class BrandResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createBrand(@ApiParam @PathParam("traderId") BigInteger traderId, Brand brand) {
+	public Response createBrand(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, Brand brand) {
 
 		Response response = null;
 
@@ -85,7 +87,7 @@ public class BrandResource {
 
 	@GET
 	@ApiOperation(value = "Get All Brands", notes = "Get Brand URIs")
-	public Response findAllBrands(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+	public Response findAllBrands(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
 
 		Iterable<Brand> brands = brandRepo.findByTraderId(traderId);
 
@@ -103,8 +105,7 @@ public class BrandResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get Brand", notes = "Get brand model")
-	public Response getBrand(@ApiParam @PathParam("traderId") BigInteger traderId,
-			@ApiParam @PathParam("id") BigInteger id) {
+	public Response getBrand(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
 
 		Response response = null;
 

@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.prod.inwise.services.data.Category;
@@ -24,7 +23,7 @@ public interface CategoryRepository extends CrudRepository<Category, BigInteger>
 	 * @param name
 	 * @return
 	 */
-	public List<Category> findByTraderId(@Param("traderId") BigInteger traderId);
+	public List<Category> findByTraderId(BigInteger traderId);
 	
-	public Category findByTraderIdAndId(@Param("traderId") BigInteger traderId, @Param("id") BigInteger id);
+	public Category findByTraderIdAndId(BigInteger traderId, BigInteger id);
 }

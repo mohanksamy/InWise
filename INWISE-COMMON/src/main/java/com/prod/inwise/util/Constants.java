@@ -16,6 +16,8 @@ public interface Constants {
 	
 	public static final boolean REST_BV_DISABLE_VALIDATE_ON_EXECUTABLE_OVERRIDE_CHECK	= true;
 	
+	public static final String RESOURCE_PATH_TRADERS 									= "traders";
+	
 	public static final String RESOURCE_PATH_TAX 										= "taxes";
 	
 	public static final String RESOURCE_PATH_CATEGORIES 									= "categories";
@@ -41,7 +43,13 @@ public interface Constants {
 	public static final String RESOURCE_PATH_VENDOR										= "vendors";
 	
 	public static final String RESOURCE_PATH_USER										= "users";
-
+	
+	
+	// Resource Parameters
+	public static final String PARAM_ID													= "id";
+	
+	public static final String PARAM_TRADER_ID											= "traderId";
+	
 	
 	// RESOURCE URI CONSTANTS
 	public static final String REST_HEALTH_MESSAGE 										= "InWise REST Services Up and Running!";

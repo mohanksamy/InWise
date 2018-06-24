@@ -1,5 +1,7 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.util.Constants.PARAM_ID;
+import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_ITEM;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
@@ -42,7 +44,6 @@ import io.swagger.annotations.ApiResponses;
  *
  */
 @Component
-//@Path("/items")
 @Produces(MediaType.APPLICATION_JSON)
 @Api(value = "Item Service")
 public class ItemResource {
@@ -61,7 +62,7 @@ public class ItemResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createItem(@ApiParam @PathParam("traderId") BigInteger traderId, Item item) {
+	public Response createItem(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, Item item) {
 		
 		Response response = null;
 		
@@ -86,7 +87,7 @@ public class ItemResource {
 	
 	@GET
 	@ApiOperation(value = "Get All Items", notes = "Get Item URIs")
-	public Response findAllItems(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+	public Response findAllItems(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
 		
 		Iterable<Item> items = itemRepo.findByTraderId(traderId);
 		
@@ -102,7 +103,7 @@ public class ItemResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get item", notes = "Get item model")
-	public Response getItem(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
+	public Response getItem(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
 
 		Response response = null;
 		

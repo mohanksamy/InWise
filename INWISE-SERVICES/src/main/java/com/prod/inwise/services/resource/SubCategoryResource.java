@@ -1,5 +1,7 @@
 package com.prod.inwise.services.resource;
 
+import static com.prod.inwise.util.Constants.PARAM_ID;
+import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_SUBCATEGORIES;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
@@ -60,7 +62,7 @@ public class SubCategoryResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createSubCategory(@ApiParam @PathParam("traderId") BigInteger traderId, SubCategory subCategory) {
+	public Response createSubCategory(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, SubCategory subCategory) {
 
 		Response response = null;
 
@@ -85,7 +87,7 @@ public class SubCategoryResource {
 
 	@GET
 	@ApiOperation(value = "Get All Categories", notes = "Get Category URIs")
-	public Response findAllCategories(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
+	public Response findAllCategories(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
 
 		Iterable<SubCategory> subCategories = subCategoryRepo.findByTraderId(traderId);
 
@@ -104,8 +106,7 @@ public class SubCategoryResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get Sub Category", notes = "Get sub category model")
-	public Response getSubCategory(@ApiParam @PathParam("traderId") BigInteger traderId,
-			@ApiParam @PathParam("id") BigInteger id) {
+	public Response getSubCategory(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
 
 		Response response = null;
 
