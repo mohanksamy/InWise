@@ -119,7 +119,7 @@ public class TraderResource {
 
 		List<String> links = new ArrayList<>();
 
-		tradersList.parallelStream().forEach(trader -> links
+		tradersList.stream().forEach(trader -> links
 				.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(trader.getName()).build().toString()));
 
 		return Response.status(OK).entity(links).build();
