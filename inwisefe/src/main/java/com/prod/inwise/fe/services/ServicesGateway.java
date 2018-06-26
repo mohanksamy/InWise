@@ -5,8 +5,9 @@ import static com.prod.inwise.util.Constants.KEY_MODIFIEDTS;
 
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-
+import java.util.Arrays;
 import java.util.Properties;
 
 import javax.ws.rs.core.MediaType;
@@ -49,6 +50,7 @@ public class ServicesGateway {
 		HttpHeaders headers = new HttpHeaders();
 
 		headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
+		headers.setAcceptCharset(Arrays.asList(Charset.forName("UTF-8")));
 
 		// Populating headers
 		if (null != headerProperties) {
@@ -118,8 +120,8 @@ public class ServicesGateway {
 	public static String encodeValue(String value) throws Exception {
 		return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
 	}
-	
+
 	public static String decodeValue(String value) throws Exception {
-	    return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
+		return URLDecoder.decode(value, StandardCharsets.UTF_8.toString());
 	}
 }

@@ -2,6 +2,7 @@ package com.prod.inwise.fe.utilities;
 
 public interface AttributeConstants {
 
+	String REQUEST_ID = "request_id";
 	String RS_SUCCESS = "success";
 	String RS_FAILURE = "failure";
 	String APPLICATION_STATUS = "application_status";

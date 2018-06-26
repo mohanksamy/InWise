@@ -44,7 +44,7 @@ function initialize() {
 }
 
 function saveTraders() {
-    document.detail_form.submit();
+	document.detail_form.submit();
     return true;
 }
 </script>

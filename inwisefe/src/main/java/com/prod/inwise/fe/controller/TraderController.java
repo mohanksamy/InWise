@@ -52,12 +52,11 @@ public class TraderController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.EDIT_TRADER, method = { RequestMethod.GET, RequestMethod.POST })
-	public String editTrader(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+	public String editTrader(@RequestParam("name") String name, Model model) throws Exception {
 
-		String id = requestParams.get("id");
-		Long traderId = Long.valueOf(id);
+		logger.debug("editTrader Name :" + name);
 
-		TraderDTO traderDto = traderService.findTraderById(traderId);
+		TraderDTO traderDto = traderService.findTraderByName(name);
 
 		model.addAttribute(AttributeConstants.TRADER, traderDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.UPDATE);
@@ -79,10 +78,27 @@ public class TraderController extends BusinessController {
 
 	private TraderDTO setData(Map<String, String> requestParams) throws Exception {
 
-		TraderDTO traderDto = new TraderDTO();
+		TraderDTO traderDto = null;
 		AddressDTO addressDto = new AddressDTO();
 
 		String name = requestParams.get(AttributeConstants.NAME);
+
+		logger.debug("Mode :" + requestParams.get(AttributeConstants.MODE));
+		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
+
+			traderDto = new TraderDTO();
+			addressDto = new AddressDTO();
+
+		} else {
+
+			traderDto = traderService.findTraderByName(name);
+			addressDto = traderDto.getAddress();
+
+			logger.debug("Trader Id " + traderDto.getId());
+			logger.debug("address Id " + addressDto.getId());
+
+		}
+
 		String code = requestParams.get(AttributeConstants.CODE);
 		String uin = requestParams.get(AttributeConstants.UIN);
 		String phone = requestParams.get(AttributeConstants.PHONE);

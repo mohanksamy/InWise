@@ -6,6 +6,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.inwise.dto.TraderDTO"%>
 <%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
+<%@ page import="com.prod.inwise.fe.utilities.RequestConstants"%>
 
 <head>
 
@@ -14,12 +15,21 @@
 
 <%@ include file="header_include.jsf" %>
 
-<link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/default.css" />"  />
 
 <%
-	List<TraderDTO> stores = (List<TraderDTO>) request.getAttribute(AttributeConstants.TRADER_LIST);
-	pageContext.setAttribute("dtos", stores);
+	List<TraderDTO> traderList = (List<TraderDTO>) request.getAttribute(AttributeConstants.TRADER_LIST);
+//	pageContext.setAttribute("dtos", stores);
 %>
+<script>
+function editTrader(traderName) {
+	alert("traderName :: " + traderName);
+	document.master_form.<%= AttributeConstants.REQUEST_ID %>.value = "<%= RequestConstants.EDIT_TRADER %>";
+	document.master_form.<%= AttributeConstants.NAME %>.value = traderName;
+	document.master_form.submit();
+}
+
+</script>
 </head>
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
@@ -31,6 +41,9 @@
 			<span>Traders</span>
 		</div>
 	</nobr>
+	<form action="" method="post" name="master_form" accept-charset="UTF-8">
+      <input type="hidden" name="test"  value="ffff" />
+             
 
 	<table width="100%" border="0">
 		<tr>
@@ -55,18 +68,20 @@
 						</tr>
 					</thead>
 					<tbody>
-				 	<c:forEach var="trader" items="traders">
+				 	<% for(TraderDTO traderDto : traderList) { 
+				 		pageContext.setAttribute("trader", traderDto);
+				 	%>
 						<tr>
-							<td><a class="td-link" href="editTrader">view/Edit</a></td>
+							<td><a class="td-link" href="editTrader?name=<c:out value="${trader.name}" />">view/Edit</a></td>
 							<td><c:out value="${trader.name}" /></td>
 							<td><c:out value="${trader.code}" /></td>
 							<td><c:out value="${trader.uin}" /></td>
 							<td><c:out value="${trader.phone}" /></td>
-							<td><c:out value="${trader.city}" /></td>
-							<td><c:out value="${trader.state}" /></td>
-							<td><c:out value="${trader.postalCode}" /></td>
+							<td><c:out value="${trader.getAddress().getCity()}" /></td>
+							<td><c:out value="${trader.getAddress().getState()}" /></td>
+							<td><c:out value="${trader.getAddress().getPostalCode()}" /></td>
 						</tr>
-					</c:forEach>
+					<% } %>
 					</tbody>
 				</table>
 			</td>
