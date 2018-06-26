@@ -56,9 +56,9 @@ Data encryption:
 ****************
 
 
-- Data dual writing to Postgres & Cassandra
-- Identifying Front end technology
-- Functional test cases for Services
+- Data dual writing to Postgres & Cassandra			- 
+- Identifying Front end technology					- 
+- Functional test cases for Services					- DONE
 
 
 Cancel / return of invoice:
