@@ -26,8 +26,9 @@ import com.prod.inwise.fe.services.TraderService;
 @Service
 public class TraderServiceImpl implements TraderService {
 
-	private static Logger log = LoggerFactory.getLogger(TraderServiceImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(TraderServiceImpl.class);
 
+	@Override
 	public List<TraderDTO> findAllTraders() throws Exception {
 
 		List<TraderDTO> traders = new ArrayList<>();
@@ -67,6 +68,7 @@ public class TraderServiceImpl implements TraderService {
 
 	}
 
+	@Override
 	public TraderDTO findTraderById(Long id) throws Exception {
 
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + id, HttpMethod.GET,
@@ -85,9 +87,10 @@ public class TraderServiceImpl implements TraderService {
 
 	}
 
+	@Override
 	public TraderDTO findTraderByName(String name) throws Exception {
 
-		log.debug(String.format("in Traderservice name: [%s]", name));
+		logger.debug(String.format("in Traderservice name: [%s]", name));
 
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + name,
 				HttpMethod.GET, null);
@@ -105,21 +108,26 @@ public class TraderServiceImpl implements TraderService {
 
 	}
 
+	@Override
 	public TraderDTO saveTrader(TraderDTO traderDto) throws Exception {
 
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/", HttpMethod.POST,
 				traderDto);
 
-		JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
-		});
+		// JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new
+		// TypeReference<JsonNode>() {
+		// });
 
 		// removeUnwantedElements(traderJson);
 
-		TraderDTO trader = (new ObjectMapper().treeToValue(traderJson, TraderDTO.class));
+		// TraderDTO trader = (new ObjectMapper().treeToValue(traderJson,
+		// TraderDTO.class));
 
-		System.out.println("Trader details received from Server: " + trader);
+		traderDto = findTraderByName(traderDto.getName());
 
-		return trader;
+		System.out.println("Trader details received from Server: " + traderDto);
+
+		return traderDto;
 
 	}
 

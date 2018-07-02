@@ -2,6 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
+<%@ page import="java.math.BigInteger"%>
+<%@ page import="com.prod.inwise.dto.TaxDTO"%>
+<%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>InWise Verion 1.0 - Tax Detail</title>
@@ -10,18 +14,46 @@
 
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
+<%
+	TaxDTO tax = (TaxDTO) request.getAttribute(AttributeConstants.TAX);
+	BigInteger id = null;
+	
+	if(tax != null) {
+	 	id = tax.getId();
+	}
+
+	String mode = (String) request.getAttribute(AttributeConstants.MODE);
+	pageContext.setAttribute("dto", tax);
+%>
+<script type="text/javascript">
+
+function initialize() {
+	
+  	document.detail_form.cgst.value = "<c:out value ="${dto.getCgst()}" />";
+  	document.detail_form.sgst.value = "<c:out value ="${dto.getSgst()}" />";
+}
+
+function saveTax() {
+	document.detail_form.submit();
+    return true;
+}
+</script>
+
 </head>
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>
-	
+<input type="hidden" name="<%= AttributeConstants.TAX_ID %>" value ="<%= id %>" />
+<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
+
 	<nobr>
 		<div class="boxheader">
 			<span>Tax Details</span>
 		</div>
 	</nobr>
-	<form action="saveItem" method="post" name="detail_form" accept-charset="UTF-8">
+	<%@ include file="response_messages.jsf"%>
+	<form action="saveTax" method="post" name="detail_form" accept-charset="UTF-8">
 		<table cellspacing="2" width="100%" border="0" class="formtable">
 			<tr>
 <!--  				<td colspan="4" align="left" valign="top"> -->
@@ -37,29 +69,18 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="mandatory"><label>Item Name:</label></td>
-				<td><input type="text" id="itemName" name="itemName" maxlength="40" size="25" /></td>
+				<td class="mandatory"><label>CGST:</label></td>
+				<td><input type="text" id="cgst" name="cgst" maxlength="40" size="25" /></td>
 
-				<td class="optional"><label>Price:</label></td>
-				<td><input type="text" id="price" name="price" maxlength="40" size="25" /></td>
-			</tr>
-			
-			<tr>
-				<td class="optional"><label>Tax:</label></td>
-				<td>
-					<label>CGST:</label>
-					<input class="optional" type="text" id="centralTax" name="centralTax" maxlength="12" size="10" />
-					&nbsp;
-					<label>SGST:</label>
-					<input class="optional" type="text" id="stateTax" name="stateTax" maxlength="12" size="10" />
-				</td>
+				<td class="optional"><label>SGST:</label></td>
+				<td><input type="text" id="sgst" name="sgst" maxlength="40" size="25" /></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
-  					<input type="button" class="button" name="Save" value="Save" onClick="#" />
+  					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveTax();"/>
   					<a href ="items"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a>
  				</td>
 			</tr>

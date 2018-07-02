@@ -17,6 +17,7 @@ import com.prod.inwise.dto.AddressDTO;
 import com.prod.inwise.dto.TraderDTO;
 import com.prod.inwise.fe.services.TraderService;
 import com.prod.inwise.fe.utilities.AttributeConstants;
+import com.prod.inwise.fe.utilities.MessageCode;
 import com.prod.inwise.fe.utilities.RequestConstants;
 import com.prod.inwise.fe.utilities.ViewNames;
 
@@ -31,7 +32,6 @@ public class TraderController extends BusinessController {
 
 	@RequestMapping(path = RequestConstants.VIEW_TRADERS, method = { RequestMethod.GET, RequestMethod.POST })
 	public String getTraderList(Model model) throws Exception {
-		logger.info("Entering into getTraderList...");
 
 		List<TraderDTO> traders = traderService.findAllTraders();
 
@@ -43,9 +43,9 @@ public class TraderController extends BusinessController {
 	@RequestMapping(path = RequestConstants.CREATE_TRADER, method = { RequestMethod.GET, RequestMethod.POST })
 	public String addTrader(Model model) throws Exception {
 
-		TraderDTO dto = new TraderDTO();
+		TraderDTO traderDto = new TraderDTO();
 
-		model.addAttribute(AttributeConstants.TRADER, dto);
+		model.addAttribute(AttributeConstants.TRADER, traderDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.INSERT);
 
 		return ViewNames.TRADER_DETAIL;
@@ -54,7 +54,7 @@ public class TraderController extends BusinessController {
 	@RequestMapping(path = RequestConstants.EDIT_TRADER, method = { RequestMethod.GET, RequestMethod.POST })
 	public String editTrader(@RequestParam("name") String name, Model model) throws Exception {
 
-		logger.debug("editTrader Name :" + name);
+		logger.debug("editTrader Name [" + name + "]");
 
 		TraderDTO traderDto = traderService.findTraderByName(name);
 
@@ -72,6 +72,8 @@ public class TraderController extends BusinessController {
 		traderDto = traderService.saveTrader(traderDto);
 
 		model.addAttribute(AttributeConstants.TRADER, traderDto);
+		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
+		model.addAttribute(AttributeConstants.APPLICATION_MESSAGES, MessageCode.INFO_MSG_1001);
 
 		return ViewNames.TRADER_DETAIL;
 	}

@@ -15,7 +15,7 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
 <%
-	TraderDTO trader = (TraderDTO) request.getAttribute("trader");
+	TraderDTO trader = (TraderDTO) request.getAttribute(AttributeConstants.TRADER);
 	BigInteger id = null;
 	
 	if(trader != null) {
@@ -43,7 +43,7 @@ function initialize() {
   	
 }
 
-function saveTraders() {
+function saveTrader() {
 	document.detail_form.submit();
     return true;
 }
@@ -61,6 +61,7 @@ function saveTraders() {
 			<span>Trader Detail</span>
 		</div>
 	</nobr>
+	<%@ include file="response_messages.jsf"%>
 	<form action="saveTrader" method="post" name="detail_form" accept-charset="UTF-8">
 		<table cellspacing="2" width="100%" border="0" class="formtable">
  			<tr>
@@ -122,7 +123,7 @@ function saveTraders() {
 			
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
- 					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveTraders();"/>
+ 					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveTrader();"/>
   					<a href ="traders"><input type="button" class="button" name="Cancel" value="Cancel" /></a>
  				</td>
 			</tr>

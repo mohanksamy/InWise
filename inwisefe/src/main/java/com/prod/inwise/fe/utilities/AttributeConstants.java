@@ -30,4 +30,15 @@ public interface AttributeConstants {
 	String COUNTRY = "country";
 	String POSTALCODE = "postalCode";
 
+	String TAX = "tax";
+	String TAX_LIST = "taxs";
+	String TAX_ID = "tax_id";
+	String CGST = "cgst";
+	String SGST = "sgst";
+
+	String ITEM_DTO = "item_dto";
+	String ITEM_LIST = "item_list";
+	String ITEM_ID = "item_id";
+	String PART_NO = "part_no";
+	String PRICE = "price";
 }

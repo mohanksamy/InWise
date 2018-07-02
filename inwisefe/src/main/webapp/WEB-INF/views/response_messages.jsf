@@ -1,0 +1,21 @@
+<%@page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
+<%
+
+String status = (String) request.getAttribute(AttributeConstants.APPLICATION_STATUS);
+String responseMessage = (String) request.getAttribute(AttributeConstants.APPLICATION_MESSAGES);
+%>
+<div id="succes_message">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<%
+			if(AttributeConstants.RS_SUCCESS.equals(status)) {
+		%>
+		<tr>
+			<td><font color=green face=arial><b id="successMessage">
+						<%= responseMessage %>
+				</b></font></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+</div>

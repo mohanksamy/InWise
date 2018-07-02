@@ -8,7 +8,7 @@ public interface RequestConstants {
 	String DELETE_TRADER = "deleteTrader";
 	String SAVE_TRADER = "saveTrader";
 
-	String VIEW_TAXS = "taxs";
+	String VIEW_TAXES = "taxes";
 	String CREATE_TAX = "createTax";
 	String EDIT_TAX = "editTax";
 	String DELETE_TAX = "deleteTax";
@@ -39,10 +39,10 @@ public interface RequestConstants {
 	String SAVE_SIZE = "saveSize";
 
 	String VIEW_ITEMS = "items";
-	String CREATE_ITEM = "createitem";
-	String EDIT_ITEM = "edititem";
-	String DELETE_ITEM = "deleteitem";
-	String SAVE_ITEM = "saveitem";
+	String CREATE_ITEM = "createItem";
+	String EDIT_ITEM = "editItem";
+	String DELETE_ITEM = "deleteItem";
+	String SAVE_ITEM = "saveItem";
 
 	String VIEW_INVOICES = "invoices";
 	String CREATE_INVOICE = "createInvoice";

@@ -1,73 +1,117 @@
 package com.prod.inwise.fe.controller;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.prod.inwise.dto.ItemDTO;
-import com.prod.inwise.dto.TaxDTO;
-import com.prod.inwise.dto.TraderDTO;
+import com.prod.inwise.fe.services.ItemService;
+import com.prod.inwise.fe.services.TaxService;
+import com.prod.inwise.fe.services.TraderService;
+import com.prod.inwise.fe.utilities.AttributeConstants;
+import com.prod.inwise.fe.utilities.MessageCode;
+import com.prod.inwise.fe.utilities.RequestConstants;
+import com.prod.inwise.fe.utilities.ViewNames;
 
 @Controller
-public class ItemController {
+@RequestMapping("/")
+public class ItemController extends BusinessController {
 
-	private static final Logger logger = LoggerFactory.getLogger(ItemController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TraderController.class);
 
-	@GetMapping(value = "/items")
-	public String getItems(Model model) throws Exception {
-		logger.debug("Enter into getItems...");
+	@Autowired
+	private TraderService traderService;
 
-		model.addAttribute("name", "CCTV");
+	@Autowired
+	private TaxService taxService;
 
-		return "item_master";
+	@Autowired
+	private ItemService itemService;
+
+	@RequestMapping(path = RequestConstants.VIEW_ITEMS, method = { RequestMethod.GET, RequestMethod.POST })
+	public String getItemList(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+
+		List<ItemDTO> items = itemService.findAllItems();
+
+		model.addAttribute(AttributeConstants.ITEM_LIST, items);
+
+		return ViewNames.ITEM_MASTER;
 	}
 
-	@GetMapping(value = "/createItem")
+	@RequestMapping(path = RequestConstants.CREATE_ITEM, method = { RequestMethod.GET, RequestMethod.POST })
 	public String addItem(Model model) throws Exception {
-
-		model.addAttribute("name", "CCTV");
-
-		return "item_detail";
-	}
-
-	@GetMapping(value = "/editItem")
-	public String editItem(Model model) throws Exception {
-
-		model.addAttribute("name", "CCTV");
-
-		return "item_detail";
-	}
-
-	@PostMapping(value = "/saveItem")
-	public String saveItem(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
-		String name = requestParams.get("name");
-		// BigInteger partNo = (BigInteger)requestParams.get("partNo");
 
 		ItemDTO itemDto = new ItemDTO();
 
-		TraderDTO trader = new TraderDTO();
-		trader.setId(new BigInteger("1001"));
+		model.addAttribute(AttributeConstants.ITEM_DTO, itemDto);
+		model.addAttribute(AttributeConstants.MODE, AttributeConstants.INSERT);
 
-		TaxDTO tax = new TaxDTO();
-		tax.setId(new BigInteger("1001"));
-
-		itemDto.setName(name);
-		itemDto.setStore(trader);
-		itemDto.setTax(tax);
-
-//		itemDto = createItem(itemDto);
-
-		model.addAttribute("items", itemDto);
-
-		return "item_detail";
-
+		return ViewNames.ITEM_DETAIL;
 	}
 
+	@RequestMapping(path = RequestConstants.EDIT_ITEM, method = { RequestMethod.GET, RequestMethod.POST })
+	public String editItem(@RequestParam("id") String id, Model model) throws Exception {
+
+		ItemDTO itemDto = itemService.findItemById(Long.valueOf(id));
+
+		model.addAttribute(AttributeConstants.ITEM_DTO, itemDto);
+		model.addAttribute(AttributeConstants.MODE, AttributeConstants.UPDATE);
+
+		return ViewNames.ITEM_DETAIL;
+	}
+
+	@RequestMapping(path = RequestConstants.SAVE_ITEM, method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveTrader(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+
+		ItemDTO itemDto = setData(requestParams);
+
+		itemDto = itemService.saveItem(itemDto);
+
+		model.addAttribute(AttributeConstants.TRADER, itemDto);
+		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
+		model.addAttribute(AttributeConstants.APPLICATION_MESSAGES, MessageCode.INFO_MSG_1001);
+
+		return ViewNames.ITEM_DETAIL;
+	}
+
+	private ItemDTO setData(Map<String, String> requestParams) throws Exception {
+
+		ItemDTO itemDto = null;
+
+		String id = requestParams.get(AttributeConstants.ITEM_ID);
+
+		logger.debug("Item Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
+		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
+
+			itemDto = new ItemDTO();
+
+		} else {
+
+			itemDto = itemService.findItemById(Long.valueOf(id));
+		}
+
+		String partNo = requestParams.get(AttributeConstants.PART_NO);
+		String price = requestParams.get(AttributeConstants.PRICE);
+
+		itemDto.setPartNo(new BigInteger(partNo));
+		itemDto.setPrice(new BigDecimal(price));
+		itemDto.setTrader(traderService.findTraderById(Long.valueOf(AttributeConstants.TRADER_ID)));
+		itemDto.setTax(taxService.findTaxById(Long.valueOf(AttributeConstants.TAX_ID)));
+
+		itemDto.setActive(true);
+		itemDto.setCreatedUser("APP-SERVICES");
+		itemDto.setModifiedUser("APP-SERVICES");
+
+		return itemDto;
+	}
 }

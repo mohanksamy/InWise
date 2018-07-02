@@ -1,5 +1,7 @@
 package com.prod.inwise.fe.services;
 
+import java.util.List;
+
 import com.prod.inwise.dto.ItemDTO;
 
 /**
@@ -8,9 +10,9 @@ import com.prod.inwise.dto.ItemDTO;
  */
 public interface ItemService {
 
-	public ItemDTO findAllItems() throws Exception;
-	
-	public ItemDTO findItemId(Long id) throws Exception;
+	public List<ItemDTO> findAllItems() throws Exception;
 
-	public ItemDTO saveItem(ItemDTO ItemDTO) throws Exception;
+	public ItemDTO findItemById(Long id) throws Exception;
+
+	public ItemDTO saveItem(ItemDTO itemDTO) throws Exception;
 }

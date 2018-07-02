@@ -51,6 +51,7 @@ function editTrader(traderName) {
 <!-- 				<a href="addStore"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>  -->
 <!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
 		</tr>
+		<%if(traderList.size()>0) { %>
 		<tr>
 			<td>
 				<table id="fixed_header_table" cellspacing="0"
@@ -72,7 +73,7 @@ function editTrader(traderName) {
 				 		pageContext.setAttribute("trader", traderDto);
 				 	%>
 						<tr>
-							<td><a class="td-link" href="editTrader?name=<c:out value="${trader.name}" />">view/Edit</a></td>
+							<td><a class="td-link" href="editTrader?name=<c:out value="${trader.name}" />">View/Edit</a></td>
 							<td><c:out value="${trader.name}" /></td>
 							<td><c:out value="${trader.code}" /></td>
 							<td><c:out value="${trader.uin}" /></td>
@@ -86,7 +87,7 @@ function editTrader(traderName) {
 				</table>
 			</td>
 		</tr>
-
+		<% } %>
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
 				<a href="addTrader"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a> 
