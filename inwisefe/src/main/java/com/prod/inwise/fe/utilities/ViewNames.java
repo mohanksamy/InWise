@@ -28,5 +28,4 @@ public interface ViewNames {
 
 	String INVOICE_DETAIL = "invoice_detail";
 	String INVOICE_MASTER = "invoice_master";
-
 }

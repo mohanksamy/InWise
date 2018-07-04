@@ -39,5 +39,4 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
 		return new Filter[] { characterEncodingFilter };
 	}
-
 }

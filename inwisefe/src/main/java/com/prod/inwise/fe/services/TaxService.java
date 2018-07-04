@@ -15,5 +15,4 @@ public interface TaxService {
 	public TaxDTO findTaxById(Long id) throws Exception;
 
 	public TaxDTO saveTax(TaxDTO taxDto) throws Exception;
-
 }

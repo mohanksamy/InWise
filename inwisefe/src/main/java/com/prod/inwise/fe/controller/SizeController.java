@@ -40,5 +40,4 @@ public class SizeController {
 		return "size_detail";
 
 	}
-
 }

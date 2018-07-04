@@ -40,5 +40,4 @@ public class SubCategoryController {
 		return "subcategory_detail";
 
 	}
-
 }

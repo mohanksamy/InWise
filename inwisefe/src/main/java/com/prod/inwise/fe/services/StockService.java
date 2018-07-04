@@ -15,5 +15,4 @@ public interface StockService {
 	public StockDTO findStockById(Long id) throws Exception;
 
 	public StockDTO saveStock(StockDTO stockDto) throws Exception;
-
 }

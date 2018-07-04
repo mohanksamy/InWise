@@ -40,5 +40,4 @@ public class CategoryController {
 		return "category_detail";
 
 	}
-
 }

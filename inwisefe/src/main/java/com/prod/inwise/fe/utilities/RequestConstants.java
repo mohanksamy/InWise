@@ -55,5 +55,4 @@ public interface RequestConstants {
 	String EDIT_INVOICE = "editInvoice";
 	String DELETE_INVOICE = "deleteInvoice";
 	String SAVE_INVOICE = "saveInvoice";
-
 }

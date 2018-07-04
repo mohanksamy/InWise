@@ -46,5 +46,4 @@ public interface AttributeConstants {
 	String STOCK_ID = "stock_id";
 	String STOCK_LIST = "stock_list";
 	String QUANTITY = "quantity";
-	
 }

@@ -42,5 +42,4 @@ public class InvoiceController {
 		return "invoice_detail";
 
 	}
-
 }

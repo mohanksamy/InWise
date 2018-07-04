@@ -17,5 +17,4 @@ public interface TraderService {
 	public TraderDTO findTraderByName(String name) throws Exception;
 
 	public TraderDTO saveTrader(TraderDTO traderDto) throws Exception;
-
 }

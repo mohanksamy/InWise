@@ -17,5 +17,4 @@ public abstract class BusinessController {
 		logger.debug("Mode :" + requestParams.get(AttributeConstants.MODE));
 		return AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE));
 	}
-
 }

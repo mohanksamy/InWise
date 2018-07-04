@@ -43,5 +43,4 @@ public class BrandController {
 		return "brand_detail";
 
 	}
-
 }
