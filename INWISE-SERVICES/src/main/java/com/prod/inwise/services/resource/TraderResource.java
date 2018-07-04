@@ -119,7 +119,7 @@ public class TraderResource {
 
 		List<String> links = new ArrayList<>();
 
-		tradersList.parallelStream().forEach(trader -> links
+		tradersList.stream().forEach(trader -> links
 				.add(uriInfo.getBaseUriBuilder().path(TraderResource.class).path(trader.getName()).build().toString()));
 
 		return Response.status(OK).entity(links).build();
@@ -144,6 +144,31 @@ public class TraderResource {
 
 		return Response.status(OK).entity(traderRepo.findByNameIgnoreCase(name)).build();
 	}
+
+	/*
+	 * @GET
+	 * 
+	 * @Path("/{id}")
+	 * 
+	 * @ApiOperation(value = "Show Trader", notes = "Show trader model")
+	 * 
+	 * @ApiResponses(value = { @ApiResponse(code = 404, message =
+	 * "Invalid tenant specified"),
+	 * 
+	 * @ApiResponse(code = 401, message = "Invalid user specified"),
+	 * 
+	 * @ApiResponse(code = 401, message = "No permission to access model"),
+	 * 
+	 * @ApiResponse(code = 401, message = "No privilege to access model"),
+	 * 
+	 * @ApiResponse(code = 440, message =
+	 * "invalid session or access-token specified"),
+	 * 
+	 * @ApiResponse(code = 500, message = "Server Internal error") }) public
+	 * Response findById(@ApiParam @PathParam("id") BigInteger id) {
+	 * 
+	 * return Response.status(OK).entity(traderRepo.findOne(id)).build(); }
+	 */
 
 	/**
 	 * Sub-resource - TaxResource

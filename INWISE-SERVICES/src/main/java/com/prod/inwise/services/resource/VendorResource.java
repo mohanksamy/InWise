@@ -1,7 +1,5 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.util.Constants.PARAM_ID;
-import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_VENDOR;
 import static com.prod.inwise.util.Utils.isNull;
 import static java.util.stream.StreamSupport.stream;
@@ -99,7 +97,7 @@ public class VendorResource {
 	
 	@GET
 	@ApiOperation(value = "Get All Vendor", notes = "Get Vendor URIs")
-	public Response findAllVendors(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
+	public Response findAllVendors(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
 		
 		Iterable<Vendor> vendors = vendorRepo.findByTraderId(traderId);
 		
@@ -115,7 +113,7 @@ public class VendorResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get Vendor", notes = "Get vendor model")
-	public Response getVendor(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
+	public Response getVendor(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
 
 		Response response = null;
 		

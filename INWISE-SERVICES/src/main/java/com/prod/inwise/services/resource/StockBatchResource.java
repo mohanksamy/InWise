@@ -1,6 +1,5 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 import static javax.ws.rs.core.Response.Status.OK;
@@ -36,12 +35,21 @@ import io.swagger.annotations.ApiParam;
 @Api(value = "Stock Batch Service")
 public class StockBatchResource {
 	
+	/*@Autowired
+	private StockBatchRepository stockBatchRepo;*/
+	
 	@Autowired
 	private StockService stockService;
 	
+	/*@POST
+	@ApiOperation(value = "Create Stock Batch", notes = "Create stock batch model")
+	public StockBatch createStockBatch(StockBatch stockBatch) {
+		return stockBatchRepo.save(stockBatch);
+	}*/
+	
 	@POST
 	@ApiOperation(value = "Create Stock Batch", notes = "Create stock batch model")
-	public Response createStockBatch(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, List<StockHistory> stockHistories) {
+	public Response createStockBatch(@ApiParam @PathParam("traderId") BigInteger traderId, List<StockHistory> stockHistories) {
 
 		Response response = null;
 		

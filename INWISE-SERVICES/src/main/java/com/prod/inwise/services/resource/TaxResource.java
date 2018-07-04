@@ -1,7 +1,5 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.util.Constants.PARAM_ID;
-import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_TAX;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
@@ -62,7 +60,7 @@ public class TaxResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createTax(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, Tax tax) {
+	public Response createTax(@ApiParam @PathParam("traderId") BigInteger traderId, Tax tax) {
 		
 		Response response = null;
 		
@@ -87,7 +85,7 @@ public class TaxResource {
 	
 	@GET
 	@ApiOperation(value = "Get All Taxes", notes = "Get Tax URIs")
-	public Response findAllTaxes(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
+	public Response findAllTaxes(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
 		
 		Iterable<Tax> taxes = taxRepo.findByTraderId(traderId);
 		
@@ -103,7 +101,7 @@ public class TaxResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get tax", notes = "Get tax model")
-	public Response getTax(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
+	public Response getTax(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
 
 		Response response = null;
 		

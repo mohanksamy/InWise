@@ -6,7 +6,7 @@ public interface ViewNames {
 	String TRADER_MASTER = "trader_master";
 
 	String TAX_DETAIL = "tax_detail";
-	String TAX_MASTER = "tax_ master";
+	String TAX_MASTER = "tax_master";
 
 	String CATEGORY_DETAIL = "category_detail";
 	String CATEGORY_MASTER = "category_master";

@@ -31,6 +31,7 @@ public class OutOfStockException extends Exception {
 		StringBuffer buffer = new StringBuffer();
 		
 		lineItems.stream().parallel().forEach(lineItem -> composeMessage(lineItem, buffer));
+//		lineItems.stream().parallel().filter( lineItem -> lineItem.getQuantity() > lineItem.getQuantityInStock()).forEach(lineItem -> composeMessage(lineItem, buffer));
 		
 		return buffer.toString();
 	}

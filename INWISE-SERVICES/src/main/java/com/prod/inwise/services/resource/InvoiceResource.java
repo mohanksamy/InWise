@@ -1,7 +1,5 @@
 package com.prod.inwise.services.resource;
 
-import static com.prod.inwise.util.Constants.PARAM_ID;
-import static com.prod.inwise.util.Constants.PARAM_TRADER_ID;
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_INVOICE;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
@@ -65,7 +63,7 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, List<LineItem> lineItems) {
+	public Response createInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, List<LineItem> lineItems) {
 
 		Response response = null;
 		
@@ -89,7 +87,7 @@ public class InvoiceResource {
 	
 	@GET
 	@ApiOperation(value = "Get All Invoices", notes = "Get invoice URIs")
-	public Response findAllInvoices(@Context UriInfo uriInfo, @ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId) {
+	public Response findAllInvoices(@Context UriInfo uriInfo, @ApiParam @PathParam("traderId") BigInteger traderId) {
 		
 		Iterable<Invoice> invoices = invoiceRepo.findByTraderId(traderId);
 		
@@ -105,7 +103,7 @@ public class InvoiceResource {
 	@GET
 	@Path("/{id}")
 	@ApiOperation(value = "Get Invoice", notes = "Get invoice model")
-	public Response getInvoice(@ApiParam @PathParam(PARAM_TRADER_ID) BigInteger traderId, @ApiParam @PathParam(PARAM_ID) BigInteger id) {
+	public Response getInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, @ApiParam @PathParam("id") BigInteger id) {
 
 		Response response = null;
 		

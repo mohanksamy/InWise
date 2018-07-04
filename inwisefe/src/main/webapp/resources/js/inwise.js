@@ -220,3 +220,14 @@ function pageheader_resize()
 	 setTableAlternateRow(); 
 }
 	
+ var escapeContent = document.createElement('textarea');
+
+ function escapeHTML(html) {
+ 	escapeContent.textContent = html;
+     return escapeContent.innerHTML;
+ }
+
+ function unescapeHTML(html) {
+ 	escapeContent.innerHTML = html;
+     return escapeContent.textContent;
+ }

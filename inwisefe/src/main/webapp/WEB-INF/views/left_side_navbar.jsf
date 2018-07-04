@@ -27,8 +27,8 @@
 						<li id="createTax" class="none">	
 							<a href ="createTax">create</a>
 						</li>
-						<li id="taxs" class="none">
-							<a href ="taxs">list</a>
+						<li id="taxes" class="none">
+							<a href ="taxes">list</a>
 						</li>
 					</ul>
 				</li>

@@ -3,6 +3,7 @@ package com.prod.inwise.services.repo;
 import java.math.BigInteger;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.prod.inwise.services.data.Trader;
@@ -22,5 +23,5 @@ public interface TraderRepository extends CrudRepository<Trader, BigInteger> {
 	 * @param name
 	 * @return
 	 */
-	public Trader findByNameIgnoreCase(String name);
+	public Trader findByNameIgnoreCase(@Param("name") String name);
 }

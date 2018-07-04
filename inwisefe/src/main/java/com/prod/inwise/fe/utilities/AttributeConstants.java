@@ -2,6 +2,7 @@ package com.prod.inwise.fe.utilities;
 
 public interface AttributeConstants {
 
+	String REQUEST_ID = "request_id";
 	String RS_SUCCESS = "success";
 	String RS_FAILURE = "failure";
 	String APPLICATION_STATUS = "application_status";
@@ -29,4 +30,15 @@ public interface AttributeConstants {
 	String COUNTRY = "country";
 	String POSTALCODE = "postalCode";
 
+	String TAX = "tax";
+	String TAX_LIST = "taxs";
+	String TAX_ID = "tax_id";
+	String CGST = "cgst";
+	String SGST = "sgst";
+
+	String ITEM_DTO = "item_dto";
+	String ITEM_LIST = "item_list";
+	String ITEM_ID = "item_id";
+	String PART_NO = "partNo";
+	String PRICE = "price";
 }
