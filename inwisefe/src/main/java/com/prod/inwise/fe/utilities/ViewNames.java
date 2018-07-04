@@ -23,6 +23,9 @@ public interface ViewNames {
 	String ITEM_DETAIL = "item_detail";
 	String ITEM_MASTER = "item_master";
 
+	String STOCK_DETAIL = "stock_detail";
+	String STOCK_MASTER = "stock_master";
+
 	String INVOICE_DETAIL = "invoice_detail";
 	String INVOICE_MASTER = "invoice_master";
 

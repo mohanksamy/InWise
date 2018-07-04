@@ -44,6 +44,12 @@ public interface RequestConstants {
 	String DELETE_ITEM = "deleteItem";
 	String SAVE_ITEM = "saveItem";
 
+	String VIEW_STOCKS = "stocks";
+	String CREATE_STOCK = "createStock";
+	String EDIT_STOCK = "editStock";
+	String DELETE_STOCK = "deleteStock";
+	String SAVE_STOCK = "saveStock";
+
 	String VIEW_INVOICES = "invoices";
 	String CREATE_INVOICE = "createInvoice";
 	String EDIT_INVOICE = "editInvoice";
