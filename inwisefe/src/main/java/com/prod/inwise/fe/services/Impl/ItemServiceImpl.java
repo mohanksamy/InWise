@@ -58,7 +58,7 @@ public class ItemServiceImpl implements ItemService {
 
 				itemDto = (new ObjectMapper().treeToValue(jsonNode, ItemDTO.class));
 
-				System.out.println("Trader details received from Server: " + itemDto);
+				System.out.println("Item details received from Server: " + itemDto);
 
 				itemDtos.add(itemDto);
 			}
@@ -81,7 +81,7 @@ public class ItemServiceImpl implements ItemService {
 
 		ItemDTO itemDto = (new ObjectMapper().treeToValue(itemDtoJson, ItemDTO.class));
 
-		System.out.println("Trader details received from Server: " + itemDto);
+		System.out.println("Item details received from Server: " + itemDto);
 
 		return itemDto;
 
@@ -104,7 +104,7 @@ public class ItemServiceImpl implements ItemService {
 
 		// itemDto = findItemById(Long.valueOf(itemDto.getId()));
 
-		System.out.println("Trader details received from Server: " + itemDto);
+		System.out.println("Item details received from Server: " + itemDto);
 
 		return itemDto;
 

@@ -39,6 +39,6 @@ public interface AttributeConstants {
 	String ITEM_DTO = "item_dto";
 	String ITEM_LIST = "item_list";
 	String ITEM_ID = "item_id";
-	String PART_NO = "part_no";
+	String PART_NO = "partNo";
 	String PRICE = "price";
 }

@@ -111,6 +111,7 @@ public class TraderServiceImpl implements TraderService {
 	@Override
 	public TraderDTO saveTrader(TraderDTO traderDto) throws Exception {
 
+		@SuppressWarnings("unused")
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/", HttpMethod.POST,
 				traderDto);
 

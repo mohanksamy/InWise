@@ -85,7 +85,7 @@ public class TaxController extends BusinessController {
 
 		TaxDTO taxDto = null;
 		String taxId = requestParams.get(AttributeConstants.TAX_ID);
-		String traderId = requestParams.get(AttributeConstants.TRADER_ID);
+		// String traderId = requestParams.get(AttributeConstants.TRADER_ID);
 
 		logger.debug("TaxDTO Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
 		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
@@ -102,7 +102,7 @@ public class TaxController extends BusinessController {
 
 		taxDto.setCgst(new BigDecimal(cgst));
 		taxDto.setSgst(new BigDecimal(sgst));
-		taxDto.setTrader(traderService.findTraderById(Long.valueOf(1)));
+		taxDto.setTrader(traderService.findTraderByName("VELSTORES"));
 		taxDto.setActive(true);
 		taxDto.setCreatedUser("APP-SERVICES");
 		taxDto.setModifiedUser("APP-SERVICES");

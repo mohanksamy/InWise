@@ -42,25 +42,22 @@ function saveTax() {
 </head>
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
-<%@ include file="header.jsf" %>
-<%@ include file="left_side_navbar.jsf"%>
-<input type="hidden" name="<%= AttributeConstants.TAX_ID %>" value ="<%= id %>" />
-<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
 
-	<nobr>
-		<div class="boxheader">
-			<span>Tax Details</span>
-		</div>
-	</nobr>
-	<%@ include file="response_messages.jsf"%>
+	<%@ include file="header.jsf" %>
+	<%@ include file="left_side_navbar.jsf"%>
+
 	<form action="saveTax" method="post" name="detail_form" accept-charset="UTF-8">
+
+		<input type="hidden" name="<%= AttributeConstants.TAX_ID %>" value ="<%= id %>" />
+		<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
+
+		<nobr>
+			<div class="boxheader">
+				<span>Tax Details</span>
+			</div>
+		</nobr>
+		<%@ include file="response_messages.jsf"%>
 		<table cellspacing="2" width="100%" border="0" class="formtable">
-			<tr>
-<!--  				<td colspan="4" align="left" valign="top"> -->
-<!--  					<a href ="saveItem"><input type="button" class="button" name="Save" value="Save" onClick="#" /></a> -->
-<!--   					<a href ="items"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a> -->
-<!--   				</td> -->
-  			</tr>
 			<tr>
 				<td colspan="4">&nbsp;
 					<p>
@@ -81,7 +78,7 @@ function saveTax() {
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
   					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveTax();"/>
-  					<a href ="items"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a>
+  					<a href ="taxes"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a>
  				</td>
 			</tr>
 		</table>

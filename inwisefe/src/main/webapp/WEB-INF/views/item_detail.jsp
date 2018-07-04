@@ -44,24 +44,21 @@ function saveItem() {
 </head>
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
-<%@ include file="header.jsf" %>
-<%@ include file="left_side_navbar.jsf"%>
-	
-<input type="hidden" name="<%= AttributeConstants.ITEM_ID %>" value ="<%= id %>" />
-<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" />	
-	<nobr>
-		<div class="boxheader">
-			<span>Item Details</span>
-		</div>
-	</nobr>
+
+	<%@ include file="header.jsf" %>
+	<%@ include file="left_side_navbar.jsf"%>
+
 	<form action="saveItem" method="post" name="detail_form" accept-charset="UTF-8">
+	
+		<input type="hidden" name="<%= AttributeConstants.ITEM_ID %>" value ="<%= id %>" />
+		<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" />
+			
+		<nobr>
+			<div class="boxheader">
+				<span>Item Details</span>
+			</div>
+		</nobr>
 		<table cellspacing="2" width="100%" border="0" class="formtable">
-			<tr>
-<!--  				<td colspan="4" align="left" valign="top"> -->
-<!--  					<a href ="saveItem"><input type="button" class="button" name="Save" value="Save" onClick="#" /></a> -->
-<!--   					<a href ="items"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a> -->
-<!--   				</td> -->
-  			</tr>
 			<tr>
 				<td colspan="4">&nbsp;
 					<p>

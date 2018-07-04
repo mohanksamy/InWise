@@ -35,49 +35,23 @@
 					<thead>
 						<tr>
 							<th class="column-name">&nbsp;</th>
-							<th class="column-name">&nbsp;</th>
-							<th class="column-name">Item Name</th>
-							<th class="column-name">Price</th>
+							<th class="column-name">CGST</th>
+							<th class="column-name">SGST</th>
 							<th class="column-name">Last Modified Date</th>
 							
 						</tr>
 					</thead>
 					<tbody>
+						<% for(TaxDTO taxDto : taxList) {
+							pageContext.setAttribute("tax", taxDto); %>
 						<tr>
-							<td><a class="td-link" href="#">View/Edit</a></td>
-							<td>CCTV System</td>
-							<td>1000</td>
-							<td>05-07-2018</td>
+							<td><a class="td-link" href="editTax?id=<c:out value="${tax.id}" />">View/Edit</a></td>
+							<td><c:out value="${tax.cgst}" /></td>
+							<td><c:out value="${tax.sgst}" /></td>
+					       	<fmt:formatDate  value = "${tax.modifiedTS}"  pattern = "yyyy-MM-dd HH:mm:ss"  var="tempModifiedDate"/> 
+         					<td><c:out value="${tempModifiedDate}" /></td>
 						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Fire Alarm</td>
-							<td>1050</td>
-							<td>05-07-2018</td>
-						</tr>
-												<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Fire Alarm</td>
-							<td>1050</td>
-							<td>05-07-2018</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Fire Alarm</td>
-							<td>1050</td>
-							<td>05-07-2018</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Fire Alarm</td>
-							<td>1050</td>
-							<td>05-07-2018</td>
-						</tr>
-						
+						<% } %>
 					</tbody>
 				</table>
 			</td>
@@ -85,7 +59,7 @@
 
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
-				<a href ="addItem"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
+				<a href ="createTax"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
 <!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
 		</tr>
 	</table>

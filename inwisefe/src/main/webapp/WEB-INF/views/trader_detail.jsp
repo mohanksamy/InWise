@@ -52,24 +52,21 @@ function saveTrader() {
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 
-<%@ include file="header.jsf" %>
-<%@ include file="left_side_navbar.jsf"%>
-<input type="hidden" name="<%= AttributeConstants.TRADER_ID %>" value ="<%= id %>" />
-<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
-	<nobr>
-		<div class="boxheader">
-			<span>Trader Detail</span>
-		</div>
-	</nobr>
-	<%@ include file="response_messages.jsf"%>
+	<%@ include file="header.jsf" %>
+	<%@ include file="left_side_navbar.jsf"%>
+
 	<form action="saveTrader" method="post" name="detail_form" accept-charset="UTF-8">
+	
+		<input type="hidden" name="<%= AttributeConstants.TRADER_ID %>" value ="<%= id %>" />
+		<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
+		<nobr>
+			<div class="boxheader">
+				<span>Trader Detail</span>
+			</div>
+		</nobr>
+		<%@ include file="response_messages.jsf"%>
+	
 		<table cellspacing="2" width="100%" border="0" class="formtable">
- 			<tr>
-<!--  				<td colspan="4" align="left" height="30" valign="top"> -->
-<!--   					<a href ="saveStore"><input type="button" class="button" name="Save" value="Save" /></a> -->
-<!--   					<a href ="stores"><input type="button" class="button" name="Cancel" value="Cancel" /></a> -->
-<!--   				</td> -->
-  			</tr>
 			<tr>
 				<td colspan="4">&nbsp;
 					<p>

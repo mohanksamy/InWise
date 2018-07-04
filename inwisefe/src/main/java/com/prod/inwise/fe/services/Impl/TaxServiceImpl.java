@@ -54,7 +54,7 @@ public class TaxServiceImpl implements TaxService {
 				JsonNode jsonNode = new ObjectMapper().readValue(taxResponse.getBody(), new TypeReference<JsonNode>() {
 				});
 
-				removeUnwantedElements(jsonNode);
+				//removeUnwantedElements(jsonNode);
 
 				taxDto = (new ObjectMapper().treeToValue(jsonNode, TaxDTO.class));
 
@@ -90,6 +90,7 @@ public class TaxServiceImpl implements TaxService {
 	@Override
 	public TaxDTO saveTax(TaxDTO taxDTO) throws Exception {
 
+		@SuppressWarnings("unused")
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes",
 				HttpMethod.POST, taxDTO);
 

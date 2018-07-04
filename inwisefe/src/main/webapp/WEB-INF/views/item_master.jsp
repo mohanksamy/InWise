@@ -56,7 +56,7 @@
 				 		pageContext.setAttribute("itemDto", itemDto);
 				 	%>
 						<tr>
-							<td><a class="td-link" href="editId?id=<c:out value="${itemDto.id}" />">View/Edit</a></td>
+							<td><a class="td-link" href="editItem?id=<c:out value="${itemDto.id}" />">View/Edit</a></td>
 							<td><c:out value="${itemDto.name}" /></td>
 							<td><c:out value="${itemDto.code}" /></td>
 							<td><c:out value="${itemDto.partNo}" /></td>

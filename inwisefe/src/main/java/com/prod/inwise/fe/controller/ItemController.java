@@ -71,7 +71,7 @@ public class ItemController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.SAVE_ITEM, method = { RequestMethod.GET, RequestMethod.POST })
-	public String saveTrader(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+	public String saveItem(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
 
 		ItemDTO itemDto = setData(requestParams);
 
@@ -88,26 +88,31 @@ public class ItemController extends BusinessController {
 
 		ItemDTO itemDto = null;
 
-		String id = requestParams.get(AttributeConstants.ITEM_ID);
+		// String traderId = requestParams.get(AttributeConstants.TRADER_ID);
+		// String taxId = requestParams.get(AttributeConstants.TAX_ID);
+		String itemId = requestParams.get(AttributeConstants.ITEM_ID);
 
-		logger.debug("Item Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
+		logger.debug("TaxDTO Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
 		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
 
 			itemDto = new ItemDTO();
 
 		} else {
 
-			itemDto = itemService.findItemById(Long.valueOf(id));
+			itemDto = itemService.findItemById(Long.valueOf(itemId));
 		}
 
+		String name = requestParams.get(AttributeConstants.NAME);
+		String code = requestParams.get(AttributeConstants.CODE);
 		String partNo = requestParams.get(AttributeConstants.PART_NO);
 		String price = requestParams.get(AttributeConstants.PRICE);
 
+		itemDto.setName(name);
+		itemDto.setCode(code);
 		itemDto.setPartNo(new BigInteger(partNo));
 		itemDto.setPrice(new BigDecimal(price));
-		itemDto.setTrader(traderService.findTraderById(Long.valueOf(AttributeConstants.TRADER_ID)));
-		itemDto.setTax(taxService.findTaxById(Long.valueOf(AttributeConstants.TAX_ID)));
-
+		itemDto.setTrader(traderService.findTraderByName("VELSTORES"));
+		itemDto.setTax(taxService.findTaxById(Long.valueOf(1)));
 		itemDto.setActive(true);
 		itemDto.setCreatedUser("APP-SERVICES");
 		itemDto.setModifiedUser("APP-SERVICES");
