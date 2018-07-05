@@ -46,13 +46,9 @@ public class TraderServiceImpl implements TraderService {
 
 				String traderURI = traderJson.textValue();
 
-				System.out.println("traderURI :" + traderURI);
-
 				ResponseEntity<String> traderResponse = invokeAPI(null, traderURI, HttpMethod.GET, null);
-
-				JsonNode jsonNode = new ObjectMapper().readValue(traderResponse.getBody(),
-						new TypeReference<JsonNode>() {
-						});
+				
+				JsonNode jsonNode = new ObjectMapper().readValue(traderResponse.getBody(), new TypeReference<JsonNode>() {});
 
 				removeUnwantedElements(jsonNode);
 
@@ -65,7 +61,6 @@ public class TraderServiceImpl implements TraderService {
 		}
 
 		return traders;
-
 	}
 
 	@Override
@@ -131,5 +126,4 @@ public class TraderServiceImpl implements TraderService {
 		return traderDto;
 
 	}
-
 }

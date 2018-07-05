@@ -38,7 +38,10 @@ public class ServicesGateway {
 	private static Logger log = LoggerFactory.getLogger(ServicesGateway.class);
 
 	public static ResponseEntity<String> invokeAPI(Properties headerProperties, String uri, HttpMethod method,
-			Object entity) {
+			Object entity) throws Exception {
+
+		// In case URI needs to be decoded if it's already encoded
+		uri = URLDecoder.decode(uri, StandardCharsets.UTF_8.toString());
 
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 
@@ -50,6 +53,7 @@ public class ServicesGateway {
 		HttpHeaders headers = new HttpHeaders();
 
 		headers.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
+		
 		headers.setAcceptCharset(Arrays.asList(Charset.forName("UTF-8")));
 
 		// Populating headers
