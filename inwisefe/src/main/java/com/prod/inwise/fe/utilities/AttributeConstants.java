@@ -41,9 +41,14 @@ public interface AttributeConstants {
 	String ITEM_ID = "item_id";
 	String PART_NO = "partNo";
 	String PRICE = "price";
-	
+
 	String STOCK = "stock";
 	String STOCK_ID = "stock_id";
 	String STOCK_LIST = "stock_list";
 	String QUANTITY = "quantity";
+
+	String INVOICE_LIST = "invoice_list";
+	String INVOICE_DTO = "invoice_dto";
+	String INVOICE_ID = "invoice_id";
+
 }

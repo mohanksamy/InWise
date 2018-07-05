@@ -24,11 +24,6 @@
 
 	<table width="100%" border="0">
 		<tr>
-			<td colspan="9" valign="top">
-<!-- 				<a href="addInvoice"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>  -->
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
-		</tr>
-		<tr>
 			<td>
 				<table id="fixed_header_table" cellspacing="0"
 					class="datatable striped">
@@ -108,8 +103,8 @@
 
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
-				<a href="addInvoice"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a> 
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
+				<a href="createInvoice"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
+			</td> 
 		</tr>
 	</table>
 	</form>

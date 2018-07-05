@@ -35,7 +35,7 @@ public class StockServiceImpl implements StockService {
 
 		StockDTO stockDto = new StockDTO();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/stocks",
 				HttpMethod.GET, null);
 		JsonNode stockJosons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
@@ -66,13 +66,12 @@ public class StockServiceImpl implements StockService {
 		}
 
 		return stocks;
-
 	}
 
 	@Override
 	public StockDTO findStockById(Long id) throws Exception {
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes/" + id,
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/stocks/" + id,
 				HttpMethod.GET, null);
 
 		JsonNode stockJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
@@ -85,14 +84,13 @@ public class StockServiceImpl implements StockService {
 		System.out.println("Stock details received from Server: " + stockDto);
 
 		return stockDto;
-
 	}
 
 	@Override
 	public StockDTO saveStock(StockDTO stockDto) throws Exception {
 
 		@SuppressWarnings("unused")
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/stocks",
 				HttpMethod.POST, stockDto);
 
 		// JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new
@@ -109,6 +107,5 @@ public class StockServiceImpl implements StockService {
 		System.out.println("Stock details received from Server: " + stockDto);
 
 		return stockDto;
-
 	}
 }

@@ -2,7 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
-<%-- <%@ page import="com.prod.inwise.dto.StoreDTO"%> --%>
+<%@ page import="java.math.BigInteger"%>
+<%@ page import="com.prod.inwise.dto.InvoiceDTO"%>
+<%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
+
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,12 +16,25 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
 <%
-	//StoreDTO dto = (StoreDTO) request.getAttribute("storeValue");
+	InvoiceDTO invoiceDto = (InvoiceDTO) request.getAttribute(AttributeConstants.INVOICE_DTO);
+	BigInteger id = null;
+	
+	if(invoiceDto != null) {
+	 	id = invoiceDto.getId();
+	}
+
+	String mode = (String) request.getAttribute(AttributeConstants.MODE);
+	pageContext.setAttribute("dto", invoiceDto);
 %>
 <script type="text/javascript">
 
-function initData() {
+function initialize() {
 	
+}
+
+function saveInvoice() {
+	document.detail_form.submit();
+    return true;
 }
 </script>
 </head>
@@ -27,19 +43,17 @@ function initData() {
 
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
-	<nobr>
-		<div class="boxheader">
-			<span>Invoice Detail</span>
-		</div>
-	</nobr>
 	<form action="" method="post" name="detail_form" accept-charset="UTF-8">
+		<input type="hidden" name="<%= AttributeConstants.INVOICE_ID %>" value ="<%= id %>" />
+		<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
+	
+		<nobr>
+			<div class="boxheader">	
+				<span>Invoice Detail</span>
+			</div>
+		</nobr>
+		<%@ include file="response_messages.jsf"%>
 		<table cellspacing="2" width="100%" border="0" class="formtable">
- 			<tr>
-<!--  				<td colspan="4" align="left" valign="top"> -->
-<!--  					<a href ="saveInvoice"><input type="button" class="button" name="Save" value="Save" onClick="#" /></a> -->
-<!--   					<a href ="invoices"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a> -->
-<!--   				</td> -->
-  			</tr>
 			<tr>
 				<td colspan="4">&nbsp;
 					<p>
@@ -110,7 +124,7 @@ function initData() {
 			
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
- 					<a href ="saveInvoice"><input type="button" class="button" name="Save" value="Save" onClick="#" /></a>
+ 					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveInvoice();"/>
   					<a href ="invoices"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a>
  				</td>
 			</tr>

@@ -51,7 +51,6 @@ function editTrader(traderName) {
 <!-- 				<a href="addStore"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>  -->
 <!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
 		</tr>
-		<%if(traderList.size()>0) { %>
 		<tr>
 			<td>
 				<table id="fixed_header_table" cellspacing="0"
@@ -87,11 +86,10 @@ function editTrader(traderName) {
 				</table>
 			</td>
 		</tr>
-		<% } %>
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
-				<a href="addTrader"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a> 
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
+				<a href="createTrader"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
+			</td> 
 		</tr>
 	</table>
 	</form>
