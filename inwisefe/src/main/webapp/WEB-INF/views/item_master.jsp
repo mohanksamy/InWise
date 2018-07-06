@@ -9,7 +9,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>InWise Verion 1.0 - Item Master</title>
+<title>InWise Version 1.0 - Item Master</title>
 
 <%@ include file="header_include.jsf" %>
 
@@ -42,12 +42,12 @@
 					<thead>
 						<tr>
 							<th class="column-name">&nbsp;</th>
-							<th class="column-name">&nbsp;</th>
-							<th class="column-name">Item Name</th>
-							<th class="column-name">Item Code</th>
-							<th class="column-name">Part No</th>
-							<th class="column-name">Price</th>
-							<th class="column-name">Last Modified Date</th>
+							<!-- <th class="column-name">&nbsp;</th> -->
+							<th align="center" class="column-name">Item Name</th>
+							<th align="center" class="column-name">Item Code</th>
+							<th align="center" class="column-name">Part No</th>
+							<th align="center" class="column-name">Price</th>
+							<th align="center" class="column-name">Last Modified Date</th>
 							
 						</tr>
 					</thead>
@@ -56,13 +56,14 @@
 				 		pageContext.setAttribute("itemDto", itemDto);
 				 	%>
 						<tr>
-							<td><a class="td-link" href="editItem?id=<c:out value="${itemDto.id}" />">View/Edit</a></td>
-							<td><c:out value="${itemDto.name}" /></td>
-							<td><c:out value="${itemDto.code}" /></td>
-							<td><c:out value="${itemDto.partNo}" /></td>
-							<td><c:out value="${itemDto.price}" /></td>
-							<td><c:out value="${itemDto.modifiedTS}" /></td>
+							<td align="left"><a class="td-link" href="editItem?id=<c:out value="${itemDto.id}" />">View/Edit</a></td>
+							<td align="left"><c:out value="${itemDto.name}" /></td>
+							<td align="left"><c:out value="${itemDto.code}" /></td>
+							<td align="left"><c:out value="${itemDto.partNo}" /></td>
+							<td align="right"><c:out value="${itemDto.price}" /></td>
+							<td align="left"><c:out value="${itemDto.modifiedTS}" /></td>
 						</tr>
+						<% } %>
 					</tbody>
 				</table>
 			</td>

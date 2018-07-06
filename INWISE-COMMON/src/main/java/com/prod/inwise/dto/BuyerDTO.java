@@ -1,100 +1,68 @@
 package com.prod.inwise.dto;
 
-public class BuyerDTO {
+public class BuyerDTO extends NameCodeDTO {
 
-	private String buyerName;
-
-	private String despatchedThrough;
+	private AddressDTO address;
 	
-	private String despatchedDocumentNumber;
+	private String reference1;
 	
-	private String destination;
+	private String reference2;
 	
-	private String modeOrTermsOfPayment;
-	
-	private String supplierReference;
+	private String reference3;
 
 	/**
-	 * @return the buyerName
+	 * @return the address
 	 */
-	public String getBuyerName() {
-		return buyerName;
+	public AddressDTO getAddress() {
+		return address;
 	}
 
 	/**
-	 * @param buyerName the buyerName to set
+	 * @param address the address to set
 	 */
-	public void setBuyerName(String buyerName) {
-		this.buyerName = buyerName;
+	public void setAddress(AddressDTO address) {
+		this.address = address;
 	}
 
 	/**
-	 * @return the despatchedThrough
+	 * @return the reference1
 	 */
-	public String getDespatchedThrough() {
-		return despatchedThrough;
+	public String getReference1() {
+		return reference1;
 	}
 
 	/**
-	 * @param despatchedThrough the despatchedThrough to set
+	 * @param reference1 the reference1 to set
 	 */
-	public void setDespatchedThrough(String despatchedThrough) {
-		this.despatchedThrough = despatchedThrough;
+	public void setReference1(String reference1) {
+		this.reference1 = reference1;
 	}
 
 	/**
-	 * @return the despatchedDocumentNumber
+	 * @return the reference2
 	 */
-	public String getDespatchedDocumentNumber() {
-		return despatchedDocumentNumber;
+	public String getReference2() {
+		return reference2;
 	}
 
 	/**
-	 * @param despatchedDocumentNumber the despatchedDocumentNumber to set
+	 * @param reference2 the reference2 to set
 	 */
-	public void setDespatchedDocumentNumber(String despatchedDocumentNumber) {
-		this.despatchedDocumentNumber = despatchedDocumentNumber;
+	public void setReference2(String reference2) {
+		this.reference2 = reference2;
 	}
 
 	/**
-	 * @return the destination
+	 * @return the reference3
 	 */
-	public String getDestination() {
-		return destination;
+	public String getReference3() {
+		return reference3;
 	}
 
 	/**
-	 * @param destination the destination to set
+	 * @param reference3 the reference3 to set
 	 */
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	/**
-	 * @return the modeOrTermsOfPayment
-	 */
-	public String getModeOrTermsOfPayment() {
-		return modeOrTermsOfPayment;
-	}
-
-	/**
-	 * @param modeOrTermsOfPayment the modeOrTermsOfPayment to set
-	 */
-	public void setModeOrTermsOfPayment(String modeOrTermsOfPayment) {
-		this.modeOrTermsOfPayment = modeOrTermsOfPayment;
-	}
-
-	/**
-	 * @return the supplierReference
-	 */
-	public String getSupplierReference() {
-		return supplierReference;
-	}
-
-	/**
-	 * @param supplierReference the supplierReference to set
-	 */
-	public void setSupplierReference(String supplierReference) {
-		this.supplierReference = supplierReference;
+	public void setReference3(String reference3) {
+		this.reference3 = reference3;
 	}
 }

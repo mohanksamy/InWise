@@ -11,10 +11,6 @@ import org.junit.Test;
 
 import com.prod.inwise.dto.ItemDTO;
 import com.prod.inwise.dto.TaxDTO;
-import com.prod.inwise.enums.Brand;
-import com.prod.inwise.enums.Category;
-import com.prod.inwise.enums.Size;
-import com.prod.inwise.enums.SubCategory;
 
 /**
  * @author mohan_kandasamy

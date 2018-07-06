@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
+import com.prod.inwise.dto.BuyerDTO;
 import com.prod.inwise.dto.InvoiceDTO;
 import com.prod.inwise.dto.TraderDTO;
 
@@ -29,12 +30,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(18f));
 		invoice.setTotalPrice(new BigDecimal(343f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -55,12 +51,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(13f));
 		invoice.setTotalPrice(new BigDecimal(345f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -81,12 +72,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(17f));
 		invoice.setTotalPrice(new BigDecimal(474f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -107,12 +93,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(74f));
 		invoice.setTotalPrice(new BigDecimal(488f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -133,12 +114,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(475f));
 		invoice.setTotalPrice(new BigDecimal(9674f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -159,12 +135,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(584f));
 		invoice.setTotalPrice(new BigDecimal(5758f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -185,12 +156,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(43f));
 		invoice.setTotalPrice(new BigDecimal(6964f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -211,12 +177,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(5675f));
 		invoice.setTotalPrice(new BigDecimal(96853f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -237,12 +198,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(345f));
 		invoice.setTotalPrice(new BigDecimal(5753f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -263,12 +219,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(45f));
 		invoice.setTotalPrice(new BigDecimal(56754f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -289,12 +240,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(45f));
 		invoice.setTotalPrice(new BigDecimal(56758f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -315,12 +261,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(456f));
 		invoice.setTotalPrice(new BigDecimal(56858f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -341,12 +282,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(45675f));
 		invoice.setTotalPrice(new BigDecimal(474452f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -367,12 +303,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(34f));
 		invoice.setTotalPrice(new BigDecimal(45747f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -393,12 +324,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(57f));
 		invoice.setTotalPrice(new BigDecimal(567573f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -419,12 +345,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(574f));
 		invoice.setTotalPrice(new BigDecimal(567559f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -445,12 +366,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(454f));
 		invoice.setTotalPrice(new BigDecimal(34636f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -471,12 +387,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(371f));
 		invoice.setTotalPrice(new BigDecimal(56753f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -497,12 +408,7 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(567f));
 		invoice.setTotalPrice(new BigDecimal(45747f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
@@ -523,17 +429,25 @@ public class InvoiceTests extends AbstractTests {
 
 		invoice.setTotalTax(new BigDecimal(23f));
 		invoice.setTotalPrice(new BigDecimal(346f));
-		invoice.setBuyerName("eFresh");
-		invoice.setDispatchedThrough("Courier");
-		invoice.setDispatchedDocumentNo("12345");
-		invoice.setDestination("Tirupur");
-		invoice.setModeOfPayment("Cash");
-		invoice.setSupplierReference("123");
+		invoice.setBuyer(getBuyer());
 		invoice.setTrader(trader);
 
 		invoice.setCreatedUser(trader.getCreatedUser());
 		invoice.setModifiedUser(trader.getModifiedUser());
 
 		getRequestSpecificationWithJsonBody(invoice).post(getPath(RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
+	}
+	
+	private BuyerDTO getBuyer() {
+		
+		BuyerDTO buyer = new BuyerDTO();
+		
+		buyer.setName("eFresh");
+		buyer.setCode("EFRESH");
+		buyer.setReference1("Courier");
+		buyer.setReference2("12345");
+		buyer.setReference3("Tirupur");
+		
+		return buyer;
 	}
 }

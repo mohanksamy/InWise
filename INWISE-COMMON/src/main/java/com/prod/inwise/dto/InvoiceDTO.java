@@ -1,6 +1,7 @@
 package com.prod.inwise.dto;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class InvoiceDTO extends BaseDTO {
 
@@ -10,17 +11,9 @@ public class InvoiceDTO extends BaseDTO {
 
 	private BigDecimal totalPrice;
 
-	private String buyerName;
+	private BuyerDTO buyer;
 
-	private String dispatchedThrough;
-
-	private String dispatchedDocumentNo;
-
-	private String destination;
-
-	private String modeOfPayment;
-
-	private String supplierReference;
+	private BigInteger phone;
 
 	/**
 	 * @return the trader
@@ -44,8 +37,7 @@ public class InvoiceDTO extends BaseDTO {
 	}
 
 	/**
-	 * @param totalTax
-	 *            the totalTax to set
+	 * @param totalTax the totalTax to set
 	 */
 	public void setTotalTax(BigDecimal totalTax) {
 		this.totalTax = totalTax;
@@ -59,100 +51,37 @@ public class InvoiceDTO extends BaseDTO {
 	}
 
 	/**
-	 * @param totalPrice
-	 *            the totalPrice to set
+	 * @param totalPrice the totalPrice to set
 	 */
 	public void setTotalPrice(BigDecimal totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 
 	/**
-	 * @return the buyerName
+	 * @return the buyer
 	 */
-	public String getBuyerName() {
-		return buyerName;
+	public BuyerDTO getBuyer() {
+		return buyer;
 	}
 
 	/**
-	 * @param buyerName
-	 *            the buyerName to set
+	 * @param buyer the buyer to set
 	 */
-	public void setBuyerName(String buyerName) {
-		this.buyerName = buyerName;
+	public void setBuyer(BuyerDTO buyer) {
+		this.buyer = buyer;
 	}
 
 	/**
-	 * @return the dispatchedThrough
+	 * @return the phone
 	 */
-	public String getDispatchedThrough() {
-		return dispatchedThrough;
+	public BigInteger getPhone() {
+		return phone;
 	}
 
 	/**
-	 * @param dispatchedThrough
-	 *            the dispatchedThrough to set
+	 * @param phone the phone to set
 	 */
-	public void setDispatchedThrough(String dispatchedThrough) {
-		this.dispatchedThrough = dispatchedThrough;
-	}
-
-	/**
-	 * @return the dispatchedDocumentNo
-	 */
-	public String getDispatchedDocumentNo() {
-		return dispatchedDocumentNo;
-	}
-
-	/**
-	 * @param dispatchedDocumentNo
-	 *            the dispatchedDocumentNo to set
-	 */
-	public void setDispatchedDocumentNo(String dispatchedDocumentNo) {
-		this.dispatchedDocumentNo = dispatchedDocumentNo;
-	}
-
-	/**
-	 * @return the destination
-	 */
-	public String getDestination() {
-		return destination;
-	}
-
-	/**
-	 * @param destination
-	 *            the destination to set
-	 */
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
-
-	/**
-	 * @return the modeOfPayment
-	 */
-	public String getModeOfPayment() {
-		return modeOfPayment;
-	}
-
-	/**
-	 * @param modeOfPayment
-	 *            the modeOfPayment to set
-	 */
-	public void setModeOfPayment(String modeOfPayment) {
-		this.modeOfPayment = modeOfPayment;
-	}
-
-	/**
-	 * @return the supplierReference
-	 */
-	public String getSupplierReference() {
-		return supplierReference;
-	}
-
-	/**
-	 * @param supplierReference
-	 *            the supplierReference to set
-	 */
-	public void setSupplierReference(String supplierReference) {
-		this.supplierReference = supplierReference;
+	public void setPhone(BigInteger phone) {
+		this.phone = phone;
 	}
 }

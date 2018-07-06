@@ -22,3 +22,8 @@ POST - http://localhost:8080/inwise/store
 Tax:
 -----
 GET - http://localhost:8080/inwise/tax
+
+
+UI:
+****
+http://localhost:8000/inwisefe/health
