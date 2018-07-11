@@ -61,7 +61,8 @@
 							<td align="left"><c:out value="${itemDto.code}" /></td>
 							<td align="left"><c:out value="${itemDto.partNo}" /></td>
 							<td align="right"><c:out value="${itemDto.price}" /></td>
-							<td align="left"><c:out value="${itemDto.modifiedTS}" /></td>
+							<fmt:formatDate  value = "${itemDto.modifiedTS}"  pattern = "yyyy-MM-dd HH:mm:ss"  var="tempModifiedDate"/> 
+							<td align="left"><c:out value="${tempModifiedDate}"/></td>
 						</tr>
 						<% } %>
 					</tbody>
@@ -71,7 +72,7 @@
 		<% } %>
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
-				<a href ="addItem"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
+				<a href ="createItem"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
 <!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
 		</tr>
 	</table>

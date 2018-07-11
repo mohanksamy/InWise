@@ -29,13 +29,13 @@ public class ItemServiceImpl implements ItemService {
 	private static Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
 
 	@Override
-	public List<ItemDTO> findAllItems() throws Exception {
+	public List<ItemDTO> findAllItemsByTraderId(Long traderId) throws Exception {
 
 		List<ItemDTO> itemDtos = new ArrayList<>();
 
 		ItemDTO itemDto = new ItemDTO();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/items",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/"+traderId+"/items",
 				HttpMethod.GET, null);
 		JsonNode itemDtoJsons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
 				JsonNode jsonNode = new ObjectMapper().readValue(itemResponse.getBody(), new TypeReference<JsonNode>() {
 				});
 
-				removeUnwantedElements(jsonNode);
+			//	removeUnwantedElements(jsonNode);
 
 				itemDto = (new ObjectMapper().treeToValue(jsonNode, ItemDTO.class));
 
@@ -90,6 +90,7 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public ItemDTO saveItem(ItemDTO itemDto) throws Exception {
 
+		@SuppressWarnings("unused")
 		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/items",
 				HttpMethod.POST, itemDto);
 

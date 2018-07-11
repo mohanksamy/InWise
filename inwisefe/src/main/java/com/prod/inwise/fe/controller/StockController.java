@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.prod.inwise.dto.ItemDTO;
 import com.prod.inwise.dto.StockDTO;
+import com.prod.inwise.fe.services.ItemService;
 import com.prod.inwise.fe.services.StockService;
 import com.prod.inwise.fe.utilities.AttributeConstants;
 import com.prod.inwise.fe.utilities.MessageCode;
@@ -25,8 +27,8 @@ public class StockController extends BusinessController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StockController.class);
 
-	// @Autowired
-	// private TraderService traderService;
+	@Autowired
+	private ItemService itemService;
 
 	@Autowired
 	private StockService stockService;
@@ -45,7 +47,10 @@ public class StockController extends BusinessController {
 	public String addStock(Model model) throws Exception {
 
 		StockDTO stockDto = new StockDTO();
-
+		
+		List<ItemDTO> itemDtos = itemService.findAllItemsByTraderId(Long.valueOf(1));
+		
+		model.addAttribute(AttributeConstants.ITEM_LIST, itemDtos);
 		model.addAttribute(AttributeConstants.STOCK, stockDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.INSERT);
 
@@ -83,6 +88,7 @@ public class StockController extends BusinessController {
 
 		StockDTO stockDto = null;
 		String stockId = requestParams.get(AttributeConstants.STOCK_ID);
+		String itemId = requestParams.get(AttributeConstants.ITEM_NAME);
 		// String traderId = requestParams.get(AttributeConstants.TRADER_ID);
 
 		logger.debug("StockDTO Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
@@ -96,7 +102,8 @@ public class StockController extends BusinessController {
 		}
 
 		String quantity = requestParams.get(AttributeConstants.QUANTITY);
-
+		
+		stockDto.setItem(itemService.findItemById(Long.valueOf(itemId)));
 		stockDto.setQuantity(Integer.valueOf(quantity));
 		stockDto.setActive(true);
 		stockDto.setCreatedUser("APP-SERVICES");

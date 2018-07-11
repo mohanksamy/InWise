@@ -8,7 +8,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>InWise Verion 1.0 - Traders Detail</title>
+<title>InWise Version 1.0 - Traders Detail</title>
 
 <%@ include file="header_include.jsf" %>
 

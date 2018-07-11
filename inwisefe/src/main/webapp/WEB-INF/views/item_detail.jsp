@@ -7,7 +7,7 @@
 <%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>InWise Verion 1.0 - Item Detail</title>
+<title>InWise Version 1.0 - Item Detail</title>
 
 <%@ include file="header_include.jsf" %>
 
@@ -58,6 +58,7 @@ function saveItem() {
 				<span>Item Details</span>
 			</div>
 		</nobr>
+		<%@ include file="response_messages.jsf"%>
 		<table cellspacing="2" width="100%" border="0" class="formtable">
 			<tr>
 				<td colspan="4">&nbsp;

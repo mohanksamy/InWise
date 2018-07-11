@@ -41,7 +41,7 @@ public class ItemController extends BusinessController {
 	@RequestMapping(path = RequestConstants.VIEW_ITEMS, method = { RequestMethod.GET, RequestMethod.POST })
 	public String getItemList(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
 
-		List<ItemDTO> items = itemService.findAllItems();
+		List<ItemDTO> items = itemService.findAllItemsByTraderId(Long.valueOf(1));
 
 		model.addAttribute(AttributeConstants.ITEM_LIST, items);
 
@@ -77,7 +77,7 @@ public class ItemController extends BusinessController {
 
 		itemDto = itemService.saveItem(itemDto);
 
-		model.addAttribute(AttributeConstants.TRADER, itemDto);
+		model.addAttribute(AttributeConstants.ITEM_DTO, itemDto);
 		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
 		model.addAttribute(AttributeConstants.APPLICATION_MESSAGES, MessageCode.INFO_MSG_1001);
 

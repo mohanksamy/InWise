@@ -10,7 +10,7 @@ import com.prod.inwise.dto.ItemDTO;
  */
 public interface ItemService {
 
-	public List<ItemDTO> findAllItems() throws Exception;
+	public List<ItemDTO> findAllItemsByTraderId(Long traderId) throws Exception;
 
 	public ItemDTO findItemById(Long id) throws Exception;
 

@@ -2,13 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
+<%@ page import="java.util.*"%>
 <%@ page import="java.math.BigInteger"%>
 <%@ page import="com.prod.inwise.dto.StockDTO"%>
+<%@ page import="com.prod.inwise.dto.ItemDTO"%>
 <%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>InWise Verion 1.0 - Stock Detail</title>
+<title>InWise Version 1.0 - Stock Detail</title>
 
 <%@ include file="header_include.jsf" %>
 
@@ -16,6 +18,7 @@
 
 <%
 	StockDTO stock = (StockDTO) request.getAttribute(AttributeConstants.STOCK);
+	List<ItemDTO> itemDtos = (List<ItemDTO>) request.getAttribute(AttributeConstants.ITEM_LIST);
 	BigInteger id = null;
 	
 	if(stock != null) {
@@ -29,11 +32,11 @@
 
 function initialize() {
 	
-  	document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />";
+	defaultSelect(document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />");
   	document.detail_form.quantity.value = "<c:out value ="${dto.getQuantity()}" />";
 }
 
-function saveStcok() {
+function saveStock() {
 	document.detail_form.submit();
     return true;
 }
@@ -67,15 +70,19 @@ function saveStcok() {
 			</tr>
 			<tr>
 				<td class="mandatory"><label>Item Name:</label></td>
+				
+				<%if(AttributeConstants.INSERT.equals(mode)) { %>
 				<td>
-					<select id="itemName" name="itemName"  >
-    	        		<option value="">Select Items</option>
-        	    		<option value="burglarAlarm">Burglar Alarm</option>
-        	    		<option value="fireAlarm">Fire Alarm</option>
-        	    		<option value="cctvSystem">CCTV System</option>
-        	    		<option value="bioMetric">Bio Metric</option>
+					<select id="itemName" name="itemName">
+					<%
+					for(ItemDTO itemDto : itemDtos) { %>
+						<option value="<%=itemDto.getId()%>"><%=itemDto.getName()%></option>
+					<%} %>
           			</select>
           		</td>
+          		<% } else { %>
+          			<td><input type="text" id="itemName" name="itemName" maxlength="40" size="25" readonly="readonly"/></td>
+          		<% } %>
 
 				<td class="optional"><label>Quantity:</label></td>
 				<td><input type="text" id="quantity" name="quantity" maxlength="40" size="25" /></td>
