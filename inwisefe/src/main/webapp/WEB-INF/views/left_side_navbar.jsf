@@ -6,9 +6,9 @@
 	<div id="leftside">
 		<div id="sidenav">
 			<div id="sidenavheader">
-<!-- 				<span><a href="#" class="hideicon" id="collapseallsidenav">Collapse All</a></span> -->
-<!-- 				<span><a href="#" class="expandicon" id="expandallsidenav">Expand All</a></span> -->
-<!-- 				<span><a href="#" class="hideicon" id="hidesidenav">Hide All</a></span> -->
+				<span><a href="#" class="hideicon" id="collapseallsidenav">Collapse All</a></span>
+				<span><a href="#" class="expandicon" id="expandallsidenav">Expand All</a></span>
+				<span><a href="#" class="hideicon" id="hidesidenav">Hide All</a></span>
 			</div>
 			<ul>
 				<li id="traderSetupHeader"><a href="#" class="closed">Trader</a>
@@ -33,49 +33,49 @@
 					</ul>
 				</li>
 
-				<li id="categorySetupHeader"><a href="#" class="closed">Category</a>
-					<ul>	
-						<li id="createCategory" class="none">	
-							<a href ="createCategory">create</a>
-						</li>
-						<li id="categories" class="none">
-							<a href ="categories">list</a>
-						</li>
-					</ul>
-				</li>
+<!-- 				<li id="categorySetupHeader"><a href="#" class="closed">Category</a> -->
+<!-- 					<ul>	 -->
+<!-- 						<li id="createCategory" class="none">	 -->
+<!-- 							<a href ="createCategory">create</a> -->
+<!-- 						</li> -->
+<!-- 						<li id="categories" class="none"> -->
+<!-- 							<a href ="categories">list</a> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
 
-				<li id="subCategorySetupHeader"><a href="#" class="closed">SubCategory</a>
-					<ul>	
-						<li id="createSubCategory" class="none">	
-							<a href ="createSubCategory">create</a>
-						</li>
-						<li id="subCategories" class="none">
-							<a href ="subCategories">list</a>
-						</li>
-					</ul>
-				</li>
+<!-- 				<li id="subCategorySetupHeader"><a href="#" class="closed">SubCategory</a> -->
+<!-- 					<ul>	 -->
+<!-- 						<li id="createSubCategory" class="none">	 -->
+<!-- 							<a href ="createSubCategory">create</a> -->
+<!-- 						</li> -->
+<!-- 						<li id="subCategories" class="none"> -->
+<!-- 							<a href ="subCategories">list</a> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
 
-				<li id="brandSetupHeader"><a href="#" class="closed">Brand</a>
-					<ul>	
-						<li id="createBrand" class="none">	
-							<a href ="createBrand">create</a>
-						</li>
-						<li id="brands" class="none">
-							<a href ="brands">list</a>
-						</li>
-					</ul>
-				</li>
+<!-- 				<li id="brandSetupHeader"><a href="#" class="closed">Brand</a> -->
+<!-- 					<ul>	 -->
+<!-- 						<li id="createBrand" class="none">	 -->
+<!-- 							<a href ="createBrand">create</a> -->
+<!-- 						</li> -->
+<!-- 						<li id="brands" class="none"> -->
+<!-- 							<a href ="brands">list</a> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
 				
-				<li id="sizeSetupHeader"><a href="#" class="closed">Size</a>
-					<ul>	
-						<li id="createSize" class="none">	
-							<a href ="createSize">create</a>
-						</li>
-						<li id="sizez" class="none">
-							<a href ="sizes">list</a>
-						</li>
-					</ul>
-				</li>
+<!-- 				<li id="sizeSetupHeader"><a href="#" class="closed">Size</a> -->
+<!-- 					<ul>	 -->
+<!-- 						<li id="createSize" class="none">	 -->
+<!-- 							<a href ="createSize">create</a> -->
+<!-- 						</li> -->
+<!-- 						<li id="sizez" class="none"> -->
+<!-- 							<a href ="sizes">list</a> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</li> -->
 				<li id="itemSetupHeader"><a href="#" class="closed">Item</a>
 					<ul>	
 						<li id="createItem" class="none">	
