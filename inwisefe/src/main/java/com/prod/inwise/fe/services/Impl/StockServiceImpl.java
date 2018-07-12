@@ -29,14 +29,14 @@ public class StockServiceImpl implements StockService {
 	private static Logger logger = LoggerFactory.getLogger(StockServiceImpl.class);
 
 	@Override
-	public List<StockDTO> findAllStocks() throws Exception {
+	public List<StockDTO> findAllStocksByTraderId(Long traderId) throws Exception {
 
 		List<StockDTO> stocks = new ArrayList<>();
 
 		StockDTO stockDto = new StockDTO();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/stocks",
-				HttpMethod.GET, null);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/stocks", HttpMethod.GET, null);
 		JsonNode stockJosons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
 
@@ -69,10 +69,10 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public StockDTO findStockById(Long id) throws Exception {
+	public StockDTO findStockById(Long traderId, Long stockId) throws Exception {
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/stocks/" + id,
-				HttpMethod.GET, null);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/stocks/" + stockId, HttpMethod.GET, null);
 
 		JsonNode stockJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});

@@ -10,9 +10,9 @@ import com.prod.inwise.dto.StockDTO;
  */
 public interface StockService {
 
-	public List<StockDTO> findAllStocks() throws Exception;
+	public List<StockDTO> findAllStocksByTraderId(Long traderId) throws Exception;
 
-	public StockDTO findStockById(Long id) throws Exception;
+	public StockDTO findStockById(Long traderId, Long stockId) throws Exception;
 
 	public StockDTO saveStock(StockDTO stockDto) throws Exception;
 }

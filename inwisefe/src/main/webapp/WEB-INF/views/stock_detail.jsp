@@ -21,6 +21,7 @@
 	List<ItemDTO> itemDtos = (List<ItemDTO>) request.getAttribute(AttributeConstants.ITEM_LIST);
 	BigInteger id = null;
 	
+	
 	if(stock != null) {
 	 	id = stock.getId();
 	}
@@ -32,7 +33,12 @@
 
 function initialize() {
 	
-	defaultSelect(document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />");
+	<% if(AttributeConstants.INSERT.equals(mode)) { %>
+		 defaultSelect(document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />");
+	<% } else { %>
+			document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />";	
+	<% } %>
+	
   	document.detail_form.quantity.value = "<c:out value ="${dto.getQuantity()}" />";
 }
 

@@ -24,6 +24,7 @@
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
 
+<form action="" method="post" name="master_form" accept-charset="UTF-8">
 	<nobr>
 		<div class ="boxheader"><span>Stock List</span></div>
 	</nobr>
@@ -42,21 +43,28 @@
 						</tr>
 					</thead>
 					<tbody>
+					
+					<%
+						if(stockList.size() > 0) {
+						for(StockDTO stockDto : stockList) { 
+				 		pageContext.setAttribute("stockDto", stockDto);
+				 	%>
 						<tr>
-							<td><a class="td-link" href="#" />View/Edit</a></td>
-							<td>CCTV Camera</td>
-							<td>1000</td>
-					     	<td>04-07-2018</td>
+							<td align="left"><a class="td-link" href="editStock?id=<c:out value="${stockDto.id}" />">View/Edit</a></td>
+							<td align="left"><c:out value="${stockDto.getItem().getName()}" /></td>
+							<td align="left"><c:out value="${stockDto.getQuantity()}" /></td>
+							<fmt:formatDate  value = "${stockDto.modifiedTS}"  pattern = "yyyy-MM-dd HH:mm:ss"  var="tempModifiedDate"/> 
+							<td align="left"><c:out value="${tempModifiedDate}"/></td>
 						</tr>
+						<% } }%>
 					</tbody>
 				</table>
 			</td>
 		</tr>
-
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
 				<a href ="createStock"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
+			</td>
 		</tr>
 	</table>
 	</form>

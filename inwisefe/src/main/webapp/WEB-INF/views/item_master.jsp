@@ -17,32 +17,25 @@
 
 <%
 	List<ItemDTO> itemDtos = (List<ItemDTO>) request.getAttribute(AttributeConstants.ITEM_LIST);
-//	pageContext.setAttribute("dtos", stores);
 %>
 </head>
 
-<body class="wnav">
+<body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
 
+<form action="" method="post" name="master_form" accept-charset="UTF-8">
 	<nobr>
 		<div class ="boxheader"><span>Item List</span></div>
 	</nobr>
 
 	<table width="100%" border="0">
 		<tr>
-			<td colspan="9" valign="top">
-<!-- 				<input type="button" class="button" name="Add" value="Add" onClick="#" />  -->
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
-		</tr>
-	<%if(itemDtos.size()>0) {%>
-		<tr>
 			<td>
 				<table id="fixed_header_table" cellspacing="0" width = "100%" class="datatable striped">
 					<thead>
 						<tr>
 							<th class="column-name">&nbsp;</th>
-							<!-- <th class="column-name">&nbsp;</th> -->
 							<th align="center" class="column-name">Item Name</th>
 							<th align="center" class="column-name">Item Code</th>
 							<th align="center" class="column-name">Part No</th>
@@ -69,11 +62,10 @@
 				</table>
 			</td>
 		</tr>
-		<% } %>
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
 				<a href ="createItem"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
+			</td>
 		</tr>
 	</table>
 	</form>

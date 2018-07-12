@@ -36,7 +36,7 @@ public class StockController extends BusinessController {
 	@RequestMapping(path = RequestConstants.VIEW_STOCKS, method = { RequestMethod.GET, RequestMethod.POST })
 	public String getStockList(Model model) throws Exception {
 
-		List<StockDTO> stocks = stockService.findAllStocks();
+		List<StockDTO> stocks = stockService.findAllStocksByTraderId(Long.valueOf(1));
 
 		model.addAttribute(AttributeConstants.STOCK_LIST, stocks);
 
@@ -47,9 +47,9 @@ public class StockController extends BusinessController {
 	public String addStock(Model model) throws Exception {
 
 		StockDTO stockDto = new StockDTO();
-		
+
 		List<ItemDTO> itemDtos = itemService.findAllItemsByTraderId(Long.valueOf(1));
-		
+
 		model.addAttribute(AttributeConstants.ITEM_LIST, itemDtos);
 		model.addAttribute(AttributeConstants.STOCK, stockDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.INSERT);
@@ -60,9 +60,9 @@ public class StockController extends BusinessController {
 	@RequestMapping(path = RequestConstants.EDIT_STOCK, method = { RequestMethod.GET, RequestMethod.POST })
 	public String editStock(@RequestParam("id") Long id, Model model) throws Exception {
 
-		logger.debug("editTax id [" + id + "]");
+		logger.debug("editStock id [" + id + "]");
 
-		StockDTO stockDto = stockService.findStockById(id);
+		StockDTO stockDto = stockService.findStockById(Long.valueOf(1), id);
 
 		model.addAttribute(AttributeConstants.STOCK, stockDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.UPDATE);
@@ -95,15 +95,13 @@ public class StockController extends BusinessController {
 		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
 
 			stockDto = new StockDTO();
-
+			stockDto.setItem(itemService.findItemById(Long.valueOf(itemId)));
 		} else {
 
-			stockDto = stockService.findStockById(Long.valueOf(stockId));
+			stockDto = stockService.findStockById(Long.valueOf(1), Long.valueOf(stockId));
 		}
 
 		String quantity = requestParams.get(AttributeConstants.QUANTITY);
-		
-		stockDto.setItem(itemService.findItemById(Long.valueOf(itemId)));
 		stockDto.setQuantity(Integer.valueOf(quantity));
 		stockDto.setActive(true);
 		stockDto.setCreatedUser("APP-SERVICES");

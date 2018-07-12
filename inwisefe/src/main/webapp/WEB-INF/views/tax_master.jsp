@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+\<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
@@ -22,8 +22,9 @@
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
-<%@ include file="left_side_navbar.jsf"%>	
-
+<%@ include file="left_side_navbar.jsf"%>
+	
+<form action="" method="post" name="master_form" accept-charset="UTF-8">
 	<nobr>
 		<div class ="boxheader"><span>Tax List</span></div>
 	</nobr>
@@ -60,7 +61,7 @@
 		<tr>
 			<td colspan="4" align="left" height="30" valign="bottom">
 				<a href ="createTax"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
+			</td>
 		</tr>
 	</table>
 	</form>

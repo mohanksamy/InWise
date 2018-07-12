@@ -34,23 +34,15 @@ function editTrader(traderName) {
 
 <body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
+<%@ include file="left_side_navbar.jsf"%>
 
-.<%@ include file="left_side_navbar.jsf"%>	
+<form action="" method="post" name="master_form" accept-charset="UTF-8">
 	<nobr>
 		<div class="boxheader">
 			<span>Traders</span>
 		</div>
 	</nobr>
-	<form action="" method="post" name="master_form" accept-charset="UTF-8">
-      <input type="hidden" name="test"  value="ffff" />
-             
-
 	<table width="100%" border="0">
-		<tr>
-			<td colspan="9" valign="top">
-<!-- 				<a href="addStore"><input type="button" class="button" name="Add" value="Add" onClick="#" /></a>  -->
-<!-- 				<input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></td> -->
-		</tr>
 		<tr>
 			<td>
 				<table id="fixed_header_table" cellspacing="0"
