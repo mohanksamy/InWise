@@ -16,6 +16,7 @@ public interface AttributeConstants {
 	String TRADER_LIST = "traders";
 
 	String TRADER_ID = "trader_id";
+	String TRADER_NAME = "trader_name";
 	String NAME = "name";
 	String CODE = "code";
 	String UIN = "uin";
@@ -52,4 +53,9 @@ public interface AttributeConstants {
 	String INVOICE_DTO = "invoice_dto";
 	String INVOICE_ID = "invoice_id";
 
+	String TOTAL_TAX = "total_tax";
+	String TOTAL_PRICE = "total_price";
+	
+	String LINE_ITEM_LIST = "line_item_list";
+	
 }

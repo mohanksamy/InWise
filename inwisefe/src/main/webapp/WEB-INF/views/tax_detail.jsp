@@ -34,6 +34,19 @@ function initialize() {
 }
 
 function saveTax() {
+	if (isEmpty(document.detail_form.cgst)) {
+		alert("Please enter the cgst");
+    	document.detail_form.cgst.select();
+    	document.detail_form.cgst.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.sgst)) {
+		alert("Please enter the sgst");
+    	document.detail_form.sgst.select();
+    	document.detail_form.sgst.focus();
+    	return false;
+	}
 	document.detail_form.submit();
     return true;
 }

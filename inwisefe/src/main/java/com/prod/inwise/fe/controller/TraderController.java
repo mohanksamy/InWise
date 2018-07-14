@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +67,7 @@ public class TraderController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.SAVE_TRADER, method = { RequestMethod.GET, RequestMethod.POST })
-	public String saveTrader(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+	public String saveTrader(@RequestParam Map<String, String> requestParams, Model model, HttpSession session) throws Exception {
 
 		TraderDTO traderDto = setData(requestParams);
 
@@ -74,7 +76,9 @@ public class TraderController extends BusinessController {
 		model.addAttribute(AttributeConstants.TRADER, traderDto);
 		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
 		model.addAttribute(AttributeConstants.APPLICATION_MESSAGES, MessageCode.INFO_MSG_1001);
-
+		session.setAttribute(AttributeConstants.TRADER_ID, traderDto.getId());
+		session.setAttribute(AttributeConstants.TRADER_NAME, traderDto.getName());
+		
 		return ViewNames.TRADER_DETAIL;
 	}
 
@@ -116,7 +120,7 @@ public class TraderController extends BusinessController {
 		traderDto.setName(name);
 		traderDto.setCode(code);
 		traderDto.setUin(uin);
-		traderDto.setPhone(new BigInteger(phone));
+		traderDto.setPhone(phone != null ? new BigInteger(phone) : null);
 		traderDto.setActive(true);
 		traderDto.setCreatedUser("APP-SERVICES");
 		traderDto.setModifiedUser("APP-SERVICES");

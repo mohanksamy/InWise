@@ -3,6 +3,7 @@ package com.prod.inwise.fe.services.Impl;
 import static com.prod.inwise.fe.services.ServicesGateway.invokeAPI;
 import static com.prod.inwise.fe.services.ServicesGateway.removeUnwantedElements;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class StockServiceImpl implements StockService {
 	private static Logger logger = LoggerFactory.getLogger(StockServiceImpl.class);
 
 	@Override
-	public List<StockDTO> findAllStocksByTraderId(Long traderId) throws Exception {
+	public List<StockDTO> findAllStocksByTraderId(BigInteger traderId) throws Exception {
 
 		List<StockDTO> stocks = new ArrayList<>();
 
@@ -69,7 +70,7 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public StockDTO findStockById(Long traderId, Long stockId) throws Exception {
+	public StockDTO findStockById(BigInteger traderId, Long stockId) throws Exception {
 
 		ResponseEntity<String> response = invokeAPI(null,
 				"http://localhost:8080/inwise/traders/" + traderId + "/stocks/" + stockId, HttpMethod.GET, null);
@@ -87,11 +88,11 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public StockDTO saveStock(StockDTO stockDto) throws Exception {
+	public StockDTO saveStock(BigInteger traderId, StockDTO stockDto) throws Exception {
 
 		@SuppressWarnings("unused")
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/stocks",
-				HttpMethod.POST, stockDto);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/stocks", HttpMethod.POST, stockDto);
 
 		// JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new
 		// TypeReference<JsonNode>() {

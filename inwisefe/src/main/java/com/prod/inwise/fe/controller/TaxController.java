@@ -1,8 +1,11 @@
 package com.prod.inwise.fe.controller;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.prod.inwise.dto.TaxDTO;
+import com.prod.inwise.dto.TraderDTO;
 import com.prod.inwise.fe.services.TaxService;
 import com.prod.inwise.fe.services.TraderService;
 import com.prod.inwise.fe.utilities.AttributeConstants;
@@ -34,9 +38,10 @@ public class TaxController extends BusinessController {
 	private TaxService taxService;
 
 	@RequestMapping(path = RequestConstants.VIEW_TAXES, method = { RequestMethod.GET, RequestMethod.POST })
-	public String getTaxList(Model model) throws Exception {
+	public String getTaxList(Model model, HttpSession session) throws Exception {
 
-		List<TaxDTO> taxes = taxService.findAllTaxes();
+		List<TaxDTO> taxes = taxService
+				.findAllTaxesByTraderId((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
 
 		model.addAttribute(AttributeConstants.TAX_LIST, taxes);
 
@@ -55,11 +60,11 @@ public class TaxController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.EDIT_TAX, method = { RequestMethod.GET, RequestMethod.POST })
-	public String editTax(@RequestParam("id") Long id, Model model) throws Exception {
+	public String editTax(@RequestParam("id") Long id, Model model, HttpSession session) throws Exception {
 
 		logger.debug("editTax id [" + id + "]");
 
-		TaxDTO taxDto = taxService.findTaxById(id);
+		TaxDTO taxDto = taxService.findTaxById((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID), id);
 
 		model.addAttribute(AttributeConstants.TAX, taxDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.UPDATE);
@@ -68,11 +73,13 @@ public class TaxController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.SAVE_TAX, method = { RequestMethod.GET, RequestMethod.POST })
-	public String saveTax(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+	public String saveTax(@RequestParam Map<String, String> requestParams, Model model, HttpSession session)
+			throws Exception {
 
-		TaxDTO taxDto = setData(requestParams);
+		TaxDTO taxDto = setData(requestParams, (BigInteger) session.getAttribute(AttributeConstants.TRADER_ID),
+				(String) session.getAttribute(AttributeConstants.TRADER_NAME));
 
-		taxDto = taxService.saveTax(taxDto);
+		taxDto = taxService.saveTax((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID), taxDto);
 
 		model.addAttribute(AttributeConstants.TAX, taxDto);
 		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
@@ -81,12 +88,12 @@ public class TaxController extends BusinessController {
 		return ViewNames.TAX_DETAIL;
 	}
 
-	private TaxDTO setData(Map<String, String> requestParams) throws Exception {
+	private TaxDTO setData(Map<String, String> requestParams, BigInteger traderId, String traderName) throws Exception {
 
 		TaxDTO taxDto = null;
 		String taxId = requestParams.get(AttributeConstants.TAX_ID);
-		// String traderId = requestParams.get(AttributeConstants.TRADER_ID);
 
+		logger.debug("Trader Id [" + traderId + "], Trader Name [" + traderName + "]");
 		logger.debug("TaxDTO Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
 		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
 
@@ -94,15 +101,17 @@ public class TaxController extends BusinessController {
 
 		} else {
 
-			taxDto = taxService.findTaxById(Long.valueOf(taxId));
+			taxDto = taxService.findTaxById(traderId, Long.valueOf(taxId));
 		}
+
+		TraderDTO traderDto = traderService.findTraderByName(traderName);
 
 		String cgst = requestParams.get(AttributeConstants.CGST);
 		String sgst = requestParams.get(AttributeConstants.SGST);
 
 		taxDto.setCgst(new BigDecimal(cgst));
 		taxDto.setSgst(new BigDecimal(sgst));
-		taxDto.setTrader(traderService.findTraderByName("VELSTORES"));
+		taxDto.setTrader(traderDto);
 		taxDto.setActive(true);
 		taxDto.setCreatedUser("APP-SERVICES");
 		taxDto.setModifiedUser("APP-SERVICES");

@@ -2,8 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
+<%@ page import="java.util.*"%>
 <%@ page import="java.math.BigInteger"%>
 <%@ page import="com.prod.inwise.dto.ItemDTO"%>
+<%@ page import="com.prod.inwise.dto.TaxDTO"%>
 <%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,6 +17,8 @@
 
 <%
 	ItemDTO itemDto = (ItemDTO) request.getAttribute(AttributeConstants.ITEM_DTO);
+	List<TaxDTO> taxDtos = (List<TaxDTO>) request.getAttribute(AttributeConstants.TAX_LIST);
+
 	BigInteger id = null;
 	
 	if(itemDto != null) {
@@ -33,9 +37,32 @@ function initialize() {
   	document.detail_form.code.value = "<c:out value ="${dto.getCode()}" />";
   	document.detail_form.partNo.value = "<c:out value ="${dto.getPartNo()}" />";
   	document.detail_form.price.value = "<c:out value ="${dto.getPrice()}" />";
+  	defaultSelect(document.detail_form.centralTax.value = "<c:out value ="${dto.getTax().getCgst()}" />");
+  	defaultSelect(document.detail_form.stateTax.value = "<c:out value ="${dto.getTax().getSgst()}" />");
 }
 
 function saveItem() {
+	if (isEmpty(document.detail_form.name)) {
+		alert("Please enter the name");
+    	document.detail_form.name.select();
+    	document.detail_form.name.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.price)) {
+		alert("Please enter the price");
+    	document.detail_form.price.select();
+    	document.detail_form.price.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.centralTax)) {
+		alert("Please select the centralTax");
+    	document.detail_form.centralTax.select();
+    	document.detail_form.centralTax.focus();
+    	return false;
+	}
+	
 	document.detail_form.submit();
     return true;
 }
@@ -86,11 +113,21 @@ function saveItem() {
 				<td class="optional"><label>Tax:</label></td>
 				<td>
 					<label>CGST:</label>
-					<input class="optional" type="text" id="centralTax" name="centralTax" maxlength="12" size="10" />
+					<select id="centralTax" name="centralTax">
+					<%
+						for(TaxDTO taxDto : taxDtos) { %>
+							<option value="<%=taxDto.getId()%>"><%=taxDto.getCgst()%></option>
+						<%} %>
+          			</select>
 					&nbsp;
 					<label>SGST:</label>
-					<input class="optional" type="text" id="stateTax" name="stateTax" maxlength="12" size="10" />
-				</td>
+					<select id="stateTax" name="stateTax">
+					<%
+						for(TaxDTO taxDto : taxDtos) { %>
+							<option value="<%=taxDto.getId()%>"><%=taxDto.getSgst()%></option>
+						<%} %>
+          			</select>
+          			</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

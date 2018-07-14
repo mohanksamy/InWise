@@ -3,6 +3,7 @@ package com.prod.inwise.fe.services.Impl;
 import static com.prod.inwise.fe.services.ServicesGateway.invokeAPI;
 import static com.prod.inwise.fe.services.ServicesGateway.removeUnwantedElements;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,13 @@ public class TaxServiceImpl implements TaxService {
 	private static Logger logger = LoggerFactory.getLogger(TaxServiceImpl.class);
 
 	@Override
-	public List<TaxDTO> findAllTaxes() throws Exception {
+	public List<TaxDTO> findAllTaxesByTraderId(BigInteger traderId) throws Exception {
 
 		List<TaxDTO> taxes = new ArrayList<>();
 
 		TaxDTO taxDto = new TaxDTO();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + traderId + "/taxes",
 				HttpMethod.GET, null);
 		JsonNode taxJosons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
@@ -54,7 +55,7 @@ public class TaxServiceImpl implements TaxService {
 				JsonNode jsonNode = new ObjectMapper().readValue(taxResponse.getBody(), new TypeReference<JsonNode>() {
 				});
 
-				//removeUnwantedElements(jsonNode);
+				// removeUnwantedElements(jsonNode);
 
 				taxDto = (new ObjectMapper().treeToValue(jsonNode, TaxDTO.class));
 
@@ -69,10 +70,10 @@ public class TaxServiceImpl implements TaxService {
 	}
 
 	@Override
-	public TaxDTO findTaxById(Long id) throws Exception {
+	public TaxDTO findTaxById(BigInteger traderId, Long id) throws Exception {
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes/" + id,
-				HttpMethod.GET, null);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/taxes/" + id, HttpMethod.GET, null);
 
 		JsonNode taxJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
@@ -88,10 +89,10 @@ public class TaxServiceImpl implements TaxService {
 	}
 
 	@Override
-	public TaxDTO saveTax(TaxDTO taxDTO) throws Exception {
+	public TaxDTO saveTax(BigInteger traderId, TaxDTO taxDTO) throws Exception {
 
 		@SuppressWarnings("unused")
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/taxes",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + traderId + "/taxes",
 				HttpMethod.POST, taxDTO);
 
 		// JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new

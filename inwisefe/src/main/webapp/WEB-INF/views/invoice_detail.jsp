@@ -2,8 +2,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 
+<%@ page import="java.util.*"%>
 <%@ page import="java.math.BigInteger"%>
 <%@ page import="com.prod.inwise.dto.InvoiceDTO"%>
+<%@ page import="com.prod.inwise.dto.ItemDTO"%>
 <%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
 
 <head>
@@ -16,7 +18,8 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css" />
 
 <%
-	InvoiceDTO invoiceDto = (InvoiceDTO) request.getAttribute(AttributeConstants.INVOICE_DTO);
+	List<LineItemDTO> lineItemDtos = (List<LineItemDTO>) request.getAttribute(AttributeConstants.LINE_ITEM_LIST);
+	List<ItemDTO> itemDtos = (List<ItemDTO>) request.getAttribute(AttributeConstants.ITEM_LIST);
 	BigInteger id = null;
 	
 	if(invoiceDto != null) {
@@ -43,7 +46,7 @@ function saveInvoice() {
 
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
-	<form action="" method="post" name="detail_form" accept-charset="UTF-8">
+	<form action="saveInvoice" method="post" name="detail_form" accept-charset="UTF-8">
 		<input type="hidden" name="<%= AttributeConstants.INVOICE_ID %>" value ="<%= id %>" />
 		<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
 	
@@ -98,13 +101,12 @@ function saveInvoice() {
 			</tr>
 			<tr>
 				<td class="optional"><label>Description:</label></td>
-				<td>
-					<select id="description" name="description"  >
-    	        		<option value="">Select Items</option>
-        	    		<option value="burglarAlarm">Burglar Alarm</option>
-        	    		<option value="fireAlarm">Fire Alarm</option>
-        	    		<option value="cctvSystem">CCTV System</option>
-        	    		<option value="bioMetric">Bio Metric</option>
+          		<td>
+					<select id="itemName" name="itemName">
+					<%
+					for(ItemDTO itemDto : itemDtos) { %>
+						<option value="<%=itemDto.getId()%>"><%=itemDto.getName()%></option>
+					<%} %>
           			</select>
           		</td>
 			</tr>

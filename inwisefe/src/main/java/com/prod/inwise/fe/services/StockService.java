@@ -1,5 +1,6 @@
 package com.prod.inwise.fe.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.prod.inwise.dto.StockDTO;
@@ -10,9 +11,9 @@ import com.prod.inwise.dto.StockDTO;
  */
 public interface StockService {
 
-	public List<StockDTO> findAllStocksByTraderId(Long traderId) throws Exception;
+	public List<StockDTO> findAllStocksByTraderId(BigInteger traderId) throws Exception;
 
-	public StockDTO findStockById(Long traderId, Long stockId) throws Exception;
+	public StockDTO findStockById(BigInteger traderId, Long stockId) throws Exception;
 
-	public StockDTO saveStock(StockDTO stockDto) throws Exception;
+	public StockDTO saveStock(BigInteger traderId, StockDTO stockDto) throws Exception;
 }

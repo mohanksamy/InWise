@@ -3,6 +3,7 @@ package com.prod.inwise.fe.services.Impl;
 import static com.prod.inwise.fe.services.ServicesGateway.invokeAPI;
 import static com.prod.inwise.fe.services.ServicesGateway.removeUnwantedElements;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +30,13 @@ public class ItemServiceImpl implements ItemService {
 	private static Logger logger = LoggerFactory.getLogger(ItemServiceImpl.class);
 
 	@Override
-	public List<ItemDTO> findAllItemsByTraderId(Long traderId) throws Exception {
+	public List<ItemDTO> findAllItemsByTraderId(BigInteger traderId) throws Exception {
 
 		List<ItemDTO> itemDtos = new ArrayList<>();
 
 		ItemDTO itemDto = new ItemDTO();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/"+traderId+"/items",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + traderId + "/items",
 				HttpMethod.GET, null);
 		JsonNode itemDtoJsons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
@@ -54,7 +55,7 @@ public class ItemServiceImpl implements ItemService {
 				JsonNode jsonNode = new ObjectMapper().readValue(itemResponse.getBody(), new TypeReference<JsonNode>() {
 				});
 
-			//	removeUnwantedElements(jsonNode);
+				// removeUnwantedElements(jsonNode);
 
 				itemDto = (new ObjectMapper().treeToValue(jsonNode, ItemDTO.class));
 
@@ -69,10 +70,10 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ItemDTO findItemById(Long id) throws Exception {
+	public ItemDTO findItemById(BigInteger traderId, Long id) throws Exception {
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/items/" + id,
-				HttpMethod.GET, null);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/items/" + id, HttpMethod.GET, null);
 
 		JsonNode itemDtoJson = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
@@ -88,10 +89,10 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public ItemDTO saveItem(ItemDTO itemDto) throws Exception {
+	public ItemDTO saveItem(BigInteger traderId, ItemDTO itemDto) throws Exception {
 
 		@SuppressWarnings("unused")
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/items",
+		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/" + traderId + "/items",
 				HttpMethod.POST, itemDto);
 
 		// JsonNode itemDtoJson = new ObjectMapper().readValue(response.getBody(), new

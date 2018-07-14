@@ -44,6 +44,54 @@ function initialize() {
 }
 
 function saveTrader() {
+
+	if (isEmpty(document.detail_form.name)) {
+		alert("Please enter the name");
+    	document.detail_form.name.select();
+    	document.detail_form.name.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.city)) {
+		alert("Please enter the city");
+    	document.detail_form.city.select();
+    	document.detail_form.city.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.state)) {
+		alert("Please enter the state");
+    	document.detail_form.state.select();
+    	document.detail_form.state.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.postalCode)) {
+		alert("Please enter the postalCode");
+    	document.detail_form.postalCode.select();
+    	document.detail_form.postalCode.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.country)) {
+		alert("Please enter the country");
+    	document.detail_form.country.select();
+    	document.detail_form.country.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.street1)) {
+		alert("Please enter the street1");
+    	document.detail_form.street1.select();
+    	document.detail_form.street1.focus();
+    	return false;
+	}
+	if (!isValidPhone(document.detail_form.phone,false)) {
+		document.detail_form.phone.select();
+		document.detail_form.phone.focus();
+		return false;
+	}
+	
 	document.detail_form.submit();
     return true;
 }
@@ -83,35 +131,35 @@ function saveTrader() {
 			</tr>
 			<tr>
 				<td class="optional"><label>UIN:</label></td>
-				<td><input class="optional" type="text" id="uin" name="uin" maxlength="10" size="25" /></td>
+				<td><input type="text" id="uin" name="uin" maxlength="10" size="25" /></td>
 				
-				<td class="optional"><label>Phone #:</label></td>
-				<td><input class="optional" type="text" id="phone" name="phone" maxlength="15" size="25" /> </td>
+				<td class="mandatory"><label>Phone #:</label></td>
+				<td><input type="text" id="phone" name="phone" maxlength="15" size="25" /> </td>
 			</tr>
 			<tr>
-				<td class="optional"><label>Street1:</label></td>
-				<td><input class="optional" type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
+				<td class="mandatory"><label>Street1:</label></td>
+				<td><input type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
 				
 				<td class="optional"><label>Street2:</label></td>
-				<td><input class="optional" type="text" id="street2" name="street2" maxlength="30" size="25" /> </td>
+				<td><input type="text" id="street2" name="street2" maxlength="30" size="25" /> </td>
 			</tr>
 			<tr>
-				<td class="optional"><label>City:</label></td>
-				<td><input class="optional" type="text" id="city" name="city" maxlength="20" size="25" /></td>
+				<td class="mandatory"><label>City:</label></td>
+				<td><input type="text" id="city" name="city" maxlength="20" size="25" /></td>
 				
 				<td class="optional"><label>Region:</label></td>
-				<td><input class="optional" type="text" id="region" name="region" maxlength="20" size="25" /> </td>
+				<td><input type="text" id="region" name="region" maxlength="20" size="25" /> </td>
 			</tr>
 			<tr>
-				<td class="optional"><label>State:</label></td>
-				<td><input class="optional" type="text" id="state" name="state" maxlength="20" size="25" /> </td>
+				<td class="mandatory"><label>State:</label></td>
+				<td><input type="text" id="state" name="state" maxlength="20" size="25" /> </td>
 			
-				<td class="optional"><label>Country:</label></td>
-				<td><input class="optional" type="text" id="country" name="country" maxlength="20" size="25" /></td>
+				<td class="mandatory"><label>Country:</label></td>
+				<td><input type="text" id="country" name="country" maxlength="20" size="25" /></td>
 			</tr>
 			<tr>
-				<td class="optional"><label>PostalCode:</label></td>
-				<td><input class="optional" type="text" id="postalCode" name="postalCode" maxlength="20" size="25" /> </td>
+				<td class="mandatory"><label>PostalCode:</label></td>
+				<td><input type="text" id="postalCode" name="postalCode" maxlength="20" size="25" /> </td>
 				
 			</tr>
 			<tr>

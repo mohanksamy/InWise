@@ -3,6 +3,7 @@ package com.prod.inwise.fe.services;
 import java.util.List;
 
 import com.prod.inwise.dto.InvoiceDTO;
+import com.prod.inwise.dto.LineItemDTO;
 
 /**
  * @author Logu
@@ -14,5 +15,6 @@ public interface InvoiceService {
 
 	public InvoiceDTO findInvoiceById(Long id) throws Exception;
 
-	public InvoiceDTO saveInvoice(InvoiceDTO invoiceDto) throws Exception;
+	public List<LineItemDTO> saveInvoice(Long traderId, List<LineItemDTO> lineItemDtos) throws Exception;
+
 }

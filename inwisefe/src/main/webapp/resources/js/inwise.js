@@ -73,34 +73,6 @@ $(document).ready(function() {
 
 	});
 
-	// content boxes, draggable - sorting...
-	$("#maincontent #col1").sortable({
-		opacity : 0.6,
-		cursor : 'move',
-		update : function() {
-			// info here on how to record/save order...
-			// http://www.webresourcesdepot.com/dynamic-dragn-drop-with-jquery-and-php
-		}
-	});
-	$("#maincontent #col2").sortable({
-		opacity : 0.6,
-		cursor : 'move',
-		update : function() {
-			// info here on how to record/save order...
-			// http://www.webresourcesdepot.com/dynamic-dragn-drop-with-jquery-and-php
-		}
-	});
-
-	// homepage moveable boxes
-	$("#home .colwrapper").sortable({
-		opacity : 0.6,
-		cursor : 'move',
-		update : function() {
-			// info here on how to record/save order...
-			// http://www.webresourcesdepot.com/dynamic-dragn-drop-with-jquery-and-php
-		}
-	});
-
 	// table striping
 	$("table.striped tr:nth-child(even)").addClass("altrow");
 
@@ -131,7 +103,7 @@ $(document).ready(function() {
 		}
 	}
 	var winwidth = (parseInt($(window).width()) - x); // returns width of
-														// browser viewport
+	// browser viewport
 	var docwidth = (parseInt($(document).width()) - x);
 	if (docwidth > winwidth) {
 		$('#pageheader').width(docwidth);
@@ -211,7 +183,7 @@ function pageheader_resize() {
 		}
 	}
 	var winwidth = (parseInt($(window).width()) - x); // returns width of
-														// browser viewport
+	// browser viewport
 	var docwidth = (parseInt($(document).width()) - x);
 	if (docwidth > winwidth) {
 		$('#pageheader').width(docwidth);
@@ -245,4 +217,39 @@ function defaultSelect(select, str) {
 			return;
 		}
 	}
+}
+
+function trim(str) {
+	if (str.length > 0) {
+		while (str.charAt(0) == ' ') {
+			str = str.substring(1);
+		}
+		while (str.charAt(str.length - 1) == ' ') {
+			str = str.substring(0, str.length - 1);
+		}
+	}
+	return str;
+}
+
+function isEmpty(text) {
+	return trim(text.value).length == 0;
+}
+
+function isValidPhone(text, allowsEmpty) {
+	if (isEmpty(text)) {
+		if (!allowsEmpty) {
+			alert("Please enter a number");
+			return false;
+		} else
+			return true;
+	}
+
+	var validChars = "0123456789()-+ ";
+	for (var i = 0; i < text.value.length; i++) {
+		if (validChars.indexOf(text.value.charAt(i)) == -1) {
+			alert("Please enter a valid number");
+			return false;
+		}
+	}
+	return true;
 }

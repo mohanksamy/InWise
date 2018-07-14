@@ -43,6 +43,20 @@ function initialize() {
 }
 
 function saveStock() {
+	
+	if (isEmpty(document.detail_form.itemName)) {
+		alert("Please select the item name");
+    	document.detail_form.quantity.select();
+    	document.detail_form.quantity.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.quantity)) {
+		alert("Please enter the quantity");
+    	document.detail_form.quantity.select();
+    	document.detail_form.quantity.focus();
+    	return false;
+	}	
 	document.detail_form.submit();
     return true;
 }

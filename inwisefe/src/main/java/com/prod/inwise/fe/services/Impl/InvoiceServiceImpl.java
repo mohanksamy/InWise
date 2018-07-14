@@ -16,6 +16,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.prod.inwise.dto.InvoiceDTO;
+import com.prod.inwise.dto.LineItemDTO;
 import com.prod.inwise.fe.services.InvoiceService;
 
 /**
@@ -87,11 +88,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	@Override
-	public InvoiceDTO saveInvoice(InvoiceDTO invoiceDto) throws Exception {
+	public List<LineItemDTO> saveInvoice(Long traderId, List<LineItemDTO> lineItemDtos) throws Exception {
 
 		@SuppressWarnings("unused")
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/invoices",
-				HttpMethod.POST, invoiceDto);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/invoices", HttpMethod.POST, lineItemDtos);
 
 		// JsonNode traderJson = new ObjectMapper().readValue(response.getBody(), new
 		// TypeReference<JsonNode>() {
@@ -104,8 +105,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 		// taxDTO = findTraderByName(taxDTO.getName());
 
-		System.out.println("Invoice details received from Server: " + invoiceDto);
+		System.out.println("Invoice details received from Server: " + lineItemDtos);
 
-		return invoiceDto;
+		return lineItemDtos;
 	}
 }

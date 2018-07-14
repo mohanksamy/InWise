@@ -1,7 +1,10 @@
 package com.prod.inwise.fe.controller;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,9 +37,10 @@ public class StockController extends BusinessController {
 	private StockService stockService;
 
 	@RequestMapping(path = RequestConstants.VIEW_STOCKS, method = { RequestMethod.GET, RequestMethod.POST })
-	public String getStockList(Model model) throws Exception {
+	public String getStockList(Model model, HttpSession session) throws Exception {
 
-		List<StockDTO> stocks = stockService.findAllStocksByTraderId(Long.valueOf(1));
+		List<StockDTO> stocks = stockService
+				.findAllStocksByTraderId((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
 
 		model.addAttribute(AttributeConstants.STOCK_LIST, stocks);
 
@@ -44,11 +48,12 @@ public class StockController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.CREATE_STOCK, method = { RequestMethod.GET, RequestMethod.POST })
-	public String addStock(Model model) throws Exception {
+	public String addStock(Model model, HttpSession session) throws Exception {
 
 		StockDTO stockDto = new StockDTO();
 
-		List<ItemDTO> itemDtos = itemService.findAllItemsByTraderId(Long.valueOf(1));
+		List<ItemDTO> itemDtos = itemService
+				.findAllItemsByTraderId((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
 
 		model.addAttribute(AttributeConstants.ITEM_LIST, itemDtos);
 		model.addAttribute(AttributeConstants.STOCK, stockDto);
@@ -58,11 +63,12 @@ public class StockController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.EDIT_STOCK, method = { RequestMethod.GET, RequestMethod.POST })
-	public String editStock(@RequestParam("id") Long id, Model model) throws Exception {
+	public String editStock(@RequestParam("id") Long id, Model model, HttpSession session) throws Exception {
 
 		logger.debug("editStock id [" + id + "]");
 
-		StockDTO stockDto = stockService.findStockById(Long.valueOf(1), id);
+		StockDTO stockDto = stockService.findStockById((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID),
+				id);
 
 		model.addAttribute(AttributeConstants.STOCK, stockDto);
 		model.addAttribute(AttributeConstants.MODE, AttributeConstants.UPDATE);
@@ -71,11 +77,12 @@ public class StockController extends BusinessController {
 	}
 
 	@RequestMapping(path = RequestConstants.SAVE_STOCK, method = { RequestMethod.GET, RequestMethod.POST })
-	public String saveStock(@RequestParam Map<String, String> requestParams, Model model) throws Exception {
+	public String saveStock(@RequestParam Map<String, String> requestParams, Model model, HttpSession session)
+			throws Exception {
 
-		StockDTO stockDto = setData(requestParams);
+		StockDTO stockDto = setData(requestParams, (BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
 
-		stockDto = stockService.saveStock(stockDto);
+		stockDto = stockService.saveStock((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID), stockDto);
 
 		model.addAttribute(AttributeConstants.STOCK, stockDto);
 		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
@@ -84,21 +91,22 @@ public class StockController extends BusinessController {
 		return ViewNames.STOCK_DETAIL;
 	}
 
-	private StockDTO setData(Map<String, String> requestParams) throws Exception {
+	private StockDTO setData(Map<String, String> requestParams, BigInteger traderId) throws Exception {
 
 		StockDTO stockDto = null;
 		String stockId = requestParams.get(AttributeConstants.STOCK_ID);
 		String itemId = requestParams.get(AttributeConstants.ITEM_NAME);
-		// String traderId = requestParams.get(AttributeConstants.TRADER_ID);
+
+		logger.debug(" Trader Id [ " + traderId + "], ItemId [" + itemId + "], StockId [" + stockId + "]");
 
 		logger.debug("StockDTO Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
 		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
 
 			stockDto = new StockDTO();
-			stockDto.setItem(itemService.findItemById(Long.valueOf(itemId)));
+			stockDto.setItem(itemService.findItemById(traderId, Long.valueOf(itemId)));
 		} else {
 
-			stockDto = stockService.findStockById(Long.valueOf(1), Long.valueOf(stockId));
+			stockDto = stockService.findStockById(traderId, Long.valueOf(stockId));
 		}
 
 		String quantity = requestParams.get(AttributeConstants.QUANTITY);
