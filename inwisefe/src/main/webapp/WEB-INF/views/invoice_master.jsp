@@ -13,7 +13,7 @@
 
 </head>
 
-<body class="wnav">
+<body class="wnav" onload="javascript:initMenu();javascript:initialize();">
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
 	<nobr>
@@ -30,7 +30,6 @@
 					<thead>
 						<tr>
 							<th class="column-name">&nbsp;</th>
-							<th class="column-name">&nbsp;</th>
 							<th class="column-name">Bank Name</th>
 							<th class="column-name">Branch Name</th>
 							<th class="column-name">Address</th>
@@ -42,52 +41,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Indian Bank</td>
-							<td>Sterling Road</td>
-							<td>Streling Road, Chennai</td>
-							<td>1234567890</td>
-							<td>indianbank@gov.in</td>
-							<td>05-07-2018</td>
-							<td>07-07-2018</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Indian Bank</td>
-							<td>Sterling Road</td>
-							<td>Streling Road, Chennai</td>
-							<td>1234567890</td>
-							<td>indianbank@gov.in</td>
-							<td>05-07-2018</td>
-							<td>07-07-2018</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Indian Bank</td>
-							<td>Sterling Road</td>
-							<td>Streling Road, Chennai</td>
-							<td>1234567890</td>
-							<td>indianbank@gov.in</td>
-							<td>05-07-2018</td>
-							<td>07-07-2018</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
-							<td>Indian Bank</td>
-							<td>Sterling Road</td>
-							<td>Streling Road, Chennai</td>
-							<td>1234567890</td>
-							<td>indianbank@gov.in</td>
-							<td>05-07-2018</td>
-							<td>07-07-2018</td>
-						</tr>
-						<tr>
-							<td><a class="td-link" href="#">view</a></td>
-							<td><a class="td-link" href="#">edit</a></td>
+							<td><a class="td-link" href="#">print</a></td>
 							<td>Indian Bank</td>
 							<td>Sterling Road</td>
 							<td>Streling Road, Chennai</td>

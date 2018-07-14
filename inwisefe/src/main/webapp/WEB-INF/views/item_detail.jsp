@@ -112,22 +112,13 @@ function saveItem() {
 			<tr>
 				<td class="optional"><label>Tax:</label></td>
 				<td>
-					<label>CGST:</label>
 					<select id="centralTax" name="centralTax">
 					<%
 						for(TaxDTO taxDto : taxDtos) { %>
-							<option value="<%=taxDto.getId()%>"><%=taxDto.getCgst()%></option>
+							<option value="<%=taxDto.getId()%>"><%=taxDto.getCgst()%> -- <%=taxDto.getSgst()%></option>
 						<%} %>
           			</select>
-					&nbsp;
-					<label>SGST:</label>
-					<select id="stateTax" name="stateTax">
-					<%
-						for(TaxDTO taxDto : taxDtos) { %>
-							<option value="<%=taxDto.getId()%>"><%=taxDto.getSgst()%></option>
-						<%} %>
-          			</select>
-          			</td>
+	  			</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

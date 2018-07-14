@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.prod.inwise.dto.AddressDTO;
+import com.prod.inwise.dto.BuyerDTO;
 import com.prod.inwise.dto.InvoiceDTO;
 import com.prod.inwise.dto.ItemDTO;
 import com.prod.inwise.dto.LineItemDTO;
@@ -41,9 +43,10 @@ public class InvoiceController {
 	private InvoiceService invoiceService;
 
 	@RequestMapping(path = RequestConstants.VIEW_INVOICES, method = { RequestMethod.GET, RequestMethod.POST })
-	public String getInvoiceList(Model model) throws Exception {
+	public String getInvoiceList(Model model, HttpSession session) throws Exception {
 
-		List<InvoiceDTO> invoices = invoiceService.findAllInvoices();
+		List<InvoiceDTO> invoices = invoiceService
+				.findAllInvoicesByTraderId((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
 
 		model.addAttribute(AttributeConstants.INVOICE_LIST, invoices);
 
@@ -87,7 +90,8 @@ public class InvoiceController {
 		List<LineItemDTO> lineItemDtos = setData(requestParams,
 				(BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
 
-		lineItemDtos = invoiceService.saveInvoice(Long.valueOf(1), lineItemDtos);
+		lineItemDtos = invoiceService.saveInvoice((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID),
+				lineItemDtos);
 
 		List<ItemDTO> itemDtos = itemService
 				.findAllItemsByTraderId((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
@@ -102,27 +106,41 @@ public class InvoiceController {
 
 	private List<LineItemDTO> setData(Map<String, String> requestParams, BigInteger traderId) throws Exception {
 
-		InvoiceDTO invoiceDto = null;
-		String invoiceId = requestParams.get(AttributeConstants.INVOICE_ID);
-
-		logger.debug("InvoiceDTO Mode [" + requestParams.get(AttributeConstants.MODE) + "]");
-		if (AttributeConstants.INSERT.equals(requestParams.get(AttributeConstants.MODE))) {
-
-			invoiceDto = new InvoiceDTO();
-
-		} else {
-
-			invoiceDto = invoiceService.findInvoiceById(Long.valueOf(invoiceId));
-		}
+		InvoiceDTO invoiceDto = new InvoiceDTO();
+		AddressDTO addressDto = new AddressDTO();
+		BuyerDTO buyerDto = new BuyerDTO();
+		LineItemDTO dto = new LineItemDTO();
+		List<LineItemDTO> dtos = new ArrayList<>();
 
 		String quantity = requestParams.get(AttributeConstants.QUANTITY);
 		String itemId = requestParams.get(AttributeConstants.ITEM_NAME);
-		List<LineItemDTO> dtos = new ArrayList<>();
+		String street1 = requestParams.get(AttributeConstants.STREET1);
+		String street2 = requestParams.get(AttributeConstants.STREET2);
+		String city = requestParams.get(AttributeConstants.CITY);
+		String region = requestParams.get(AttributeConstants.REGION);
+		String state = requestParams.get(AttributeConstants.STATE);
+		String country = requestParams.get(AttributeConstants.COUNTRY);
+		String postalCode = requestParams.get(AttributeConstants.POSTALCODE);
+		String phone = requestParams.get(AttributeConstants.PHONE);
 
-		LineItemDTO dto = new LineItemDTO();
+		addressDto.setStreet1(street1);
+		addressDto.setStreet2(street2);
+		addressDto.setCity(city);
+		addressDto.setRegion(region);
+		addressDto.setState(state);
+		addressDto.setCountry(country);
+		addressDto.setPostalCode(postalCode);
+		addressDto.setActive(true);
+		addressDto.setCreatedUser("APP-SERVICES");
+		addressDto.setModifiedUser("APP-SERVICES");
+
+		buyerDto.setAddress(addressDto);
+
+		invoiceDto.setBuyer(buyerDto);
+		invoiceDto.setPhone(new BigInteger(phone));
 
 		dto.setItem(itemService.findItemById(traderId, Long.valueOf(itemId)));
-		dto.setQuantity(quantity != null ? Integer.valueOf(quantity) : 0);
+		dto.setQuantity(Integer.valueOf(quantity));
 		dto.setInvoice(invoiceDto);
 		dto.setCreatedUser("APP-SERVICES");
 		dto.setModifiedUser("APP-SERVICES");

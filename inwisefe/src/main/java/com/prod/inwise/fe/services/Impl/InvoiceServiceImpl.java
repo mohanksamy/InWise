@@ -3,6 +3,7 @@ package com.prod.inwise.fe.services.Impl;
 import static com.prod.inwise.fe.services.ServicesGateway.invokeAPI;
 import static com.prod.inwise.fe.services.ServicesGateway.removeUnwantedElements;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +31,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 	private static Logger logger = LoggerFactory.getLogger(InvoiceServiceImpl.class);
 
 	@Override
-	public List<InvoiceDTO> findAllInvoices() throws Exception {
+	public List<InvoiceDTO> findAllInvoicesByTraderId(BigInteger traderId) throws Exception {
 
 		List<InvoiceDTO> invoices = new ArrayList<>();
 
 		InvoiceDTO invoiceDto = new InvoiceDTO();
 
-		ResponseEntity<String> response = invokeAPI(null, "http://localhost:8080/inwise/traders/1/invoices",
-				HttpMethod.GET, null);
+		ResponseEntity<String> response = invokeAPI(null,
+				"http://localhost:8080/inwise/traders/" + traderId + "/invoices", HttpMethod.GET, null);
 		JsonNode invoiceJosons = new ObjectMapper().readValue(response.getBody(), new TypeReference<JsonNode>() {
 		});
 
@@ -88,7 +89,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	@Override
-	public List<LineItemDTO> saveInvoice(Long traderId, List<LineItemDTO> lineItemDtos) throws Exception {
+	public List<LineItemDTO> saveInvoice(BigInteger traderId, List<LineItemDTO> lineItemDtos) throws Exception {
 
 		@SuppressWarnings("unused")
 		ResponseEntity<String> response = invokeAPI(null,

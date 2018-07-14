@@ -23,8 +23,11 @@
 	List<ItemDTO> itemDtos = (List<ItemDTO>) request.getAttribute(AttributeConstants.ITEM_LIST);
 	
 	LineItemDTO lineItemDto = new LineItemDTO();
+	InvoiceDTO invoiceDto = new InvoiceDTO();
+	
 	if(lineItemDtos != null) {
 		lineItemDto = lineItemDtos.get(0);
+		invoiceDto = lineItemDto.getInvoice();	
 	}
 	pageContext.setAttribute("dto", lineItemDto);
 	String mode = (String) request.getAttribute(AttributeConstants.MODE);
@@ -34,6 +37,17 @@
 function initialize() {
   	defaultSelect(document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />");
   	document.detail_form.quantity.value = "<c:out value ="${dto.getQuantity()}" />";
+  	
+  	document.detail_form.phone.value = "<c:out value ="${dto.getInvoice().getPhone()}" />";
+ 	document.detail_form.street1.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getStreet1()}" />";
+  	document.detail_form.street2.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getStreet2()}" />";
+  	document.detail_form.city.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getCity()}" />";
+  	document.detail_form.region.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getRegion()}" />";
+  	document.detail_form.state.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getState()}" />";
+  	document.detail_form.country.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getCountry()}" />";
+  	document.detail_form.postalCode.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getPostalCode()}" />";
+
+  	
 }
 
 function saveInvoice() {
@@ -79,42 +93,52 @@ function saveInvoice() {
 				</td>
 			</tr>
 			<tr>
+				<td class="subtitle" colspan="4">
+					<div class="boxheader"><label>Buyer Information</label></div>
+				</td>
+    		</tr>
+    		<tr>
 				<td class="mandatory"><label>Bank Name:</label></td>
-				<td><input type="text" id="bankName" name="bankName" maxlength="40" size="25" /></td>
+				<td><input type="text" id="name" name="name" maxlength="40" size="25" /></td>
+				
+				<td class="mandatory"><label>Branch:</label></td>
+				<td><input type="text" id="name" name="name" maxlength="40" size="25" /></td>
+			</tr>
+			<tr>
+				<td class="mandatory"><label>Street1:</label></td>
+				<td><input type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
 
-				<td class="optional"><label>Invoice Date:</label></td>
-				<td><input type="text" id="invoiceDate" name="invoiceDate" maxlength="40" size="25" /></td>
+				<td class="mandatory"><label>Street2:</label></td>
+				<td><input type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
 			</tr>
 			<tr>
+				<td class="mandatory"><label>City:</label></td>
+				<td><input type="text" id="city" name="city" maxlength="20" size="25" /></td>
+			
 				<td class="optional"><label>Region:</label></td>
-				<td><input class="optional" type="text" id="region" name="region" maxlength="50" size="25" /></td>
-				
-				<td class="optional"><label>Invoice #:</label></td>
-				<td><input class="optional" type="text" id="invoiceNo" name="invoiceNo" maxlength="50" size="25" /> </td>
+				<td><input type="text" id="region" name="region" maxlength="20" size="25" /> </td>
 			</tr>
 			<tr>
-				<td class="optional"><label>Branch:</label></td>
-				<td><input class="optional" type="text" id="branch" name="branch" maxlength="40" size="25" /> </td>
-				
-				<td class="optional"><label>Order Reference:</label></td>
-				<td><input class="optional" type="text" id="orderReference" name="orderReference" maxlength="12" size="25" /></td>
+				<td class="mandatory"><label>State:</label></td>
+				<td><input type="text" id="state" name="state" maxlength="20" size="25" /> </td>
+			
+				<td class="mandatory"><label>Country:</label></td>
+				<td><input type="text" id="country" name="country" maxlength="20" size="25" /></td>
 			</tr>
 			<tr>
-				<td class="optional"><label>Address:</label></td>
-				<td><input class="optional" type="text" id="address" name="address" maxlength="50" size="25" /></td>
-				
-				<td class="optional"><label>Price:</label></td>
-				<td><input class="optional" type="text" id="price" name="price" maxlength="12" size="25" /></td>
+				<td class="mandatory"><label>PostalCode:</label></td>
+				<td><input type="text" id="postalCode" name="postalCode" maxlength="20" size="25" /> </td>
+			
+				<td class="mandatory"><label>Phone #:</label></td>
+				<td><input type="text" id="phone" name="phone" maxlength="15" size="25" /> </td>
 			</tr>
 			<tr>
-				<td class="mandatory"><label>GST #:</label></td>
-				<td><input class="optional" type="text" id="gstNo" name="gstNo" maxlength="12" size="25" /></td>
-				
-				<td class="optional"><label>Quantity:</label></td>
-				<td><input class="optional" type="text" id="quantity" name="quantity" maxlength="12" size="25" /></td>
-			</tr>
+				<td class="subtitle" colspan="4">
+					<div class="boxheader"><label>Invoice information</label></div>
+				</td>
+    		</tr>
 			<tr>
-				<td class="optional"><label>Description:</label></td>
+				<td class="optional"><label>Item name:</label></td>
           		<td>
 					<select id="itemName" name="itemName">
 					<%
@@ -123,24 +147,18 @@ function saveInvoice() {
 					<%} %>
           			</select>
           		</td>
-			</tr>
-			<tr>
-				<td class="optional"><label>Tax:</label></td>
-				<td>
-					<label>CGST:</label>
-					<input class="optional" type="text" id="centralTax" name="centralTax" maxlength="12" size="10" />
-					&nbsp;
-					<label>SGST:</label>
-					<input class="optional" type="text" id="stateTax" name="stateTax" maxlength="12" size="10" />
-				</td>
+          		
+          		<td class="optional"><label>Quantity:</label></td>
+				<td><input class="optional" type="text" id="quantity" name="quantity" maxlength="12" size="25" /></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
-			
 			<tr>
 				<td colspan="4" align="left" height="30" valign="bottom">
+				<% if(AttributeConstants.INSERT.equals(mode)) { %>
  					<input type="button" class="button" name="Save" value="Save" onClick="javascript:saveInvoice();"/>
+ 				<% } %>
   					<a href ="invoices"><input type="button" class="button" name="Cancel" value="Cancel" onClick="#" /></a>
  				</td>
 			</tr>
