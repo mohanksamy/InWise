@@ -16,6 +16,8 @@ import java.util.List;
 import org.fluttercode.datafactory.impl.DataFactory;
 
 import com.prod.inwise.dto.AddressDTO;
+import com.prod.inwise.dto.BuyerDTO;
+import com.prod.inwise.dto.InvoiceDTO;
 import com.prod.inwise.dto.ItemDTO;
 import com.prod.inwise.dto.LineItemDTO;
 import com.prod.inwise.dto.StockHistoryDTO;
@@ -173,6 +175,34 @@ public final class DataUtil {
 		}
 		
 		return lineItems;
+	}
+	
+	public static BuyerDTO getBuyer() {
+		
+		BuyerDTO buyer = new BuyerDTO();
+		buyer.setName(dataFactory.getName());
+		buyer.setCode(buyer.getName().toUpperCase());
+		buyer.setAddress(getAddress());
+		buyer.setPhone(new BigInteger(dataFactory.getNumberText(10)));
+		
+		buyer.setActive(true);
+		buyer.setCreatedUser(APP_USER);
+		buyer.setModifiedUser(APP_USER);
+		
+		return buyer;
+	}
+	
+	public static InvoiceDTO getInvoice(List<LineItemDTO> lineItems) {
+		
+		InvoiceDTO invoice = new InvoiceDTO();
+		
+		invoice.setBuyer(getBuyer());
+		
+		invoice.setPhone(new BigInteger(dataFactory.getNumberText(10)));
+		
+		invoice.setLineItems(lineItems);
+		
+		return invoice;
 	}
 	
 	public static int getRandomNumberBetween(int min, int max) {

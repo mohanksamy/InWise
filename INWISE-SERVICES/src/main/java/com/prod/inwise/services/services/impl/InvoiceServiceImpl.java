@@ -39,7 +39,9 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
 	private StockRepository stockRepo;
 	
 	@Override
-	public void createInvoice(BigInteger traderId, List<LineItem> lineItems) throws OutOfStockException, UnexpectedItemException {
+	public void createInvoice(BigInteger traderId, Invoice invoice) throws OutOfStockException, UnexpectedItemException {
+		
+		List<LineItem> lineItems = invoice.getLineItems();
 		
 		// Check all LineItems belong to this Trader
 		checkLineItemsBelongsToTrader(traderId, lineItems);
@@ -60,12 +62,12 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
 		populateLineItemTaxAndPrice(lineItems);
 		
 		// Create & Save Invoice
-		Invoice invoice = invoiceRepo.save(populateInvoiceWithTaxAndPrice(traderId, lineItems));
+		Invoice savedInvoice = invoiceRepo.save(populateInvoiceWithTaxAndPrice(traderId, invoice, lineItems));
 		
 		// Link Invoice to LineItems and Save
 		lineItems.forEach( lineItem -> {
 			
-			lineItem.setInvoice(invoice);
+			lineItem.setInvoice(savedInvoice);
 			lineItemRepo.save(lineItem);
 			
 			// Deduct quantity in Stock
@@ -87,9 +89,7 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
 		});
 	}
 	
-	private Invoice populateInvoiceWithTaxAndPrice(BigInteger traderId, List<LineItem> lineItems) {
-		
-		Invoice invoice = new Invoice();
+	private Invoice populateInvoiceWithTaxAndPrice(BigInteger traderId, Invoice invoice, List<LineItem> lineItems) {
 		
 		Trader trader = new Trader();
 		trader.setId(traderId);

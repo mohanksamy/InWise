@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,8 +30,6 @@ import com.prod.inwise.services.repo.StockRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 /**
  * REST Resource exposes operation on Stock resource
@@ -51,7 +48,7 @@ public class StockResource {
 	@Autowired
 	private ItemRepository itemRepo;
 
-	@POST
+	/*@POST
 	@ApiOperation(value = "Create stock", notes = "Create stock model")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "Invalid tenant specified"),
 			@ApiResponse(code = 401, message = "Invalid user specified"),
@@ -64,7 +61,7 @@ public class StockResource {
 		stockRepo.save(stock);
 
 		return Response.status(OK).build();
-	}
+	}*/
 
 	@GET
 	@ApiOperation(value = "Get All Stocks", notes = "Get Stock URIs")

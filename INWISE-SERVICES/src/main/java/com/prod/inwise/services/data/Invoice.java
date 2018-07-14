@@ -2,12 +2,14 @@ package com.prod.inwise.services.data;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -49,6 +51,9 @@ public class Invoice extends BaseModel {
 	@Column(name = "PHONE")
 	@ApiModelProperty
 	private BigInteger phone;
+	
+	@Transient
+	private List<LineItem> lineItems;
 
 	/**
 	 * @return the trader
@@ -118,5 +123,19 @@ public class Invoice extends BaseModel {
 	 */
 	public void setPhone(BigInteger phone) {
 		this.phone = phone;
+	}
+
+	/**
+	 * @return the lineItems
+	 */
+	public List<LineItem> getLineItems() {
+		return lineItems;
+	}
+
+	/**
+	 * @param lineItems the lineItems to set
+	 */
+	public void setLineItems(List<LineItem> lineItems) {
+		this.lineItems = lineItems;
 	}
 }

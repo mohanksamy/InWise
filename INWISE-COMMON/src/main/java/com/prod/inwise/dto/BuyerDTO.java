@@ -1,8 +1,12 @@
 package com.prod.inwise.dto;
 
+import java.math.BigInteger;
+
 public class BuyerDTO extends NameCodeDTO {
 
 	private AddressDTO address;
+	
+	private BigInteger phone;
 	
 	private String reference1;
 	
@@ -22,6 +26,20 @@ public class BuyerDTO extends NameCodeDTO {
 	 */
 	public void setAddress(AddressDTO address) {
 		this.address = address;
+	}
+
+	/**
+	 * @return the phone
+	 */
+	public BigInteger getPhone() {
+		return phone;
+	}
+
+	/**
+	 * @param phone the phone to set
+	 */
+	public void setPhone(BigInteger phone) {
+		this.phone = phone;
 	}
 
 	/**

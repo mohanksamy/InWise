@@ -1,6 +1,7 @@
 package com.prod.inwise.services.resource;
 
 import static com.prod.inwise.util.Constants.RESOURCE_PATH_INVOICE;
+import static com.prod.inwise.util.Utils.isNull;
 import static java.util.stream.StreamSupport.stream;
 import static javax.ws.rs.core.Response.status;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
@@ -25,10 +26,13 @@ import javax.ws.rs.core.UriInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.prod.inwise.services.data.Address;
+import com.prod.inwise.services.data.Buyer;
 import com.prod.inwise.services.data.Invoice;
-import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.exceptions.UnexpectedItemException;
+import com.prod.inwise.services.repo.AddressRepository;
+import com.prod.inwise.services.repo.BuyerRepository;
 import com.prod.inwise.services.repo.InvoiceRepository;
 import com.prod.inwise.services.services.InvoiceService;
 
@@ -54,6 +58,12 @@ public class InvoiceResource {
 	
 	@Autowired
 	private InvoiceService invoiceService;
+	
+	@Autowired
+	private AddressRepository addressRepo;
+	
+	@Autowired
+	private BuyerRepository buyerRepo;
 
 	@POST
 	@ApiOperation(value = "Create Invoice", notes = "Create invoice model")
@@ -63,13 +73,27 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, List<LineItem> lineItems) {
+	public Response createInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, Invoice invoice) {
 
 		Response response = null;
 		
 		try {
 			
-			invoiceService.createInvoice(traderId, lineItems);
+			if ( !isNull(invoice.getBuyer()) && isNull(invoice.getBuyer().getId()) ) {
+				
+				if ( !isNull(invoice.getBuyer().getAddress()) && isNull(invoice.getBuyer().getAddress().getId()) ) {
+					
+					Address address = addressRepo.save(invoice.getBuyer().getAddress());
+					
+					invoice.getBuyer().setAddress(address);
+				}
+				
+				Buyer buyer = buyerRepo.save(invoice.getBuyer());
+				
+				invoice.setBuyer(buyer);
+			}
+			
+			invoiceService.createInvoice(traderId, invoice);
 			
 			response = status(OK).build();
 		
