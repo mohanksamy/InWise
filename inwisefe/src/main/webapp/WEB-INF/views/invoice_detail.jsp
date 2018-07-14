@@ -6,6 +6,7 @@
 <%@ page import="java.math.BigInteger"%>
 <%@ page import="com.prod.inwise.dto.InvoiceDTO"%>
 <%@ page import="com.prod.inwise.dto.ItemDTO"%>
+<%@ page import="com.prod.inwise.dto.LineItemDTO"%>
 <%@ page import="com.prod.inwise.fe.utilities.AttributeConstants"%>
 
 <head>
@@ -20,22 +21,36 @@
 <%
 	List<LineItemDTO> lineItemDtos = (List<LineItemDTO>) request.getAttribute(AttributeConstants.LINE_ITEM_LIST);
 	List<ItemDTO> itemDtos = (List<ItemDTO>) request.getAttribute(AttributeConstants.ITEM_LIST);
-	BigInteger id = null;
 	
-	if(invoiceDto != null) {
-	 	id = invoiceDto.getId();
+	LineItemDTO lineItemDto = new LineItemDTO();
+	if(lineItemDtos != null) {
+		lineItemDto = lineItemDtos.get(0);
 	}
-
+	pageContext.setAttribute("dto", lineItemDto);
 	String mode = (String) request.getAttribute(AttributeConstants.MODE);
-	pageContext.setAttribute("dto", invoiceDto);
 %>
 <script type="text/javascript">
 
 function initialize() {
-	
+  	defaultSelect(document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />");
+  	document.detail_form.quantity.value = "<c:out value ="${dto.getQuantity()}" />";
 }
 
 function saveInvoice() {
+	if (isEmpty(document.detail_form.itemName)) {
+		alert("Please select the item name");
+    	document.detail_form.itemName.select();
+    	document.detail_form.itemName.focus();
+    	return false;
+	}
+	
+	if (isEmpty(document.detail_form.quantity)) {
+		alert("Please enter the quantity");
+    	document.detail_form.quantity.select();
+    	document.detail_form.quantity.focus();
+    	return false;
+	}
+
 	document.detail_form.submit();
     return true;
 }
@@ -47,7 +62,6 @@ function saveInvoice() {
 <%@ include file="header.jsf" %>
 <%@ include file="left_side_navbar.jsf"%>	
 	<form action="saveInvoice" method="post" name="detail_form" accept-charset="UTF-8">
-		<input type="hidden" name="<%= AttributeConstants.INVOICE_ID %>" value ="<%= id %>" />
 		<input type="hidden" name="<%= AttributeConstants.MODE %>" value="<%= mode %>" /> 	 	
 	
 		<nobr>

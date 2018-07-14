@@ -89,6 +89,10 @@ public class InvoiceController {
 
 		lineItemDtos = invoiceService.saveInvoice(Long.valueOf(1), lineItemDtos);
 
+		List<ItemDTO> itemDtos = itemService
+				.findAllItemsByTraderId((BigInteger) session.getAttribute(AttributeConstants.TRADER_ID));
+
+		model.addAttribute(AttributeConstants.ITEM_LIST, itemDtos);
 		model.addAttribute(AttributeConstants.LINE_ITEM_LIST, lineItemDtos);
 		model.addAttribute(AttributeConstants.APPLICATION_STATUS, AttributeConstants.RS_SUCCESS);
 		model.addAttribute(AttributeConstants.APPLICATION_MESSAGES, MessageCode.INFO_MSG_1001);
