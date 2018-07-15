@@ -30,6 +30,8 @@ public interface AttributeConstants {
 	String STATE = "state";
 	String COUNTRY = "country";
 	String POSTALCODE = "postalCode";
+	
+	String REFERENCE_1 = "reference1";
 
 	String TAX = "tax";
 	String TAX_LIST = "taxs";

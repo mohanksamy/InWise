@@ -174,10 +174,12 @@ public final class DataUtil {
 			lineItems.add(lineItem);
 		}
 		
+		lineItems.get(0).setInvoice(getInvoice());
+		
 		return lineItems;
 	}
 	
-	public static BuyerDTO getBuyer() {
+	private static BuyerDTO getBuyer() {
 		
 		BuyerDTO buyer = new BuyerDTO();
 		buyer.setName(dataFactory.getName());
@@ -192,15 +194,13 @@ public final class DataUtil {
 		return buyer;
 	}
 	
-	public static InvoiceDTO getInvoice(List<LineItemDTO> lineItems) {
+	private static InvoiceDTO getInvoice() {
 		
 		InvoiceDTO invoice = new InvoiceDTO();
 		
 		invoice.setBuyer(getBuyer());
 		
 		invoice.setPhone(new BigInteger(dataFactory.getNumberText(10)));
-		
-		invoice.setLineItems(lineItems);
 		
 		return invoice;
 	}

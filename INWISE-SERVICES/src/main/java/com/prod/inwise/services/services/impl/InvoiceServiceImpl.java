@@ -39,9 +39,7 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
 	private StockRepository stockRepo;
 	
 	@Override
-	public void createInvoice(BigInteger traderId, Invoice invoice) throws OutOfStockException, UnexpectedItemException {
-		
-		List<LineItem> lineItems = invoice.getLineItems();
+	public void createInvoice(BigInteger traderId, Invoice invoice, List<LineItem> lineItems) throws OutOfStockException, UnexpectedItemException {
 		
 		// Check all LineItems belong to this Trader
 		checkLineItemsBelongsToTrader(traderId, lineItems);

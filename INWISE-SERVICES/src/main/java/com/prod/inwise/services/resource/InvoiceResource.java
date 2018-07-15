@@ -29,6 +29,7 @@ import org.springframework.stereotype.Component;
 import com.prod.inwise.services.data.Address;
 import com.prod.inwise.services.data.Buyer;
 import com.prod.inwise.services.data.Invoice;
+import com.prod.inwise.services.data.LineItem;
 import com.prod.inwise.services.exceptions.OutOfStockException;
 import com.prod.inwise.services.exceptions.UnexpectedItemException;
 import com.prod.inwise.services.repo.AddressRepository;
@@ -73,29 +74,34 @@ public class InvoiceResource {
 			@ApiResponse(code = 401, message = "No privilege to access model"),
 			@ApiResponse(code = 440, message = "invalid session or access-token specified"),
 			@ApiResponse(code = 500, message = "Server Internal error") })
-	public Response createInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, Invoice invoice) {
+	public Response createInvoice(@ApiParam @PathParam("traderId") BigInteger traderId, List<LineItem> lineItems) {
 
 		Response response = null;
 		
 		try {
 			
-			if ( !isNull(invoice.getBuyer()) && isNull(invoice.getBuyer().getId()) ) {
+			if ( null != lineItems && !lineItems.isEmpty() ) {
 				
-				if ( !isNull(invoice.getBuyer().getAddress()) && isNull(invoice.getBuyer().getAddress().getId()) ) {
+				Invoice invoice = lineItems.get(0).getInvoice();
+			
+				if ( !isNull(invoice.getBuyer()) && isNull(invoice.getBuyer().getId()) ) {
 					
-					Address address = addressRepo.save(invoice.getBuyer().getAddress());
+					if ( !isNull(invoice.getBuyer().getAddress()) && isNull(invoice.getBuyer().getAddress().getId()) ) {
+						
+						Address address = addressRepo.save(invoice.getBuyer().getAddress());
+						
+						invoice.getBuyer().setAddress(address);
+					}
 					
-					invoice.getBuyer().setAddress(address);
+					Buyer buyer = buyerRepo.save(invoice.getBuyer());
+					
+					invoice.setBuyer(buyer);
 				}
+			
+				invoiceService.createInvoice(traderId, invoice, lineItems);
 				
-				Buyer buyer = buyerRepo.save(invoice.getBuyer());
-				
-				invoice.setBuyer(buyer);
+				response = status(OK).build();
 			}
-			
-			invoiceService.createInvoice(traderId, invoice);
-			
-			response = status(OK).build();
 		
 		} catch (UnexpectedItemException uie) {
 			

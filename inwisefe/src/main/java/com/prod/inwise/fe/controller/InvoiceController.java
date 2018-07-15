@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,14 +107,23 @@ public class InvoiceController {
 
 	private List<LineItemDTO> setData(Map<String, String> requestParams, BigInteger traderId) throws Exception {
 
-		InvoiceDTO invoiceDto = new InvoiceDTO();
-		AddressDTO addressDto = new AddressDTO();
-		BuyerDTO buyerDto = new BuyerDTO();
-		LineItemDTO dto = new LineItemDTO();
-		List<LineItemDTO> dtos = new ArrayList<>();
+		InvoiceDTO invoiceDTO = new InvoiceDTO();
+		AddressDTO addressDTO = new AddressDTO();
+		BuyerDTO buyerDTO = new BuyerDTO();
+		LineItemDTO lineItem = new LineItemDTO();
+		List<LineItemDTO> lineItems = new ArrayList<>();
 
 		String quantity = requestParams.get(AttributeConstants.QUANTITY);
 		String itemId = requestParams.get(AttributeConstants.ITEM_NAME);
+		
+		// Buyer details
+		String name = requestParams.get(AttributeConstants.NAME);
+		String reference1 = requestParams.get(AttributeConstants.REFERENCE_1);
+		
+		buyerDTO.setName(name);
+		buyerDTO.setReference1(reference1);
+		
+		// Address details
 		String street1 = requestParams.get(AttributeConstants.STREET1);
 		String street2 = requestParams.get(AttributeConstants.STREET2);
 		String city = requestParams.get(AttributeConstants.CITY);
@@ -121,33 +131,63 @@ public class InvoiceController {
 		String state = requestParams.get(AttributeConstants.STATE);
 		String country = requestParams.get(AttributeConstants.COUNTRY);
 		String postalCode = requestParams.get(AttributeConstants.POSTALCODE);
-		String phone = requestParams.get(AttributeConstants.PHONE);
+		
+		BigInteger phone = getPhone(requestParams.get(AttributeConstants.PHONE));
 
-		addressDto.setStreet1(street1);
-		addressDto.setStreet2(street2);
-		addressDto.setCity(city);
-		addressDto.setRegion(region);
-		addressDto.setState(state);
-		addressDto.setCountry(country);
-		addressDto.setPostalCode(postalCode);
-		addressDto.setActive(true);
-		addressDto.setCreatedUser("APP-SERVICES");
-		addressDto.setModifiedUser("APP-SERVICES");
+		addressDTO.setStreet1(street1);
+		addressDTO.setStreet2(street2);
+		addressDTO.setCity(city);
+		addressDTO.setRegion(region);
+		addressDTO.setState(state);
+		addressDTO.setCountry(country);
+		addressDTO.setPostalCode(postalCode);
+		addressDTO.setActive(true);
+		addressDTO.setCreatedUser("APP-SERVICES");
+		addressDTO.setModifiedUser("APP-SERVICES");
 
-		buyerDto.setAddress(addressDto);
+		if ( StringUtils.isNotEmpty(addressDTO.getStreet1()) ) {
+			
+			buyerDTO.setAddress(addressDTO);
+		}
+		
+		buyerDTO.setPhone(phone);
 
-		invoiceDto.setBuyer(buyerDto);
-		invoiceDto.setPhone(new BigInteger(phone));
+		if ( StringUtils.isNotEmpty(buyerDTO.getName()) ) {
+			
+			invoiceDTO.setBuyer(buyerDTO);
+		}
+			
+		invoiceDTO.setPhone(phone);
 
-		dto.setItem(itemService.findItemById(traderId, Long.valueOf(itemId)));
-		dto.setQuantity(Integer.valueOf(quantity));
-		dto.setInvoice(invoiceDto);
-		dto.setCreatedUser("APP-SERVICES");
-		dto.setModifiedUser("APP-SERVICES");
-		dto.setActive(true);
+		lineItem.setItem(itemService.findItemById(traderId, Long.valueOf(itemId)));
+		lineItem.setQuantity(Integer.valueOf(quantity));
+		lineItem.setInvoice(invoiceDTO);
+		lineItem.setCreatedUser("APP-SERVICES");
+		lineItem.setModifiedUser("APP-SERVICES");
+		lineItem.setActive(true);
 
-		dtos.add(dto);
+		lineItems.add(lineItem);
 
-		return dtos;
+		return lineItems;
+	}
+	
+	private BigInteger getPhone(String phoneNumber) {
+		
+		BigInteger phone = null;
+		
+		try {
+			
+			if ( null != phoneNumber ) {
+				
+				phone = new BigInteger(phoneNumber);
+			}
+		
+		} catch (Exception e) {
+			// Possible to get NumberFormatException if it's not valid number
+			// Swallow the exception
+		}
+		
+		return phone;
+		
 	}
 }

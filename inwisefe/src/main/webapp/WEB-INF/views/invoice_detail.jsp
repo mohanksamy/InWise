@@ -102,14 +102,14 @@ function saveInvoice() {
 				<td><input type="text" id="name" name="name" maxlength="40" size="25" /></td>
 				
 				<td class="mandatory"><label>Branch:</label></td>
-				<td><input type="text" id="name" name="name" maxlength="40" size="25" /></td>
+				<td><input type="text" id="reference1" name="reference1" maxlength="40" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="mandatory"><label>Street1:</label></td>
 				<td><input type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
 
 				<td class="mandatory"><label>Street2:</label></td>
-				<td><input type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
+				<td><input type="text" id="street2" name="street2" maxlength="30" size="25" /></td>
 			</tr>
 			<tr>
 				<td class="mandatory"><label>City:</label></td>

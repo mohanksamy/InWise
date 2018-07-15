@@ -2,7 +2,6 @@ package com.prod.inwise.dto;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.List;
 
 public class InvoiceDTO extends BaseDTO {
 
@@ -15,8 +14,6 @@ public class InvoiceDTO extends BaseDTO {
 	private BuyerDTO buyer;
 
 	private BigInteger phone;
-	
-	private List<LineItemDTO> lineItems;
 
 	/**
 	 * @return the trader
@@ -86,19 +83,5 @@ public class InvoiceDTO extends BaseDTO {
 	 */
 	public void setPhone(BigInteger phone) {
 		this.phone = phone;
-	}
-
-	/**
-	 * @return the lineItems
-	 */
-	public List<LineItemDTO> getLineItems() {
-		return lineItems;
-	}
-
-	/**
-	 * @param lineItems the lineItems to set
-	 */
-	public void setLineItems(List<LineItemDTO> lineItems) {
-		this.lineItems = lineItems;
 	}
 }

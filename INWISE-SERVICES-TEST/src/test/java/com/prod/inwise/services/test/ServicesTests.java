@@ -1,6 +1,5 @@
 package com.prod.inwise.services.test;
 
-import static com.prod.inwise.services.test.DataUtil.getInvoice;
 import static com.prod.inwise.services.test.DataUtil.getItem;
 import static com.prod.inwise.services.test.DataUtil.getLineItems;
 import static com.prod.inwise.services.test.DataUtil.getRandomNumberBetween;
@@ -152,7 +151,7 @@ public abstract class ServicesTests extends AbstractTests {
 			
 			} else {
 				
-				getRequestSpecificationWithJsonBody(getInvoice(consolidatedLineItems)).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
+				getRequestSpecificationWithJsonBody(consolidatedLineItems).post(getPath(RESOURCE_PATH_TRADERS, traderId.toString(), RESOURCE_PATH_INVOICE)).then().statusCode(SC_OK);
 				
 				System.out.println("Invoice created");
 			}
