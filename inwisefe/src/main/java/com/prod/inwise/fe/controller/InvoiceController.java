@@ -120,9 +120,6 @@ public class InvoiceController {
 		String name = requestParams.get(AttributeConstants.NAME);
 		String reference1 = requestParams.get(AttributeConstants.REFERENCE_1);
 		
-		buyerDTO.setName(name);
-		buyerDTO.setReference1(reference1);
-		
 		// Address details
 		String street1 = requestParams.get(AttributeConstants.STREET1);
 		String street2 = requestParams.get(AttributeConstants.STREET2);
@@ -149,12 +146,14 @@ public class InvoiceController {
 			
 			buyerDTO.setAddress(addressDTO);
 		}
-		
+
+		buyerDTO.setName(name);
+		buyerDTO.setReference1(reference1);
 		buyerDTO.setPhone(phone);
-		buyerDTO.setCode("0");
+		buyerDTO.setCode(name.toUpperCase());
 		buyerDTO.setCreatedUser("APP-SERVICES");
 		buyerDTO.setModifiedUser("APP-SERVICES");
-
+		
 		if ( StringUtils.isNotEmpty(buyerDTO.getName()) ) {
 			
 			invoiceDTO.setBuyer(buyerDTO);
