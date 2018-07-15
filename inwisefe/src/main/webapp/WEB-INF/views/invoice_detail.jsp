@@ -37,7 +37,8 @@
 function initialize() {
   	defaultSelect(document.detail_form.itemName.value = "<c:out value ="${dto.getItem().getName()}" />");
   	document.detail_form.quantity.value = "<c:out value ="${dto.getQuantity()}" />";
-  	
+  	document.detail_form.name.value = "<c:out value ="${dto.getInvoice().getBuyer().getName()}" />";
+ 	document.detail_form.reference1.value = "<c:out value ="${dto.getInvoice().getBuyer().getReference1()}" />";
   	document.detail_form.phone.value = "<c:out value ="${dto.getInvoice().getPhone()}" />";
  	document.detail_form.street1.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getStreet1()}" />";
   	document.detail_form.street2.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getStreet2()}" />";
@@ -46,8 +47,6 @@ function initialize() {
   	document.detail_form.state.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getState()}" />";
   	document.detail_form.country.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getCountry()}" />";
   	document.detail_form.postalCode.value = "<c:out value ="${dto.getInvoice().getBuyer().getAddress().getPostalCode()}" />";
-
-  	
 }
 
 function saveInvoice() {
@@ -98,43 +97,43 @@ function saveInvoice() {
 				</td>
     		</tr>
     		<tr>
-				<td class="mandatory"><label>Bank Name:</label></td>
+				<td class="optional"><label>Bank Name:</label></td>
 				<td><input type="text" id="name" name="name" maxlength="40" size="25" /></td>
 				
-				<td class="mandatory"><label>Branch:</label></td>
+				<td class="optional"><label>Branch:</label></td>
 				<td><input type="text" id="reference1" name="reference1" maxlength="40" size="25" /></td>
 			</tr>
 			<tr>
-				<td class="mandatory"><label>Street1:</label></td>
+				<td class="optional"><label>Street1:</label></td>
 				<td><input type="text" id="street1" name="street1" maxlength="30" size="25" /></td>
 
-				<td class="mandatory"><label>Street2:</label></td>
+				<td class="optional"><label>Street2:</label></td>
 				<td><input type="text" id="street2" name="street2" maxlength="30" size="25" /></td>
 			</tr>
 			<tr>
-				<td class="mandatory"><label>City:</label></td>
+				<td class="optional"><label>City:</label></td>
 				<td><input type="text" id="city" name="city" maxlength="20" size="25" /></td>
 			
 				<td class="optional"><label>Region:</label></td>
 				<td><input type="text" id="region" name="region" maxlength="20" size="25" /> </td>
 			</tr>
 			<tr>
-				<td class="mandatory"><label>State:</label></td>
+				<td class="optional"><label>State:</label></td>
 				<td><input type="text" id="state" name="state" maxlength="20" size="25" /> </td>
 			
-				<td class="mandatory"><label>Country:</label></td>
+				<td class="optional"><label>Country:</label></td>
 				<td><input type="text" id="country" name="country" maxlength="20" size="25" /></td>
 			</tr>
 			<tr>
-				<td class="mandatory"><label>PostalCode:</label></td>
+				<td class="optional"><label>PostalCode:</label></td>
 				<td><input type="text" id="postalCode" name="postalCode" maxlength="20" size="25" /> </td>
 			
-				<td class="mandatory"><label>Phone #:</label></td>
+				<td class="optional"><label>Phone #:</label></td>
 				<td><input type="text" id="phone" name="phone" maxlength="15" size="25" /> </td>
 			</tr>
 			<tr>
 				<td class="subtitle" colspan="4">
-					<div class="boxheader"><label>Invoice information</label></div>
+					<div class="boxheader"><label>Invoice Information</label></div>
 				</td>
     		</tr>
 			<tr>

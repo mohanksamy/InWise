@@ -151,6 +151,9 @@ public class InvoiceController {
 		}
 		
 		buyerDTO.setPhone(phone);
+		buyerDTO.setCode("0");
+		buyerDTO.setCreatedUser("APP-SERVICES");
+		buyerDTO.setModifiedUser("APP-SERVICES");
 
 		if ( StringUtils.isNotEmpty(buyerDTO.getName()) ) {
 			

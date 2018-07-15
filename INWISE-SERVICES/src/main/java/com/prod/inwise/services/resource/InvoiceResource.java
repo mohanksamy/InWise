@@ -84,9 +84,9 @@ public class InvoiceResource {
 				
 				Invoice invoice = lineItems.get(0).getInvoice();
 			
-				if ( !isNull(invoice.getBuyer()) && isNull(invoice.getBuyer().getId()) ) {
+				if ( !isNull(invoice.getBuyer()) ) {
 					
-					if ( !isNull(invoice.getBuyer().getAddress()) && isNull(invoice.getBuyer().getAddress().getId()) ) {
+					if ( !isNull(invoice.getBuyer().getAddress()) ) {
 						
 						Address address = addressRepo.save(invoice.getBuyer().getAddress());
 						
