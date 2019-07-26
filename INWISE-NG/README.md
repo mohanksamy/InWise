@@ -36,3 +36,24 @@ ng add @angular/animations (Try if needed)
 
 ng generate @angular/material:nav <component-name>
 ng generate @angular/material:nav nav
+
+
+References:
+https://material.io
+https://material.angular.io/guide/schematics
+
+
+Tasks:
+*******
+
+UI:
+****
+1. Implement layout with toolbar as header, side navigation and footer
+2. Enable Angular routing to interact with WebService
+3. Implement invoice as PDF and printing options
+4. Implement Login screen and load the UI based on the logged-in user previlege
+
+
+Technical Improvisations:
+**************************
+1. 
