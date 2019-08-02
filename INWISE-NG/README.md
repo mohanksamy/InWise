@@ -28,6 +28,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 Custom commands:
+*****************
+Checking npm version: npm -v / npm --version
+Checking ng version: ng --version
+
+
+Running the application: ng serve -o / ng serve --open
+
+
+
 
 Adding NG Material
 ng add @angular/material (use any themes, hammerJS, Animations)
@@ -48,7 +57,7 @@ Tasks:
 
 UI:
 ****
-1. Implement layout with toolbar as header, side navigation and footer
+1. Implement web layout with toolbar as header, side navigation and footer - Partly DONE
 2. Enable Angular routing to interact with WebService
 3. Implement invoice as PDF and printing options
 4. Implement Login screen and load the UI based on the logged-in user previlege
@@ -56,4 +65,7 @@ UI:
 
 Technical Improvisations:
 **************************
-1. 
+1. WebService to have dual data base writing capability (Also to read from NoSQL on use case basis. For instance, have the reports module to use NoSQL; port module by module)
+2. Scalability:
+	- Break the monoloithic service to micro-services
+	- Containerize all the layer in the application (UI, micro-services and DB)
