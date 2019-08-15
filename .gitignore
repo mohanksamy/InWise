@@ -1,0 +1,65 @@
+/.metadata/
+/.recommenders/
+
+
+
+# INWISE-COMMON
+/INWISE-COMMON/.project
+/INWISE-COMMON/.classpath
+/INWISE-COMMON/.settings
+/INWISE-COMMON/build/*
+/INWISE-COMMON/target/*
+
+
+
+# INWISE-FE
+/INWISE-FE/.project
+/INWISE-FE/.classpath
+/INWISE-FE/.settings
+/INWISE-FE/build/*
+/INWISE-FE/target/*
+
+
+
+# INWISE-POM
+/INWISE- POM/.project
+/INWISE- POM/.classpath
+/INWISE- POM/.settings
+/INWISE- POM/build/*
+/INWISE- POM/target/*
+
+
+
+# INWISE-SERVICES-TEST
+/INWISE-SERVICES-TEST/.project
+/INWISE-SERVICES-TEST/.classpath
+/INWISE-SERVICES-TEST/.settings
+/INWISE-SERVICES-TEST/build/*
+/INWISE-SERVICES-TEST/target/*
+
+
+
+# INWISE-SERVICES
+/INWISE-SERVICES/.project
+/INWISE-SERVICES/.classpath
+/INWISE-SERVICES/.settings
+/INWISE-SERVICES/build/*
+/INWISE-SERVICES/target/*
+
+
+
+# inwise-ui
+/inwise-ui/.project
+/inwise-ui/.classpath
+/inwise-ui/.settings
+/inwise-ui/build/*
+/inwise-ui/target/*
+
+
+
+# inwisefe
+/inwisefe/.project
+/inwisefe/.classpath
+/inwisefe/.settings
+/inwisefe/build/*
+/inwisefe/target/*
