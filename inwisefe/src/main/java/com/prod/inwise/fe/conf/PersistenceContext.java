@@ -16,19 +16,19 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
+/*@Configuration
 @EnableJpaRepositories(basePackages = { "com.prod.inwise.fe.services" })
 @EnableTransactionManagement
-@EnableJpaAuditing
+@EnableJpaAuditing*/
 public class PersistenceContext {
 
-	@Value("${hibernate.show_sql:false}")
+//	@Value("${hibernate.show_sql:false}")
 	private String showSql;
 
-	@Autowired
+//	@Autowired
 	private Environment environment;
 
-	@Bean
+//	@Bean
 	public DataSource dataSource() {
 		DataSource dataSource = new org.apache.tomcat.jdbc.pool.DataSource();
 
@@ -40,7 +40,7 @@ public class PersistenceContext {
 		return dataSource;
 	}
 
-	@Bean
+//	@Bean
 	public PlatformTransactionManager transactionManager() {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
 
@@ -49,7 +49,7 @@ public class PersistenceContext {
 		return transactionManager;
 	}
 
-	@Bean
+//	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
 

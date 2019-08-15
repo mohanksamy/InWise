@@ -11,10 +11,10 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 @Configuration
 public class QueryDslConfig {
 
-	@Autowired
+//	@Autowired
 	EntityManager em;
 
-	@Bean
+//	@Bean
 	public JPAQueryFactory jpaQueryFactory() {
 		return new JPAQueryFactory(em);
 	};

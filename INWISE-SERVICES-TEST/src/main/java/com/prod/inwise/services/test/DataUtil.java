@@ -64,7 +64,8 @@ public final class DataUtil {
 	public static TraderDTO getTrader() {
 		
 		TraderDTO trader = new TraderDTO();
-		trader.setName(dataFactory.getBusinessName());
+//		trader.setName(dataFactory.getBusinessName());
+		trader.setName("Shakthi Enterprises");
 		trader.setCode(upperCase(trader.getName()));
 		trader.setAddress(getAddress());
 		trader.setUin(getString(dataFactory.getRandomChars(3).toUpperCase(), dataFactory.getNumberText(10)));

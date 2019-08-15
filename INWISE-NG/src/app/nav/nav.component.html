@@ -1,8 +1,8 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <!-- <button mat-icon-button>
+    <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-    </button> -->
+    </button>
     <h1>InWise</h1>
     <span class="menu-spacer"></span>
   </mat-toolbar-row>
@@ -11,37 +11,41 @@
 
 
 <mat-sidenav-container>
-  <mat-sidenav #sidenav [opened]="true" disableClose="true">
+  <!-- <mat-sidenav #sidenav [opened]="true" disableClose="true"> -->
+    <mat-sidenav #sidenav opened="true">
     <mat-nav-list>
 
-      <h2 matSubheader><mat-icon>account_balance</mat-icon>Manage Item</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon>Create Item</a>
-      <a mat-list-item [routerLink]="'/'"> Update Item </a>
-      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon>Delete Item </a>
+      <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Item</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Item</a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Item </a>
+      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon> Delete Item </a>
       <mat-divider></mat-divider>
-      <h2 matSubheader><mat-icon>build</mat-icon>Manage Tax</h2>
-      <a mat-list-item [routerLink]="'/'"> Create Tax </a>
-      <a mat-list-item [routerLink]="'/'"> Update Tax </a>
-      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon>Delete Tax </a>
+      <h2 matSubheader> <mat-icon>money</mat-icon> Manage Tax</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Tax </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Tax </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Tax </a>
       <mat-divider></mat-divider>
-      <h2 matSubheader><mat-icon>account_balance</mat-icon>Manage Invoice</h2>
-      <a mat-list-item [routerLink]="'/'"> Create Invoice </a>
-      <a mat-list-item [routerLink]="'/'"> Update Invoice </a>
-      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon>Delete Invoice </a>
+      <h2 matSubheader> <mat-icon>all_inclusive</mat-icon> Manage Invoice</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Invoice </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Invoice </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Invoice </a>
       <mat-divider></mat-divider>
-      <h2 matSubheader><mat-icon>account_balance</mat-icon>Manage Stocks</h2>
-      <a mat-list-item [routerLink]="'/'"> Create Stocks </a>
-      <a mat-list-item [routerLink]="'/'"> Update Stocks </a>
-      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon>Delete Stocks </a>
+      <h2 matSubheader> <mat-icon>account_balance</mat-icon> Manage Stocks</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Stocks </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Stocks </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Stocks </a>
       <mat-divider></mat-divider>
-      <h2 matSubheader><mat-icon>account_balance</mat-icon>Manage Reports</h2>
-      <a mat-list-item [routerLink]="'/'"> Create Reports </a>
-      <a mat-list-item [routerLink]="'/'"> Update Reports </a>
-      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon>Delete Reports </a>
+      <h2 matSubheader> <mat-icon>business_center</mat-icon> Manage Reports</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Reports </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Reports </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Reports </a>
       <mat-divider></mat-divider>
-      <h2 matSubheader><mat-icon>account_balance</mat-icon></h2>
-      <a mat-list-item [routerLink]="'/'"> Contacts </a>
+      <!-- <h2 matSubheader> <mat-icon>account_balance</mat-icon> </h2>
+      <a mat-list-item [routerLink]="'/'"> Contacts </a> -->
       <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
+      <h2 matSubheader></h2>
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
 
     </mat-nav-list>
   </mat-sidenav>

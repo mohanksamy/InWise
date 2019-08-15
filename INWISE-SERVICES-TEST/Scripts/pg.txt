@@ -57,3 +57,32 @@ CREATE TABLE INVOICE (
 
 INSERT INTO STORES(ID, ADDRESS, CGST, CREATED_ON, MODIFIED_ON, NAME, PHONE, SGST, UIN)
 VALUES(UUID(),'BALEPET, BANGALORE', 2.5, TOTIMESTAMP(NOW()), TOTIMESTAMP(NOW()), 'VELSTORES', 9448, 2.5, 'TN34376936');
+
+
+Managing Postgres in MAC:
+*************************
+
+Start:
+*******
+postgres -D /usr/local/var/postgres
+
+OR
+
+pg_ctl -D /usr/local/var/postgres stop
+
+
+Connect to server:
+*******************
+psql postgres
+
+
+CREATE USER postgres WITH PASSWORD 'postgres';
+CREATE DATABASE postgres;
+
+GRANT ALL PRIVILEGES ON DATABASE postgres to postgres;
+
+psql -d postgres -U postgres
+
+psql -U user_name -d database_name -h 127.0.0.1 -W
+
+grant username to database;
