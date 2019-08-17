@@ -15,45 +15,57 @@
     <mat-sidenav #sidenav opened="true">
     <mat-nav-list>
 
-      <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Item</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Item</a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Item </a>
-      <a mat-list-item [routerLink]="'/'"><mat-icon>delete</mat-icon> Delete Item </a>
+      <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Trader</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Trader </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Trader </a>
+      <!-- <a mat-list-item [routerLink]="'/'"><mat-icon>pages</mat-icon> List Trader </a> -->
+      
       <mat-divider></mat-divider>
+      
       <h2 matSubheader> <mat-icon>money</mat-icon> Manage Tax</h2>
       <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Tax </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Tax </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Tax </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Tax </a>
+      
       <mat-divider></mat-divider>
-      <h2 matSubheader> <mat-icon>all_inclusive</mat-icon> Manage Invoice</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Invoice </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Invoice </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Invoice </a>
+      
+      <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Item</h2>
+      <a mat-list-item [routerLink]="'item'"> <mat-icon matListIcon>check</mat-icon> Create Item</a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Item</a>
+      
       <mat-divider></mat-divider>
+      
       <h2 matSubheader> <mat-icon>account_balance</mat-icon> Manage Stocks</h2>
       <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Stocks </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Stocks </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Stocks </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Stocks </a>
+      
       <mat-divider></mat-divider>
+      
+      <h2 matSubheader> <mat-icon>all_inclusive</mat-icon> Manage Invoice</h2>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Invoice </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Invoice </a>
+      
+      <mat-divider></mat-divider>
+      
       <h2 matSubheader> <mat-icon>business_center</mat-icon> Manage Reports</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Reports </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>pages</mat-icon> Update Reports </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon>delete</mat-icon> Delete Reports </a>
+      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Reports </a>
+      
       <mat-divider></mat-divider>
       <!-- <h2 matSubheader> <mat-icon>account_balance</mat-icon> </h2>
       <a mat-list-item [routerLink]="'/'"> Contacts </a> -->
       <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
-      <h2 matSubheader></h2>
-      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+      <!-- <h2 matSubheader></h2>
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
 
 
     </mat-nav-list>
   </mat-sidenav>
+  
   <mat-sidenav-content>
     <div style="height: 88vh;">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
 </mat-sidenav-container>
 
 <mat-toolbar color="primary" style="height: 30px;" class="md-scroll-shrink">

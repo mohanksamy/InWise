@@ -58,9 +58,10 @@ Tasks:
 UI:
 ****
 1. Implement web layout with toolbar as header, side navigation and footer - Partly DONE
-2. Enable Angular routing to interact with WebService
-3. Implement invoice as PDF and printing options
-4. Implement Login screen and load the UI based on the logged-in user previlege
+2. Load main content by clicking navigation
+3. Enable Angular routing to interact with WebService
+4. Implement invoice as PDF and printing options
+5. Implement Login screen and load the UI based on the logged-in user previlege
 
 
 Technical Improvisations:
