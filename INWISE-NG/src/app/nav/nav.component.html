@@ -16,8 +16,8 @@
     <mat-nav-list>
 
       <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Trader</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Trader </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Trader </a>
+      <a mat-list-item [routerLink]="'/trader'"> <mat-icon matListIcon>check</mat-icon> Create Trader </a>
+      <a mat-list-item [routerLink]="'/trader'"> <mat-icon matListIcon>check</mat-icon> List Trader </a>
       <!-- <a mat-list-item [routerLink]="'/'"><mat-icon>pages</mat-icon> List Trader </a> -->
       
       <mat-divider></mat-divider>
@@ -61,7 +61,7 @@
   </mat-sidenav>
   
   <mat-sidenav-content>
-    <div style="height: 88vh;">
+    <div style="height: 90vh;">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

@@ -12,7 +12,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LoginModule } from './login/login.module';
-import { LoginComponent } from './login/login.component';
+import { NavModule } from './nav/nav/nav.module';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { LoginComponent } from './login/login.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    LoginModule
+    LoginModule,
+    NavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

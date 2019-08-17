@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
+import { TraderComponent } from './nav/trader/trader.component';
 
 
 const routes: Routes = [
@@ -23,12 +24,16 @@ const routes: Routes = [
     component: NavComponent
   },
 
+  {
+    path: 'trader',
+    component: TraderComponent
+  },
 
   {
     path: '**',
     redirectTo: '',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({
