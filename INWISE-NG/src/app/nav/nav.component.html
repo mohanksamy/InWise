@@ -1,10 +1,14 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <button mat-icon-button>
+        <!-- <mat-icon>menu</mat-icon> -->
       <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      <!-- <mat-icon (click)="sidenav.opened=true">menu</mat-icon> -->
     </button>
     <h1>InWise</h1>
-    <span class="menu-spacer"></span>
+    <!-- <span class="menu-spacer"></span> -->
+    <span class="toolbar-filler"></span>
+    <button mat-icon-button routerLink="/"><mat-icon>exit_to_app</mat-icon></button>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -12,46 +16,46 @@
 
 <mat-sidenav-container>
   <!-- <mat-sidenav #sidenav [opened]="true" disableClose="true"> -->
-    <mat-sidenav #sidenav opened="true">
+    <mat-sidenav #sidenav [opened]="true" mode="side" role="navigation">
     <mat-nav-list>
 
       <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Trader</h2>
-      <a mat-list-item [routerLink]="'/trader'"> <mat-icon matListIcon>check</mat-icon> Create Trader </a>
-      <a mat-list-item [routerLink]="'/trader'"> <mat-icon matListIcon>check</mat-icon> List Trader </a>
-      <!-- <a mat-list-item [routerLink]="'/'"><mat-icon>pages</mat-icon> List Trader </a> -->
+      <a mat-list-item routerLink="/trader" routerLinkActive="active-link"> <mat-icon matListIcon>check</mat-icon> Create Trader </a>
+      <a mat-list-item routerLink="/trader"> <mat-icon matListIcon>check</mat-icon> List Trader </a>
+      <!-- <a mat-list-item routerLink="/"><mat-icon>pages</mat-icon> List Trader </a> -->
       
       <mat-divider></mat-divider>
       
       <h2 matSubheader> <mat-icon>money</mat-icon> Manage Tax</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Tax </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Tax </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> Create Tax </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> List Tax </a>
       
       <mat-divider></mat-divider>
       
       <h2 matSubheader onclick=""> <mat-icon>account_balance</mat-icon> Manage Item</h2>
       <a mat-list-item [routerLink]="'item'"> <mat-icon matListIcon>check</mat-icon> Create Item</a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Item</a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> List Item</a>
       
       <mat-divider></mat-divider>
       
       <h2 matSubheader> <mat-icon>account_balance</mat-icon> Manage Stocks</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Stocks </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Stocks </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> Create Stocks </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> List Stocks </a>
       
       <mat-divider></mat-divider>
       
       <h2 matSubheader> <mat-icon>all_inclusive</mat-icon> Manage Invoice</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Create Invoice </a>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> List Invoice </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> Create Invoice </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> List Invoice </a>
       
       <mat-divider></mat-divider>
       
       <h2 matSubheader> <mat-icon>business_center</mat-icon> Manage Reports</h2>
-      <a mat-list-item [routerLink]="'/'"> <mat-icon matListIcon>check</mat-icon> Reports </a>
+      <a mat-list-item routerLink="/"> <mat-icon matListIcon>check</mat-icon> Reports </a>
       
       <mat-divider></mat-divider>
       <!-- <h2 matSubheader> <mat-icon>account_balance</mat-icon> </h2>
-      <a mat-list-item [routerLink]="'/'"> Contacts </a> -->
+      <a mat-list-item routerLink="/"> Contacts </a> -->
       <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
       <!-- <h2 matSubheader></h2>
       <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
@@ -60,10 +64,13 @@
     </mat-nav-list>
   </mat-sidenav>
   
-  <mat-sidenav-content>
+  <mat-sidenav-content role="main">
+    
     <div style="height: 90vh;">
-      <router-outlet></router-outlet>
+      
+      Main Content
     </div>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

@@ -27,6 +27,7 @@ const routes: Routes = [
   {
     path: 'trader',
     component: TraderComponent
+    // loadChildren: './nav/nav.module/#NavModule'
   },
 
   {
