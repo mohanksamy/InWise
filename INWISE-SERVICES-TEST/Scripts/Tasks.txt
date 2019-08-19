@@ -12,22 +12,22 @@ Integration testing:
 		- Create STOCK_BATCH							- DONE
 		- Record stock in STOCK_HISTORY				- DONE
 		- Update STOCK								- DONE
-		
+
 	Invoice:
-		- Create INVOICE								- DONE	
+		- Create INVOICE								- DONE
 		- Create LINE_ITEM and update INVOICE table	- DONE
 		- Update STOCK								- DONE
 		- Check stock availability and return		- DONE
 		- Create LineItems in various dates			- DONE
-	
+
 2. Test module:
 	Stock:
 		- Create stocks								- DONE
-		
+
 	Invoice:
 		- Create invoices							- DONE
 
-3. Reporting queries									- 
+3. Reporting queries									-
 
 Modules:
 ********
@@ -56,8 +56,8 @@ Data encryption:
 ****************
 
 
-- Data dual writing to Postgres & Cassandra			- 
-- Identifying Front end technology					- 
+- Data dual writing to Postgres & Cassandra			-
+- Identifying Front end technology					-
 - Functional test cases for Services					- DONE
 
 
@@ -72,6 +72,27 @@ Open tasks:
 - Refactor the code
 - Refactor library dependencies
 - Remove commented code
+
+UI:
+****
+1. Implement web layout with toolbar as header, side navigation and footer - Partly DONE
+2. Load main content by clicking navigation
+3. Enable Angular routing to navigate to various views
+4. Enable components to interact with WebService
+5. Implement invoice as PDF and printing options
+6. Implement Login screen and load the UI based on the logged-in user previlege
+
+
+Technical Improvisations:
+**************************
+1. WebService to have dual data base writing capability (Also to read from NoSQL on use case basis. For instance, have the reports module to use NoSQL; port module by module)
+2. Think about making web service security (Authentication / authorization / JWT / OAuth, etc)
+3. Data security by encrypting data at the database level (Both in RDBMS & NoSQL)
+4. Scalability:
+	- Break the monolithic service to micro-services
+	- Containerize all the layer in the application (UI, micro-services and DB)
+
+
 
 REFERENCES:
 ***********
@@ -91,7 +112,7 @@ Front end:
   https://medium.com/this-dot-labs/building-modern-web-applications-in-2017-791d2ef2e341
   https://gearheart.io/blog/7-best-frameworks-for-web-development-in-2017/
 
-  
-  
+
+
 https://stackoverflow.com/questions/39343021/how-to-turn-my-jersey-rest-api-into-an-executable-jar
 https://stackoverflow.com/questions/20740703/java-lang-classnotfoundexception-org-springframework-boot-springapplication-mav

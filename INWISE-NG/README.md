@@ -59,14 +59,17 @@ UI:
 ****
 1. Implement web layout with toolbar as header, side navigation and footer - Partly DONE
 2. Load main content by clicking navigation
-3. Enable Angular routing to interact with WebService
-4. Implement invoice as PDF and printing options
-5. Implement Login screen and load the UI based on the logged-in user previlege
+3. Enable Angular routing to navigate to various views
+4. Enable components to interact with WebService
+5. Implement invoice as PDF and printing options
+6. Implement Login screen and load the UI based on the logged-in user previlege
 
 
 Technical Improvisations:
 **************************
 1. WebService to have dual data base writing capability (Also to read from NoSQL on use case basis. For instance, have the reports module to use NoSQL; port module by module)
-2. Scalability:
-	- Break the monoloithic service to micro-services
+2. Think about making web service security (Authentication / authorization / JWT / OAuth, etc)
+3. Data security by encrypting data at the database level (Both in RDBMS & NoSQL)
+4. Scalability:
+	- Break the monolithic service to micro-services
 	- Containerize all the layer in the application (UI, micro-services and DB)
