@@ -31,7 +31,7 @@
 		<json.patch.version>1.9</json.patch.version> -->
 		
 		<swagger-jerysey-version>1.5.8</swagger-jerysey-version>
-		<postgresql-driver-version>42.1.4</postgresql-driver-version>
+		<postgresql-driver-version>42.2.25</postgresql-driver-version>
 
 	</properties>
 
