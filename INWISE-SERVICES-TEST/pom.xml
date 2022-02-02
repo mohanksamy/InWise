@@ -19,7 +19,7 @@
 	<!-- Properties Details -->
 	<properties>
 		<inwise-common.version>1.0.0-SNAPSHOT</inwise-common.version>
-		<postgresql.version>42.1.4</postgresql.version>
+		<postgresql.version>42.2.25</postgresql.version>
 		<groovy-version>2.4.5</groovy-version>
 		<commons-lang.version>3.5</commons-lang.version>
 		<rest-assured.version>2.9.0</rest-assured.version>
